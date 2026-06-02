@@ -1,41 +1,35 @@
-# Scalable Qualitative Insight: Interview-to-Review MVP
+# Jingyang Liu Master Project MVP
 
-This repository contains the source code for the frozen MVP prototype developed for the Imperial College London Design Engineering Master's Project:
+This repository contains the source code for my Imperial College London Design Engineering Master's Project:
 
 **Scalable Qualitative Insight: Designing an Interview-to-Review Workflow with a LangGraph-Managed Agent for Semi-Structured Stakeholder Research**
 
-The prototype implements a bounded **Interview-to-Review workflow** for semi-structured stakeholder research. It is not a production system, not a full stakeholder CRM, and not an autonomous qualitative research platform.
+The project is a Django-based academic prototype for a bounded **Interview-to-Review** workflow. It supports one Sensory Overload / PurrStone interview protocol, from participant consent and AI-led interview through to transcript storage, structured draft output, researcher review, Evidence Status, and Evidence Record export.
 
-## Prototype scope
+This is a formative MVP prototype, not a production system, full stakeholder CRM, or autonomous qualitative research platform.
 
-The MVP demonstrates one complete vertical slice:
+## Main idea
 
-`P01 participant record → Sensory Overload / PurrStone protocol → consent → LangGraph-managed AI interview → transcript storage → structured draft output → researcher Output Review → Evidence Status → Evidence Record export`
+The prototype separates three parts:
 
-The implemented case uses one bounded Sensory Overload / PurrStone interview protocol. PurrStone is used as a design research case, not as a validated product.
+* **Django** manages the workflow: participant records, protocols, sessions, transcripts, outputs, review status, and evidence export.
+* **LangGraph** manages interview control: protocol section, answer sufficiency, bounded probing, skip/stop handling, boundary response, missing information, and AgentDecision trace.
+* **LLM support** is used only for semantic assessment and graph-approved follow-up wording.
 
-## Architecture
-
-The prototype separates three responsibilities:
-
-* **Django** manages the workflow layer: participant records, protocols, interview sessions, transcript storage, draft outputs, Output Review, Evidence Status, and Evidence Record export.
-* **LangGraph** manages interview-control logic: protocol section state, answer sufficiency, bounded probing, skip/stop handling, boundary responses, missing-information flags, next action, and AgentDecision trace.
-* **LLM support** is constrained to semantic sufficiency assessment and graph-approved follow-up wording.
-
-In this design, the LLM assesses semantic coverage; LangGraph decides the next action.
+In short: the LLM assesses semantic coverage; LangGraph decides the next action.
 
 ## Setup
 
-Create and activate a virtual environment:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-On Windows:
+Activate it on Windows PowerShell:
 
-```bash
-.venv\Scripts\activate
+```powershell
+.\.venv\Scripts\activate
 ```
 
 Install dependencies:
@@ -62,60 +56,157 @@ Run the development server:
 python manage.py runserver
 ```
 
-Open the local site:
+Open:
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## Optional LLM configuration
+## OpenAI API key
 
-The LangGraph interview controller expects an OpenAI API key for LLM-assisted semantic assessment and follow-up wording:
+LLM-assisted assessment and follow-up wording require an OpenAI API key.
 
-```bash
-set OPENAI_API_KEY=your_api_key_here
+On Windows PowerShell:
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key_here"
 ```
 
 On macOS / Linux:
 
 ```bash
-export OPENAI_API_KEY=your_api_key_here
+export OPENAI_API_KEY="your_api_key_here"
 ```
 
-Do not commit API keys or `.env` files to this repository.
+Do not commit API keys or `.env` files.
 
 ## Useful routes
 
 ```text
-/                                   Researcher overview
-/stakeholders/                      Stakeholder records
-/protocols/sensory-overload-interview/  Protocol detail
-/interview/P01/consent/             Participant consent page
-/interview/P01/session/             Participant interview session
-/interviews/                        Interview session management
-/outputs/                           Output Review access
-/output-quality/                    Evidence Status
-/output-quality/export/             Evidence Record export
+/                                      Researcher overview
+/stakeholders/                         Stakeholder records
+/protocols/sensory-overload-interview/ Protocol detail
+/interview/P01/consent/                Participant consent page
+/interview/P01/session/                Participant interview session
+/interviews/                           Interview session management
+/outputs/                              Output Review
+/output-quality/                       Evidence Status
+/output-quality/export/                Evidence Record export
 ```
 
-## Resetting the MVP session
-
-To reset the seeded session:
+## Resetting the MVP
 
 ```bash
 python manage.py reset_mvp
+python manage.py seed_mvp
 ```
 
-To recreate the seeded protocol and P01 participant record:
+## Notes
+
+The `docs/` folder contains scripted system-test evidence used for the formative evaluation. Raw participant feedback forms and identifiable review materials are not included in this repository.
+# Jingyang Liu Master Project MVP
+
+This repository contains the source code for my Imperial College London Design Engineering Master's Project:
+
+**Scalable Qualitative Insight: Designing an Interview-to-Review Workflow with a LangGraph-Managed Agent for Semi-Structured Stakeholder Research**
+
+The project is a Django-based academic prototype for a bounded **Interview-to-Review** workflow. It supports one Sensory Overload / PurrStone interview protocol, from participant consent and AI-led interview through to transcript storage, structured draft output, researcher review, Evidence Status, and Evidence Record export.
+
+This is a formative MVP prototype, not a production system, full stakeholder CRM, or autonomous qualitative research platform.
+
+## Main idea
+
+The prototype separates three parts:
+
+* **Django** manages the workflow: participant records, protocols, sessions, transcripts, outputs, review status, and evidence export.
+* **LangGraph** manages interview control: protocol section, answer sufficiency, bounded probing, skip/stop handling, boundary response, missing information, and AgentDecision trace.
+* **LLM support** is used only for semantic assessment and graph-approved follow-up wording.
+
+In short: the LLM assesses semantic coverage; LangGraph decides the next action.
+
+## Setup
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run migrations:
+
+```bash
+python manage.py migrate
+```
+
+Seed the MVP data:
 
 ```bash
 python manage.py seed_mvp
 ```
 
-## Evaluation evidence
+Run the development server:
 
-The `docs/` folder includes scripted system-test evidence used to support the formative evaluation. Human feedback forms and identifiable review materials are not included in this repository.
+```bash
+python manage.py runserver
+```
 
-## Development boundary
+Open:
 
-This repository is an academic prototype for formative evaluation. It does not include production authentication, deployment infrastructure, full data-governance tooling, recruitment/scheduling infrastructure, or clinical/therapeutic support.
+```text
+http://127.0.0.1:8000/
+```
+
+## OpenAI API key
+
+LLM-assisted assessment and follow-up wording require an OpenAI API key.
+
+On Windows PowerShell:
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key_here"
+```
+
+On macOS / Linux:
+
+```bash
+export OPENAI_API_KEY="your_api_key_here"
+```
+
+Do not commit API keys or `.env` files.
+
+## Useful routes
+
+```text
+/                                      Researcher overview
+/stakeholders/                         Stakeholder records
+/protocols/sensory-overload-interview/ Protocol detail
+/interview/P01/consent/                Participant consent page
+/interview/P01/session/                Participant interview session
+/interviews/                           Interview session management
+/outputs/                              Output Review
+/output-quality/                       Evidence Status
+/output-quality/export/                Evidence Record export
+```
+
+## Resetting the MVP
+
+```bash
+python manage.py reset_mvp
+python manage.py seed_mvp
+```
+
+## Notes
+
+The `docs/` folder contains scripted system-test evidence used for the formative evaluation. Raw participant feedback forms and identifiable review materials are not included in this repository.
