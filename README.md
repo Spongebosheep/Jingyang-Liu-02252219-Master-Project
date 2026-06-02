@@ -79,6 +79,9 @@ export OPENAI_API_KEY="your_api_key_here"
 ```
 
 Do not commit API keys or `.env` files.
+```markdown
+Without an API key, the prototype can still be inspected and seeded, but LLM-assisted assessment or follow-up wording will fall back or be unavailable depending on the tested flow.
+```
 
 ## Useful routes
 
