@@ -1,0 +1,299 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Evidence Status</h1>
+        <p class="overview-kicker">
+            Check whether interview outputs have saved evidence, researcher review, and exportable records.
+        </p>
+    </div>
+
+    <a class="button-secondary" href="{% url 'export_evidence_record' %}">
+        Export evidence record
+    </a>
+</div>
+
+<div class="quality-metric-grid">
+    <div class="quality-metric-card">
+        <div class="quality-metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="quality-metric-number">{{ completed_interviews_count }}</div>
+            <div class="quality-metric-label">Completed interviews</div>
+        </div>
+    </div>
+
+    <div class="quality-metric-card">
+        <div class="quality-metric-icon quality-icon-green">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l5 5v13H7z"></path>
+                <path d="M14 3v5h5"></path>
+                <path d="M9 13h6"></path>
+                <path d="M9 17h6"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="quality-metric-number">{{ generated_outputs_count }}</div>
+            <div class="quality-metric-label">Generated outputs</div>
+        </div>
+    </div>
+
+    <div class="quality-metric-card">
+        <div class="quality-metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="quality-metric-number">{{ reviewed_outputs_count }}</div>
+            <div class="quality-metric-label">Reviewed outputs</div>
+        </div>
+    </div>
+
+    <div class="quality-metric-card">
+        <div class="quality-metric-icon quality-icon-orange">
+            <svg viewBox="0 0 24 24">
+                <path d="M4 21V5"></path>
+                <path d="M4 5c4-2 8 2 12 0v10c-4 2-8-2-12 0"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="quality-metric-number">{{ issues_flagged_count }}</div>
+            <div class="quality-metric-label">Evidence limitations</div>
+        </div>
+    </div>
+</div>
+
+<div class="card output-readiness-card" id="output-readiness">
+    <div class="card-heading-row">
+        <div>
+            <h2>Output readiness</h2>
+            <p>Status of generated outputs and researcher review.</p>
+        </div>
+    </div>
+
+    <table class="stakeholder-table quality-table">
+        <thead>
+            <tr>
+                <th>Participant</th>
+                <th>Protocol</th>
+                <th>Interview date</th>
+                <th>Output status</th>
+                <th>Review status</th>
+                <th>Next action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in readiness_rows %}
+                <tr>
+                    <td>
+                        <span class="participant-pill">{{ row.participant }}</span>
+                    </td>
+                    <td>{{ row.protocol }}</td>
+                    <td>{{ row.interview_date }}</td>
+                    <td>
+                        <span class="status">
+                            {{ row.output_status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status {{ row.review_status_class }}">
+                            {{ row.review_status_label }}
+                        </span>
+                    </td>
+                    <td>
+                        <a class="table-action-link" href="{% url 'output_detail' row.session.session_code %}">
+                            {{ row.action_label }}
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No generated outputs yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<div class="quality-two-column">
+    <div class="card quality-check-card">
+        <h2>Quality criteria record</h2>
+        <p class="quality-card-subtitle">
+            Manual criteria saved during researcher review.
+        </p>
+
+        {% if selected_review_decision %}
+            <div class="quality-confirmed-summary">
+                <span class="status">
+                    {{ confirmed_quality_checks_count }} / {{ quality_criteria_total }} confirmed
+                </span>
+            </div>
+
+            <div class="quality-check-grid">
+                <div class="quality-check-item">
+                    <span class="status {% if not selected_review_decision.summary_grounded_in_transcript %}status-muted{% endif %}">
+                        {% if selected_review_decision.summary_grounded_in_transcript %}Confirmed{% else %}Not confirmed{% endif %}
+                    </span>
+                    <div>
+                        <strong>Summary grounded in transcript</strong>
+                        <p>Checked against transcript excerpt and full transcript.</p>
+                    </div>
+                </div>
+
+                <div class="quality-check-item">
+                    <span class="status {% if not selected_review_decision.no_unsupported_interpretation %}status-muted{% endif %}">
+                        {% if selected_review_decision.no_unsupported_interpretation %}Confirmed{% else %}Not confirmed{% endif %}
+                    </span>
+                    <div>
+                        <strong>No unsupported interpretation</strong>
+                        <p>Checked against generated summary and transcript evidence.</p>
+                    </div>
+                </div>
+
+                <div class="quality-check-item">
+                    <span class="status {% if not selected_review_decision.no_medical_or_diagnostic_advice %}status-muted{% endif %}">
+                        {% if selected_review_decision.no_medical_or_diagnostic_advice %}Confirmed{% else %}Not confirmed{% endif %}
+                    </span>
+                    <div>
+                        <strong>No medical / diagnostic advice</strong>
+                        <p>Checked against the study boundary and transcript content.</p>
+                    </div>
+                </div>
+
+                <div class="quality-check-item">
+                    <span class="status {% if not selected_review_decision.participant_safety_respected %}status-muted{% endif %}">
+                        {% if selected_review_decision.participant_safety_respected %}Confirmed{% else %}Not confirmed{% endif %}
+                    </span>
+                    <div>
+                        <strong>Participant safety and autonomy respected</strong>
+                        <p>Checked against skip, stop, and boundary handling.</p>
+                    </div>
+                </div>
+
+                <div class="quality-check-item">
+                    <span class="status {% if not selected_review_decision.limitations_and_missing_information_visible %}status-muted{% endif %}">
+                        {% if selected_review_decision.limitations_and_missing_information_visible %}Confirmed{% else %}Not confirmed{% endif %}
+                    </span>
+                    <div>
+                        <strong>Limitations and missing information visible</strong>
+                        <p>Checked against partial answers, skipped topics, and missing flags.</p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>No quality criteria record has been saved yet.</p>
+        {% endif %}
+    </div>
+
+    <div class="card evidence-card">
+        <h2>Evidence record</h2>
+        <p class="quality-card-subtitle">What has been saved for each reviewed output.</p>
+
+        {% if selected_session %}
+            <div class="evidence-grid">
+                <div class="evidence-item">
+                    <div class="evidence-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 3h7l5 5v13H7z"></path>
+                            <path d="M14 3v5h5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Transcript</strong>
+                        <p>Verbatim transcript of the interview.</p>
+                    </div>
+                    <span class="status">Saved</span>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 6h16"></path>
+                            <path d="M4 12h16"></path>
+                            <path d="M4 18h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Generated summary</strong>
+                        <p>AI-generated summary of key points.</p>
+                    </div>
+                    <span class="status">Saved</span>
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Researcher note</strong>
+                        <p>Context, observations, and decisions.</p>
+                    </div>
+                    {% if selected_session.researcher_note %}
+                        <span class="status status-blue">Added</span>
+                    {% else %}
+                        <span class="status status-muted">Missing</span>
+                    {% endif %}
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Review decision</strong>
+                        <p>Approval status for researcher use.</p>
+                    </div>
+
+                    {% if selected_session.review_status == "approved" or selected_session.review_status == "reviewed" %}
+                        <span class="status">Approved</span>
+                    {% elif selected_session.review_status == "revision_requested" %}
+                        <span class="status status-waiting">Revision requested</span>
+                    {% else %}
+                        <span class="status status-waiting">Pending</span>
+                    {% endif %}
+                </div>
+
+                <div class="evidence-item">
+                    <div class="evidence-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong>Quality criteria</strong>
+                        <p>Manual review criteria saved with this output.</p>
+                    </div>
+
+                    {% if selected_review_decision %}
+                        <span class="status">
+                            {{ confirmed_quality_checks_count }} / {{ quality_criteria_total }} confirmed
+                        </span>
+                    {% else %}
+                        <span class="status status-muted">Missing</span>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        {% else %}
+            <p>No evidence record available yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

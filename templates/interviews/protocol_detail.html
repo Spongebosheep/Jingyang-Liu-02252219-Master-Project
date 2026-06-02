@@ -1,0 +1,173 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="protocol-page">
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Protocol detail: {{ protocol.title }}</h1>
+        <p class="overview-kicker">
+            Assigned to {{ protocol.stakeholder_group }} · Semi-structured interview protocol
+        </p>
+    </div>
+
+    <span class="button button-disabled">
+        <span>+</span> Create new protocol version · Future extension
+    </span>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h2>Protocol overview</h2>
+
+        <table class="record-table">
+            <tr>
+                <th>Stakeholder group</th>
+                <td>{{ protocol.stakeholder_group }}</td>
+            </tr>
+            <tr>
+                <th>Purpose</th>
+                <td>{{ protocol.purpose }}</td>
+            </tr>
+            <tr>
+                <th>Interview mode</th>
+                <td>{{ protocol.interview_mode }}</td>
+            </tr>
+            <tr>
+                <th>Estimated duration</th>
+                <td>{{ protocol.estimated_duration }}</td>
+            </tr>
+            <tr>
+                <th>Output</th>
+                <td>{{ protocol.output_description }}</td>
+            </tr>
+            <tr>
+                <th>Protocol version</th>
+                <td>v1</td>
+            </tr>
+            <tr>
+                <th>Evaluation status</th>
+                <td>Locked for MVP evaluation</td>
+            </tr>
+            <tr>
+                <th>Future editing</th>
+                <td>Create a new protocol version rather than overwriting this evaluated protocol.</td>
+            </tr>
+                    </table>
+    </div>
+
+    <div class="card protocol-flow-card">
+        <h2>Protocol flow</h2>
+
+        <div class="protocol-steps-horizontal">
+            {% for section in sections %}
+                <div class="protocol-step">
+                    <div class="protocol-step-circle">{{ section.index|add:"1" }}</div>
+
+                    <div class="protocol-step-icon">
+                        {% if section.code == "opening" %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3v18"></path>
+                                <path d="M8 7h8"></path>
+                                <path d="M8 12h8"></path>
+                                <path d="M8 17h8"></path>
+                            </svg>
+                        {% elif section.code == "experience" %}
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        {% elif section.code == "triggers_signs" %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M13 2L5 14h6l-1 8 8-12h-6z"></path>
+                            </svg>
+                        {% elif section.code == "coping_support" %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        {% elif section.code == "support_concept_reaction" %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"></path>
+                            </svg>
+                        {% elif section.code == "public_use_acceptability" %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="10" cy="7" r="4"></circle>
+                                <path d="M21 8v6"></path>
+                                <path d="M18 11h6"></path>
+                            </svg>
+                        {% else %}
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 3h7l5 5v13H7z"></path>
+                                <path d="M14 3v5h5"></path>
+                                <path d="M9.5 13h7"></path>
+                                <path d="M9.5 17h5"></path>
+                            </svg>
+                        {% endif %}
+                    </div>
+
+                    <div class="protocol-step-label">{{ section.label }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="card research-data-card">
+    <h2>Research data sections</h2>
+
+    <div class="key-section-list">
+        {% for section in sections %}
+            {% if section.code != "opening" and section.code != "faithful_summary" %}
+                <div class="key-section-item">
+                    <div class="key-section-number">{{ section.index|add:"1" }}</div>
+                    <div>
+                        <strong>{{ section.label }}</strong>
+                        <p class="muted">{{ section.purpose }}</p>
+
+                        {% if section.code == "experience" %}
+                            <p class="muted">
+                                <strong>Required:</strong> situation, context, sensory difficulty, effect.
+                            </p>
+                        {% elif section.code == "triggers_signs" %}
+                            <p class="muted">
+                                <strong>Required:</strong> sensory triggers, body signs, emotional signs.
+                            </p>
+                        {% elif section.code == "coping_support" %}
+                            <p class="muted">
+                                <strong>Required:</strong> coping actions, what helped, what did not help, support needs.
+                            </p>
+                        {% elif section.code == "support_concept_reaction" %}
+                            <p class="muted">
+                                <strong>Required:</strong> squeeze, haptics, scent, usefulness, concerns.
+                            </p>
+                        {% elif section.code == "public_use_acceptability" %}
+                            <p class="muted">
+                                <strong>Required:</strong> comfort, visibility, social concerns, public-use acceptability.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card agent-rules-wide-card">
+    <h2>Agent control & ethics rules</h2>
+
+    <ol class="ethics-list">
+        {% for rule in ethics_rules %}
+            <li>{{ rule }}</li>
+        {% empty %}
+            <li>No ethics rules found.</li>
+        {% endfor %}
+    </ol>
+</div>
+
+<div class="protocol-action-bar protocol-action-bar-single">
+    <a class="button-secondary" href="{% url 'stakeholder_detail' 'P01' %}">
+        Back to stakeholder record
+    </a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,240 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<h1 class="overview-title">PurrStone Stakeholder Interview Project</h1>
+<p class="overview-kicker">Case: PurrStone</p>
+<p class="overview-kicker">Research workspace: Stakeholder interviews</p>
+<p class="overview-kicker">
+    MVP scope: One participant record, one sensory overload interview protocol, and one complete interview-to-review loop.
+    The wider pages show workflow structure, not a full stakeholder CRM.
+</p>
+
+<div class="overview-intro-grid">
+    <div class="card overview-info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 3v3"></path>
+                <path d="M21 12h-3"></path>
+            </svg>
+        </div>
+        <div>
+            <h2>Research aim</h2>
+            <p>
+                Collect stakeholder insights about sensory overload, everyday overwhelm, coping behaviours,
+                support needs, public-use acceptability, and reactions to the PurrStone support concept
+                through a bounded AI-led semi-structured interview.
+            </p>
+        </div>
+    </div>
+
+    <div class="card overview-info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M8 6h13"></path>
+                <path d="M8 12h13"></path>
+                <path d="M8 18h13"></path>
+                <path d="M3 6h.01"></path>
+                <path d="M3 12h.01"></path>
+                <path d="M3 18h.01"></path>
+            </svg>
+        </div>
+        <div>
+            <h2>Interview workflow</h2>
+            <ol class="overview-workflow-list">
+                <li>Review participant record</li>
+                <li>Select interview protocol</li>
+                <li>Confirm consent and study boundary</li>
+                <li>Complete AI-led semi-structured interview</li>
+                <li>Save transcript and generate structured summary</li>
+                <li>Researcher reviews output and evidence record</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card overview-info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-5"></path>
+            </svg>
+        </div>
+        <div>
+            <h2>Study boundary</h2>
+            <p>
+                This interview is for design research only. It does not provide medical advice,
+                diagnosis, or treatment recommendations. Participants can skip questions or stop
+                the interview at any time.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="metric-grid-3">
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9.5" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">MVP participant record</div>
+            <div class="metric">{{ stakeholder_count }}</div>
+        </div>
+    </div>
+
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l5 5v13H7z"></path>
+                <path d="M14 3v5h5"></path>
+                <path d="M9.5 13h7"></path>
+                <path d="M9.5 17h5"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Active protocol</div>
+            <div class="metric">{{ protocol_count }}</div>
+        </div>
+    </div>
+
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Reviewable sessions</div>
+            <div class="metric">{{ reviewable_session_count }} / {{ session_count }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="card workflow-status-card">
+    <h2>Current workflow status</h2>
+
+    <div class="workflow-timeline">
+        <div class="timeline-item ready">
+            <div class="timeline-circle">✓</div>
+            <div class="timeline-title">Stakeholders</div>
+            <div class="timeline-status">Ready</div>
+        </div>
+
+        <div class="timeline-item ready">
+            <div class="timeline-circle">✓</div>
+            <div class="timeline-title">Protocols</div>
+            <div class="timeline-status">Ready</div>
+        </div>
+
+        <div class="timeline-item {% if is01.status == 'completed' or is01.status == 'stopped' %}ready{% endif %}">
+            <div class="timeline-circle">
+                {% if is01.status == 'completed' or is01.status == 'stopped' %}✓{% else %}3{% endif %}
+            </div>
+            <div class="timeline-title">Interview</div>
+            <div class="timeline-status">
+                {% if is01 %}{{ is01.get_status_display }}{% else %}Not started{% endif %}
+            </div>
+        </div>
+
+        <div class="timeline-item {% if is01.transcript_saved %}ready{% endif %}">
+            <div class="timeline-circle">
+                {% if is01.transcript_saved %}✓{% else %}4{% endif %}
+            </div>
+            <div class="timeline-title">Output</div>
+            <div class="timeline-status">
+                {% if is01.transcript_saved %}
+                    Saved
+                {% elif is01.summary_generated %}
+                    Generated
+                {% else %}
+                    Waiting
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="timeline-item {% if is01.review_status == 'approved' %}ready{% elif is01.review_status == 'revision_requested' or is01.review_status == 'not_usable' %}warning{% endif %}">
+            <div class="timeline-circle">
+                {% if is01.review_status == 'approved' %}
+                    ✓
+                {% elif is01.review_status == 'revision_requested' or is01.review_status == 'not_usable' %}
+                    !
+                {% else %}
+                    5
+                {% endif %}
+            </div>
+            <div class="timeline-title">Review</div>
+            <div class="timeline-status">
+                {% if is01 %}{{ is01.get_review_status_display }}{% else %}Waiting{% endif %}
+            </div>
+        </div>
+
+        <div class="timeline-item {% if is01.output_quality_status == 'approved' %}ready{% elif is01.output_quality_status == 'needs_revision' or is01.output_quality_status == 'revision_requested' or is01.output_quality_status == 'not_usable' %}warning{% endif %}">
+            <div class="timeline-circle">
+                {% if is01.output_quality_status == 'approved' %}
+                    ✓
+                {% elif is01.output_quality_status == 'needs_revision' or is01.output_quality_status == 'revision_requested' or is01.output_quality_status == 'not_usable' %}
+                    !
+                {% else %}
+                    6
+                {% endif %}
+            </div>
+            <div class="timeline-title">Evidence status</div>
+            <div class="timeline-status">
+                {% if is01 %}{{ is01.get_output_quality_status_display }}{% else %}Waiting{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card next-actions-card">
+    <h2>Next actions</h2>
+
+    <ol class="action-list">
+        <li>Review P01 participant record</li>
+        <li>Preview the assigned Sensory Overload Interview protocol</li>
+        <li>Open participant interview link</li>
+        <li>Review generated output and AgentDecision trace after completion</li>
+        <li>Export or inspect the Evidence Record</li>
+    </ol>
+
+    <div class="action-buttons">
+        <a class="button-secondary" href="{% url 'stakeholder_list' %}">
+            View participant record
+        </a>
+
+        {% if protocol %}
+            <a class="button-secondary" href="{% url 'protocol_detail' protocol.slug %}">
+                View protocol
+            </a>
+        {% else %}
+            <span class="button-secondary button-disabled">
+                View protocol
+            </span>
+        {% endif %}
+
+        {% if p01 %}
+            <a class="button" href="{% url 'interview_consent' p01.participant_id %}">
+                Open interview
+            </a>
+        {% else %}
+            <span class="button button-disabled">
+                Open interview
+            </span>
+        {% endif %}
+
+        {% if is01.transcript_saved %}
+            <a class="button-secondary" href="{% url 'output_detail' is01.session_code %}">
+                Review output / evidence
+            </a>
+        {% else %}
+            <span class="button-secondary button-disabled">
+                Review after interview
+            </span>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

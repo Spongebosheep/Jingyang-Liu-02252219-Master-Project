@@ -1,0 +1,242 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Stakeholder records</h1>
+        <p class="overview-kicker">
+            This page shows the P01 participant record used in the evaluated MVP. Other stakeholder and reviewer roles are shown only as future workflow examples.
+        </p>
+    </div>
+
+    <span class="button button-disabled">
+        + Add stakeholder record · Future extension
+    </span>
+</div>
+
+<div class="card grouping-card">
+    <div class="info-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9.5" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+    </div>
+
+    <div>
+        <h2>How grouping works</h2>
+        <p class="muted">
+            Stakeholder grouping defines which interview or review workflow a person would follow.
+            In this MVP, P01 is assigned to the Sensory Overload Interview. Future roles are shown
+            to explain how the workflow could scale later, not as tested study records.
+        </p>
+    </div>
+</div>
+
+<div class="metric-grid-3">
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9.5" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">MVP participant record</div>
+            <div class="metric">{{ active_stakeholder_count }}</div>
+        </div>
+    </div>
+
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l5 5v13H7z"></path>
+                <path d="M14 3v5h5"></path>
+                <path d="M9.5 13h7"></path>
+                <path d="M9.5 17h5"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Active protocol</div>
+            <div class="metric">
+                {% if selected_stakeholder and selected_stakeholder.assigned_protocol %}1{% else %}0{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="metric-card metric-card-horizontal">
+        <div class="metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 3h10v18H7z"></path>
+                <path d="M10 7h4"></path>
+                <path d="M10 11h4"></path>
+                <path d="M10 15h3"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Future workflow examples</div>
+            <div class="metric">4</div>
+        </div>
+    </div>
+</div>
+
+<div class="stakeholder-layout">
+    <div class="card stakeholder-main-card">
+        <div class="stakeholder-card-header">
+            <div>
+                <h2>Implemented MVP participant record</h2>
+                <p class="muted">
+                    P01 is the implemented participant record used to run the evaluated interview-to-review workflow.
+                </p>
+            </div>
+        </div>
+
+        {% for stakeholder in stakeholders %}
+            <div class="p01-record-card">
+                <div class="p01-record-primary">
+                    <div class="p01-id">{{ stakeholder.participant_id }}</div>
+                    <div class="p01-title">{{ stakeholder.stakeholder_group }}</div>
+                    <div class="p01-subtitle">{{ stakeholder.role }}</div>
+                </div>
+
+                <div class="p01-record-divider"></div>
+
+                <div class="p01-record-info">
+                    <div class="record-label">Assigned workflow</div>
+                    <div class="record-value">
+                        {% if stakeholder.assigned_protocol %}
+                            {{ stakeholder.assigned_protocol.title }}
+                        {% else %}
+                            Not assigned
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="p01-record-info">
+                    <div class="record-label">Status</div>
+                    <span class="status">{{ stakeholder.get_status_display }}</span>
+                </div>
+
+                <div class="p01-record-action">
+                    <a class="button-secondary" href="{% url 'interview_consent' stakeholder.participant_id %}">
+                        View interview record
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="future-inline-section">
+            <div class="future-inline-header">
+                <h2>Future workflow examples</h2>
+                <p class="muted">
+                    These examples show possible extensions beyond P01. They are not part of the evaluated MVP.
+                </p>
+            </div>
+
+            <div class="future-inline-list">
+                <div class="future-inline-item">
+                    <strong>Everyday overwhelm participant</strong>
+                    <span>Everyday Overwhelm Interview</span>
+                </div>
+
+                <div class="future-inline-item">
+                    <strong>Qualitative research expert</strong>
+                    <span>Expert Review Rubric</span>
+                </div>
+
+                <div class="future-inline-item">
+                    <strong>Product / design reviewer</strong>
+                    <span>Design Implication Review</span>
+                </div>
+
+                <div class="future-inline-item">
+                    <strong>Business / adoption stakeholder</strong>
+                    <span>Market / Adoption Protocol</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card selected-panel">
+        <h2>
+            Selected stakeholder:
+            {% if selected_stakeholder %}
+                {{ selected_stakeholder.participant_id }}
+            {% else %}
+                None
+            {% endif %}
+        </h2>
+
+        {% if selected_stakeholder %}
+            <div class="detail-list">
+                <div class="detail-row">
+                    <div class="detail-label">Group:</div>
+                    <div>{{ selected_stakeholder.stakeholder_group }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Assigned workflow:</div>
+                    <div>
+                        {% if selected_stakeholder.assigned_protocol %}
+                            {{ selected_stakeholder.assigned_protocol.title }}
+                        {% else %}
+                            Not assigned
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Interview status:</div>
+                    <div><span class="status">{{ selected_stakeholder.get_status_display }}</span></div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Transcript / output:</div>
+                    <div>
+                        {% if selected_session and selected_session.transcript_saved %}
+                            Saved
+                        {% elif selected_session and selected_session.summary_generated %}
+                            Generated
+                        {% else %}
+                            Not generated
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Review status:</div>
+                    <div>
+                        {% if selected_session %}
+                            {{ selected_session.get_review_status_display }}
+                        {% else %}
+                            Not reviewed
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-actions">
+                <a class="button-secondary" href="{% url 'stakeholder_detail' selected_stakeholder.participant_id %}">
+                    View record detail
+                </a>
+
+                {% if selected_stakeholder.assigned_protocol %}
+                    <a class="button-secondary" href="{% url 'protocol_detail' selected_stakeholder.assigned_protocol.slug %}">
+                        Preview assigned protocol
+                    </a>
+                {% else %}
+                    <span class="button-secondary button-disabled">Preview assigned protocol</span>
+                {% endif %}
+
+                <a class="button" href="{% url 'interview_consent' selected_stakeholder.participant_id %}">
+                    View interview record
+                </a>
+            </div>
+        {% else %}
+            <p>No stakeholder selected.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

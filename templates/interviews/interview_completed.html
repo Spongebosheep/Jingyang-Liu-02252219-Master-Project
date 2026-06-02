@@ -1,0 +1,180 @@
+{% extends "interviews/participant_base.html" %}
+{% block participant_header %}
+{% endblock %}
+{% block content %}
+<div class="completed-page-v2">
+    <div class="completed-card-v2">
+        <div class="completed-hero-v2">
+            <div class="completed-icon-v2 {% if session.status == 'stopped' %}stopped{% endif %}">
+                {% if session.status == "stopped" %}
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 6l12 12"></path>
+                        <path d="M18 6L6 18"></path>
+                    </svg>
+                {% else %}
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                {% endif %}
+            </div>
+
+            <h1>
+                {% if session.status == "stopped" %}
+                    Interview stopped
+                {% else %}
+                    Interview completed
+                {% endif %}
+            </h1>
+
+            <p>
+                Thank you for taking part. Your responses have been saved for researcher review.
+            </p>
+        </div>
+
+        <div class="completed-two-column">
+            <div class="completed-panel">
+                <h2>Session status</h2>
+
+                <div class="completed-status-row">
+                    <div class="completed-status-left">
+                        <span class="completed-mini-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        </span>
+                        <span>Interview session</span>
+                    </div>
+                    <span class="status {% if session.status == 'stopped' %}status-waiting{% endif %}">
+                        {{ session.get_status_display }}
+                    </span>
+                </div>
+
+                <div class="completed-status-row">
+                    <div class="completed-status-left">
+                        <span class="completed-mini-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 3h7l5 5v13H7z"></path>
+                                <path d="M14 3v5h5"></path>
+                            </svg>
+                        </span>
+                        <span>Transcript</span>
+                    </div>
+
+                    {% if session.transcript_saved %}
+                        <span class="status">Saved</span>
+                    {% else %}
+                        <span class="status status-waiting">Not saved</span>
+                    {% endif %}
+                </div>
+
+                <div class="completed-status-row">
+                    <div class="completed-status-left">
+                        <span class="completed-mini-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3l2.2 5.3L20 9l-4.3 3.8L17 19l-5-3.2L7 19l1.3-6.2L4 9l5.8-.7z"></path>
+                            </svg>
+                        </span>
+                        <span>Structured summary</span>
+                    </div>
+
+                    {% if session.summary_generated %}
+                        <span class="status">Generated</span>
+                    {% else %}
+                        <span class="status status-waiting">Pending</span>
+                    {% endif %}
+                </div>
+
+                <div class="completed-status-row">
+                    <div class="completed-status-left">
+                        <span class="completed-mini-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        </span>
+                        <span>Researcher review</span>
+                    </div>
+                    <span class="status status-waiting">
+                        Pending
+                    </span>
+                </div>
+            </div>
+
+            <div class="completed-panel">
+                <h2>Protocol topics reached</h2>
+
+                <div class="completed-topic-list">
+                    {% for topic in topic_statuses %}
+                        <div class="completed-topic-row">
+                            <span class="completed-topic-check topic-{{ topic.status }}">
+                                {% if topic.status == "answered" %}
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                {% elif topic.status == "skipped" %}
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M6 12h12"></path>
+                                    </svg>
+                                {% elif topic.status == "stopped" %}
+                                    <svg viewBox="0 0 24 24">
+                                        <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                                    </svg>
+                                {% elif topic.status == "reached" %}
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                    </svg>
+                                {% else %}
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                    </svg>
+                                {% endif %}
+                            </span>
+
+                            <span>{{ topic.label }}</span>
+
+                            <span class="topic-status-label topic-label-{{ topic.status }}">
+                                {{ topic.status_label }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% if session.status == "stopped" %}
+            <div class="completed-info-note">
+                <span class="completed-info-icon">i</span>
+                <span>
+                    The interview was stopped before the full protocol was completed. Your saved responses can still be reviewed by the research team.
+                </span>
+            </div>
+        {% else %}
+            <div class="completed-info-note">
+                <span class="completed-info-icon">i</span>
+                <span>
+                    A researcher will review the transcript and any generated summary before the output is used.
+                </span>
+            </div>
+        {% endif %}
+
+        <div class="completed-boundary-note">
+            <span class="completed-boundary-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M9 12l2 2 4-5"></path>
+                </svg>
+            </span>
+            <span>
+                This was a design research interview, not a medical or therapeutic assessment.
+            </span>
+        </div>
+
+        <div class="completed-finish-row">
+            <a class="button completed-finish-button" href="{% url 'stakeholder_detail' stakeholder.participant_id %}">
+                Finish session
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

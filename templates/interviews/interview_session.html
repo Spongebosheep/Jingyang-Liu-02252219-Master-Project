@@ -1,0 +1,121 @@
+{% extends "interviews/participant_base.html" %}
+
+{% block header_actions %}
+<div class="button-row">
+    <form method="post">
+        {% csrf_token %}
+        <button class="button-secondary" type="submit" name="action" value="skip">
+            Skip question
+        </button>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="button-secondary button-danger" type="submit" name="action" value="stop">
+            Stop interview
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="figma-interview-page">
+    <div class="interview-title-row">
+        <div>
+            <h1>PurrStone Interview</h1>
+            <p class="subtitle">
+                {{ protocol.title }} · AI-led semi-structured research interview · Estimated time: {{ protocol.estimated_duration }}
+            </p>
+        </div>
+    </div>
+
+    <div class="figma-stepper">
+        {% for section in sections %}
+            <div class="figma-step {% if forloop.counter0 < session.current_section_index %}done{% elif forloop.counter0 == session.current_section_index %}active{% endif %}">
+                <div class="figma-step-circle">{{ forloop.counter }}</div>
+                <div class="figma-step-label">{{ section.label }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <p class="interview-control-note">
+        You can skip any question or stop the interview at any time.
+    </p>
+
+    <div class="card figma-chat-card">
+        <div class="messages figma-messages">
+            {% for message in messages %}
+                {% if message.sender == "agent" %}
+                    <div class="figma-message-row agent">
+                        <div class="message-avatar agent-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="8"></circle>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="bubble figma-bubble agent-bubble">
+                            {{ message.content|linebreaksbr }}
+                        </div>
+                    </div>
+                {% elif message.sender == "participant" %}
+                    <div class="figma-message-row participant">
+                        <div class="bubble figma-bubble participant-bubble">
+                            {{ message.content|linebreaksbr }}
+                        </div>
+                        <div class="message-avatar participant-avatar">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="figma-message-row system">
+                        <div class="bubble system-bubble">
+                            {{ message.content|linebreaksbr  }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>No messages yet.</p>
+            {% endfor %}
+        </div>
+
+        <form method="post" class="figma-input-form">
+            {% csrf_token %}
+
+            <div class="figma-input-area">
+                <textarea name="reply" placeholder="Type your answer here..."></textarea>
+
+                <button class="button figma-send-button" type="submit" name="action" value="send">
+                    Send
+                </button>
+            </div>
+
+            <p class="input-help">
+                You can answer briefly. The interviewer may ask a short follow-up if more detail is needed.
+            </p>
+        </form>
+    </div>
+
+    <div class="bottom-safety-note">
+        <span class="bottom-safety-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-5"></path>
+            </svg>
+        </span>
+        <div>
+            <strong>You are in control.</strong> You can skip a question or stop the interview at any time.<br>
+            <span>This is a research interview, not medical advice.</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const messages = document.querySelector(".messages");
+    if (messages) {
+        messages.scrollTop = messages.scrollHeight;
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "interviews/participant_base.html" %}
+{% load static %}
+
+{% block participant_header %}
+{% endblock %}
+
+{% block content %}
+<div class="consent-page">
+    <div class="consent-card">
+        <div class="consent-logo-block">
+            <img src="{% static 'interviews/img/purrstone-logo.png' %}" alt="PurrStone logo">
+            <div class="brand-name-centered">PurrStone</div>
+        </div>
+
+        <h1 class="consent-title">PurrStone Interview</h1>
+        <div class="consent-protocol">{{ protocol.title }}</div>
+        <p class="consent-intro">
+            A short AI-led research interview about sensory overload experiences and support needs.
+        </p>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <div class="consent-section">
+            <div class="consent-section-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+                    <path d="M12 8v.01"></path>
+                    <path d="M11 12h1v4"></path>
+                </svg>
+            </div>
+
+            <div>
+                <h2>1. What this interview is about</h2>
+                <p>
+                    This interview asks about one recent or memorable sensory overload experience,
+                    what triggered it, how it affected you, what helped, and how a support concept
+                    like PurrStone might or might not fit that situation.
+                </p>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <div class="consent-section-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M9 12l2 2 4-5"></path>
+                </svg>
+            </div>
+
+            <div>
+                <h2>2. Study boundary</h2>
+                <p>
+                    This interview is for design research only. It does not provide medical advice,
+                    diagnosis, or treatment recommendations.
+                </p>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <div class="consent-section-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4"></circle>
+                    <path d="M5 21a7 7 0 0 1 14 0"></path>
+                </svg>
+            </div>
+
+            <div>
+                <h2>3. Your rights as a participant</h2>
+                <ul>
+                    <li>You can skip any question.</li>
+                    <li>You can stop the interview at any time.</li>
+                    <li>Please do not share sensitive personal information that you are not comfortable having saved in the transcript.</li>
+                    <li>Your responses will be saved as a transcript for researcher review.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <div class="consent-section-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                </svg>
+            </div>
+
+            <div>
+                <h2>4. Before you begin</h2>
+                <ul>
+                    <li>Estimated time: {{ protocol.estimated_duration }}</li>
+                    <li>Format: AI-led semi-structured interview</li>
+                    <li>Focus: one specific sensory overload experience</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="consent-divider">
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label class="consent-check-row">
+                <input type="checkbox" name="consent_confirmed" value="yes">
+                <span>
+                    I understand the purpose and boundaries of this interview and want to continue.
+                </span>
+            </label>
+
+            <button class="button consent-start-button" type="submit">
+                Start interview
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PurrStone Evidence Record</title>
+
+    <style>
+        :root {
+            --navy: #00124a;
+            --blue: #1557ff;
+            --muted: #62708a;
+            --border: #dbe4f2;
+            --bg: #f4f7fc;
+            --green: #16a34a;
+            --orange: #d97706;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--navy);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.45;
+        }
+
+        .report-shell {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 24px 48px;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        h1 {
+            margin: 14px 0 8px;
+            font-size: 36px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 22px;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 17px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .print-button {
+            border: 1px solid #bcd0ff;
+            background: #ffffff;
+            color: var(--blue);
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .overview-stat {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            background: #fbfdff;
+        }
+
+        .overview-stat-number {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .session-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 11px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 13px;
+            background: #ecfdf3;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .badge.orange {
+            background: #fff7ed;
+            color: var(--orange);
+        }
+
+        .badge.blue {
+            background: #eef4ff;
+            color: var(--blue);
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .metadata-item {
+            padding: 14px 16px;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        .metadata-item:nth-child(odd) {
+            border-right: 1px solid #edf1f7;
+        }
+
+        .metadata-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .metadata-value {
+            font-weight: 800;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            vertical-align: top;
+            padding: 13px 14px;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        .summary-table th {
+            background: #fbfdff;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .summary-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .criteria-record-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .criteria-record-item {
+            display: grid;
+            grid-template-columns: 96px 1fr;
+            gap: 10px;
+            align-items: center;
+            padding: 9px 11px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fbfdff;
+        }
+
+        .criteria-record-item .badge {
+            padding: 5px 9px;
+            font-size: 12px;
+        }
+
+        .criteria-record-item .badge {
+            justify-self: start;
+        }
+
+        .criteria-record-item strong {
+            display: block;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .flags {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .researcher-note {
+            padding: 16px;
+            border: 1px solid #dbe7ff;
+            background: #f8fbff;
+            border-radius: 14px;
+            min-height: 70px;
+            white-space: pre-wrap;
+        }
+
+        .transcript-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .message {
+            border: 1px solid #e5eaf3;
+            border-radius: 12px;
+            padding: 13px 15px;
+            background: #ffffff;
+        }
+
+        .message.participant {
+            background: #f1f6ff;
+        }
+
+        .message.system {
+            background: #fff7ed;
+        }
+
+        .message-meta {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+                .decision-trace-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .decision-item {
+            border: 1px solid #e5eaf3;
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #fbfdff;
+        }
+
+        .decision-top-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .decision-step {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .decision-title {
+            font-weight: 900;
+        }
+
+        .decision-meta-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px 14px;
+            font-size: 14px;
+        }
+
+        .decision-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .missing-chip {
+            display: inline-flex;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #fff7ed;
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 900;
+            margin: 0 4px 4px 0;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .report-shell {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+
+            .session-card {
+                page-break-before: always;
+            }
+
+            .session-card:first-of-type {
+                page-break-before: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="report-shell">
+        <header class="report-header">
+            <div>
+                <div class="brand">PurrStone</div>
+                <h1>Evidence Record</h1>
+                <p class="muted">
+                    Transcript-grounded interview outputs, researcher review decisions, and output quality status.
+                </p>
+                <p class="muted">
+                    Generated at: {{ generated_at|date:"d M Y H:i" }}
+                </p>
+            </div>
+
+            <button class="print-button" onclick="window.print()">
+                Print / Save as PDF
+            </button>
+        </header>
+
+        <section class="card">
+            <h2>Evidence record overview</h2>
+            <p class="muted" style="margin-bottom: 16px;">
+                This export summarises the reviewable evidence generated by the interview workflow:
+                saved outputs, agent decisions, missing-information flags, and researcher review state.
+            </p>
+
+            <div class="overview-grid">
+                <div class="overview-stat">
+                    <div class="overview-stat-number">{{ completed_outputs }}</div>
+                    <div class="muted">Generated outputs</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number">{{ total_agent_decisions }}</div>
+                    <div class="muted">Agent decisions</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number">{{ total_missing_flags }}</div>
+                    <div class="muted">Evidence limitations</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number" style="font-size: 22px;">
+                        {{ review_overview_label }}
+                    </div>
+                    <div class="muted">Review state</div>
+                </div>
+            </div>
+        </section>
+
+        {% for record in evidence_records %}
+            <section class="card session-card">
+                <div class="session-title-row">
+                    <div>
+                        <h2>Session {{ record.session.session_code }} · Participant {{ record.session.stakeholder.participant_id }}</h2>
+                        <p class="muted">
+                            {{ record.session.protocol.title }}
+                        </p>
+                    </div>
+
+                    {% if record.review_label == "Approved" %}
+                        <span class="badge">{{ record.review_label }}</span>
+                    {% elif record.review_label == "Revision requested" %}
+                        <span class="badge orange">{{ record.review_label }}</span>
+                    {% else %}
+                        <span class="badge blue">{{ record.review_label }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-label">Participant</div>
+                        <div class="metadata-value">{{ record.session.stakeholder.participant_id }}</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Stakeholder group</div>
+                        <div class="metadata-value">
+                            {% if record.session.stakeholder.stakeholder_group %}
+                                {{ record.session.stakeholder.stakeholder_group }}
+                            {% else %}
+                                Sensory-sensitive participant
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Protocol</div>
+                        <div class="metadata-value">{{ record.session.protocol.title }}</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Interview status</div>
+                        <div class="metadata-value">{{ record.session.status|title }}</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Transcript</div>
+                        <div class="metadata-value">Saved</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Output quality</div>
+                        <div class="metadata-value">{{ record.output_quality_label }}</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Started at</div>
+                        <div class="metadata-value">
+                            {% if record.session.started_at %}
+                                {{ record.session.started_at|date:"d M Y H:i" }}
+                            {% else %}
+                                Not recorded
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Quality criteria</div>
+                        <div class="metadata-value">
+                            {{ record.quality_confirmed_count }} / {{ record.quality_criteria_total }} confirmed
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Transcript-grounded structured summary</h3>
+
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Summary evidence</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for row in record.summary_rows %}
+                            <tr>
+                                <td><strong>{{ row.label }}</strong></td>
+                                <td>{{ row.text }}</td>
+                                <td>
+                                    {% if row.status == "Answered" %}
+                                        <span class="badge">{{ row.status }}</span>
+                                    {% elif row.status == "Partial" or row.status == "Skipped" or row.status == "Stopped" %}
+                                        <span class="badge orange">{{ row.status }}</span>
+                                    {% else %}
+                                        <span class="badge blue">{{ row.status }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="two-column" style="margin-top: 22px;">
+                    <div>
+                        <h3>Quality criteria record</h3>
+
+                        <p class="muted" style="margin-bottom: 10px;">
+                            Manual criteria saved during researcher review.
+                        </p>
+
+
+                        <div class="criteria-record-list">
+                            {% for criterion in record.quality_criteria %}
+                                <div class="criteria-record-item">
+                                    {% if criterion.confirmed %}
+                                        <span class="badge">Confirmed</span>
+                                    {% else %}
+                                        <span class="badge blue">Not confirmed</span>
+                                    {% endif %}
+
+                                    <div>
+                                        <strong>{{ criterion.label }}</strong>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Missing information / flags</h3>
+
+                        {% if record.missing_flags %}
+                            <ul class="flags">
+                                {% for flag in record.missing_flags %}
+                                    <li>{{ flag }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No topic-level missing or not-reached flags were generated. Local missing information is shown in the Agent decision trace.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                                <div style="margin-top: 22px;">
+                    <h3>Agent decision trace</h3>
+                    <p class="muted" style="margin-bottom: 12px;">
+                        {{ record.agent_decision_count }} decisions recorded. This trace shows why the agent moved on,
+                        asked follow-ups, flagged missing information, respected skip/stop requests, or used a boundary response.
+                    </p>
+
+                    {% if record.agent_decisions %}
+                        <div class="decision-trace-list">
+                            {% for decision in record.agent_decisions %}
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step {{ forloop.counter }} · {{ decision.section }}
+                                            </div>
+                                            <div class="decision-title">
+                                                {{ decision.get_action_display }}
+                                            </div>
+                                        </div>
+
+                                        {% if decision.answer_status == "sufficient" %}
+                                            <span class="badge">{{ decision.get_answer_status_display }}</span>
+                                        {% elif decision.answer_status == "partial" or decision.answer_status == "too_short" or decision.answer_status == "vague" %}
+                                            <span class="badge orange">{{ decision.get_answer_status_display }}</span>
+                                        {% else %}
+                                            <span class="badge blue">{{ decision.get_answer_status_display }}</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>{{ decision.get_action_display }}</div>
+
+                                        <div class="decision-label">Probe count</div>
+                                        <div>{{ decision.probe_count_before }}</div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            {% if decision.missing_information %}
+                                                {% for item in decision.missing_information %}
+                                                    <span class="missing-chip">{{ item }}</span>
+                                                {% endfor %}
+                                            {% else %}
+                                                <span class="muted">No missing information flagged.</span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>{{ decision.decision_reason }}</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No agent decisions were recorded for this session.</p>
+                    {% endif %}
+                </div>
+
+                <div style="margin-top: 22px;">
+                    <h3>Researcher review note</h3>
+
+                    <div class="researcher-note">
+                        {% if record.session.researcher_note %}
+                            {{ record.session.researcher_note }}
+                        {% else %}
+                            No researcher note recorded.
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div style="margin-top: 22px;">
+                    <h3>Full transcript</h3>
+
+                    <div class="transcript-list">
+                        {% for message in record.messages %}
+                            <div class="message {{ message.sender }}">
+                                <div class="message-meta">
+                                    {{ message.sender|title }} · {{ message.section }}
+                                </div>
+                                <div>{{ message.content }}</div>
+                            </div>
+                        {% empty %}
+                            <p>No transcript messages available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% empty %}
+            <section class="card">
+                <h2>No evidence records available</h2>
+                <p>No generated interview outputs have been saved yet.</p>
+            </section>
+        {% endfor %}
+
+        <p class="footer-note">
+            This evidence record is generated from saved interview session data. It is intended for researcher review and project evaluation, not medical or therapeutic assessment.
+        </p>
+    </main>
+</body>
+</html>

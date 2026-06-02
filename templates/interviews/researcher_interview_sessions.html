@@ -1,0 +1,251 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Interview sessions</h1>
+        <p class="overview-kicker">
+            Manage participant interview links, session status, and generated outputs.
+        </p>
+    </div>
+
+    <a class="button button-disabled" href="#">
+        <span>+</span> Create interview session · Future extension
+    </a>
+</div>
+
+<div class="card info-banner">
+    <div class="info-banner-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+        </svg>
+    </div>
+
+    <div>
+        <h2>How interview sessions work</h2>
+        <p>
+            Each interview session connects a participant, an assigned protocol, and a live interview link.
+            Sessions track consent, interview progress, transcript saving, and output generation.
+        </p>
+    </div>
+</div>
+
+<div class="session-metric-grid">
+    <div class="session-metric-card">
+        <div class="session-metric-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Total sessions</div>
+            <div class="metric-value">{{ total_sessions }}</div>
+        </div>
+    </div>
+
+    <div class="session-metric-card">
+        <div class="session-metric-icon session-metric-icon-orange">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="M9 12l2 2 4-4"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Pending consent</div>
+            <div class="metric-value">{{ pending_consent_count }}</div>
+        </div>
+    </div>
+
+    <div class="session-metric-card">
+        <div class="session-metric-icon session-metric-icon-green">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M8 12l3 3 5-6"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Completed interviews</div>
+            <div class="metric-value">{{ completed_count }}</div>
+        </div>
+    </div>
+
+    <div class="session-metric-card">
+        <div class="session-metric-icon session-metric-icon-purple">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 3h7l5 5v13H7z"></path>
+                <path d="M14 3v5h5"></path>
+                <path d="M9 13h6"></path>
+                <path d="M9 17h6"></path>
+            </svg>
+        </div>
+        <div>
+            <div class="metric-label">Outputs generated</div>
+            <div class="metric-value">{{ outputs_ready_count }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="session-layout">
+    <div class="card session-table-card">
+        <h2>Interview sessions</h2>
+
+        <table class="stakeholder-table session-table">
+            <thead>
+                <tr>
+                    <th>Session</th>
+                    <th>Participant</th>
+                    <th>Protocol</th>
+                    <th>Link status</th>
+                    <th>Interview status</th>
+                    <th>Output</th>
+                    <th>Next action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td><strong>{{ session.session_code }}</strong></td>
+                        <td>{{ session.stakeholder.participant_id }}</td>
+                        <td>{{ session.protocol.title }}</td>
+
+                        <td>
+                            {% if session.consent_confirmed %}
+                                <span class="status">Generated</span>
+                            {% else %}
+                                <span class="status status-blue">Generated</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <span class="status {% if session.status == 'completed' %}{% elif session.status == 'stopped' %}status-waiting{% elif session.status == 'in_progress' %}status-blue{% else %}status-muted{% endif %}">
+                                {{ session.get_status_display }}
+                            </span>
+                        </td>
+
+                        <td>
+                            {% if session.transcript_saved %}
+                                <span class="status">Saved</span>
+                            {% else %}
+                                <span class="status status-muted">Not generated</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if session.transcript_saved %}
+                                <a class="button-secondary" href="{% url 'output_detail' session.session_code %}">
+                                    View output
+                                </a>
+                            {% else %}
+                                <a class="button-secondary" href="{% url 'interview_consent' session.stakeholder.participant_id %}">
+                                    Open link
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7">No interview sessions yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card selected-session-card">
+        <h2>
+            {% if selected_session %}
+                Selected session: {{ selected_session.session_code }}
+            {% else %}
+                Selected session
+            {% endif %}
+        </h2>
+
+        {% if selected_session %}
+            <div class="detail-row">
+                <strong>Participant:</strong>
+                <span>{{ selected_session.stakeholder.participant_id }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Stakeholder group:</strong>
+                <span>{{ selected_session.stakeholder.stakeholder_group }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Assigned protocol:</strong>
+                <span>{{ selected_session.protocol.title }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Consent:</strong>
+                {% if selected_session.consent_confirmed %}
+                    <span class="status">Confirmed</span>
+                {% else %}
+                    <span class="status status-waiting">Pending</span>
+                {% endif %}
+            </div>
+
+            <div class="detail-row">
+                <strong>Interview status:</strong>
+                <span class="status {% if selected_session.status == 'completed' %}{% elif selected_session.status == 'stopped' %}status-waiting{% elif selected_session.status == 'in_progress' %}status-blue{% else %}status-muted{% endif %}">
+                    {{ selected_session.get_status_display }}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Transcript:</strong>
+                {% if selected_session.transcript_saved %}
+                    <span class="status">Saved</span>
+                {% else %}
+                    <span class="status status-muted">Not saved</span>
+                {% endif %}
+            </div>
+
+            <div class="detail-row">
+                <strong>Output:</strong>
+                {% if selected_session.transcript_saved %}
+                    <span class="status">Saved</span>
+                {% elif selected_session.summary_generated %}
+                    <span class="status">Generated</span>
+                {% else %}
+                    <span class="status status-muted">Not generated</span>
+                {% endif %}
+            </div>
+
+            <div class="selected-session-actions">
+                {% if selected_session.transcript_saved %}
+                    <a class="button" href="{% url 'output_detail' selected_session.session_code %}">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 3h7l5 5v13H7z"></path>
+                            <path d="M14 3v5h5"></path>
+                        </svg>
+                        View output
+                    </a>
+                {% endif %}
+
+                <a class="button-secondary" href="{% url 'stakeholder_detail' selected_session.stakeholder.participant_id %}">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M5 21a7 7 0 0 1 14 0"></path>
+                    </svg>
+                    View stakeholder record
+                </a>
+
+                <a class="button-secondary" href="{% url 'interview_consent' selected_session.stakeholder.participant_id %}">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93"></path>
+                        <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07"></path>
+                    </svg>
+                    Open interview link
+                </a>
+            </div>
+        {% else %}
+            <p>No session selected.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
