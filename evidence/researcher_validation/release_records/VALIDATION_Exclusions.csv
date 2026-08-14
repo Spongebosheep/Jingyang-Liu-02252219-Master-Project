@@ -1,0 +1,7 @@
+﻿Category,Treatment,Reason
+Earlier/duplicate formal return packages,Excluded,Only the three audited 2026-08-11 final return ZIPs are included.
+Older loose Pilot files,Excluded,Only Pilot-01 FINAL and Pilot-02 final evidence are copied; Pilot-01 deviation history remains sealed inside its current FINAL archive for audit.
+Superseded consent copies,Excluded,Only the four selected latest reviewed consent DOCX files are included.
+Earlier Gold working files,Excluded as loose files,v0.7.1 is retained only as one sealed frozen archive; v0.8.0 completed Gold is included separately as authority.
+Prior generated analysis packages,Excluded,This v1.0.0 package contains only the newly audited workbook and dataset.
+Unrelated project source documents/PDFs,Excluded,Not part of the researcher-validation evidence chain.

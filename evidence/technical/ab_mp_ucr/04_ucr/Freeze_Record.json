@@ -1,0 +1,20 @@
+{
+  "schema": "purrstone-v10.2-ucr-phase2-freeze-record-v1",
+  "package_build_id": "purrstone-v10.2-ucr-phase2-r1-20260809",
+  "freeze_version": "UCR-P2-R1",
+  "frozen_at_utc": "2026-08-09T14:25:13.111Z",
+  "frozen_inventory_sha256": "f8708132168cb35d63769dc2c50929bc67ab6856e991a9accb53ad0efe3645d6",
+  "source_material_set_sha256": "74257b3bcc011af93a127466acee00c819fd87ba67386d29f2f34906b1e8c1aa",
+  "source_phase1_workbook_sha256": {
+    "Coder01": "d3ad051f7a97db21f2ff20eda5e251ddc0f237d638259557b355ab92bee7ca48",
+    "Coder02": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec"
+  },
+  "source_blind_reconciliation_workbook_sha256": "102dcbe44f35bc7549b5dd350de2bf3ffdca41dc00fd55d9c06cf7b178f50839",
+  "nominal_proposition_count": 46,
+  "unique_proposition_text_count": 27,
+  "support_labels_present_at_freeze": false,
+  "condition_key_included": false,
+  "item_identity_key_included": false,
+  "freeze_basis": "Exact proposition wording from the pre-existing blind PROPOSED reconciliation workbook; no proposition text was changed during this freeze.",
+  "procedural_deviation": "Separate coder confirmation of the common inventory was omitted for time. The administrator froze the pre-existing blind proposal before Phase 2 labels. This must be reported as a deviation and not described as coder consensus."
+}

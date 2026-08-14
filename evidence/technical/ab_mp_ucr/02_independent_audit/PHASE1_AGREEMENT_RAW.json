@@ -1,0 +1,620 @@
+{
+  "schema": "purrstone-v10.2-phase1-blind-agreement-1.0",
+  "condition_key_opened": false,
+  "workbook_hashes": {
+    "Coder01": "d3ad051f7a97db21f2ff20eda5e251ddc0f237d638259557b355ab92bee7ca48",
+    "Coder02": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec"
+  },
+  "timing": {
+    "Coder01": {
+      "started_at": "2026-08-09T13:33:21+08:00",
+      "completed_at": "2026-08-09T15:14:14+08:00",
+      "duration_minutes": 100.88333333333334
+    },
+    "Coder02": {
+      "started_at": "2026-08-09T14:56:47+08:00",
+      "completed_at": "2026-08-09T16:45:52+08:00",
+      "duration_minutes": 109.08333333333333
+    }
+  },
+  "ab": {
+    "score_cell_agreement": {
+      "Q1": {
+        "eligible": 20,
+        "exact": 20,
+        "adjacent_or_exact": 20,
+        "differences": [],
+        "exact_rate": 1.0,
+        "adjacent_or_exact_rate": 1.0
+      },
+      "Q3": {
+        "eligible": 20,
+        "exact": 20,
+        "adjacent_or_exact": 20,
+        "differences": [],
+        "exact_rate": 1.0,
+        "adjacent_or_exact_rate": 1.0
+      },
+      "Q4": {
+        "eligible": 20,
+        "exact": 20,
+        "adjacent_or_exact": 20,
+        "differences": [],
+        "exact_rate": 1.0,
+        "adjacent_or_exact_rate": 1.0
+      },
+      "Q5": {
+        "eligible": 20,
+        "exact": 20,
+        "adjacent_or_exact": 20,
+        "differences": [],
+        "exact_rate": 1.0,
+        "adjacent_or_exact_rate": 1.0
+      },
+      "Q2": {
+        "eligible": 8,
+        "exact": 4,
+        "adjacent_or_exact": 8,
+        "differences": [
+          {
+            "blind_pair_id": "BP-002",
+            "field": "a_q2",
+            "coder01": 4,
+            "coder02": 5,
+            "absolute_difference": 1
+          },
+          {
+            "blind_pair_id": "BP-003",
+            "field": "b_q2",
+            "coder01": 4,
+            "coder02": 5,
+            "absolute_difference": 1
+          },
+          {
+            "blind_pair_id": "BP-007",
+            "field": "b_q2",
+            "coder01": 4,
+            "coder02": 5,
+            "absolute_difference": 1
+          },
+          {
+            "blind_pair_id": "BP-008",
+            "field": "b_q2",
+            "coder01": 4,
+            "coder02": 5,
+            "absolute_difference": 1
+          }
+        ],
+        "exact_rate": 0.5,
+        "adjacent_or_exact_rate": 1.0
+      }
+    },
+    "score_disagreement_count": 4,
+    "score_disagreements": [
+      {
+        "blind_pair_id": "BP-002",
+        "field": "a_q2",
+        "coder01": 4,
+        "coder02": 5,
+        "absolute_difference": 1
+      },
+      {
+        "blind_pair_id": "BP-003",
+        "field": "b_q2",
+        "coder01": 4,
+        "coder02": 5,
+        "absolute_difference": 1
+      },
+      {
+        "blind_pair_id": "BP-007",
+        "field": "b_q2",
+        "coder01": 4,
+        "coder02": 5,
+        "absolute_difference": 1
+      },
+      {
+        "blind_pair_id": "BP-008",
+        "field": "b_q2",
+        "coder01": 4,
+        "coder02": 5,
+        "absolute_difference": 1
+      }
+    ],
+    "overall_preference": {
+      "exact_count": 8,
+      "n": 10,
+      "disagreements": [
+        {
+          "blind_pair_id": "BP-007",
+          "coder01": "A",
+          "coder02": "Tie"
+        },
+        {
+          "blind_pair_id": "BP-008",
+          "coder01": "A",
+          "coder02": "Tie"
+        }
+      ],
+      "unweighted_kappa_descriptive_only": {
+        "n": 10,
+        "observed_agreement": 0.8,
+        "expected_agreement": 0.36,
+        "kappa": 0.6875000000000001
+      }
+    },
+    "rationale_similarity": {
+      "mean_token_jaccard": 0.28458345080102254,
+      "range_token_jaccard": [
+        0.18181818181818182,
+        0.425
+      ],
+      "mean_sequence_ratio": 0.44245287426018637,
+      "range_sequence_ratio": [
+        0.036036036036036036,
+        0.6446700507614214
+      ]
+    }
+  },
+  "mp": {
+    "label_exact_count": 9,
+    "n": 9,
+    "label_disagreements": [],
+    "error_category_exact_count": 9,
+    "error_category_disagreements": []
+  },
+  "ucr_phase1": {
+    "coder01_proposition_count": 52,
+    "coder02_proposition_count": 52,
+    "item_count_alignment": 9,
+    "items": [
+      {
+        "blind_item_id": "SF-001",
+        "coder01_count": 6,
+        "coder02_count": 6,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "Sharp braking noise was one of the participant's strongest triggers.",
+            "coder02": "The participant named sharp braking noise among their strongest triggers.",
+            "token_jaccard": 0.5,
+            "sequence_ratio": 0.6808510638297872
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "Flashing carriage lights were one of the participant's strongest triggers.",
+            "coder02": "Flashing carriage lights were also named among their strongest triggers.",
+            "token_jaccard": 0.4,
+            "sequence_ratio": 0.7808219178082192
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "Crowding was one of the participant's strongest triggers.",
+            "coder02": "Crowding was another trigger they placed among the strongest.",
+            "token_jaccard": 0.2857142857142857,
+            "sequence_ratio": 0.5932203389830508
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "The participant's shoulders tightened.",
+            "coder02": "They reported tightened shoulders.",
+            "token_jaccard": 0.2857142857142857,
+            "sequence_ratio": 0.5555555555555556
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "The participant's heart raced.",
+            "coder02": "They reported a racing heart.",
+            "token_jaccard": 0.1111111111111111,
+            "sequence_ratio": 0.576271186440678
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "The participant felt panicked.",
+            "coder02": "The participant felt panicked.",
+            "token_jaccard": 1.0,
+            "sequence_ratio": 1.0
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-002",
+        "coder01_count": 7,
+        "coder02_count": 7,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The participant covered their ears.",
+            "coder02": "They covered their ears.",
+            "token_jaccard": 0.5,
+            "sequence_ratio": 0.7796610169491526
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "The participant focused on slow breathing.",
+            "coder02": "They focused on breathing slowly.",
+            "token_jaccard": 0.375,
+            "sequence_ratio": 0.6666666666666666
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "The participant left at the next stop.",
+            "coder02": "The participant left at the next stop.",
+            "token_jaccard": 1.0,
+            "sequence_ratio": 1.0
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "A quieter carriage would have helped the participant.",
+            "coder02": "A quieter carriage was something they thought would have helped.",
+            "token_jaccard": 0.5,
+            "sequence_ratio": 0.6324786324786325
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "A warning before the alarm would have helped the participant.",
+            "coder02": "They thought advance warning before the alarm would have helped.",
+            "token_jaccard": 0.5833333333333334,
+            "sequence_ratio": 0.72
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "The repeated announcements did not help the participant.",
+            "coder02": "Repeated announcements were not helpful.",
+            "token_jaccard": 0.3333333333333333,
+            "sequence_ratio": 0.6875
+          },
+          {
+            "proposition_index": 7,
+            "coder01": "The repeated announcements added more noise.",
+            "coder02": "They said the announcements added more noise.",
+            "token_jaccard": 0.625,
+            "sequence_ratio": 0.8314606741573034
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-003",
+        "coder01_count": 6,
+        "coder02_count": 6,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The squeeze interaction seemed useful to the participant.",
+            "coder02": "They thought the squeeze interaction could be useful.",
+            "token_jaccard": 0.36363636363636365,
+            "sequence_ratio": 0.6
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "The squeeze interaction would give the participant's hands a focus.",
+            "coder02": "It would give their hands something to focus on.",
+            "token_jaccard": 0.26666666666666666,
+            "sequence_ratio": 0.5391304347826087
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "Gentle haptics might help the participant pace their breathing.",
+            "coder02": "Gentle haptics might help them pace their breathing.",
+            "token_jaccard": 0.7,
+            "sequence_ratio": 0.8869565217391304
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "The participant would avoid scent.",
+            "coder02": "The participant would avoid scent.",
+            "token_jaccard": 1.0,
+            "sequence_ratio": 1.0
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "Scent could be another trigger for the participant.",
+            "coder02": "Scent could become an additional trigger.",
+            "token_jaccard": 0.2727272727272727,
+            "sequence_ratio": 0.5869565217391305
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "The participant wanted every feature to be optional.",
+            "coder02": "They wanted every feature to be optional.",
+            "token_jaccard": 0.6666666666666666,
+            "sequence_ratio": 0.8602150537634409
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-004",
+        "coder01_count": 7,
+        "coder02_count": 7,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "Covering their ears was one action the participant took.",
+            "coder02": "Ear-covering was one thing they did.",
+            "token_jaccard": 0.23076923076923078,
+            "sequence_ratio": 0.5869565217391305
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "They concentrated on breathing slowly.",
+            "coder02": "They used slow breathing.",
+            "token_jaccard": 0.2857142857142857,
+            "sequence_ratio": 0.6349206349206349
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "They left at the following stop.",
+            "coder02": "They left when the train reached the next stop.",
+            "token_jaccard": 0.4,
+            "sequence_ratio": 0.5822784810126582
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "The participant thought a quieter carriage would have helped.",
+            "coder02": "A quieter carriage would have been helpful.",
+            "token_jaccard": 0.45454545454545453,
+            "sequence_ratio": 0.6730769230769231
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "They thought advance warning of the alarm would have helped.",
+            "coder02": "Warning them before the alarm would also have helped.",
+            "token_jaccard": 0.46153846153846156,
+            "sequence_ratio": 0.672566371681416
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "The repeated announcements were not helpful.",
+            "coder02": "The repeated announcements were unhelpful.",
+            "token_jaccard": 0.5714285714285714,
+            "sequence_ratio": 0.9534883720930233
+          },
+          {
+            "proposition_index": 7,
+            "coder01": "The announcements created additional noise.",
+            "coder02": "Those announcements created more noise.",
+            "token_jaccard": 0.42857142857142855,
+            "sequence_ratio": 0.8292682926829268
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-005",
+        "coder01_count": 6,
+        "coder02_count": 6,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The participant identified sharp braking noise as one of the strongest triggers.",
+            "coder02": "Sharp braking noise was reported as one of the strongest triggers.",
+            "token_jaccard": 0.6923076923076923,
+            "sequence_ratio": 0.726027397260274
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "They identified flashing carriage lights as one of the strongest triggers.",
+            "coder02": "Flashing carriage lights were reported as one of the strongest triggers.",
+            "token_jaccard": 0.6923076923076923,
+            "sequence_ratio": 0.7945205479452054
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "They identified crowding as one of the strongest triggers.",
+            "coder02": "Crowding was reported as one of the strongest triggers.",
+            "token_jaccard": 0.6363636363636364,
+            "sequence_ratio": 0.7433628318584071
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "Their shoulders tightened.",
+            "coder02": "Their shoulders tightened.",
+            "token_jaccard": 1.0,
+            "sequence_ratio": 1.0
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "Their heart raced.",
+            "coder02": "Their heart was racing.",
+            "token_jaccard": 0.4,
+            "sequence_ratio": 0.7804878048780488
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "They experienced panic.",
+            "coder02": "They felt panicked.",
+            "token_jaccard": 0.2,
+            "sequence_ratio": 0.6190476190476191
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-006",
+        "coder01_count": 6,
+        "coder02_count": 6,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The participant saw the squeeze interaction as potentially useful.",
+            "coder02": "Squeezing the object seemed useful to them.",
+            "token_jaccard": 0.15384615384615385,
+            "sequence_ratio": 0.4036697247706422
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "They expected squeezing it to give their hands a focus.",
+            "coder02": "It could give their hands a point of focus.",
+            "token_jaccard": 0.46153846153846156,
+            "sequence_ratio": 0.6122448979591837
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "They thought gentle haptics might help pace their breathing.",
+            "coder02": "Gentle haptics might help them keep pace with their breathing.",
+            "token_jaccard": 0.5833333333333334,
+            "sequence_ratio": 0.7704918032786885
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "They would stay away from scent.",
+            "coder02": "They would avoid scent.",
+            "token_jaccard": 0.42857142857142855,
+            "sequence_ratio": 0.7272727272727273
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "They regarded scent as a possible additional trigger.",
+            "coder02": "Scent might be an additional trigger.",
+            "token_jaccard": 0.2727272727272727,
+            "sequence_ratio": 0.6222222222222222
+          },
+          {
+            "proposition_index": 6,
+            "coder01": "They wanted all features to remain optional.",
+            "coder02": "They wanted the features to be optional.",
+            "token_jaccard": 0.5555555555555556,
+            "sequence_ratio": 0.8571428571428571
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-007",
+        "coder01_count": 5,
+        "coder02_count": 5,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The participant might use the object while commuting.",
+            "coder02": "They might use the object while commuting.",
+            "token_jaccard": 0.75,
+            "sequence_ratio": 0.8631578947368421
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "Looking discreet was a condition for possible commuting use.",
+            "coder02": "They would want it to look discreet.",
+            "token_jaccard": 0.06666666666666667,
+            "sequence_ratio": 0.2916666666666667
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "Making no sound was also a condition for possible commuting use.",
+            "coder02": "They would want it to make no sound.",
+            "token_jaccard": 0.11764705882352941,
+            "sequence_ratio": 0.26
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "Obvious lights would embarrass the participant.",
+            "coder02": "Obvious lights would be embarrassing.",
+            "token_jaccard": 0.375,
+            "sequence_ratio": 0.7857142857142857
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "Scent would be a concern for people nearby in a shared space.",
+            "coder02": "Scent was a concern for people nearby in a shared space.",
+            "token_jaccard": 0.75,
+            "sequence_ratio": 0.9230769230769231
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-008",
+        "coder01_count": 4,
+        "coder02_count": 4,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The described experience took place on a crowded train.",
+            "coder02": "A crowded train was the setting for the episode.",
+            "token_jaccard": 0.3076923076923077,
+            "sequence_ratio": 0.3106796116504854
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "The participant described the experience as sensory overload.",
+            "coder02": "The final account labels the episode as sensory overload.",
+            "token_jaccard": 0.36363636363636365,
+            "sequence_ratio": 0.6949152542372882
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "Alarms, noise, and crowding were presented as reasons the participant felt trapped.",
+            "coder02": "It links alarms, noise, and crowding with feeling trapped.",
+            "token_jaccard": 0.3125,
+            "sequence_ratio": 0.624113475177305
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "Alarms, noise, and crowding were presented as reasons the participant felt overwhelmed.",
+            "coder02": "It links the same three factors with feeling overwhelmed.",
+            "token_jaccard": 0.10526315789473684,
+            "sequence_ratio": 0.4305555555555556
+          }
+        ]
+      },
+      {
+        "blind_item_id": "SF-009",
+        "coder01_count": 5,
+        "coder02_count": 5,
+        "count_agreement": true,
+        "paired_rows": [
+          {
+            "proposition_index": 1,
+            "coder01": "The participant would consider using the object during a commute.",
+            "coder02": "Commuting was a setting where they might use it.",
+            "token_jaccard": 0.058823529411764705,
+            "sequence_ratio": 0.1415929203539823
+          },
+          {
+            "proposition_index": 2,
+            "coder01": "They would only consider this if the object looked discreet.",
+            "coder02": "That possible use depended on the object looking discreet.",
+            "token_jaccard": 0.1875,
+            "sequence_ratio": 0.5932203389830508
+          },
+          {
+            "proposition_index": 3,
+            "coder01": "They would also want it to make no sound.",
+            "coder02": "It also depended on the object making no sound.",
+            "token_jaccard": 0.2857142857142857,
+            "sequence_ratio": 0.5909090909090909
+          },
+          {
+            "proposition_index": 4,
+            "coder01": "Visible lights would make them feel embarrassed.",
+            "coder02": "Visible lights would make them feel embarrassed.",
+            "token_jaccard": 1.0,
+            "sequence_ratio": 1.0
+          },
+          {
+            "proposition_index": 5,
+            "coder01": "They were concerned about scent around other people in a shared setting.",
+            "coder02": "They had a shared-space concern about scent around other people.",
+            "token_jaccard": 0.5333333333333333,
+            "sequence_ratio": 0.7058823529411765
+          }
+        ]
+      }
+    ],
+    "paired_proposition_similarity": {
+      "mean_token_jaccard": 0.45945766694605705,
+      "range_token_jaccard": [
+        0.058823529411764705,
+        1.0
+      ],
+      "mean_sequence_ratio": 0.6881206920334345,
+      "range_sequence_ratio": [
+        0.1415929203539823,
+        1.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "purrstone-supplementary-diagnostic-leakage-scan-1.0",
+  "scanned_at_utc": "2026-08-10T05:39:00Z",
+  "scope": "13_supplementary_diagnostics/baseline_s7_s8_review_layer",
+  "status": "PASS",
+  "patterns": [
+    "OpenAI-style secret token",
+    "Authorization header",
+    "private-key block",
+    "gmail.com address",
+    "imperial.ac.uk address"
+  ],
+  "matches": [],
+  "note": "This scan checks common credential and direct-identity patterns. It is not a general proof of anonymisation."
+}

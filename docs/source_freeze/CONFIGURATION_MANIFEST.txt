@@ -1,0 +1,12 @@
+Configuration identity summary
+
+Source commit: 35c930d92119d47560879496902e928daf20ac02
+Recorded Git tree: a7562237ec5a13a50f3aef540b92406f04086897
+Model label in current Formal 32: gpt-4.1-mini
+Scenario specification: evaluation/specs/scenarios.v4.json
+Metrics specification: evaluation/specs/metrics.v3.json
+Freeze manifest: evaluation/specs/freeze_manifest.v10_2.json
+Baseline policy: prompt-only policy v3.0
+Python recorded in the current v10.2 evidence lineage: 3.11.15
+
+Exact tracked files and hashes are retained in SOURCE_MANIFEST.sha256 and the frozen source ZIP. Runtime secrets and local environment credentials are not included.

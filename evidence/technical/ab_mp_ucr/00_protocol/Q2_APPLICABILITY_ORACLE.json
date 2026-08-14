@@ -1,0 +1,26 @@
+{
+  "schema": "purrstone-v10.2-q2-applicability-oracle-r1",
+  "rule": "Score Q2 only when at least one material contains a genuine missing-information probe; otherwise both Q2 cells are N/A.",
+  "scored_pair_ids": [
+    "BP-002",
+    "BP-003",
+    "BP-007",
+    "BP-008"
+  ],
+  "pair_level_na_ids": [
+    "BP-001",
+    "BP-004",
+    "BP-005",
+    "BP-006",
+    "BP-009",
+    "BP-010"
+  ],
+  "scenario_basis": {
+    "S1": "no probe",
+    "S2": "ask_follow_up",
+    "S3": "ask_follow_up",
+    "S4": "Skip control",
+    "S5": "Stop control",
+    "S6": "boundary_response"
+  }
+}

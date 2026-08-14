@@ -15,7 +15,7 @@
         <h1 class="consent-title">PurrStone Interview</h1>
         <div class="consent-protocol">{{ protocol.title }}</div>
         <p class="consent-intro">
-            A short AI-led research interview about sensory overload experiences and support needs.
+            {{ protocol.interview_mode }} for {{ protocol.stakeholder_group }}.
         </p>
 
         {% if error %}
@@ -33,11 +33,13 @@
 
             <div>
                 <h2>1. What this interview is about</h2>
-                <p>
-                    This interview asks about one recent or memorable sensory overload experience,
-                    what triggered it, how it affected you, what helped, and how a support concept
-                    like PurrStone might or might not fit that situation.
-                </p>
+                <p>{{ consent_notice.protocol.purpose }}</p>
+                {% if consent_notice.protocol.research_topics %}
+                    <p>
+                        Protocol topics:
+                        {{ consent_notice.protocol.research_topics|join:", " }}.
+                    </p>
+                {% endif %}
             </div>
         </div>
 
@@ -50,11 +52,14 @@
             </div>
 
             <div>
-                <h2>2. Study boundary</h2>
-                <p>
-                    This interview is for design research only. It does not provide medical advice,
-                    diagnosis, or treatment recommendations.
-                </p>
+                <h2>2. {{ consent_notice.ai_role.heading }}</h2>
+                <ul>
+                    <li>{{ consent_notice.ai_role.checks }}</li>
+                    <li>{{ consent_notice.ai_role.follow_up }}</li>
+                    <li>{{ consent_notice.ai_role.does_not_check }}</li>
+                    <li>{{ consent_notice.ai_role.workflow_effect }}</li>
+                    <li>{{ consent_notice.ai_role.researcher_review }}</li>
+                </ul>
             </div>
         </div>
 
@@ -67,12 +72,25 @@
             </div>
 
             <div>
-                <h2>3. Your rights as a participant</h2>
+                <h2>3. Study boundary</h2>
+                <p>{{ consent_notice.study_boundary }}</p>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <div class="consent-section-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                </svg>
+            </div>
+
+            <div>
+                <h2>4. Your rights as a participant</h2>
                 <ul>
-                    <li>You can skip any question.</li>
-                    <li>You can stop the interview at any time.</li>
-                    <li>Please do not share sensitive personal information that you are not comfortable having saved in the transcript.</li>
-                    <li>Your responses will be saved as a transcript for researcher review.</li>
+                    {% for right in consent_notice.participant_rights %}
+                        <li>{{ right }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -86,11 +104,12 @@
             </div>
 
             <div>
-                <h2>4. Before you begin</h2>
+                <h2>5. Before you begin</h2>
                 <ul>
-                    <li>Estimated time: {{ protocol.estimated_duration }}</li>
-                    <li>Format: AI-led semi-structured interview</li>
-                    <li>Focus: one specific sensory overload experience</li>
+                    <li>Estimated time: {{ consent_notice.protocol.estimated_duration }}</li>
+                    <li>Format: {{ consent_notice.protocol.interview_mode }}</li>
+                    <li>Participant group: {{ consent_notice.protocol.stakeholder_group }}</li>
+                    <li>Research output: {{ consent_notice.protocol.output_description }}</li>
                 </ul>
             </div>
         </div>
@@ -103,9 +122,11 @@
             <label class="consent-check-row">
                 <input type="checkbox" name="consent_confirmed" value="yes">
                 <span>
-                    I understand the purpose and boundaries of this interview and want to continue.
+                    {{ consent_notice.acknowledgement }}
                 </span>
             </label>
+
+            <p class="consent-intro">Notice version: {{ consent_notice.notice_version }}</p>
 
             <button class="button consent-start-button" type="submit">
                 Start interview

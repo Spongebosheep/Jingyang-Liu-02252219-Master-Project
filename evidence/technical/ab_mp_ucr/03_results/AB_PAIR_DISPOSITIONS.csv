@@ -1,0 +1,11 @@
+﻿blind_pair_id,pair_key,coder01_preference,coder02_preference,disposition_without_consensus
+BP-001,S6-R03,MVP,MVP,Unanimous MVP
+BP-002,S3-R03,MVP,MVP,Unanimous MVP
+BP-003,S3-R01,MVP,MVP,Unanimous MVP
+BP-004,S1-R03,Tie,Tie,Unanimous Tie
+BP-005,S1-R01,Tie,Tie,Unanimous Tie
+BP-006,S6-R01,MVP,MVP,Unanimous MVP
+BP-007,S2-R02,Prompt-only baseline,Tie,Disagreement: Prompt-only baseline vs Tie
+BP-008,S2-R01,Prompt-only baseline,Tie,Disagreement: Prompt-only baseline vs Tie
+BP-009,S5-R01,MVP,MVP,Unanimous MVP
+BP-010,S4-R01,MVP,MVP,Unanimous MVP

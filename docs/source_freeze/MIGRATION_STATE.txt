@@ -1,0 +1,12 @@
+Django migration state verified in the retained final test log
+
+- python manage.py makemigrations --check --dry-run
+  Result: No changes detected.
+
+- python manage.py migrate --noinput
+  Result in isolated verification environment: all Django and interviews migrations applied successfully; the second wrapped run reported no migrations to apply.
+
+Application migrations retained in the frozen source:
+interviews.0001_initial through interviews.0010_protocol_coverage_and_consent_snapshot.
+
+This records migration verification in an isolated copy. It is not a copy of a production database.

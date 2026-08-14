@@ -1,0 +1,11 @@
+{
+  "coverage_assessment": "covered",
+  "covered_information": [
+    "mocked infrastructure coverage"
+  ],
+  "missing_information": [],
+  "participant_control": "none",
+  "participant_response": "Thank you. Let us continue with the next topic.",
+  "reason": "Frozen fixture response for non-formal infrastructure testing.",
+  "selected_action": "move_next"
+}

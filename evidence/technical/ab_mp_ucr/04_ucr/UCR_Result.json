@@ -1,0 +1,93 @@
+{
+  "schema": "purrstone-v10.2-ucr-phase2-resolved-result-v1",
+  "status": "RESOLVED_SUPPLEMENTARY",
+  "analysis_date": "2026-08-10",
+  "scope": {
+    "analysis": "Supplementary within-MVP unsupported-content check over nine final-reviewed evidence items.",
+    "condition_comparison": false,
+    "baseline_ucr": null,
+    "baseline_reason": "Corresponding Baseline S7/S8 runs did not complete and no Baseline item entered this inventory.",
+    "primary_contract_status": "The metric-level item rule and complete-pair amendment conflict; the result is therefore not an unqualified primary condition comparison."
+  },
+  "inventory": {
+    "freeze_version": "UCR-P2-R1",
+    "package_build_id": "purrstone-v10.2-ucr-phase2-r1-20260809",
+    "blind_item_count": 9,
+    "nominal_proposition_instances": 46,
+    "unique_proposition_texts": 27,
+    "frozen_inventory_sha256": "f8708132168cb35d63769dc2c50929bc67ab6856e991a9accb53ad0efe3645d6",
+    "source_material_set_sha256": "74257b3bcc011af93a127466acee00c819fd87ba67386d29f2f34906b1e8c1aa",
+    "procedure": "Administrator-frozen from a pre-existing blind proposition proposal before Phase 2 labels.",
+    "deviation": "No separate coder-confirmation round for the common inventory; do not describe the 46-row denominator as coder-consensus segmentation."
+  },
+  "initial_independent_coding": {
+    "contingency_table": {
+      "coder01_supported_coder02_supported": 43,
+      "coder01_supported_coder02_unsupported": 0,
+      "coder01_unsupported_coder02_supported": 1,
+      "coder01_unsupported_coder02_unsupported": 2
+    },
+    "exact_agreement_numerator": 45,
+    "exact_agreement_denominator": 46,
+    "exact_agreement_rate": 0.9782608695652174,
+    "chance_agreement": 0.8969754253308129,
+    "cohen_kappa": 0.7889908256880735,
+    "cohen_kappa_exact_fraction": "86/109",
+    "disagreement_count": 1,
+    "disagreement_ids": [
+      "SF-008-P02"
+    ],
+    "coder01_unsupported": 3,
+    "coder01_denominator": 46,
+    "coder01_ucr": 0.06521739130434782,
+    "coder02_unsupported": 2,
+    "coder02_denominator": 46,
+    "coder02_ucr": 0.043478260869565216
+  },
+  "resolution": {
+    "schema": "purrstone-v10.2-ucr-phase2-resolution-derived-v1",
+    "proposition_id": "SF-008-P02",
+    "coder01_label": "unsupported",
+    "coder02_label": "supported",
+    "final_label": "unsupported",
+    "resolution_rationale": "The source says the participant felt trapped and overwhelmed, but it does not state or clearly entail that the participant described the experience using the category 'sensory overload'. Under the frozen Phase 2 rule, that interpretive category is not established by the displayed source.",
+    "resolver_field_as_supplied": "Coder01 and Coder02",
+    "resolver_identity_boundary": "The field is reproduced from the original resolution workbook; the workbook alone does not independently verify who entered it.",
+    "resolved_at": "2026-08-10T01:05:00+0800",
+    "original_resolution_sha256": "57276f7e424998e1428afdd92d95a71f0a8e4650fa29f2a1055e12768a07b3a1",
+    "original_file_in_public_package": false,
+    "privacy_treatment": "Identity-bearing OOXML metadata omitted from the shareable package; exact original hash retained."
+  },
+  "final_nominal_result": {
+    "unsupported": 3,
+    "supported": 43,
+    "denominator": 46,
+    "ucr": 0.06521739130434782,
+    "supported_rate": 0.9347826086956522,
+    "unsupported_proposition_ids": [
+      "SF-008-P02",
+      "SF-008-P03",
+      "SF-008-P06"
+    ]
+  },
+  "unique_text_sensitivity": {
+    "unsupported": 3,
+    "supported": 24,
+    "denominator": 27,
+    "ucr": 0.1111111111111111,
+    "supported_rate": 0.8888888888888888,
+    "representative_unsupported_ids": [
+      "SF-008-P02",
+      "SF-008-P03",
+      "SF-008-P06"
+    ]
+  },
+  "reliability_reporting_rule": "Report the initial independent agreement (45/46, 97.8%) and kappa (0.789). Do not report post-resolution 100% as inter-coder reliability.",
+  "source_hashes": {
+    "coder01_original_return_sha256": "8f0b7ab32efd17a3b8ef286b1341a42de60103664255404ef2993701ede94f05",
+    "coder02_original_return_sha256": "b4184cb99ccd9957ecddf5edd99a4aaa9dfc2f0ea12bdeed3ea1cf375ad1f042",
+    "original_resolution_sha256": "57276f7e424998e1428afdd92d95a71f0a8e4650fa29f2a1055e12768a07b3a1",
+    "pre_resolution_paired_audit_sha256": "9ad31e640d70c9a5c0b8f95558e2ae75144c2099f6835e83de6038c3fe8b8a8b",
+    "derived_public_audit_sha256": "78d065c82dba5be13a62235d62c4936f4f528b06d1c4390d357efb79e8b89989"
+  }
+}

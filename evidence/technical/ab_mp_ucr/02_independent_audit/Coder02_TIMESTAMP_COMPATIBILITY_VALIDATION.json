@@ -1,0 +1,454 @@
+{
+  "schema": "purrstone-v10.2-phase1-return-timestamp-compat-validation-1.0",
+  "workbook": "Coder02_PurrStone_v10_2_Phase1_Coding_Workbook(2).xlsx",
+  "workbook_sha256": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec",
+  "strict_validator_status": "FAIL",
+  "strict_error_count": 73,
+  "strict_errors_all_timestamp_only": true,
+  "compatible_timestamp_count": 73,
+  "compatibility_rule": "Accept numeric Excel date serial only when the cell retains the exact frozen +08:00 ISO display format; normalize in a processed audit layer without editing the raw workbook.",
+  "normalized_status": "PASS",
+  "error_count": 0,
+  "errors": [],
+  "normalized_timestamps": [
+    {
+      "location": "Start Here!B13",
+      "raw_excel_serial": 46243.622766203705,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T14:56:47+08:00"
+    },
+    {
+      "location": "Start Here!B14",
+      "raw_excel_serial": 46243.69851851852,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:45:52+08:00"
+    },
+    {
+      "location": "A-B Coding!T6",
+      "raw_excel_serial": 46243.6266087963,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:02:19+08:00"
+    },
+    {
+      "location": "A-B Coding!T7",
+      "raw_excel_serial": 46243.630520833336,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:07:57+08:00"
+    },
+    {
+      "location": "A-B Coding!T8",
+      "raw_excel_serial": 46243.63438657408,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:13:31+08:00"
+    },
+    {
+      "location": "A-B Coding!T9",
+      "raw_excel_serial": 46243.637395833335,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:17:51+08:00"
+    },
+    {
+      "location": "A-B Coding!T10",
+      "raw_excel_serial": 46243.64040509259,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:22:11+08:00"
+    },
+    {
+      "location": "A-B Coding!T11",
+      "raw_excel_serial": 46243.644259259265,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:27:44+08:00"
+    },
+    {
+      "location": "A-B Coding!T12",
+      "raw_excel_serial": 46243.64716435185,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:31:55+08:00"
+    },
+    {
+      "location": "A-B Coding!T13",
+      "raw_excel_serial": 46243.650347222225,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:36:30+08:00"
+    },
+    {
+      "location": "A-B Coding!T14",
+      "raw_excel_serial": 46243.65354166667,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:41:06+08:00"
+    },
+    {
+      "location": "A-B Coding!T15",
+      "raw_excel_serial": 46243.657430555555,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:46:42+08:00"
+    },
+    {
+      "location": "MP Coding!J6",
+      "raw_excel_serial": 46243.658217592594,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:47:50+08:00"
+    },
+    {
+      "location": "MP Coding!J7",
+      "raw_excel_serial": 46243.66005787037,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:50:29+08:00"
+    },
+    {
+      "location": "MP Coding!J8",
+      "raw_excel_serial": 46243.66105324074,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:51:55+08:00"
+    },
+    {
+      "location": "MP Coding!J9",
+      "raw_excel_serial": 46243.66195601852,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:53:13+08:00"
+    },
+    {
+      "location": "MP Coding!J10",
+      "raw_excel_serial": 46243.66289351852,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:54:34+08:00"
+    },
+    {
+      "location": "MP Coding!J11",
+      "raw_excel_serial": 46243.664710648154,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:57:11+08:00"
+    },
+    {
+      "location": "MP Coding!J12",
+      "raw_excel_serial": 46243.665856481486,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T15:58:50+08:00"
+    },
+    {
+      "location": "MP Coding!J13",
+      "raw_excel_serial": 46243.66814814815,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:02:08+08:00"
+    },
+    {
+      "location": "MP Coding!J14",
+      "raw_excel_serial": 46243.66920138889,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:03:39+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G6",
+      "raw_excel_serial": 46243.670370370375,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:05:20+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G7",
+      "raw_excel_serial": 46243.670694444445,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:05:48+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G8",
+      "raw_excel_serial": 46243.67112268519,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:06:25+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G9",
+      "raw_excel_serial": 46243.6715625,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:07:03+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G10",
+      "raw_excel_serial": 46243.671851851854,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:07:28+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G11",
+      "raw_excel_serial": 46243.672314814816,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:08:08+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G18",
+      "raw_excel_serial": 46243.67334490741,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:09:37+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G19",
+      "raw_excel_serial": 46243.673784722225,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:10:15+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G20",
+      "raw_excel_serial": 46243.67423611111,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:10:54+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G21",
+      "raw_excel_serial": 46243.6746875,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:11:33+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G22",
+      "raw_excel_serial": 46243.67505787037,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:12:05+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G23",
+      "raw_excel_serial": 46243.675347222226,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:12:30+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G24",
+      "raw_excel_serial": 46243.67568287037,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:12:59+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G30",
+      "raw_excel_serial": 46243.67694444444,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:14:48+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G31",
+      "raw_excel_serial": 46243.6772337963,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:15:13+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G32",
+      "raw_excel_serial": 46243.67765046297,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:15:49+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G33",
+      "raw_excel_serial": 46243.67802083334,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:16:21+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G34",
+      "raw_excel_serial": 46243.678298611114,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:16:45+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G35",
+      "raw_excel_serial": 46243.67863425926,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:17:14+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G42",
+      "raw_excel_serial": 46243.67961805556,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:18:39+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G43",
+      "raw_excel_serial": 46243.67993055556,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:19:06+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G44",
+      "raw_excel_serial": 46243.680335648154,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:19:41+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G45",
+      "raw_excel_serial": 46243.680659722224,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:20:09+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G46",
+      "raw_excel_serial": 46243.681018518524,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:20:40+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G47",
+      "raw_excel_serial": 46243.68152777778,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:21:24+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G48",
+      "raw_excel_serial": 46243.681875,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:21:54+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G54",
+      "raw_excel_serial": 46243.68303240741,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:23:34+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G55",
+      "raw_excel_serial": 46243.68341435186,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:24:07+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G56",
+      "raw_excel_serial": 46243.68392361111,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:24:51+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G57",
+      "raw_excel_serial": 46243.684328703705,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:25:26+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G58",
+      "raw_excel_serial": 46243.68467592593,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:25:56+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G59",
+      "raw_excel_serial": 46243.685057870374,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:26:29+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G66",
+      "raw_excel_serial": 46243.68614583334,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:28:03+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G67",
+      "raw_excel_serial": 46243.68658564815,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:28:41+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G68",
+      "raw_excel_serial": 46243.686944444446,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:29:12+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G69",
+      "raw_excel_serial": 46243.68734953704,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:29:47+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G70",
+      "raw_excel_serial": 46243.68763888889,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:30:12+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G71",
+      "raw_excel_serial": 46243.68813657408,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:30:55+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G78",
+      "raw_excel_serial": 46243.68917824074,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:32:25+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G79",
+      "raw_excel_serial": 46243.68959490741,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:33:01+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G80",
+      "raw_excel_serial": 46243.69005787037,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:33:41+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G81",
+      "raw_excel_serial": 46243.69054398149,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:34:23+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G82",
+      "raw_excel_serial": 46243.69094907408,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:34:58+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G90",
+      "raw_excel_serial": 46243.69211805556,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:36:39+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G91",
+      "raw_excel_serial": 46243.692453703705,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:37:08+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G92",
+      "raw_excel_serial": 46243.692812500005,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:37:39+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G93",
+      "raw_excel_serial": 46243.69328703704,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:38:20+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G102",
+      "raw_excel_serial": 46243.696064814816,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:42:20+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G103",
+      "raw_excel_serial": 46243.69634259259,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:42:44+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G104",
+      "raw_excel_serial": 46243.696643518524,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:43:10+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G105",
+      "raw_excel_serial": 46243.697106481486,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:43:50+08:00"
+    },
+    {
+      "location": "UCR Segmentation!G106",
+      "raw_excel_serial": 46243.69752314815,
+      "number_format": "yyyy\\-mm\\-dd\"T\"hh:mm:ss\"+08:00\"",
+      "normalized_iso": "2026-08-09T16:44:26+08:00"
+    }
+  ],
+  "raw_workbook_unchanged": true
+}

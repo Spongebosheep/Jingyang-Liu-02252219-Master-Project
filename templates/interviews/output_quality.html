@@ -9,9 +9,16 @@
         </p>
     </div>
 
-    <a class="button-secondary" href="{% url 'export_evidence_record' %}">
-        Export evidence record
-    </a>
+    <div class="quality-export-actions">
+        {% if selected_session %}
+            <a class="button" href="{% url 'export_evidence_record' %}?session={{ selected_session.session_code|urlencode }}">
+                Export this record
+            </a>
+        {% endif %}
+        <a class="button-secondary" href="{% url 'export_evidence_record' %}">
+            Export all records
+        </a>
+    </div>
 </div>
 
 <div class="quality-metric-grid">
@@ -26,7 +33,7 @@
         </div>
         <div>
             <div class="quality-metric-number">{{ completed_interviews_count }}</div>
-            <div class="quality-metric-label">Completed interviews</div>
+            <div class="quality-metric-label">Closed interviews</div>
         </div>
     </div>
 
@@ -65,8 +72,9 @@
             </svg>
         </div>
         <div>
-            <div class="quality-metric-number">{{ issues_flagged_count }}</div>
-            <div class="quality-metric-label">Evidence limitations</div>
+            <div class="quality-metric-number">{{ outputs_with_limitations_count }}</div>
+            <div class="quality-metric-label">Outputs with limitations</div>
+            <div class="field-help">{{ unavailable_topics_count }} unavailable topic{{ unavailable_topics_count|pluralize }} · {{ missing_information_flags_count }} missing-information flag{{ missing_information_flags_count|pluralize }}</div>
         </div>
     </div>
 </div>
@@ -83,6 +91,7 @@
         <thead>
             <tr>
                 <th>Participant</th>
+                <th>Session</th>
                 <th>Protocol</th>
                 <th>Interview date</th>
                 <th>Output status</th>
@@ -93,14 +102,20 @@
 
         <tbody>
             {% for row in readiness_rows %}
-                <tr>
+                <tr {% if row.is_selected %}class="selected-session-row"{% endif %}>
                     <td>
                         <span class="participant-pill">{{ row.participant }}</span>
+                    </td>
+                    <td>
+                        <a class="table-action-link" href="{% url 'output_quality' %}?session={{ row.session.session_code|urlencode }}">
+                            {{ row.session.session_code }}
+                        </a>
+                        {% if row.is_selected %}<span class="status status-blue">Selected</span>{% endif %}
                     </td>
                     <td>{{ row.protocol }}</td>
                     <td>{{ row.interview_date }}</td>
                     <td>
-                        <span class="status">
+                        <span class="status {% if row.digest_summary.pending %}status-blue{% endif %}">
                             {{ row.output_status }}
                         </span>
                     </td>
@@ -117,7 +132,7 @@
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="6">No generated outputs yet.</td>
+                    <td colspan="7">No generated outputs yet.</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -125,79 +140,76 @@
 
 </div>
 
+{% if selected_session %}
+    <div class="card selected-evidence-record">
+        <div>
+            <div class="metric-label">Selected record</div>
+            <strong>{{ selected_session.stakeholder.participant_id }} · {{ selected_session.session_code }}</strong>
+            <span>{{ selected_session.protocol.title }} · v{{ selected_session.protocol.version }}</span>
+        </div>
+        <div class="selected-evidence-record-counts">
+            <span><strong>{{ selected_unavailable_topics_count }}</strong> unavailable topic{{ selected_unavailable_topics_count|pluralize }}</span>
+            <span><strong>{{ selected_missing_information_flags_count }}</strong> missing-information flag{{ selected_missing_information_flags_count|pluralize }}</span>
+        </div>
+    </div>
+{% endif %}
+
 <div class="quality-two-column">
     <div class="card quality-check-card">
-        <h2>Quality criteria record</h2>
+        <h2>Session release conditions{% if selected_session %} · {{ selected_session.stakeholder.participant_id }} · {{ selected_session.session_code }}{% endif %}</h2>
         <p class="quality-card-subtitle">
-            Manual criteria saved during researcher review.
+            Three workflow conditions are system checked; two judgements require the researcher. These project-specific
+            safeguards gate only the Session's Approved review state; they do not block export, form a validated scale,
+            or measure research or outcome quality.
         </p>
 
-        {% if selected_review_decision %}
+        {% if selected_release_conditions %}
             <div class="quality-confirmed-summary">
-                <span class="status">
-                    {{ confirmed_quality_checks_count }} / {{ quality_criteria_total }} confirmed
+                <span class="status {% if not selected_release_conditions.system_conditions_met %}status-blue{% endif %}">
+                    Workflow conditions: {% if selected_release_conditions.system_conditions_met %}Met{% else %}Not met{% endif %}
+                </span>
+                <span class="status {% if not selected_release_conditions.researcher_judgements_confirmed %}status-blue{% endif %}">
+                    Researcher judgements: {% if selected_release_conditions.researcher_judgements_confirmed %}Confirmed{% else %}Not confirmed{% endif %}
                 </span>
             </div>
 
+            <h3>System-checked workflow conditions</h3>
             <div class="quality-check-grid">
+                {% for condition in selected_release_conditions.system_conditions %}
                 <div class="quality-check-item">
-                    <span class="status {% if not selected_review_decision.summary_grounded_in_transcript %}status-muted{% endif %}">
-                        {% if selected_review_decision.summary_grounded_in_transcript %}Confirmed{% else %}Not confirmed{% endif %}
+                    <span class="status {% if not condition.met %}status-muted{% endif %}">
+                        {% if condition.met %}Met{% else %}Not met{% endif %}
                     </span>
                     <div>
-                        <strong>Summary grounded in transcript</strong>
-                        <p>Checked against transcript excerpt and full transcript.</p>
+                        <strong>{{ condition.label }}</strong>
+                        <p>{{ condition.help }}</p>
                     </div>
                 </div>
+                {% endfor %}
+            </div>
 
+            <h3>Researcher judgements</h3>
+            <div class="quality-check-grid">
+                {% for judgement in selected_release_conditions.researcher_judgements %}
                 <div class="quality-check-item">
-                    <span class="status {% if not selected_review_decision.no_unsupported_interpretation %}status-muted{% endif %}">
-                        {% if selected_review_decision.no_unsupported_interpretation %}Confirmed{% else %}Not confirmed{% endif %}
+                    <span class="status {% if not judgement.confirmed %}status-muted{% endif %}">
+                        {% if judgement.confirmed %}Confirmed{% else %}Not confirmed{% endif %}
                     </span>
                     <div>
-                        <strong>No unsupported interpretation</strong>
-                        <p>Checked against generated summary and transcript evidence.</p>
+                        <strong>{{ judgement.label }}</strong>
+                        <p>{{ judgement.help }}</p>
                     </div>
                 </div>
-
-                <div class="quality-check-item">
-                    <span class="status {% if not selected_review_decision.no_medical_or_diagnostic_advice %}status-muted{% endif %}">
-                        {% if selected_review_decision.no_medical_or_diagnostic_advice %}Confirmed{% else %}Not confirmed{% endif %}
-                    </span>
-                    <div>
-                        <strong>No medical / diagnostic advice</strong>
-                        <p>Checked against the study boundary and transcript content.</p>
-                    </div>
-                </div>
-
-                <div class="quality-check-item">
-                    <span class="status {% if not selected_review_decision.participant_safety_respected %}status-muted{% endif %}">
-                        {% if selected_review_decision.participant_safety_respected %}Confirmed{% else %}Not confirmed{% endif %}
-                    </span>
-                    <div>
-                        <strong>Participant safety and autonomy respected</strong>
-                        <p>Checked against skip, stop, and boundary handling.</p>
-                    </div>
-                </div>
-
-                <div class="quality-check-item">
-                    <span class="status {% if not selected_review_decision.limitations_and_missing_information_visible %}status-muted{% endif %}">
-                        {% if selected_review_decision.limitations_and_missing_information_visible %}Confirmed{% else %}Not confirmed{% endif %}
-                    </span>
-                    <div>
-                        <strong>Limitations and missing information visible</strong>
-                        <p>Checked against partial answers, skipped topics, and missing flags.</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         {% else %}
-            <p>No quality criteria record has been saved yet.</p>
+            <p>No Session release conditions are available yet.</p>
         {% endif %}
     </div>
 
     <div class="card evidence-card">
-        <h2>Evidence record</h2>
-        <p class="quality-card-subtitle">What has been saved for each reviewed output.</p>
+        <h2>Evidence record contents{% if selected_session %} · {{ selected_session.stakeholder.participant_id }} · {{ selected_session.session_code }}{% endif %}</h2>
+        <p class="quality-card-subtitle">What has been saved for this specific Session.</p>
 
         {% if selected_session %}
             <div class="evidence-grid">
@@ -209,8 +221,8 @@
                         </svg>
                     </div>
                     <div>
-                        <strong>Transcript</strong>
-                        <p>Verbatim transcript of the interview.</p>
+                        <strong>Typed interview log</strong>
+                        <p>Saved prompts, typed responses, and control events. No audio was captured.</p>
                     </div>
                     <span class="status">Saved</span>
                 </div>
@@ -224,24 +236,13 @@
                         </svg>
                     </div>
                     <div>
-                        <strong>Generated summary</strong>
-                        <p>AI-generated summary of key points.</p>
+                        <strong>Reviewed extracts by protocol topic</strong>
+                        <p>Selected typed responses with topic-level researcher decisions and source links.</p>
                     </div>
-                    <span class="status">Saved</span>
-                </div>
-
-                <div class="evidence-item">
-                    <div class="evidence-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <strong>Researcher note</strong>
-                        <p>Context, observations, and decisions.</p>
-                    </div>
-                    {% if selected_session.researcher_note %}
-                        <span class="status status-blue">Added</span>
+                    {% if selected_digest_summary %}
+                        <span class="status {% if selected_digest_summary.pending %}status-blue{% endif %}">
+                            {{ selected_digest_summary.resolved }} / {{ selected_digest_summary.reviewable_total }} extracts reviewed
+                        </span>
                     {% else %}
                         <span class="status status-muted">Missing</span>
                     {% endif %}
@@ -255,36 +256,18 @@
                         </svg>
                     </div>
                     <div>
-                        <strong>Review decision</strong>
-                        <p>Approval status for researcher use.</p>
+                        <strong>Researcher decision</strong>
+                        <p>Session-level decision{% if selected_review_decision %} by {{ selected_review_decision.reviewer_display }}{% endif %}.</p>
                     </div>
 
                     {% if selected_session.review_status == "approved" or selected_session.review_status == "reviewed" %}
                         <span class="status">Approved</span>
                     {% elif selected_session.review_status == "revision_requested" %}
                         <span class="status status-waiting">Revision requested</span>
+                    {% elif selected_session.review_status == "not_usable" %}
+                        <span class="status status-waiting">Not usable</span>
                     {% else %}
                         <span class="status status-waiting">Pending</span>
-                    {% endif %}
-                </div>
-
-                <div class="evidence-item">
-                    <div class="evidence-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 6L9 17l-5-5"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <strong>Quality criteria</strong>
-                        <p>Manual review criteria saved with this output.</p>
-                    </div>
-
-                    {% if selected_review_decision %}
-                        <span class="status">
-                            {{ confirmed_quality_checks_count }} / {{ quality_criteria_total }} confirmed
-                        </span>
-                    {% else %}
-                        <span class="status status-muted">Missing</span>
                     {% endif %}
                 </div>
 

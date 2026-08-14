@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "condition": "prompt_only_baseline",
+  "purpose": "A strictly matched comparator that isolates bounded LangGraph routing from direct prompt-only action selection.",
+  "matched_inputs": [
+    "model_id",
+    "protocol_snapshot",
+    "scenario_and_repetition",
+    "participant_inputs_and_order",
+    "follow_up_limit",
+    "output_schemas",
+    "structured_evidence_layer",
+    "researcher_review_layer",
+    "reviewer_instructions"
+  ],
+  "allowed_difference": {
+    "mvp": "The model assesses semantic coverage and words a graph-approved follow-up; LangGraph selects and enforces the bounded action.",
+    "prompt_only_baseline": "A versioned prompt directly returns the answer status, selected action, missing information, short reason, and participant-facing response through a lightweight adapter."
+  },
+  "prohibited_reuse": [
+    "langgraph_routing",
+    "product_decision_logic",
+    "semantic_repair",
+    "post_hoc_action_correction",
+    "condition_specific_participant_inputs"
+  ],
+  "raw_output_rule": "Store the raw model response before parsing; store parsed output separately; export parse failures without replacing or repairing them.",
+  "failure_rule": "Every attempted run receives a new run_id and is retained even when execution, parsing, validation, or metric calculation fails.",
+  "freeze_requirements": [
+    "baseline_prompt_text_and_sha256",
+    "model_id",
+    "model_parameters_by_call_type",
+    "protocol_snapshot_and_sha256",
+    "scenario_file_sha256",
+    "metric_rule_file_sha256",
+    "code_commit"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "properties": {
+    "coverage_assessment": {
+      "type": "string",
+      "enum": [
+        "covered",
+        "partially_covered",
+        "unclear",
+        "off_topic",
+        "not_assessed"
+      ]
+    },
+    "participant_control": {
+      "type": "string",
+      "enum": [
+        "none",
+        "skip",
+        "stop"
+      ]
+    },
+    "selected_action": {
+      "type": "string",
+      "enum": [
+        "ask_follow_up",
+        "move_next",
+        "flag_missing_and_move_next",
+        "skip",
+        "stop",
+        "boundary_response",
+        "complete"
+      ]
+    },
+    "covered_information": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "participant_response": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    }
+  },
+  "required": [
+    "coverage_assessment",
+    "participant_control",
+    "selected_action",
+    "covered_information",
+    "missing_information",
+    "reason",
+    "participant_response"
+  ],
+  "additionalProperties": false
+}

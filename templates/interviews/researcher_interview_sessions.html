@@ -9,10 +9,16 @@
         </p>
     </div>
 
-    <a class="button button-disabled" href="#">
-        <span>+</span> Create interview session · Future extension
+    <a class="button" href="{% url 'interview_session_create' %}">
+        <span>+</span> Create interview session
     </a>
 </div>
+
+{% if created_session_code %}
+    <div class="stakeholder-created-notice" role="status">
+        Interview session <strong>{{ created_session_code }}</strong> was created. No consent or interview response has been recorded yet.
+    </div>
+{% endif %}
 
 <div class="card info-banner">
     <div class="info-banner-icon">
@@ -101,6 +107,8 @@
                     <th>Link status</th>
                     <th>Interview status</th>
                     <th>Output</th>
+                    <th>Review</th>
+                    <th>Evidence</th>
                     <th>Next action</th>
                 </tr>
             </thead>
@@ -108,30 +116,37 @@
             <tbody>
                 {% for session in sessions %}
                     <tr>
-                        <td><strong>{{ session.session_code }}</strong></td>
+                        <td>
+                            <a class="table-action-link" href="{% url 'interview_sessions' %}?session={{ session.session_code|urlencode }}">
+                                {{ session.session_code }}
+                            </a>
+                        </td>
                         <td>{{ session.stakeholder.participant_id }}</td>
-                        <td>{{ session.protocol.title }}</td>
+                        <td>{{ session.protocol.title }} · v{{ session.protocol.version }}</td>
 
                         <td>
-                            {% if session.consent_confirmed %}
-                                <span class="status">Generated</span>
-                            {% else %}
-                                <span class="status status-blue">Generated</span>
-                            {% endif %}
+                            <div class="participant-link-cell">
+                                <span class="status {{ session.participant_link_display.css_class }}">
+                                    {{ session.participant_link_display.label }}
+                                </span>
+                                <a class="table-action-link" href="{% url 'interview_consent' session.access_token %}" target="_blank" rel="noopener">Open</a>
+                            </div>
                         </td>
 
                         <td>
-                            <span class="status {% if session.status == 'completed' %}{% elif session.status == 'stopped' %}status-waiting{% elif session.status == 'in_progress' %}status-blue{% else %}status-muted{% endif %}">
-                                {{ session.get_status_display }}
-                            </span>
+                            <span class="status {{ session.interview_display.css_class }}">{{ session.interview_display.label }}</span>
                         </td>
 
                         <td>
-                            {% if session.transcript_saved %}
-                                <span class="status">Saved</span>
-                            {% else %}
-                                <span class="status status-muted">Not generated</span>
-                            {% endif %}
+                            <span class="status {{ session.output_display.css_class }}">{{ session.output_display.label }}</span>
+                        </td>
+
+                        <td>
+                            <span class="status {{ session.review_display.css_class }}">{{ session.review_display.label }}</span>
+                        </td>
+
+                        <td>
+                            <span class="status {{ session.evidence_display.css_class }}">{{ session.evidence_display.label }}</span>
                         </td>
 
                         <td>
@@ -140,15 +155,15 @@
                                     View output
                                 </a>
                             {% else %}
-                                <a class="button-secondary" href="{% url 'interview_consent' session.stakeholder.participant_id %}">
-                                    Open link
+                                <a class="button-secondary" href="{% url 'stakeholder_detail' session.stakeholder.participant_id %}?session={{ session.session_code|urlencode }}">
+                                    View session
                                 </a>
                             {% endif %}
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="7">No interview sessions yet.</td>
+                        <td colspan="9">No interview sessions yet.</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -177,13 +192,28 @@
 
             <div class="detail-row">
                 <strong>Assigned protocol:</strong>
-                <span>{{ selected_session.protocol.title }}</span>
+                <span>{{ selected_session.protocol.title }} · v{{ selected_session.protocol.version }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Link status:</strong>
+                <span class="status {{ selected_session.participant_link_display.css_class }}">
+                    {{ selected_session.participant_link_display.label }}
+                </span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Participant link:</strong>
+                <span class="participant-url">{{ selected_session.participant_url }}</span>
             </div>
 
             <div class="detail-row">
                 <strong>Consent:</strong>
                 {% if selected_session.consent_confirmed %}
                     <span class="status">Confirmed</span>
+                    {% if selected_session.consent_confirmed_at %}
+                        <span>{{ selected_session.consent_confirmed_at|date:"d M Y H:i" }}</span>
+                    {% endif %}
                 {% else %}
                     <span class="status status-waiting">Pending</span>
                 {% endif %}
@@ -191,9 +221,7 @@
 
             <div class="detail-row">
                 <strong>Interview status:</strong>
-                <span class="status {% if selected_session.status == 'completed' %}{% elif selected_session.status == 'stopped' %}status-waiting{% elif selected_session.status == 'in_progress' %}status-blue{% else %}status-muted{% endif %}">
-                    {{ selected_session.get_status_display }}
-                </span>
+                <span class="status {{ selected_session.interview_display.css_class }}">{{ selected_session.interview_display.label }}</span>
             </div>
 
             <div class="detail-row">
@@ -207,13 +235,17 @@
 
             <div class="detail-row">
                 <strong>Output:</strong>
-                {% if selected_session.transcript_saved %}
-                    <span class="status">Saved</span>
-                {% elif selected_session.summary_generated %}
-                    <span class="status">Generated</span>
-                {% else %}
-                    <span class="status status-muted">Not generated</span>
-                {% endif %}
+                <span class="status {{ selected_session.output_display.css_class }}">{{ selected_session.output_display.label }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Review:</strong>
+                <span class="status {{ selected_session.review_display.css_class }}">{{ selected_session.review_display.label }}</span>
+            </div>
+
+            <div class="detail-row">
+                <strong>Evidence:</strong>
+                <span class="status {{ selected_session.evidence_display.css_class }}">{{ selected_session.evidence_display.label }}</span>
             </div>
 
             <div class="selected-session-actions">
@@ -235,17 +267,49 @@
                     View stakeholder record
                 </a>
 
-                <a class="button-secondary" href="{% url 'interview_consent' selected_session.stakeholder.participant_id %}">
+                <a class="button-secondary" href="{% url 'interview_consent' selected_session.access_token %}" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24">
                         <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93"></path>
                         <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07"></path>
                     </svg>
-                    Open interview link
+                    Open participant link
                 </a>
+
+                <button class="button-secondary copy-session-link" type="button" data-link="{{ selected_session.participant_url }}">
+                    Copy participant link
+                </button>
             </div>
         {% else %}
             <p>No session selected.</p>
         {% endif %}
     </div>
 </div>
+
+<script>
+    document.querySelectorAll(".copy-session-link").forEach((button) => {
+        button.addEventListener("click", async () => {
+            const link = button.dataset.link;
+            const originalLabel = button.textContent.trim();
+
+            try {
+                await navigator.clipboard.writeText(link);
+            } catch (error) {
+                const temporaryInput = document.createElement("textarea");
+                temporaryInput.value = link;
+                temporaryInput.setAttribute("readonly", "");
+                temporaryInput.style.position = "fixed";
+                temporaryInput.style.opacity = "0";
+                document.body.appendChild(temporaryInput);
+                temporaryInput.select();
+                document.execCommand("copy");
+                temporaryInput.remove();
+            }
+
+            button.textContent = "Copied";
+            window.setTimeout(() => {
+                button.textContent = originalLabel;
+            }, 1600);
+        });
+    });
+</script>
 {% endblock %}

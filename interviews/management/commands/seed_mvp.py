@@ -25,6 +25,9 @@ class Command(BaseCommand):
                     "You can skip any question or stop at any time. Is it okay to continue?"
                 ),
                 "required_information": ["consent", "design research boundary", "participant control"],
+                "assessment_guidance": "Treat acknowledgement as a workflow transition, not research evidence.",
+                "follow_up_focus": "",
+                "interaction_boundary": "Do not collect research content until the participant acknowledges the design-research boundary and controls.",
             },
             {
                 "index": 1,
@@ -33,6 +36,9 @@ class Command(BaseCommand):
                 "purpose": "Ask about one recent sensory overload or overwhelm situation.",
                 "primary_question": "Can you describe a recent or memorable situation where you felt sensory overload or overwhelmed?",
                 "required_information": ["where it happened", "what happened", "why it felt overwhelming"],
+                "assessment_guidance": "Mark Protocol coverage as covered only when the response includes a concrete setting, what occurred, and an experienced effect or reason it felt overwhelming.",
+                "follow_up_focus": "the setting, what happened, or why the situation felt overwhelming",
+                "interaction_boundary": "Ask about one lived experience only; do not request diagnosis or medical explanation.",
             },
             {
                 "index": 2,
@@ -41,6 +47,9 @@ class Command(BaseCommand):
                 "purpose": "Identify triggers, body signs, and emotional signs.",
                 "primary_question": "What were the strongest triggers or early signs you noticed, such as sound, light, crowding, movement, body signs, or emotions?",
                 "required_information": ["sensory triggers", "contextual triggers", "body signs", "emotional signs"],
+                "assessment_guidance": "Mark Protocol coverage as covered only when the response includes at least one trigger and at least one bodily, emotional, cognitive, or behavioural sign.",
+                "follow_up_focus": "a missing trigger or a bodily, emotional, cognitive, or behavioural sign",
+                "interaction_boundary": "Do not ask the participant to explain symptoms medically or infer a diagnosis.",
             },
             {
                 "index": 3,
@@ -49,6 +58,9 @@ class Command(BaseCommand):
                 "purpose": "Explore current coping actions, support needs, and unmet needs.",
                 "primary_question": "What did you do to cope in that moment, and what kind of support would have helped?",
                 "required_information": ["coping actions", "what helped", "what did not help", "support needs"],
+                "assessment_guidance": "Assess what the participant did and what support helped, failed, or was missing; partial coverage is acceptable when only one side is present.",
+                "follow_up_focus": "what the participant did to cope or what support would have helped",
+                "interaction_boundary": "Keep the question descriptive; do not offer treatment, therapy, or wellbeing advice.",
             },
             {
                 "index": 4,
@@ -57,6 +69,9 @@ class Command(BaseCommand):
                 "purpose": "Explore reaction to the PurrStone support concept.",
                 "primary_question": "PurrStone is a small handheld support object using squeeze interaction, haptic breathing guidance, and optional scent. What is your first reaction to that idea?",
                 "required_information": ["reaction to squeeze", "reaction to haptics", "reaction to scent", "perceived usefulness", "concerns"],
+                "assessment_guidance": "Assess the participant's reaction and reasons without requiring a positive view or coverage of every feature.",
+                "follow_up_focus": "one useful, concerning, or conditional aspect of the PurrStone concept and why",
+                "interaction_boundary": "Do not lead the participant toward liking PurrStone or claim that it will help.",
             },
             {
                 "index": 5,
@@ -65,6 +80,9 @@ class Command(BaseCommand):
                 "purpose": "Explore whether the participant would feel comfortable using PurrStone in public or shared settings.",
                 "primary_question": "Would you feel comfortable using something like PurrStone in public or shared settings, such as commuting, studying, or working? Why or why not?",
                 "required_information": ["public comfort", "embarrassment", "discreetness", "scent concern", "shared-space concern"],
+                "assessment_guidance": "Assess a public or shared context plus at least one condition, concern, or reason affecting acceptability.",
+                "follow_up_focus": "what would make public or shared use acceptable or unacceptable",
+                "interaction_boundary": "Ask neutrally about acceptability; do not encourage use or minimise embarrassment and shared-space concerns.",
             },
             {
                 "index": 6,
@@ -73,6 +91,9 @@ class Command(BaseCommand):
                 "purpose": "Generate a transcript-grounded draft summary for researcher review.",
                 "primary_question": "Thank you. I will now summarise what you shared for researcher review.",
                 "required_information": ["transcript-grounded summary", "missing information flags", "researcher review handoff"],
+                "assessment_guidance": "This is a fixed researcher handoff, not participant evidence.",
+                "follow_up_focus": "",
+                "interaction_boundary": "Do not introduce claims beyond the saved transcript.",
             },
         ]
 
@@ -85,22 +106,27 @@ class Command(BaseCommand):
             "Generate summaries only from what the participant actually said.",
         ]
 
-        protocol, _ = Protocol.objects.update_or_create(
+        protocol_defaults = {
+            "title": "Sensory Overload Interview",
+            "stakeholder_group": "Sensory-sensitive participants",
+            "purpose": (
+                "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, "
+                "support needs, reactions to the PurrStone concept, and public-use acceptability."
+            ),
+            "interview_mode": "AI-led semi-structured interview",
+            "estimated_duration": "10–15 minutes",
+            "output_description": "Typed transcript + reviewed extracts by protocol topic",
+            "sections": protocol_sections,
+            "ethics_rules": ethics_rules,
+        }
+        protocol, protocol_created = Protocol.objects.get_or_create(
             slug="sensory-overload-interview",
-            defaults={
-                "title": "Sensory Overload Interview",
-                "stakeholder_group": "Sensory-sensitive participants",
-                "purpose": (
-                    "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, "
-                    "support needs, reactions to the PurrStone concept, and public-use acceptability."
-                ),
-                "interview_mode": "AI-led semi-structured interview",
-                "estimated_duration": "10–15 minutes",
-                "output_description": "Transcript + structured summary",
-                "sections": protocol_sections,
-                "ethics_rules": ethics_rules,
-            },
+            defaults=protocol_defaults,
         )
+        if not protocol_created and not protocol.is_locked:
+            for field_name, value in protocol_defaults.items():
+                setattr(protocol, field_name, value)
+            protocol.save()
 
         stakeholder, _ = Stakeholder.objects.update_or_create(
             participant_id="P01",

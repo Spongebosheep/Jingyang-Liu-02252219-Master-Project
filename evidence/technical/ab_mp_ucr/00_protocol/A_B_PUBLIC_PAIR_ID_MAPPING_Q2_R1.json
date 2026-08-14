@@ -1,0 +1,58 @@
+{
+  "schema": "purrstone-v10.2-public-pair-id-map-q2-r1",
+  "randomisation_seed": "v10.2-ab-public-pair-order-20260809-4a65ef70",
+  "note": "Public BP order and frozen A/B side assignments are unchanged. Q2 is scored only for S2/S3 missing-information-probe scenarios; all other included scenarios require pair-level N/A.",
+  "pairs": [
+    {
+      "blind_pair_id": "BP-001",
+      "pair_key": "S6-R03",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-002",
+      "pair_key": "S3-R03",
+      "q2_mode": "BOTH_SCORED_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-003",
+      "pair_key": "S3-R01",
+      "q2_mode": "BOTH_SCORED_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-004",
+      "pair_key": "S1-R03",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-005",
+      "pair_key": "S1-R01",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-006",
+      "pair_key": "S6-R01",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-007",
+      "pair_key": "S2-R02",
+      "q2_mode": "BOTH_SCORED_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-008",
+      "pair_key": "S2-R01",
+      "q2_mode": "BOTH_SCORED_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-009",
+      "pair_key": "S5-R01",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    },
+    {
+      "blind_pair_id": "BP-010",
+      "pair_key": "S4-R01",
+      "q2_mode": "BOTH_NA_REQUIRED"
+    }
+  ],
+  "q2_applicability_revision": "q2-missing-information-probe-oracle-2026-08-09-r1"
+}

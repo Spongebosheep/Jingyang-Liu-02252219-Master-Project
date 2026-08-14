@@ -1,0 +1,9 @@
+{
+  "output_text": "{\"coverage_assessment\": \"covered\", \"participant_control\": \"none\", \"selected_action\": \"move_next\", \"covered_information\": [\"mocked infrastructure coverage\"], \"missing_information\": [], \"reason\": \"Frozen fixture response for non-formal infrastructure testing.\", \"participant_response\": \"Thank you. Let us continue with the next topic.\"}",
+  "raw": {
+    "id": "mock-002",
+    "mode": "json",
+    "object": "mock.prompt_only_response",
+    "output_text": "{\"coverage_assessment\": \"covered\", \"participant_control\": \"none\", \"selected_action\": \"move_next\", \"covered_information\": [\"mocked infrastructure coverage\"], \"missing_information\": [], \"reason\": \"Frozen fixture response for non-formal infrastructure testing.\", \"participant_response\": \"Thank you. Let us continue with the next topic.\"}"
+  }
+}

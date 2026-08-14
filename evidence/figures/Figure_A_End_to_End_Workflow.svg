@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="1800" viewBox="0 0 3200 1800" role="img" aria-labelledby="title desc">
+  <title id="title">End-to-end bounded interview-to-review workflow</title>
+  <desc id="desc">Eight-step workflow preserving the supplied labels and descriptions, with researcher configuration, participant response, bounded coverage and decision control, grounded draft production, researcher review, and Evidence Record handoff.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#5A7892"/>
+    </marker>
+    <style>
+      text { font-family: "Nimbus Sans", "Helvetica Neue", Arial, sans-serif; }
+      .step { fill:#FFFFFF; font-size:31px; font-weight:700; text-anchor:middle; dominant-baseline:middle; }
+      .section { font-size:22px; font-weight:700; letter-spacing:1.2px; text-anchor:end; }
+      .heading { fill:#172E46; font-size:39px; font-weight:700; }
+      .body { fill:#3C5873; font-size:27px; font-weight:400; }
+      .footer { fill:#294762; font-size:30px; font-weight:400; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect width="3200" height="1800" fill="#FFFFFF"/>
+
+  <!-- Connectors: deliberately long shafts with compact arrowheads -->
+  <g fill="none" stroke="#5A7892" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)">
+    <path d="M740 435 H860"/>
+    <path d="M1533 435 H1653"/>
+    <path d="M2326 435 H2446"/>
+    <path d="M2789 720 V945"/>
+    <path d="M2446 1265 H2326"/>
+    <path d="M1653 1265 H1533"/>
+    <path d="M860 1265 H740"/>
+  </g>
+
+  <!-- 1 -->
+  <g transform="translate(100 150)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#78BCE8" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#1178A5"/>
+    <text class="step" x="78" y="84">1</text>
+    <text class="section" x="560" y="89" fill="#1178A5">RESEARCH SETUP</text>
+    <text class="heading" x="68" y="206">Researcher configures</text>
+    <text class="heading" x="68" y="257">protocol</text>
+    <text class="body" x="68" y="359">Topics + required information</text>
+    <text class="body" x="68" y="435">Follow-up focus + boundaries</text>
+  </g>
+
+  <!-- 2 -->
+  <g transform="translate(893 150)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#58AD8B" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#14856F"/>
+    <text class="step" x="78" y="84">2</text>
+    <text class="section" x="560" y="89" fill="#14856F">PARTICIPANT</text>
+    <text class="heading" x="68" y="236">Participant response</text>
+    <text class="body" x="68" y="350">Protocol response captured</text>
+    <text class="body" x="68" y="426">Skip or Stop available at any time</text>
+  </g>
+
+  <!-- 3 -->
+  <g transform="translate(1686 150)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#B89AF1" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#6841C3"/>
+    <text class="step" x="78" y="84">3</text>
+    <text class="section" x="560" y="89" fill="#6841C3">BOUNDED CHECK</text>
+    <text class="heading" x="68" y="236">Coverage check</text>
+    <text class="body" x="68" y="350">Covered · partial · missing</text>
+    <text class="body" x="68" y="426">Within the one-follow-up limit</text>
+  </g>
+
+  <!-- 4 -->
+  <g transform="translate(2479 150)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#B89AF1" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#6841C3"/>
+    <text class="step" x="78" y="84">4</text>
+    <text class="section" x="560" y="89" fill="#6841C3">CONTROL TRACE</text>
+    <text class="heading" x="68" y="236">AgentDecision</text>
+    <text class="body" x="68" y="350">Follow up · advance · flag</text>
+    <text class="body" x="68" y="426">Decision state retained</text>
+  </g>
+
+  <!-- 8 -->
+  <g transform="translate(100 980)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#58AD8B" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#14856F"/>
+    <text class="step" x="78" y="84">8</text>
+    <text class="section" x="560" y="89" fill="#14856F">HANDOFF</text>
+    <text class="heading" x="68" y="236">Evidence Record</text>
+    <text class="body" x="68" y="350">Reviewed evidence + exclusions</text>
+    <text class="body" x="68" y="426">Missing flags + audit history</text>
+  </g>
+
+  <!-- 7 -->
+  <g transform="translate(893 980)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#78BCE8" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#1178A5"/>
+    <text class="step" x="78" y="84">7</text>
+    <text class="section" x="560" y="89" fill="#1178A5">HUMAN GATE</text>
+    <text class="heading" x="68" y="236">Researcher review</text>
+    <text class="body" x="68" y="350">Include · edit · exclude</text>
+    <text class="body" x="68" y="426">Researcher owns approval</text>
+  </g>
+
+  <!-- 6 -->
+  <g transform="translate(1686 980)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#B89AF1" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#6841C3"/>
+    <text class="step" x="78" y="84">6</text>
+    <text class="section" x="560" y="89" fill="#6841C3">REVIEW INPUT</text>
+    <text class="heading" x="68" y="236">Grounding + missingness</text>
+    <text class="body" x="68" y="350">Source links + verbatim excerpts</text>
+    <text class="body" x="68" y="426">Gaps made visible for inspection</text>
+  </g>
+
+  <!-- 5 -->
+  <g transform="translate(2479 980)">
+    <rect width="620" height="570" rx="34" fill="#FFFFFF" stroke="#B89AF1" stroke-width="5"/>
+    <circle cx="78" cy="82" r="45" fill="#6841C3"/>
+    <text class="step" x="78" y="84">5</text>
+    <text class="section" x="560" y="89" fill="#6841C3">DRAFT OUTPUT</text>
+    <text class="heading" x="68" y="236">Transcript + draft</text>
+    <text class="body" x="68" y="350">Full transcript preserved</text>
+    <text class="body" x="68" y="426">Structured draft is provisional</text>
+  </g>
+
+  <line x1="100" y1="1634" x2="3100" y2="1634" stroke="#A7D1E8" stroke-width="4"/>
+  <text class="footer" x="1600" y="1715">LLM: coverage and wording · LangGraph: bounded control · Researcher: final approval</text>
+</svg>

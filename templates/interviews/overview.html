@@ -5,8 +5,8 @@
 <p class="overview-kicker">Case: PurrStone</p>
 <p class="overview-kicker">Research workspace: Stakeholder interviews</p>
 <p class="overview-kicker">
-    MVP scope: One participant record, one sensory overload interview protocol, and one complete interview-to-review loop.
-    The wider pages show workflow structure, not a full stakeholder CRM.
+    Evidence scope: the seeded Sensory Overload / PurrStone workflow is the evaluated case.
+    Live Stakeholder and Session rows remain mutable operational records; the original evaluation evidence is retained in the report.
 </p>
 
 <div class="overview-intro-grid">
@@ -47,8 +47,8 @@
                 <li>Select interview protocol</li>
                 <li>Confirm consent and study boundary</li>
                 <li>Complete AI-led semi-structured interview</li>
-                <li>Save transcript and generate structured summary</li>
-                <li>Researcher reviews output and evidence record</li>
+                <li>Save the full transcript and organise evidence by Protocol topic</li>
+                <li>Researcher reviews linked evidence, limitations, and the Evidence Record</li>
             </ol>
         </div>
     </div>
@@ -71,121 +71,111 @@
     </div>
 </div>
 
-<div class="metric-grid-3">
-    <div class="metric-card metric-card-horizontal">
-        <div class="metric-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9.5" cy="7" r="4"></circle>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">MVP participant record</div>
-            <div class="metric">{{ stakeholder_count }}</div>
-        </div>
-    </div>
-
-    <div class="metric-card metric-card-horizontal">
-        <div class="metric-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M7 3h7l5 5v13H7z"></path>
-                <path d="M14 3v5h5"></path>
-                <path d="M9.5 13h7"></path>
-                <path d="M9.5 17h5"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Active protocol</div>
-            <div class="metric">{{ protocol_count }}</div>
-        </div>
-    </div>
-
-    <div class="metric-card metric-card-horizontal">
-        <div class="metric-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Reviewable sessions</div>
-            <div class="metric">{{ reviewable_session_count }} / {{ session_count }}</div>
-        </div>
-    </div>
-</div>
-
 <div class="card workflow-status-card">
-    <h2>Current workflow status</h2>
+    <div class="workflow-card-heading">
+        <div>
+            <h2>Project workflow overview</h2>
+            <p class="muted">Aggregated from all current stakeholder and session records.</p>
+        </div>
+        <a class="button-secondary" href="{% url 'interview_sessions' %}">View all sessions</a>
+    </div>
 
     <div class="workflow-timeline">
-        <div class="timeline-item ready">
-            <div class="timeline-circle">✓</div>
-            <div class="timeline-title">Stakeholders</div>
-            <div class="timeline-status">Ready</div>
+        <div class="timeline-item {% if stakeholder_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ stakeholder_count }}</div>
+            <div class="timeline-title">Stakeholder records</div>
+            <div class="timeline-status">{{ stakeholder_count }} total</div>
         </div>
 
-        <div class="timeline-item ready">
-            <div class="timeline-circle">✓</div>
+        <div class="timeline-item {% if protocol_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ protocol_count }}</div>
             <div class="timeline-title">Protocols</div>
-            <div class="timeline-status">Ready</div>
+            <div class="timeline-status">{{ protocol_count }} available</div>
         </div>
 
-        <div class="timeline-item {% if is01.status == 'completed' or is01.status == 'stopped' %}ready{% endif %}">
-            <div class="timeline-circle">
-                {% if is01.status == 'completed' or is01.status == 'stopped' %}✓{% else %}3{% endif %}
-            </div>
-            <div class="timeline-title">Interview</div>
+        <div class="timeline-item {% if session_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ session_count }}</div>
+            <div class="timeline-title">Sessions</div>
             <div class="timeline-status">
-                {% if is01 %}{{ is01.get_status_display }}{% else %}Not started{% endif %}
-            </div>
-        </div>
-
-        <div class="timeline-item {% if is01.transcript_saved %}ready{% endif %}">
-            <div class="timeline-circle">
-                {% if is01.transcript_saved %}✓{% else %}4{% endif %}
-            </div>
-            <div class="timeline-title">Output</div>
-            <div class="timeline-status">
-                {% if is01.transcript_saved %}
-                    Saved
-                {% elif is01.summary_generated %}
-                    Generated
-                {% else %}
-                    Waiting
-                {% endif %}
+                {{ active_interview_count }} active · {{ closed_interview_count }} ended
             </div>
         </div>
 
-        <div class="timeline-item {% if is01.review_status == 'approved' %}ready{% elif is01.review_status == 'revision_requested' or is01.review_status == 'not_usable' %}warning{% endif %}">
-            <div class="timeline-circle">
-                {% if is01.review_status == 'approved' %}
-                    ✓
-                {% elif is01.review_status == 'revision_requested' or is01.review_status == 'not_usable' %}
-                    !
-                {% else %}
-                    5
-                {% endif %}
-            </div>
-            <div class="timeline-title">Review</div>
+        <div class="timeline-item {% if session_count and output_ready_count == session_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ output_ready_count }}</div>
+            <div class="timeline-title">Outputs</div>
+            <div class="timeline-status">{{ output_ready_count }} / {{ session_count }} saved</div>
+        </div>
+
+        <div class="timeline-item {% if review_pending_count or review_attention_count %}warning{% elif output_ready_count and reviewed_output_count == output_ready_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ reviewed_output_count }}</div>
+            <div class="timeline-title">Reviews</div>
             <div class="timeline-status">
-                {% if is01 %}{{ is01.get_review_status_display }}{% else %}Waiting{% endif %}
+                {{ reviewed_output_count }} / {{ output_ready_count }} reviewed
+                {% if review_attention_count %}<br>{{ review_attention_count }} attention{% elif review_pending_count %}<br>{{ review_pending_count }} pending{% endif %}
             </div>
         </div>
 
-        <div class="timeline-item {% if is01.output_quality_status == 'approved' %}ready{% elif is01.output_quality_status == 'needs_revision' or is01.output_quality_status == 'revision_requested' or is01.output_quality_status == 'not_usable' %}warning{% endif %}">
-            <div class="timeline-circle">
-                {% if is01.output_quality_status == 'approved' %}
-                    ✓
-                {% elif is01.output_quality_status == 'needs_revision' or is01.output_quality_status == 'revision_requested' or is01.output_quality_status == 'not_usable' %}
-                    !
-                {% else %}
-                    6
-                {% endif %}
-            </div>
-            <div class="timeline-title">Evidence status</div>
+        <div class="timeline-item {% if evidence_attention_count or evidence_pending_count %}warning{% elif approved_evidence_count %}ready{% endif %}">
+            <div class="timeline-circle">{{ approved_evidence_count }}</div>
+            <div class="timeline-title">Evidence approved</div>
             <div class="timeline-status">
-                {% if is01 %}{{ is01.get_output_quality_status_display }}{% else %}Waiting{% endif %}
+                {{ approved_evidence_count }} / {{ output_ready_count }} approved
+                {% if evidence_attention_count %}<br>{{ evidence_attention_count }} attention{% elif evidence_pending_count %}<br>{{ evidence_pending_count }} pending{% endif %}
             </div>
+        </div>
+    </div>
+
+    <div class="overview-session-status">
+        <div class="overview-session-status-heading">
+            <div>
+                <h3>Session workflow status</h3>
+                <p class="muted">Each row remains tied to one session; no status is inferred from IS-01.</p>
+            </div>
+            {% if recent_sessions_limited %}
+                <span class="muted">Showing 5 most recently updated sessions</span>
+            {% endif %}
+        </div>
+
+        <div class="overview-session-table-wrap">
+            <table class="stakeholder-table overview-session-table">
+                <thead>
+                    <tr>
+                        <th>Session</th>
+                        <th>Stakeholder</th>
+                        <th>Interview</th>
+                        <th>Output</th>
+                        <th>Review</th>
+                        <th>Evidence</th>
+                        <th>Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in recent_sessions %}
+                        <tr>
+                            <td><strong>{{ session.session_code }}</strong></td>
+                            <td>{{ session.stakeholder.participant_id }}</td>
+                            <td><span class="status {{ session.interview_display.css_class }}">{{ session.interview_display.label }}</span></td>
+                            <td><span class="status {{ session.output_display.css_class }}">{{ session.output_display.label }}</span></td>
+                            <td><span class="status {{ session.review_display.css_class }}">{{ session.review_display.label }}</span></td>
+                            <td><span class="status {{ session.evidence_display.css_class }}">{{ session.evidence_display.label }}</span></td>
+                            <td>{{ session.updated_at|date:"d M Y H:i" }}</td>
+                            <td>
+                                {% if session.transcript_saved %}
+                                    <a class="table-action-link" href="{% url 'output_detail' session.session_code %}">Review</a>
+                                {% else %}
+                                    <a class="table-action-link" href="{% url 'stakeholder_detail' session.stakeholder.participant_id %}?session={{ session.session_code|urlencode }}">View</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="8">No interview sessions have been created.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -193,48 +183,43 @@
 <div class="card next-actions-card">
     <h2>Next actions</h2>
 
+    <p class="muted">Derived from the current session records.</p>
+
     <ol class="action-list">
-        <li>Review P01 participant record</li>
-        <li>Preview the assigned Sensory Overload Interview protocol</li>
-        <li>Open participant interview link</li>
-        <li>Review generated output and AgentDecision trace after completion</li>
-        <li>Export or inspect the Evidence Record</li>
+        {% if attention_count %}
+            <li>
+                {% if attention_count == 1 %}
+                    1 session needs revision or another researcher decision.
+                {% else %}
+                    {{ attention_count }} sessions need revision or another researcher decision.
+                {% endif %}
+            </li>
+        {% endif %}
+        {% if review_pending_count %}
+            <li>{{ review_pending_count }} saved output{{ review_pending_count|pluralize }} await researcher review.</li>
+        {% endif %}
+        {% if pending_consent_count %}
+            <li>{{ pending_consent_count }} session{{ pending_consent_count|pluralize }} await participant consent.</li>
+        {% endif %}
+        {% if not session_count %}
+            <li>Create an interview session after a stakeholder record and protocol are ready.</li>
+        {% elif not attention_count and not review_pending_count and not pending_consent_count %}
+            <li>No session currently requires researcher action.</li>
+        {% endif %}
     </ol>
 
     <div class="action-buttons">
         <a class="button-secondary" href="{% url 'stakeholder_list' %}">
-            View participant record
+            View stakeholder records
         </a>
 
-        {% if protocol %}
-            <a class="button-secondary" href="{% url 'protocol_detail' protocol.slug %}">
-                View protocol
-            </a>
-        {% else %}
-            <span class="button-secondary button-disabled">
-                View protocol
-            </span>
-        {% endif %}
+        <a class="button" href="{% url 'interview_sessions' %}">
+            View interview sessions
+        </a>
 
-        {% if p01 %}
-            <a class="button" href="{% url 'interview_consent' p01.participant_id %}">
-                Open interview
-            </a>
-        {% else %}
-            <span class="button button-disabled">
-                Open interview
-            </span>
-        {% endif %}
-
-        {% if is01.transcript_saved %}
-            <a class="button-secondary" href="{% url 'output_detail' is01.session_code %}">
-                Review output / evidence
-            </a>
-        {% else %}
-            <span class="button-secondary button-disabled">
-                Review after interview
-            </span>
-        {% endif %}
+        <a class="button-secondary" href="{% url 'output_quality' %}">
+            View evidence status
+        </a>
     </div>
 </div>
 {% endblock %}

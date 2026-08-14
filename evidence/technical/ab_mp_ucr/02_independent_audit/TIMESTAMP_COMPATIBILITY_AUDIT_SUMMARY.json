@@ -1,0 +1,45 @@
+{
+  "schema": "purrstone-v10.2-phase1-return-validation-summary-1.0",
+  "raw_workbooks_unchanged": true,
+  "strict_rule": "Frozen validator requires ISO timestamp strings and therefore flags Excel numeric date serialization.",
+  "compatibility_rule": "Numeric serials are accepted only when exact frozen +08:00 display format is retained and all normalized times satisfy count/order/window checks.",
+  "workbooks": [
+    {
+      "coder_label": "Coder01",
+      "workbook_filename_in_admin_package": "Coder01_ORIGINAL_RETURN.xlsx",
+      "sha256": "d3ad051f7a97db21f2ff20eda5e251ddc0f237d638259557b355ab92bee7ca48",
+      "strict_status": "FAIL",
+      "strict_error_count": 73,
+      "strict_error_codes": [
+        "AB_TIMESTAMP",
+        "CODER_TIMESTAMP",
+        "MP_TIMESTAMP",
+        "UCR_TIMESTAMP"
+      ],
+      "strict_process_exit_code": 2,
+      "compatibility_status": "PASS",
+      "compatibility_error_count": 0,
+      "compatible_timestamp_count": 73,
+      "compatibility_process_exit_code": 0
+    },
+    {
+      "coder_label": "Coder02",
+      "workbook_filename_in_admin_package": "Coder02_ORIGINAL_RETURN.xlsx",
+      "sha256": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec",
+      "strict_status": "FAIL",
+      "strict_error_count": 73,
+      "strict_error_codes": [
+        "AB_TIMESTAMP",
+        "CODER_TIMESTAMP",
+        "MP_TIMESTAMP",
+        "UCR_TIMESTAMP"
+      ],
+      "strict_process_exit_code": 2,
+      "compatibility_status": "PASS",
+      "compatibility_error_count": 0,
+      "compatible_timestamp_count": 73,
+      "compatibility_process_exit_code": 0
+    }
+  ],
+  "overall_interpretation": "Both original returns are strict FAIL with exactly 73 timestamp-only errors and deterministic timestamp-compatibility PASS. The originals were not rewritten."
+}

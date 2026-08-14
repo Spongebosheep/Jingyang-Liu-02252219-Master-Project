@@ -1,0 +1,15 @@
+PurrStone source freeze status
+
+Authoritative commit SHA:
+35c930d92119d47560879496902e928daf20ac02
+
+Git tree recorded by formal run records:
+a7562237ec5a13a50f3aef540b92406f04086897
+
+Frozen source archive:
+source_HEAD_35c930d92119d47560879496902e928daf20ac02.zip
+
+Frozen source ZIP SHA-256:
+39178f573fafb0542d26a927f77b43bbcbbe16de3fdab0c1d7b7dcdb43da833d
+
+The 32 current formal attempts, current run indexes, validator records, final result summary and source archive identify the same commit. The source archive retains the tracked file tree but not a live .git directory.

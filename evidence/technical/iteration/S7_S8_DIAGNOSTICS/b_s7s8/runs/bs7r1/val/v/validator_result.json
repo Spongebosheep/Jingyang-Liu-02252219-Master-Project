@@ -1,0 +1,2570 @@
+{
+  "checks": [
+    {
+      "check_id": "RUN-METADATA-FIELDS",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "All shared run-metadata fields are present.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-CONDITION",
+      "expected": true,
+      "metric_codes": [],
+      "observed": true,
+      "reason": "The run uses a registered paired-condition identifier.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-SCENARIO-ID",
+      "expected": true,
+      "metric_codes": [],
+      "observed": true,
+      "reason": "The run maps to one frozen S1-S8 scenario.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-EXECUTION-COMPLETED",
+      "expected": {
+        "error": null,
+        "execution_status": "completed"
+      },
+      "metric_codes": [],
+      "observed": {
+        "error": null,
+        "execution_status": "completed"
+      },
+      "reason": "The runner completed without a retained execution error.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-FROZEN-ORACLE",
+      "expected": "0a9a8f3f9c5cebed4599b542620fb1bf7fdaaa81bcfb48232ad5a09bf10301b1",
+      "metric_codes": [],
+      "observed": "0a9a8f3f9c5cebed4599b542620fb1bf7fdaaa81bcfb48232ad5a09bf10301b1",
+      "reason": "The embedded oracle is byte-semantically identical to the frozen scenario.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-SCENARIO-FILE-HASH",
+      "expected": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6",
+      "metric_codes": [],
+      "observed": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6",
+      "reason": "The runner recorded the current frozen scenario-file hash.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-METRIC-FILE-HASH",
+      "expected": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4",
+      "metric_codes": [],
+      "observed": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4",
+      "reason": "The runner recorded the frozen metric-rule hash.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-REVIEW-COMPLETION-FILE-HASH",
+      "expected": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72",
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72",
+      "reason": "The runner recorded the frozen review-completion hash.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-PROTOCOL-SNAPSHOT-HASH",
+      "expected": "231cf8d1b815b748645d116d34173241462b1b0fef786fbd6aefda77d7207b1a",
+      "metric_codes": [],
+      "observed": "231cf8d1b815b748645d116d34173241462b1b0fef786fbd6aefda77d7207b1a",
+      "reason": "The saved Protocol snapshot matches its recorded SHA-256.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-PROTOCOL-LOCKED",
+      "expected": "locked",
+      "metric_codes": [],
+      "observed": "locked",
+      "reason": "The executed Session used a locked Protocol.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-CODE-IDENTITY",
+      "expected": true,
+      "metric_codes": [],
+      "observed": true,
+      "reason": "Commit and tree identities are recorded.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-COMPARISON-FREEZE",
+      "expected": {
+        "contract_version": "10.2",
+        "eligibility_source": "directly_recorded_run_and_matched_pair_evidence",
+        "model_id": "gpt-4.1-mini",
+        "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+      },
+      "metric_codes": [],
+      "observed": {
+        "contract_version": "10.2",
+        "eligibility_source": "directly_recorded_run_and_matched_pair_evidence",
+        "model_id": "gpt-4.1-mini",
+        "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+      },
+      "reason": "The run is tied to the current pre-result comparison freeze.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-BASELINE-FROZEN-ADAPTER",
+      "expected": {
+        "graph_approved_follow_up_wording": "not_applicable_prompt_only_condition",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "routing_provenance": "not_applicable_prompt_only_condition"
+      },
+      "metric_codes": [],
+      "observed": {
+        "graph_approved_follow_up_wording": "not_applicable_prompt_only_condition",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "routing_provenance": "not_applicable_prompt_only_condition"
+      },
+      "reason": "The prompt-only adapter is tied to the frozen prompt and schema with MVP-only provenance marked N/A.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-BASELINE-SEPARATION",
+      "expected": {
+        "graph_approved_follow_up_wording": "not_applicable",
+        "langgraph_routing_provenance": "not_applicable",
+        "post_hoc_action_correction": false,
+        "semantic_repair": false
+      },
+      "metric_codes": [],
+      "observed": {
+        "graph_approved_follow_up_wording": "not_applicable",
+        "langgraph_routing_provenance": "not_applicable",
+        "post_hoc_action_correction": false,
+        "semantic_repair": false
+      },
+      "reason": "The baseline record explicitly excludes routing reuse and output repair.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RUN-DRY-CLEANUP",
+      "expected": {
+        "mode": "transaction_rolled_back",
+        "session_retained": false,
+        "stakeholder_retained": false,
+        "temporary_reviewer_retained": false
+      },
+      "metric_codes": [],
+      "observed": {
+        "mode": "transaction_rolled_back",
+        "session_retained": false,
+        "stakeholder_retained": false,
+        "temporary_reviewer_retained": false
+      },
+      "reason": "The dry-run transaction rolled back all QA records.",
+      "scope": "run",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-001-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "step:S7-C01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-002-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:researcher_create_stakeholder:1",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-003-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:researcher_create_session:2",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-004-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 31946,
+        "content_sha256": "8ca55143bf9cfe455a1cc9f168884b3f66411a41d723913dadaec107c6692b22",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 31946,
+        "content_sha256": "8ca55143bf9cfe455a1cc9f168884b3f66411a41d723913dadaec107c6692b22",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:participant_completed_page:3",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-005-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 165291,
+        "content_sha256": "b155cb40ab150a44a15248cfd6abc5a10213b83f7afc67f0f6e7a1dc754ee7a7",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 165291,
+        "content_sha256": "b155cb40ab150a44a15248cfd6abc5a10213b83f7afc67f0f6e7a1dc754ee7a7",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:researcher_output_review_page:4",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-006-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:researcher_action:5",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-007-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:review_completion_item_action:6",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-008-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:review_completion_item_action:7",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-009-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:review_completion_item_action:8",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-010-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:review_completion_item_action:9",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-011-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 0,
+        "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:overall_review_action:10",
+      "status": "PASS"
+    },
+    {
+      "check_id": "HTTP-012-RAW-INTEGRITY",
+      "expected": {
+        "content_bytes": 56966,
+        "content_sha256": "db915b6092ebacee3912e04d89b26a17da90bec93f4be52de6113e13ec51b43c",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "metric_codes": [],
+      "observed": {
+        "content_bytes": 56966,
+        "content_sha256": "db915b6092ebacee3912e04d89b26a17da90bec93f4be52de6113e13ec51b43c",
+        "file_exists": true,
+        "safe_relative_path": true
+      },
+      "reason": "The raw HTTP body exists and matches the recorded size and hash.",
+      "scope": "harness:evidence_record_render:11",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-MODEL-CALL-ORDER",
+      "expected": [
+        "S7-O01",
+        "S7-T01",
+        "S7-T02",
+        "S7-T03",
+        "S7-T04",
+        "S7-T05"
+      ],
+      "metric_codes": [],
+      "observed": [
+        "S7-O01",
+        "S7-T01",
+        "S7-T02",
+        "S7-T03",
+        "S7-T04",
+        "S7-T05"
+      ],
+      "reason": "Every prompt-only action step has one raw model call in frozen order.",
+      "scope": "raw_model_calls",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-001-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "38721aeb1ccf6c654d371404a129cb15fc7c0a70058ae4dfe1a24ed65e371801",
+          "safe_relative_path": true,
+          "sha256": "38721aeb1ccf6c654d371404a129cb15fc7c0a70058ae4dfe1a24ed65e371801"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "fd1f9b9ee30f5e2291baf1f51b22906cae59dc2b9af4746c8a3c9e7c0b9c6589",
+          "safe_relative_path": true,
+          "sha256": "fd1f9b9ee30f5e2291baf1f51b22906cae59dc2b9af4746c8a3c9e7c0b9c6589"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "f8a2565e1302d81c8bb08d672a2992b2ef095ee97a2128ef6f6fdf31508fd9d3",
+          "safe_relative_path": true,
+          "sha256": "f8a2565e1302d81c8bb08d672a2992b2ef095ee97a2128ef6f6fdf31508fd9d3"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "38721aeb1ccf6c654d371404a129cb15fc7c0a70058ae4dfe1a24ed65e371801",
+          "safe_relative_path": true,
+          "sha256": "38721aeb1ccf6c654d371404a129cb15fc7c0a70058ae4dfe1a24ed65e371801"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "fd1f9b9ee30f5e2291baf1f51b22906cae59dc2b9af4746c8a3c9e7c0b9c6589",
+          "safe_relative_path": true,
+          "sha256": "fd1f9b9ee30f5e2291baf1f51b22906cae59dc2b9af4746c8a3c9e7c0b9c6589"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "f8a2565e1302d81c8bb08d672a2992b2ef095ee97a2128ef6f6fdf31508fd9d3",
+          "safe_relative_path": true,
+          "sha256": "f8a2565e1302d81c8bb08d672a2992b2ef095ee97a2128ef6f6fdf31508fd9d3"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-001",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-001-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-001",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-002-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "9d46c77be5badc5df3399c817d75f7adb4abb762856d7a3f593521674dde2574",
+          "safe_relative_path": true,
+          "sha256": "9d46c77be5badc5df3399c817d75f7adb4abb762856d7a3f593521674dde2574"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "c96f9acdadde7c79cc37b5b0b9a1e16241d62619016c648d359239ba913e34e1",
+          "safe_relative_path": true,
+          "sha256": "c96f9acdadde7c79cc37b5b0b9a1e16241d62619016c648d359239ba913e34e1"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "9d46c77be5badc5df3399c817d75f7adb4abb762856d7a3f593521674dde2574",
+          "safe_relative_path": true,
+          "sha256": "9d46c77be5badc5df3399c817d75f7adb4abb762856d7a3f593521674dde2574"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "c96f9acdadde7c79cc37b5b0b9a1e16241d62619016c648d359239ba913e34e1",
+          "safe_relative_path": true,
+          "sha256": "c96f9acdadde7c79cc37b5b0b9a1e16241d62619016c648d359239ba913e34e1"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-002",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-002-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-002",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-003-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "96d60f378340fcebe5821f9b2babbb4b62cf98b5e700a27ad0c0ad617162f0e8",
+          "safe_relative_path": true,
+          "sha256": "96d60f378340fcebe5821f9b2babbb4b62cf98b5e700a27ad0c0ad617162f0e8"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "631c0bc33e3e00601749990cdef7b1b9582b4a739c74c6e1a7bff44a4e52eae3",
+          "safe_relative_path": true,
+          "sha256": "631c0bc33e3e00601749990cdef7b1b9582b4a739c74c6e1a7bff44a4e52eae3"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "96d60f378340fcebe5821f9b2babbb4b62cf98b5e700a27ad0c0ad617162f0e8",
+          "safe_relative_path": true,
+          "sha256": "96d60f378340fcebe5821f9b2babbb4b62cf98b5e700a27ad0c0ad617162f0e8"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "631c0bc33e3e00601749990cdef7b1b9582b4a739c74c6e1a7bff44a4e52eae3",
+          "safe_relative_path": true,
+          "sha256": "631c0bc33e3e00601749990cdef7b1b9582b4a739c74c6e1a7bff44a4e52eae3"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-003",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-003-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-003",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-004-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "4098919f63e9ceb3a9484b368cbd560b762c1d8664f7cc167806fdb9a5d5b11f",
+          "safe_relative_path": true,
+          "sha256": "4098919f63e9ceb3a9484b368cbd560b762c1d8664f7cc167806fdb9a5d5b11f"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "dc8b679a7725fc040daf8a192d3da7aa7752acda9a464423119e908c4a37b002",
+          "safe_relative_path": true,
+          "sha256": "dc8b679a7725fc040daf8a192d3da7aa7752acda9a464423119e908c4a37b002"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "4098919f63e9ceb3a9484b368cbd560b762c1d8664f7cc167806fdb9a5d5b11f",
+          "safe_relative_path": true,
+          "sha256": "4098919f63e9ceb3a9484b368cbd560b762c1d8664f7cc167806fdb9a5d5b11f"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "dc8b679a7725fc040daf8a192d3da7aa7752acda9a464423119e908c4a37b002",
+          "safe_relative_path": true,
+          "sha256": "dc8b679a7725fc040daf8a192d3da7aa7752acda9a464423119e908c4a37b002"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-004",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-004-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-004",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-005-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "8aee45aaa57357493221189432ecf81525bff3813de9f6417ed06bf45dd08a0f",
+          "safe_relative_path": true,
+          "sha256": "8aee45aaa57357493221189432ecf81525bff3813de9f6417ed06bf45dd08a0f"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "6a42d5ef051740e086a54a4aca5c84bba05787fef0725ef028d35219946b5d19",
+          "safe_relative_path": true,
+          "sha256": "6a42d5ef051740e086a54a4aca5c84bba05787fef0725ef028d35219946b5d19"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "8aee45aaa57357493221189432ecf81525bff3813de9f6417ed06bf45dd08a0f",
+          "safe_relative_path": true,
+          "sha256": "8aee45aaa57357493221189432ecf81525bff3813de9f6417ed06bf45dd08a0f"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "6a42d5ef051740e086a54a4aca5c84bba05787fef0725ef028d35219946b5d19",
+          "safe_relative_path": true,
+          "sha256": "6a42d5ef051740e086a54a4aca5c84bba05787fef0725ef028d35219946b5d19"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-005",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-005-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-005",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-006-RAW-PARSED-INTEGRITY",
+      "expected": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "ef1fd08024a14451eef5907b4270641c9000db219a004c5e6fd84d8d7862ee2c",
+          "safe_relative_path": true,
+          "sha256": "ef1fd08024a14451eef5907b4270641c9000db219a004c5e6fd84d8d7862ee2c"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "33b8b1c9117ba3bb1f96e6df29dfdfb5468ae1e2d71f5d9cccb0424dea39b6ce",
+          "safe_relative_path": true,
+          "sha256": "33b8b1c9117ba3bb1f96e6df29dfdfb5468ae1e2d71f5d9cccb0424dea39b6ce"
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "parsed": {
+          "file_exists": true,
+          "recorded_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+          "safe_relative_path": true,
+          "sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e"
+        },
+        "request": {
+          "file_exists": true,
+          "recorded_sha256": "ef1fd08024a14451eef5907b4270641c9000db219a004c5e6fd84d8d7862ee2c",
+          "safe_relative_path": true,
+          "sha256": "ef1fd08024a14451eef5907b4270641c9000db219a004c5e6fd84d8d7862ee2c"
+        },
+        "response": {
+          "file_exists": true,
+          "recorded_sha256": "33b8b1c9117ba3bb1f96e6df29dfdfb5468ae1e2d71f5d9cccb0424dea39b6ce",
+          "safe_relative_path": true,
+          "sha256": "33b8b1c9117ba3bb1f96e6df29dfdfb5468ae1e2d71f5d9cccb0424dea39b6ce"
+        }
+      },
+      "reason": "Raw request, raw response and parsed output are separate, safe and hash-valid.",
+      "scope": "baseline-call-006",
+      "status": "PASS"
+    },
+    {
+      "check_id": "BASELINE-CALL-006-CONTRACT",
+      "expected": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "metric_codes": [],
+      "observed": {
+        "context_is_json": true,
+        "kind": "prompt_only_turn",
+        "max_output_tokens": 500,
+        "model": "gpt-4.1-mini",
+        "oracle_keys_absent_from_context": true,
+        "parsed_is_object": true,
+        "status": "completed",
+        "store": false,
+        "strict_schema": true,
+        "temperature": 0
+      },
+      "reason": "The call used the frozen model envelope without exposing an oracle to the prompt context.",
+      "scope": "baseline-call-006",
+      "status": "PASS"
+    },
+    {
+      "check_id": "STEPS-ORDER-AND-CARDINALITY",
+      "expected": [
+        "S7-C01",
+        "S7-O01",
+        "S7-T01",
+        "S7-T02",
+        "S7-T03",
+        "S7-T04",
+        "S7-T05"
+      ],
+      "metric_codes": [],
+      "observed": [
+        "S7-C01",
+        "S7-O01",
+        "S7-T01",
+        "S7-T02",
+        "S7-T03",
+        "S7-T04",
+        "S7-T05"
+      ],
+      "reason": "Every frozen step was recorded once and in order.",
+      "scope": "scenario",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-C01-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {},
+        "kind": "consent",
+        "oracle": {
+          "consent_confirmed": true,
+          "consent_confirmed_at_recorded": true,
+          "consent_snapshot_recorded": true,
+          "consent_snapshot_sha256_valid": true,
+          "research_content_before_consent": false
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {},
+        "kind": "consent",
+        "oracle": {
+          "consent_confirmed": true,
+          "consent_confirmed_at_recorded": true,
+          "consent_snapshot_recorded": true,
+          "consent_snapshot_sha256_valid": true,
+          "research_content_before_consent": false
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-C01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-C01-HTTP-PATH",
+      "expected": {
+        "client_role": "participant",
+        "method": "POST",
+        "status_code": 302
+      },
+      "metric_codes": [],
+      "observed": {
+        "client_role": "participant",
+        "method": "POST",
+        "status_code": 302
+      },
+      "reason": "The step used the public participant POST path.",
+      "scope": "S7-C01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-C01-CONSENT-GATE",
+      "expected": {
+        "after_consent": true,
+        "before_consent": false,
+        "consent_confirmed_at_recorded": true,
+        "consent_notice_version_recorded": true,
+        "consent_snapshot_recorded": true,
+        "consent_snapshot_sha256_recorded": true,
+        "consent_snapshot_sha256_valid": true,
+        "created_decision_count": 0,
+        "participant_decision_count": 0
+      },
+      "metric_codes": [
+        "PCC"
+      ],
+      "observed": {
+        "after_consent": true,
+        "before_consent": false,
+        "consent_confirmed_at_recorded": true,
+        "consent_notice_version_recorded": true,
+        "consent_snapshot_recorded": true,
+        "consent_snapshot_sha256_recorded": true,
+        "consent_snapshot_sha256_valid": true,
+        "created_decision_count": 0,
+        "participant_decision_count": 0
+      },
+      "reason": "Consent was confirmed before any participant decision record.",
+      "scope": "S7-C01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "Yes, it is okay to continue.",
+          "section_code": "opening",
+          "section_index": 0
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": false,
+          "eligible_for_ai": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "not_assessed"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "Yes, it is okay to continue.",
+          "section_code": "opening",
+          "section_index": 0
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": false,
+          "eligible_for_ai": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "not_assessed"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-ACTION",
+      "expected": "move_next",
+      "metric_codes": [],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-TOPIC",
+      "expected": {
+        "section_code": "opening",
+        "section_index": 0
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "opening",
+        "section_index": 0
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-O01-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-O01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.",
+          "section_code": "experience",
+          "section_index": 1
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.",
+          "section_code": "experience",
+          "section_index": 1
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-ACTION",
+      "expected": "move_next",
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-TOPIC",
+      "expected": {
+        "section_code": "experience",
+        "section_index": 1
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "experience",
+        "section_index": 1
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T01-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-T01",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.",
+          "section_code": "triggers_signs",
+          "section_index": 2
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.",
+          "section_code": "triggers_signs",
+          "section_index": 2
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-ACTION",
+      "expected": "move_next",
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-TOPIC",
+      "expected": {
+        "section_code": "triggers_signs",
+        "section_index": 2
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "triggers_signs",
+        "section_index": 2
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T02-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-T02",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.",
+          "section_code": "coping_support",
+          "section_index": 3
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.",
+          "section_code": "coping_support",
+          "section_index": 3
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-ACTION",
+      "expected": "move_next",
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-TOPIC",
+      "expected": {
+        "section_code": "coping_support",
+        "section_index": 3
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "coping_support",
+        "section_index": 3
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T03-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-T03",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.",
+          "section_code": "support_concept_reaction",
+          "section_index": 4
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.",
+          "section_code": "support_concept_reaction",
+          "section_index": 4
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-ACTION",
+      "expected": "move_next",
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-TOPIC",
+      "expected": {
+        "section_code": "support_concept_reaction",
+        "section_index": 4
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "support_concept_reaction",
+        "section_index": 4
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T04-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-T04",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "participant_text": "I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.",
+          "section_code": "public_use_acceptability",
+          "section_index": 5
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "participant_text": "I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.",
+          "section_code": "public_use_acceptability",
+          "section_index": 5
+        },
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        }
+      },
+      "reason": "The runner used the frozen input and copied the oracle without repair.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-BASELINE-ADAPTER-PATH",
+      "expected": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "metric_codes": [],
+      "observed": {
+        "call_recorded": true,
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+      },
+      "reason": "The baseline step used one recorded prompt-only adapter call.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-ONE-CONTROL-RECORD",
+      "expected": 1,
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": 1,
+      "reason": "The participant step created exactly one inspectable control record.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-CONTROL-RECORD-COMPLETE",
+      "expected": [],
+      "metric_codes": [
+        "AI"
+      ],
+      "observed": [],
+      "reason": "The control record contains every shared inspectability field.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-ACTION",
+      "expected": "move_next",
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": "move_next",
+      "reason": "Observed action matches the pre-registered oracle.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-PROTOCOL-COVERAGE",
+      "expected": true,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": true,
+      "reason": "Observed provisional Protocol coverage is one of the pre-registered acceptable states.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-PARTICIPANT-CONTROL",
+      "expected": "none",
+      "metric_codes": [],
+      "observed": "none",
+      "reason": "Participant control is recorded independently from Protocol coverage.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-PROBE-COUNT",
+      "expected": 0,
+      "metric_codes": [
+        "AC"
+      ],
+      "observed": 0,
+      "reason": "Observed probe count matches the bounded-progression oracle.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-TOPIC",
+      "expected": {
+        "section_code": "public_use_acceptability",
+        "section_index": 5
+      },
+      "metric_codes": [
+        "AI",
+        "AC"
+      ],
+      "observed": {
+        "section_code": "public_use_acceptability",
+        "section_index": 5
+      },
+      "reason": "The decision is attributed to the frozen Protocol topic.",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "S7-T05-MISSING-INFORMATION",
+      "expected": true,
+      "metric_codes": [
+        "AC",
+        "MIV"
+      ],
+      "observed": true,
+      "reason": "Missing-information observation satisfies: [].",
+      "scope": "S7-T05",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPICS-EXACTLY-ONE-RECORD",
+      "expected": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "metric_codes": [
+        "TCR"
+      ],
+      "observed": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "reason": "Every Protocol research topic has exactly one explicit record.",
+      "scope": "topics",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-1-OUTCOME",
+      "expected": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "experience",
+        "topic_reached": true
+      },
+      "metric_codes": [
+        "MIV",
+        "TCR"
+      ],
+      "observed": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "experience",
+        "topic_reached": true
+      },
+      "reason": "Topic coverage matches the frozen outcome.",
+      "scope": "TOPIC-1",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-1-REVIEW-STATUS",
+      "expected": "edited",
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": "edited",
+      "reason": "Researcher action produced the frozen item status.",
+      "scope": "TOPIC-1",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-1-SOURCE-GROUNDING",
+      "expected": {
+        "all_relations_valid": true,
+        "minimum_valid_source_count": 1,
+        "unavailable_topic_has_no_sources": false
+      },
+      "metric_codes": [
+        "SLC"
+      ],
+      "observed": {
+        "all_relations_valid": true,
+        "relations": [
+          {
+            "reasons": [],
+            "source_message_id": 4,
+            "valid": true
+          }
+        ],
+        "unavailable_topic_has_no_sources": false,
+        "valid_source_count": 1
+      },
+      "reason": "Sources are same-Session participant messages from the same topic.",
+      "scope": "TOPIC-1",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-2-OUTCOME",
+      "expected": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "triggers_signs",
+        "topic_reached": true
+      },
+      "metric_codes": [
+        "MIV",
+        "TCR"
+      ],
+      "observed": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "triggers_signs",
+        "topic_reached": true
+      },
+      "reason": "Topic coverage matches the frozen outcome.",
+      "scope": "TOPIC-2",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-2-SOURCE-GROUNDING",
+      "expected": {
+        "all_relations_valid": true,
+        "minimum_valid_source_count": 1,
+        "unavailable_topic_has_no_sources": false
+      },
+      "metric_codes": [
+        "SLC"
+      ],
+      "observed": {
+        "all_relations_valid": true,
+        "relations": [
+          {
+            "reasons": [],
+            "source_message_id": 6,
+            "valid": true
+          }
+        ],
+        "unavailable_topic_has_no_sources": false,
+        "valid_source_count": 1
+      },
+      "reason": "Sources are same-Session participant messages from the same topic.",
+      "scope": "TOPIC-2",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-3-OUTCOME",
+      "expected": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "coping_support",
+        "topic_reached": true
+      },
+      "metric_codes": [
+        "MIV",
+        "TCR"
+      ],
+      "observed": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "coping_support",
+        "topic_reached": true
+      },
+      "reason": "Topic coverage matches the frozen outcome.",
+      "scope": "TOPIC-3",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-3-SOURCE-GROUNDING",
+      "expected": {
+        "all_relations_valid": true,
+        "minimum_valid_source_count": 1,
+        "unavailable_topic_has_no_sources": false
+      },
+      "metric_codes": [
+        "SLC"
+      ],
+      "observed": {
+        "all_relations_valid": true,
+        "relations": [
+          {
+            "reasons": [],
+            "source_message_id": 8,
+            "valid": true
+          }
+        ],
+        "unavailable_topic_has_no_sources": false,
+        "valid_source_count": 1
+      },
+      "reason": "Sources are same-Session participant messages from the same topic.",
+      "scope": "TOPIC-3",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-4-OUTCOME",
+      "expected": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "support_concept_reaction",
+        "topic_reached": true
+      },
+      "metric_codes": [
+        "MIV",
+        "TCR"
+      ],
+      "observed": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "support_concept_reaction",
+        "topic_reached": true
+      },
+      "reason": "Topic coverage matches the frozen outcome.",
+      "scope": "TOPIC-4",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-4-SOURCE-GROUNDING",
+      "expected": {
+        "all_relations_valid": true,
+        "minimum_valid_source_count": 1,
+        "unavailable_topic_has_no_sources": false
+      },
+      "metric_codes": [
+        "SLC"
+      ],
+      "observed": {
+        "all_relations_valid": true,
+        "relations": [
+          {
+            "reasons": [],
+            "source_message_id": 10,
+            "valid": true
+          }
+        ],
+        "unavailable_topic_has_no_sources": false,
+        "valid_source_count": 1
+      },
+      "reason": "Sources are same-Session participant messages from the same topic.",
+      "scope": "TOPIC-4",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-5-OUTCOME",
+      "expected": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "public_use_acceptability",
+        "topic_reached": true
+      },
+      "metric_codes": [
+        "MIV",
+        "TCR"
+      ],
+      "observed": {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "public_use_acceptability",
+        "topic_reached": true
+      },
+      "reason": "Topic coverage matches the frozen outcome.",
+      "scope": "TOPIC-5",
+      "status": "PASS"
+    },
+    {
+      "check_id": "TOPIC-5-SOURCE-GROUNDING",
+      "expected": {
+        "all_relations_valid": true,
+        "minimum_valid_source_count": 1,
+        "unavailable_topic_has_no_sources": false
+      },
+      "metric_codes": [
+        "SLC"
+      ],
+      "observed": {
+        "all_relations_valid": true,
+        "relations": [
+          {
+            "reasons": [],
+            "source_message_id": 12,
+            "valid": true
+          }
+        ],
+        "unavailable_topic_has_no_sources": false,
+        "valid_source_count": 1
+      },
+      "reason": "Sources are same-Session participant messages from the same topic.",
+      "scope": "TOPIC-5",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RESEARCHER-EDIT-ONE-HTTP-ACTION",
+      "expected": 1,
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": 1,
+      "reason": "Exactly one frozen researcher action was executed through the view.",
+      "scope": "RESEARCHER-EDIT",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RESEARCHER-EDIT-FROZEN-INPUT",
+      "expected": {
+        "action": "edit",
+        "oracle": {
+          "before_after_recorded": true,
+          "final_evidence_uses_reviewed_text": true,
+          "reason_recorded": true,
+          "review_timestamp_recorded": true,
+          "reviewer_identity_recorded": true,
+          "source_links_retained": true
+        },
+        "section_index": 1
+      },
+      "metric_codes": [],
+      "observed": {
+        "action": "edit",
+        "oracle": {
+          "before_after_recorded": true,
+          "final_evidence_uses_reviewed_text": true,
+          "reason_recorded": true,
+          "review_timestamp_recorded": true,
+          "reviewer_identity_recorded": true,
+          "source_links_retained": true
+        },
+        "section_index": 1
+      },
+      "reason": "The observed researcher action matches the frozen action and oracle.",
+      "scope": "RESEARCHER-EDIT",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RESEARCHER-EDIT-AUDIT-FIELDS",
+      "expected": {
+        "after_text_recorded": true,
+        "before_text_recorded": true,
+        "comment": "Condensed the source extract into a neutral topic-level statement without adding a new claim.",
+        "evidence_text": "The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.",
+        "review_status": "edited",
+        "reviewed_text": "The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.",
+        "reviewer_recorded": true,
+        "timestamp_recorded": true
+      },
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": {
+        "after_text_recorded": true,
+        "before_text_recorded": true,
+        "comment": "Condensed the source extract into a neutral topic-level statement without adding a new claim.",
+        "evidence_text": "The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.",
+        "review_status": "edited",
+        "reviewed_text": "The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.",
+        "reviewer_recorded": true,
+        "timestamp_recorded": true
+      },
+      "reason": "The complete researcher-action audit fields and final evidence consequence are saved.",
+      "scope": "RESEARCHER-EDIT",
+      "status": "PASS"
+    },
+    {
+      "check_id": "RESEARCHER-EDIT-EVIDENCE-RECORD",
+      "expected": true,
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": true,
+      "reason": "The rendered Evidence Record contains the saved researcher outcome.",
+      "scope": "RESEARCHER-EDIT",
+      "status": "PASS"
+    },
+    {
+      "check_id": "REVIEW-COMPLETION-ITEM-ACTIONS",
+      "expected": [
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 2
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 3
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 4
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 5
+        }
+      ],
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": [
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 2
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 3
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 4
+        },
+        {
+          "action": "include",
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+          "section_index": 5
+        }
+      ],
+      "reason": "Every frozen remaining-item action was executed once through the review view.",
+      "scope": "review_completion_items",
+      "status": "PASS"
+    },
+    {
+      "check_id": "REVIEW-COMPLETION-ACTION-ORDER",
+      "expected": [
+        {
+          "action": "edit",
+          "section_index": 1
+        },
+        {
+          "action": "include",
+          "section_index": 2
+        },
+        {
+          "action": "include",
+          "section_index": 3
+        },
+        {
+          "action": "include",
+          "section_index": 4
+        },
+        {
+          "action": "include",
+          "section_index": 5
+        }
+      ],
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": [
+        {
+          "action": "edit",
+          "section_index": 1
+        },
+        {
+          "action": "include",
+          "section_index": 2
+        },
+        {
+          "action": "include",
+          "section_index": 3
+        },
+        {
+          "action": "include",
+          "section_index": 4
+        },
+        {
+          "action": "include",
+          "section_index": 5
+        }
+      ],
+      "reason": "The focal and remaining item actions follow the frozen order.",
+      "scope": "review_completion_items",
+      "status": "PASS"
+    },
+    {
+      "check_id": "REVIEW-COMPLETION-FINAL-STATUSES",
+      "expected": {
+        "1": "edited",
+        "2": "approved",
+        "3": "approved",
+        "4": "approved",
+        "5": "approved"
+      },
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": {
+        "1": "edited",
+        "2": "approved",
+        "3": "approved",
+        "4": "approved",
+        "5": "approved"
+      },
+      "reason": "All candidate items have the frozen final review state.",
+      "scope": "review_completion_items",
+      "status": "PASS"
+    },
+    {
+      "check_id": "OVERALL-REVIEW-ONE-HTTP-ACTION",
+      "expected": 1,
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": 1,
+      "reason": "Exactly one frozen overall review action was executed through the view.",
+      "scope": "overall_review",
+      "status": "PASS"
+    },
+    {
+      "check_id": "OVERALL-REVIEW-FROZEN-INPUT",
+      "expected": {
+        "frozen_input": {
+          "decision": "request_revision",
+          "participant_meaning_preserved": false,
+          "protocol_boundaries_respected": false,
+          "researcher_note": "All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner."
+        },
+        "oracle": {
+          "expected_review_statuses": {
+            "1": "edited",
+            "2": "approved",
+            "3": "approved",
+            "4": "approved",
+            "5": "approved"
+          },
+          "remaining_items_auto_resolved": false,
+          "review_timestamp_recorded": true,
+          "reviewer_identity_recorded": true,
+          "reviewer_note_recorded": true,
+          "saved_decision": "revision_requested",
+          "scripted_item_actions_complete": true
+        }
+      },
+      "metric_codes": [],
+      "observed": {
+        "frozen_input": {
+          "decision": "request_revision",
+          "participant_meaning_preserved": false,
+          "protocol_boundaries_respected": false,
+          "researcher_note": "All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner."
+        },
+        "oracle": {
+          "expected_review_statuses": {
+            "1": "edited",
+            "2": "approved",
+            "3": "approved",
+            "4": "approved",
+            "5": "approved"
+          },
+          "remaining_items_auto_resolved": false,
+          "review_timestamp_recorded": true,
+          "reviewer_identity_recorded": true,
+          "reviewer_note_recorded": true,
+          "saved_decision": "revision_requested",
+          "scripted_item_actions_complete": true
+        }
+      },
+      "reason": "The submitted overall review action matches the frozen contract.",
+      "scope": "overall_review",
+      "status": "PASS"
+    },
+    {
+      "check_id": "OVERALL-REVIEW-AUDIT-FIELDS",
+      "expected": {
+        "decision": "revision_requested",
+        "participant_meaning_preserved": false,
+        "protocol_boundaries_respected": false,
+        "remaining_items_auto_resolved": false,
+        "researcher_note": "All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+        "review_timestamp_recorded": true,
+        "reviewer_recorded": true,
+        "scripted_item_actions_complete": true,
+        "session_output_quality_status": "revision_requested",
+        "session_review_status": "revision_requested"
+      },
+      "metric_codes": [
+        "RAC"
+      ],
+      "observed": {
+        "decision": "revision_requested",
+        "participant_meaning_preserved": false,
+        "protocol_boundaries_respected": false,
+        "remaining_items_auto_resolved": false,
+        "researcher_note": "All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+        "review_timestamp_recorded": true,
+        "reviewer_recorded": true,
+        "scripted_item_actions_complete": true,
+        "session_output_quality_status": "revision_requested",
+        "session_review_status": "revision_requested"
+      },
+      "reason": "The overall decision, note, reviewer, time and non-approval boundary are saved.",
+      "scope": "overall_review",
+      "status": "PASS"
+    }
+  ],
+  "claim_boundary": "A validator PASS means the saved observations match the frozen automatic oracle. It does not establish outcome quality, natural-use reliability, production readiness, UCR, MP, or comparative superiority.",
+  "completed_at": "2026-08-10T05:37:29.411656+00:00",
+  "condition": "prompt_only_baseline",
+  "formal_evidence_eligible": false,
+  "inputs": {
+    "freeze_manifest_path": "/workspace/scratch/f779e6ebc430/work/source_frozen/evaluation/specs/freeze_manifest.v10_2.json",
+    "freeze_manifest_sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1",
+    "metric_contract_path": "/workspace/scratch/f779e6ebc430/work/source_frozen/evaluation/specs/metrics.v3.json",
+    "metric_contract_sha256": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4",
+    "review_completion_contract_path": "/workspace/scratch/f779e6ebc430/work/source_frozen/evaluation/specs/review_completion.v2.json",
+    "review_completion_contract_sha256": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72",
+    "runner_record_path": "/workspace/scratch/f779e6ebc430/work/supplementary_baseline_s7_s8/runs/baseline-s7-r01-20260810T053723387040Z-26c0bc40/runner_record.json",
+    "runner_record_sha256": "f2ced53d8dcdaa4bba6e2625754faadb367b45021a5bf8f515ed5601bc2a33fb",
+    "scenario_contract_path": "/workspace/scratch/f779e6ebc430/work/source_frozen/evaluation/specs/scenarios.v4.json",
+    "scenario_contract_sha256": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6"
+  },
+  "manual_coding_required": {
+    "MP": "Pending separate item-level meaning-preservation judgement; never inferred here.",
+    "UCR": "Pending separate atomic-proposition coding; never inferred here."
+  },
+  "repetition": 1,
+  "run_id": "baseline-s7-r01-20260810T053723387040Z-26c0bc40",
+  "runner_execution_status": "completed",
+  "scenario_id": "S7",
+  "schema_version": "1.0",
+  "started_at": "2026-08-10T05:37:29.401311+00:00",
+  "summary": {
+    "check_count": 126,
+    "fail_count": 0,
+    "not_evaluated_count": 0,
+    "pass_count": 126
+  },
+  "validation_status": "PASS",
+  "validator_run_id": "validator-20260810T053729411601Z-3455887c"
+}

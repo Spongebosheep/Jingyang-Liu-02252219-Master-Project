@@ -1,0 +1,14 @@
+﻿
+结果摘要 / Result Summary
+
+Formal n=3
+- Topic correct: Manual 11/12; Prototype 12/12.
+- Evidence-item correct: Manual 16/18; Prototype 17/18.
+- E3–E6 issues detected: Manual 10/12; Prototype 11/12.
+- Missingness correct: Manual 2/3; Prototype 3/3.
+- False approvals: Manual 2; Prototype 1. The Prototype case is P02 NP02-A-E5, which retained the wrong source link.
+- PC11 objectively timed active review time: Manual mean 20.3 min, median 21; Prototype mean 17.3 min, median 19; mean paired difference 3.0 min.
+- All three researchers preferred Prototype.
+
+Interpretation boundary
+These results support an exploratory claim that the Prototype enabled a complete review path in three controlled synthetic protocols and was preferred by all three researchers. They do not establish statistical significance, general effectiveness, generalisable large-scale efficiency, or production readiness.

@@ -1,297 +1,149 @@
 {% extends "interviews/base.html" %}
 
 {% block content %}
-<h1 class="overview-title">Stakeholder record: {{ stakeholder.participant_id }}</h1>
-<p class="overview-kicker">{{ stakeholder.stakeholder_group }} · {{ stakeholder.role }}</p>
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Stakeholder record: {{ stakeholder.participant_id }}</h1>
+        <p class="overview-kicker">{{ stakeholder.stakeholder_group }} · {{ stakeholder.role }}</p>
+    </div>
+    <a class="button-secondary" href="{% url 'stakeholder_list' %}">← Back to stakeholder records</a>
+</div>
 
 <div class="record-meta-row">
     <div class="record-meta-item">
-        <span class="record-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M3 7h6l2 2h10v10H3z"></path>
-            </svg>
-        </span>
-        <span>Project: PurrStone stakeholder interviews</span>
+        <strong>Record</strong>
+        <span class="status {{ stakeholder.workflow_display.css_class }}">{{ stakeholder.workflow_display.label }}</span>
     </div>
-
     <div class="record-meta-item">
-        <span class="record-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 3v6"></path>
-                <path d="M6 13h12"></path>
-                <path d="M5 21h4v-6H5z"></path>
-                <path d="M10 21h4v-6h-4z"></path>
-                <path d="M15 21h4v-6h-4z"></path>
-            </svg>
-        </span>
-        <span>
-            Assigned protocol:
-            {% if stakeholder.assigned_protocol %}
-                {{ stakeholder.assigned_protocol.title }}
-            {% else %}
-                Not assigned
-            {% endif %}
-        </span>
+        <strong>Selected Session</strong>
+        <span>{{ session.session_code }}</span>
+    </div>
+    <div class="record-meta-item">
+        <strong>Interview</strong>
+        <span class="status {{ session.interview_display.css_class }}">{{ session.interview_display.label }}</span>
+    </div>
+    <div class="record-meta-item">
+        <strong>Last updated</strong>
+        <span>{{ session.updated_at|date:"d M Y H:i:s" }}</span>
     </div>
 </div>
 
+{% if session_count > 1 %}
+    <div class="session-switcher" aria-label="Interview session selection">
+        <strong>Choose Session:</strong>
+        {% for item in sessions %}
+            <a class="session-switcher-link {% if item.session_code == session.session_code %}selected{% endif %}"
+               href="{% url 'stakeholder_detail' stakeholder.participant_id %}?session={{ item.session_code|urlencode }}">
+                {{ item.session_code }}
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <div class="record-layout">
-    <div class="record-left-stack">
-        <div class="card record-card">
-            <h2>Participant overview</h2>
-
-            <table class="record-table">
-                <tr>
-                    <th>Participant ID:</th>
-                    <td><strong>{{ stakeholder.participant_id }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Stakeholder group:</th>
-                    <td>{{ stakeholder.stakeholder_group }}</td>
-                </tr>
-                <tr>
-                    <th>Role:</th>
-                    <td>{{ stakeholder.role }}</td>
-                </tr>
-                <tr>
-                    <th>Record status:</th>
-                    <td><span class="status">{{ stakeholder.get_status_display }}</span></td>
-                </tr>
-
-                <tr>
-                    <th>Interview status:</th>
-                    <td>
-                        {% if session %}
-                            <span class="{% if session.status == 'completed' %}status{% elif session.status == 'stopped' %}status status-waiting{% else %}status status-muted{% endif %}">
-                                {{ session.get_status_display }}
-                            </span>
-                        {% else %}
-                            <span class="status status-muted">Not started</span>
-                        {% endif %}
-                    </td>
-                </tr>
-
-                <tr>
-                    <th>Transcript / output:</th>
-                    <td>
-                        {% if session and session.transcript_saved %}
-                            Saved
-                        {% elif session and session.summary_generated %}
-                            Generated
-                        {% else %}
-                            Not generated
-                        {% endif %}
-                    </td>
-                </tr>
-
-                <tr>
-                    <th>Review status:</th>
-                    <td>
-                        {% if session %}
-                            {{ session.get_review_status_display }}
-                        {% else %}
-                            Not reviewed
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
+    <div class="card">
+        <div class="stakeholder-session-history-heading">
+            <div>
+                <h2>Session workflow · {{ session.session_code }}</h2>
+                <p class="muted">Live state for this Session only.</p>
+            </div>
+            <span class="status {{ session.participant_link_display.css_class }}">Participant link: {{ session.participant_link_display.label }}</span>
         </div>
 
-        <div class="card">
-            <h2>Interview progress</h2>
-
-            <div class="progress-list">
-                <div class="progress-row">
-                    <div class="progress-icon progress-complete">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div><strong>Stakeholder group assigned</strong></div>
-                    <span class="status">Complete</span>
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon progress-complete">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div><strong>Interview protocol assigned</strong></div>
-                    <span class="status">Complete</span>
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon progress-complete">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div><strong>Participant link generated</strong></div>
-                    <span class="status">Complete</span>
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon {% if session and session.consent_confirmed %}progress-complete{% else %}progress-muted{% endif %}">
-                        {% if session and session.consent_confirmed %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        {% else %}
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="6"></circle>
-                            </svg>
-                        {% endif %}
-                    </div>
-                    <div><strong>Consent confirmation</strong></div>
-                    {% if session and session.consent_confirmed %}
-                        <span class="status">Confirmed</span>
-                    {% else %}
-                        <span class="status status-muted">Pending</span>
-                    {% endif %}
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon {% if session and session.status == 'completed' %}progress-complete{% elif session and session.status == 'stopped' %}progress-waiting{% else %}progress-muted{% endif %}">
-                        {% if session and session.status == 'completed' %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        {% elif session and session.status == 'stopped' %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 7v6"></path>
-                                <path d="M12 17h.01"></path>
-                            </svg>
-                        {% else %}
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="6"></circle>
-                            </svg>
-                        {% endif %}
-                    </div>
-                    <div><strong>AI-led interview</strong></div>
-
-                    {% if session and session.status == 'completed' %}
-                        <span class="status">{{ session.get_status_display }}</span>
-                    {% elif session and session.status == 'stopped' %}
-                        <span class="status status-waiting">{{ session.get_status_display }}</span>
-                    {% elif session %}
-                        <span class="status status-muted">{{ session.get_status_display }}</span>
-                    {% else %}
-                        <span class="status status-muted">Not started</span>
-                    {% endif %}
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon {% if session and session.transcript_saved %}progress-complete{% elif session and session.summary_generated %}progress-complete{% else %}progress-muted{% endif %}">
-                        {% if session and session.transcript_saved or session and session.summary_generated %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        {% else %}
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="6"></circle>
-                            </svg>
-                        {% endif %}
-                    </div>
-                    <div><strong>Transcript / output</strong></div>
-
-                    {% if session and session.transcript_saved %}
-                        <span class="status">Saved</span>
-                    {% elif session and session.summary_generated %}
-                        <span class="status">Generated</span>
-                    {% else %}
-                        <span class="status status-muted">Not generated</span>
-                    {% endif %}
-                </div>
-
-                <div class="progress-row">
-                    <div class="progress-icon {% if session and session.review_status == 'approved' %}progress-complete{% elif session and session.review_status == 'revision_requested' or session and session.review_status == 'not_usable' %}progress-waiting{% else %}progress-muted{% endif %}">
-                        {% if session and session.review_status == 'approved' %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        {% elif session and session.review_status == 'revision_requested' or session and session.review_status == 'not_usable' %}
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 7v6"></path>
-                                <path d="M12 17h.01"></path>
-                            </svg>
-                        {% else %}
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="6"></circle>
-                            </svg>
-                        {% endif %}
-                    </div>
-                    <div><strong>Researcher review</strong></div>
-
-                    {% if session and session.review_status == 'approved' %}
-                        <span class="status">{{ session.get_review_status_display }}</span>
-                    {% elif session and session.review_status == 'revision_requested' or session and session.review_status == 'not_usable' %}
-                        <span class="status status-waiting">{{ session.get_review_status_display }}</span>
-                    {% elif session %}
-                        <span class="status status-muted">{{ session.get_review_status_display }}</span>
-                    {% else %}
-                        <span class="status status-muted">Not reviewed</span>
-                    {% endif %}
-                </div>
+        <div class="progress-list">
+            <div class="progress-row">
+                <div class="progress-icon progress-complete"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div>
+                <div><strong>Protocol assigned</strong><div class="field-help">{{ session.protocol.title }} · v{{ session.protocol.version }}</div></div>
+                <span class="status">Complete</span>
             </div>
+
+            <div class="progress-row">
+                <div class="progress-icon {% if session.consent_confirmed %}progress-complete{% else %}progress-muted{% endif %}">
+                    {% if session.consent_confirmed %}<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>{% else %}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></svg>{% endif %}
+                </div>
+                <div><strong>Consent</strong></div>
+                {% if session.consent_confirmed %}<span class="status">Confirmed</span>{% else %}<span class="status status-muted">Awaiting participant</span>{% endif %}
+            </div>
+
+            <div class="progress-row">
+                <div class="progress-icon {% if session.status == 'completed' %}progress-complete{% elif session.status == 'stopped' %}progress-waiting{% else %}progress-muted{% endif %}">
+                    {% if session.status == 'completed' %}<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>{% elif session.status == 'stopped' %}<svg viewBox="0 0 24 24"><path d="M12 7v6"></path><path d="M12 17h.01"></path></svg>{% else %}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></svg>{% endif %}
+                </div>
+                <div><strong>AI-led interview</strong></div>
+                <span class="status {{ session.interview_display.css_class }}">{{ session.interview_display.label }}</span>
+            </div>
+
+            <div class="progress-row">
+                <div class="progress-icon {% if session.transcript_saved %}progress-complete{% else %}progress-muted{% endif %}">
+                    {% if session.transcript_saved %}<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>{% else %}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></svg>{% endif %}
+                </div>
+                <div><strong>Typed transcript and topic extracts</strong></div>
+                <span class="status {{ session.output_display.css_class }}">{{ session.output_display.label }}</span>
+            </div>
+
+            <div class="progress-row">
+                <div class="progress-icon {% if session.review_status == 'approved' %}progress-complete{% elif session.review_status == 'revision_requested' or session.review_status == 'not_usable' %}progress-waiting{% else %}progress-muted{% endif %}">
+                    {% if session.review_status == 'approved' %}<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>{% elif session.review_status == 'revision_requested' or session.review_status == 'not_usable' %}<svg viewBox="0 0 24 24"><path d="M12 7v6"></path><path d="M12 17h.01"></path></svg>{% else %}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"></circle></svg>{% endif %}
+                </div>
+                <div>
+                    <strong>Researcher review</strong>
+                    <div class="field-help">Evidence status: {{ session.evidence_display.label }}</div>
+                </div>
+                <span class="status {{ session.review_display.css_class }}">{{ session.review_display.label }}</span>
+            </div>
+        </div>
+
+        <div class="panel-actions">
+            <a class="button" href="{% url 'interview_consent' session.access_token %}" target="_blank" rel="noopener">
+                {% if session.consent_confirmed %}View participant interview{% else %}Open participant interview link{% endif %}
+            </a>
+            {% if session.transcript_saved %}<a class="button-secondary" href="{% url 'output_detail' session.session_code %}">Review output</a>{% endif %}
         </div>
     </div>
 
     <div class="card protocol-card-large">
         <h2>Assigned protocol</h2>
-
-        {% if stakeholder.assigned_protocol %}
-            <table class="record-table">
-                <tr>
-                    <th>Protocol:</th>
-                    <td><strong>{{ stakeholder.assigned_protocol.title }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Purpose:</th>
-                    <td>{{ stakeholder.assigned_protocol.purpose }}</td>
-                </tr>
-                <tr>
-                    <th>Mode:</th>
-                    <td>{{ stakeholder.assigned_protocol.interview_mode }}</td>
-                </tr>
-                <tr>
-                    <th>Estimated duration:</th>
-                    <td>{{ stakeholder.assigned_protocol.estimated_duration }}</td>
-                </tr>
-                <tr>
-                    <th>Protocol role:</th>
-                    <td>Routes P01 into the sensory overload interview workflow.</td>
-                </tr>
-                <tr>
-                    <th>Agent control:</th>
-                    <td>Defines the interview sections used by the LangGraph-managed interviewer.</td>
-                </tr>
-            </table>
-        {% else %}
-            <p>No protocol assigned.</p>
-        {% endif %}
+        <table class="record-table">
+            <tr><th>Protocol:</th><td><strong>{{ session.protocol.title }} · v{{ session.protocol.version }}</strong></td></tr>
+            <tr><th>Purpose:</th><td>{{ session.protocol.purpose }}</td></tr>
+            <tr><th>Mode:</th><td>{{ session.protocol.interview_mode }}</td></tr>
+            <tr><th>Duration:</th><td>{{ session.protocol.estimated_duration }}</td></tr>
+        </table>
+        <div class="panel-actions">
+            <a class="button-secondary" href="{% url 'protocol_detail' session.protocol.slug %}">View protocol</a>
+        </div>
     </div>
 </div>
 
-<div class="action-bar">
-    {% if stakeholder.assigned_protocol %}
-        <a class="button-secondary" href="{% url 'protocol_detail' stakeholder.assigned_protocol.slug %}">
-            Preview assigned protocol
-        </a>
-    {% else %}
-        <a class="button-secondary button-disabled" href="#">Preview assigned protocol</a>
-    {% endif %}
+{% if session_count > 1 %}
+    <div class="card stakeholder-session-history">
+        <div class="stakeholder-session-history-heading">
+            <div>
+                <h2>Session history</h2>
+                <p class="muted">Comparison across this participant's Sessions.</p>
+            </div>
+            <span class="status status-blue">{{ session_count }} Sessions</span>
+        </div>
 
-    <a class="button" href="{% url 'interview_consent' stakeholder.participant_id %}">
-        {% if session and session.consent_confirmed %}
-            View interview record
-        {% else %}
-            Open participant interview link
-        {% endif %}
-    </a>
-
-    <a class="button-secondary" href="{% url 'stakeholder_list' %}">
-        Back to stakeholder records
-    </a>
-</div>
+        <div class="overview-session-table-wrap">
+            <table class="stakeholder-table stakeholder-session-history-table">
+                <thead><tr><th>Session</th><th>Protocol</th><th>Interview</th><th>Output</th><th>Review</th><th>Evidence</th><th>Updated</th><th></th></tr></thead>
+                <tbody>
+                    {% for item in sessions %}
+                        <tr {% if item.session_code == session.session_code %}class="selected-session-row"{% endif %}>
+                            <td><strong>{{ item.session_code }}</strong></td>
+                            <td>{{ item.protocol.title }} · v{{ item.protocol.version }}</td>
+                            <td><span class="status {{ item.interview_display.css_class }}">{{ item.interview_display.label }}</span></td>
+                            <td><span class="status {{ item.output_display.css_class }}">{{ item.output_display.label }}</span></td>
+                            <td><span class="status {{ item.review_display.css_class }}">{{ item.review_display.label }}</span></td>
+                            <td><span class="status {{ item.evidence_display.css_class }}">{{ item.evidence_display.label }}</span></td>
+                            <td>{{ item.updated_at|date:"d M Y H:i" }}</td>
+                            <td>{% if item.transcript_saved %}<a class="table-action-link" href="{% url 'output_detail' item.session_code %}">Review</a>{% else %}<a class="table-action-link" href="{% url 'stakeholder_detail' stakeholder.participant_id %}?session={{ item.session_code|urlencode }}">View</a>{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endif %}
 {% endblock %}

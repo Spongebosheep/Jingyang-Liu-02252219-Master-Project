@@ -1,0 +1,107 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Add stakeholder record</h1>
+        <p class="overview-kicker">
+            Create a coded stakeholder record for the research workflow. An interview session is created separately.
+        </p>
+    </div>
+
+    <a class="button-secondary" href="{% url 'stakeholder_list' %}">
+        Back to stakeholder records
+    </a>
+</div>
+
+<div class="card stakeholder-form-card">
+    <h2>Stakeholder details</h2>
+    <p class="muted stakeholder-form-intro">
+        Use a coded Participant ID rather than a participant's name. Fields marked * are required.
+    </p>
+
+    <form method="post" class="stakeholder-form" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="form-error" role="alert">
+                {% for error in form.non_field_errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="stakeholder-form-grid">
+            <div class="stakeholder-form-field">
+                <label for="{{ form.participant_id.id_for_label }}">
+                    {{ form.participant_id.label }} *
+                </label>
+                {{ form.participant_id }}
+                <div class="field-help">A unique coded ID such as P02.</div>
+                {% if form.participant_id.errors %}
+                    <div class="field-errors" role="alert">
+                        {% for error in form.participant_id.errors %}<div>{{ error }}</div>{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="stakeholder-form-field">
+                <label for="{{ form.stakeholder_group.id_for_label }}">
+                    {{ form.stakeholder_group.label }} *
+                </label>
+                {{ form.stakeholder_group }}
+                <div class="field-help">The stakeholder perspective represented by this record.</div>
+                {% if form.stakeholder_group.errors %}
+                    <div class="field-errors" role="alert">
+                        {% for error in form.stakeholder_group.errors %}<div>{{ error }}</div>{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="stakeholder-form-field">
+                <label for="{{ form.role.id_for_label }}">
+                    {{ form.role.label }} *
+                </label>
+                {{ form.role }}
+                <div class="field-help">The person's role in this research workflow.</div>
+                {% if form.role.errors %}
+                    <div class="field-errors" role="alert">
+                        {% for error in form.role.errors %}<div>{{ error }}</div>{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="stakeholder-form-field">
+                <label for="{{ form.assigned_protocol.id_for_label }}">
+                    {{ form.assigned_protocol.label }}
+                </label>
+                {{ form.assigned_protocol }}
+                <div class="field-help">Optional at this stage; the session will be created separately.</div>
+                {% if form.assigned_protocol.errors %}
+                    <div class="field-errors" role="alert">
+                        {% for error in form.assigned_protocol.errors %}<div>{{ error }}</div>{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                <label for="{{ form.notes.id_for_label }}">
+                    {{ form.notes.label }}
+                </label>
+                {{ form.notes }}
+                <div class="field-help">Optional internal context; this is not shown in the participant interview.</div>
+                {% if form.notes.errors %}
+                    <div class="field-errors" role="alert">
+                        {% for error in form.notes.errors %}<div>{{ error }}</div>{% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="stakeholder-form-actions">
+            <a class="button-secondary" href="{% url 'stakeholder_list' %}">Cancel</a>
+            <button class="button" type="submit">Create stakeholder record</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

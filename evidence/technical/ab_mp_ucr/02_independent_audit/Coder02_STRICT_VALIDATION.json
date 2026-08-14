@@ -1,0 +1,469 @@
+{
+  "schema": "purrstone-v10.2-formula-independent-workbook-validation-1.0",
+  "mode": "phase1-return",
+  "workbook": "Coder02_PurrStone_v10_2_Phase1_Coding_Workbook(2).xlsx",
+  "workbook_sha256": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec",
+  "coder_id_expected": "Coder02",
+  "error_count": 73,
+  "warning_count": 0,
+  "status": "FAIL",
+  "errors": [
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T6",
+      "observed": 46243.6266087963,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T7",
+      "observed": 46243.630520833336,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T8",
+      "observed": 46243.63438657408,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T9",
+      "observed": 46243.637395833335,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T10",
+      "observed": 46243.64040509259,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T11",
+      "observed": 46243.644259259265,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T12",
+      "observed": 46243.64716435185,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T13",
+      "observed": 46243.650347222225,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T14",
+      "observed": 46243.65354166667,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "AB_TIMESTAMP",
+      "location": "A-B Coding!T15",
+      "observed": 46243.657430555555,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J6",
+      "observed": 46243.658217592594,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J7",
+      "observed": 46243.66005787037,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J8",
+      "observed": 46243.66105324074,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J9",
+      "observed": 46243.66195601852,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J10",
+      "observed": 46243.66289351852,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J11",
+      "observed": 46243.664710648154,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J12",
+      "observed": 46243.665856481486,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J13",
+      "observed": 46243.66814814815,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "MP_TIMESTAMP",
+      "location": "MP Coding!J14",
+      "observed": 46243.66920138889,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G6",
+      "observed": "46243.670370370375",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G7",
+      "observed": "46243.670694444445",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G8",
+      "observed": "46243.67112268519",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G9",
+      "observed": "46243.6715625",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G10",
+      "observed": "46243.671851851854",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G11",
+      "observed": "46243.672314814816",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G18",
+      "observed": "46243.67334490741",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G19",
+      "observed": "46243.673784722225",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G20",
+      "observed": "46243.67423611111",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G21",
+      "observed": "46243.6746875",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G22",
+      "observed": "46243.67505787037",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G23",
+      "observed": "46243.675347222226",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G24",
+      "observed": "46243.67568287037",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G30",
+      "observed": "46243.67694444444",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G31",
+      "observed": "46243.6772337963",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G32",
+      "observed": "46243.67765046297",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G33",
+      "observed": "46243.67802083334",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G34",
+      "observed": "46243.678298611114",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G35",
+      "observed": "46243.67863425926",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G42",
+      "observed": "46243.67961805556",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G43",
+      "observed": "46243.67993055556",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G44",
+      "observed": "46243.680335648154",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G45",
+      "observed": "46243.680659722224",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G46",
+      "observed": "46243.681018518524",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G47",
+      "observed": "46243.68152777778",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G48",
+      "observed": "46243.681875",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G54",
+      "observed": "46243.68303240741",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G55",
+      "observed": "46243.68341435186",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G56",
+      "observed": "46243.68392361111",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G57",
+      "observed": "46243.684328703705",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G58",
+      "observed": "46243.68467592593",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G59",
+      "observed": "46243.685057870374",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G66",
+      "observed": "46243.68614583334",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G67",
+      "observed": "46243.68658564815",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G68",
+      "observed": "46243.686944444446",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G69",
+      "observed": "46243.68734953704",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G70",
+      "observed": "46243.68763888889",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G71",
+      "observed": "46243.68813657408",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G78",
+      "observed": "46243.68917824074",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G79",
+      "observed": "46243.68959490741",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G80",
+      "observed": "46243.69005787037",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G81",
+      "observed": "46243.69054398149",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G82",
+      "observed": "46243.69094907408",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G90",
+      "observed": "46243.69211805556",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G91",
+      "observed": "46243.692453703705",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G92",
+      "observed": "46243.692812500005",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G93",
+      "observed": "46243.69328703704",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G102",
+      "observed": "46243.696064814816",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G103",
+      "observed": "46243.69634259259",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G104",
+      "observed": "46243.696643518524",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G105",
+      "observed": "46243.697106481486",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "UCR_TIMESTAMP",
+      "location": "UCR Segmentation!G106",
+      "observed": "46243.69752314815",
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "CODER_TIMESTAMP",
+      "location": "Start Here!B13",
+      "observed": 46243.622766203705,
+      "expected": "ISO-8601 with timezone"
+    },
+    {
+      "code": "CODER_TIMESTAMP",
+      "location": "Start Here!B14",
+      "observed": 46243.69851851852,
+      "expected": "ISO-8601 with timezone"
+    }
+  ],
+  "warnings": [],
+  "q2_applicability_oracle": {
+    "revision": "q2-missing-information-probe-oracle-2026-08-09-r1",
+    "scored_pair_ids": [
+      "BP-002",
+      "BP-003",
+      "BP-007",
+      "BP-008"
+    ],
+    "pair_level_na_ids": [
+      "BP-001",
+      "BP-004",
+      "BP-005",
+      "BP-006",
+      "BP-009",
+      "BP-010"
+    ]
+  },
+  "validator_boundary": "This validator reads source cell values/formulas, independently asserts the Q2 applicability oracle, and does not trust cached Excel PASS cells."
+}

@@ -1,0 +1,1224 @@
+PurrStone v10.2 post-run offline QA
+Source: frozen source archive at commit 35c930d92119d47560879496902e928daf20ac02
+Scope: read-only verification in an isolated copy; Formal 32 was not rerun
+
+$ sha256sum -c SOURCE_MANIFEST.sha256
+./.gitignore: OK
+./AGENTS.md: OK
+./README.md: OK
+./V10_1_HANDOFF.md: OK
+./config/__init__.py: OK
+./config/asgi.py: OK
+./config/settings.py: OK
+./config/urls.py: OK
+./config/wsgi.py: OK
+./docs/V10_1_EXECUTION_CONTRACT.md: OK
+./docs/V10_2_EXECUTION_CONTRACT.md: OK
+./docs/V10_2_METHOD_AMENDMENT.md: OK
+./docs/live_openai_e2e_check.md: OK
+./docs/scripted_test_evidence.md: OK
+./evaluation/.gitignore: OK
+./evaluation/COMPARISON_FREEZE_V8_STATUS.md: OK
+./evaluation/COMPARISON_FREEZE_V9_STATUS.md: OK
+./evaluation/EXPORTER_STATUS.md: OK
+./evaluation/METRIC_CALCULATOR_STATUS.md: OK
+./evaluation/MVP_RUNNER_STATUS.md: OK
+./evaluation/OVERALL_REVIEW_COMPLETION_STATUS.md: OK
+./evaluation/PROMPT_BASELINE_STATUS.md: OK
+./evaluation/README.md: OK
+./evaluation/RUN_VALIDATOR_STATUS.md: OK
+./evaluation/STEP3_STATUS.md: OK
+./evaluation/V10_1_BASELINE_RELIABILITY_STATUS.md: OK
+./evaluation/__init__.py: OK
+./evaluation/baseline_adapter.py: OK
+./evaluation/baseline_development_gate.py: OK
+./evaluation/baseline_runner.py: OK
+./evaluation/django_tests/__init__.py: OK
+./evaluation/django_tests/test_baseline_development_gate.py: OK
+./evaluation/django_tests/test_baseline_runner.py: OK
+./evaluation/django_tests/test_exporter.py: OK
+./evaluation/django_tests/test_formal_evaluation_plan.py: OK
+./evaluation/django_tests/test_metric_calculator.py: OK
+./evaluation/django_tests/test_mvp_runner.py: OK
+./evaluation/django_tests/test_run_validator.py: OK
+./evaluation/execution_plan.py: OK
+./evaluation/exporter.py: OK
+./evaluation/formal_evaluation_plan.py: OK
+./evaluation/metric_calculator.py: OK
+./evaluation/mvp_runner.py: OK
+./evaluation/prompts/prompt_only_baseline.v1.txt: OK
+./evaluation/prompts/prompt_only_baseline.v2.txt: OK
+./evaluation/prompts/prompt_only_baseline.v3.txt: OK
+./evaluation/quality_review.py: OK
+./evaluation/run_validator.py: OK
+./evaluation/schemas.py: OK
+./evaluation/specs/baseline_contract.v1.json: OK
+./evaluation/specs/baseline_contract.v2.json: OK
+./evaluation/specs/export_bundle_schema.v1.json: OK
+./evaluation/specs/export_bundle_schema.v2.json: OK
+./evaluation/specs/freeze_manifest.v1.json: OK
+./evaluation/specs/freeze_manifest.v10.json: OK
+./evaluation/specs/freeze_manifest.v10_1.json: OK
+./evaluation/specs/freeze_manifest.v10_2.json: OK
+./evaluation/specs/freeze_manifest.v2.json: OK
+./evaluation/specs/freeze_manifest.v3.json: OK
+./evaluation/specs/freeze_manifest.v4.json: OK
+./evaluation/specs/freeze_manifest.v5.json: OK
+./evaluation/specs/freeze_manifest.v6.json: OK
+./evaluation/specs/freeze_manifest.v7.json: OK
+./evaluation/specs/freeze_manifest.v8.json: OK
+./evaluation/specs/freeze_manifest.v9.json: OK
+./evaluation/specs/metric_calculation_schema.v1.json: OK
+./evaluation/specs/metric_calculation_schema.v2.json: OK
+./evaluation/specs/metrics.v1.json: OK
+./evaluation/specs/metrics.v2.json: OK
+./evaluation/specs/metrics.v3.json: OK
+./evaluation/specs/prompt_only_output_schema.v1.json: OK
+./evaluation/specs/prompt_only_output_schema.v2.json: OK
+./evaluation/specs/quality_review.v1.json: OK
+./evaluation/specs/quality_review.v2.json: OK
+./evaluation/specs/review_completion.v1.json: OK
+./evaluation/specs/review_completion.v2.json: OK
+./evaluation/specs/scenarios.v1.json: OK
+./evaluation/specs/scenarios.v2.json: OK
+./evaluation/specs/scenarios.v3.json: OK
+./evaluation/specs/scenarios.v4.json: OK
+./evaluation/tests/__init__.py: OK
+./evaluation/tests/test_baseline_adapter_v3.py: OK
+./evaluation/tests/test_execution_plan.py: OK
+./evaluation/tests/test_quality_review_workflow.py: OK
+./evaluation/tests/test_specifications.py: OK
+./evaluation/validate_specs.py: OK
+./interviews/__init__.py: OK
+./interviews/admin.py: OK
+./interviews/agent.py: OK
+./interviews/apps.py: OK
+./interviews/consent.py: OK
+./interviews/demo_reset.py: OK
+./interviews/digest.py: OK
+./interviews/forms.py: OK
+./interviews/langgraph_agent.py: OK
+./interviews/management/__init__.py: OK
+./interviews/management/commands/__init__.py: OK
+./interviews/management/commands/calculate_evaluation_metrics.py: OK
+./interviews/management/commands/export_evaluation_bundle.py: OK
+./interviews/management/commands/generate_blinded_quality_review.py: OK
+./interviews/management/commands/import_coder_submission.py: OK
+./interviews/management/commands/report_manual_metric_consensus.py: OK
+./interviews/management/commands/report_quality_consensus.py: OK
+./interviews/management/commands/reset_demo_session.py: OK
+./interviews/management/commands/reset_mvp.py: OK
+./interviews/management/commands/run_baseline_development_gate.py: OK
+./interviews/management/commands/run_formal_evaluation_plan.py: OK
+./interviews/management/commands/run_mvp_scenarios.py: OK
+./interviews/management/commands/run_openai_e2e_check.py: OK
+./interviews/management/commands/run_prompt_baseline.py: OK
+./interviews/management/commands/seed_mvp.py: OK
+./interviews/management/commands/validate_evaluation_runs.py: OK
+./interviews/migrations/0001_initial.py: OK
+./interviews/migrations/0002_interviewsession_researcher_note.py: OK
+./interviews/migrations/0003_agentdecision.py: OK
+./interviews/migrations/0004_reviewdecision_limitations_and_missing_information_visible.py: OK
+./interviews/migrations/0005_interviewsession_access_token.py: OK
+./interviews/migrations/0006_protocol_versioning.py: OK
+./interviews/migrations/0007_structured_digest_and_reviewer_identity.py: OK
+./interviews/migrations/0008_agentdecision_covered_information.py: OK
+./interviews/migrations/0009_rename_final_review_checks.py: OK
+./interviews/migrations/0010_protocol_coverage_and_consent_snapshot.py: OK
+./interviews/migrations/__init__.py: OK
+./interviews/models.py: OK
+./interviews/protocol_snapshot.py: OK
+./interviews/release_conditions.py: OK
+./interviews/review_audit.py: OK
+./interviews/summary.py: OK
+./interviews/tests.py: OK
+./interviews/views.py: OK
+./interviews/workflow_status.py: OK
+./manage.py: OK
+./requirements.txt: OK
+./static/interviews/img/purrstone-logo.png: OK
+./templates/interviews/base.html: OK
+./templates/interviews/consent.html: OK
+./templates/interviews/evidence_record.html: OK
+./templates/interviews/interview_completed.html: OK
+./templates/interviews/interview_session.html: OK
+./templates/interviews/login.html: OK
+./templates/interviews/output_detail.html: OK
+./templates/interviews/output_quality.html: OK
+./templates/interviews/overview.html: OK
+./templates/interviews/participant_base.html: OK
+./templates/interviews/protocol_detail.html: OK
+./templates/interviews/protocol_form.html: OK
+./templates/interviews/protocol_list.html: OK
+./templates/interviews/researcher_interview_sessions.html: OK
+./templates/interviews/session_form.html: OK
+./templates/interviews/stakeholder_detail.html: OK
+./templates/interviews/stakeholder_form.html: OK
+./templates/interviews/stakeholder_list.html: OK
+./templates/interviews/stakeholder_record_detail.html: OK
+
+$ python -m evaluation.validate_specs
+{
+  "contracts": {
+    "baseline_contract": {
+      "path": "specs/baseline_contract.v2.json",
+      "sha256": "abda4c9395988bf7616cde45ad4a8c776007009dfee98a1d4233b006319738dc"
+    },
+    "baseline_output_schema": {
+      "path": "specs/prompt_only_output_schema.v2.json",
+      "sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0"
+    },
+    "export_bundle_schema": {
+      "path": "specs/export_bundle_schema.v2.json",
+      "sha256": "713f5bd4e1721ee826f9d4a619b01cfe8b8786c62dd3bd99d96a771da14e50d9"
+    },
+    "freeze_manifest": {
+      "path": "specs/freeze_manifest.v10_2.json",
+      "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+    },
+    "metric_calculation_schema": {
+      "path": "specs/metric_calculation_schema.v2.json",
+      "sha256": "1d762c63111c3057596feb5de5dd9e48dfdaeb997d1162c35899085cc856de11"
+    },
+    "metrics": {
+      "path": "specs/metrics.v3.json",
+      "sha256": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4"
+    },
+    "quality_review": {
+      "path": "specs/quality_review.v2.json",
+      "sha256": "221a50d6dbc8bc15ccb65898ab694a8cc2d72f13a821d54a05bcb133f6809017"
+    },
+    "review_completion": {
+      "path": "specs/review_completion.v2.json",
+      "sha256": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72"
+    },
+    "scenarios": {
+      "path": "specs/scenarios.v4.json",
+      "sha256": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6"
+    }
+  },
+  "formal_run": false,
+  "status": "PASS"
+}
+
+$ python manage.py check
+System check identified no issues (0 silenced).
+
+$ python manage.py makemigrations --check --dry-run
+No changes detected
+
+$ python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, interviews, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying interviews.0001_initial... OK
+  Applying interviews.0002_interviewsession_researcher_note... OK
+  Applying interviews.0003_agentdecision... OK
+  Applying interviews.0004_reviewdecision_limitations_and_missing_information_visible... OK
+  Applying interviews.0005_interviewsession_access_token... OK
+  Applying interviews.0006_protocol_versioning... OK
+  Applying interviews.0007_structured_digest_and_reviewer_identity... OK
+  Applying interviews.0008_agentdecision_covered_information... OK
+  Applying interviews.0009_rename_final_review_checks... OK
+  Applying interviews.0010_protocol_coverage_and_consent_snapshot... OK
+  Applying sessions.0001_initial... OK
+
+$ python manage.py test
+Creating test database for alias 'default'...
+.E..EFEEEEEEEEEEEEEEEEEE.F.EEEEEEEEEEEEE.............................................................................................................................................................
+======================================================================
+ERROR: test_command_completes_s1_to_s8_only_as_mock_dry_runs (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_command_completes_s1_to_s8_only_as_mock_dry_runs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 318, in test_command_completes_s1_to_s8_only_as_mock_dry_runs
+    call_command(
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 194, in call_command
+    return command.execute(*args, **defaults)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/interviews/management/commands/run_prompt_baseline.py", line 150, in handle
+    raise CommandError(
+django.core.management.base.CommandError: 8 baseline scenario attempt(s) failed. Every failure record was retained at the path shown above.
+
+======================================================================
+ERROR: test_independent_validator_accepts_mock_structure_but_not_as_formal_evidence (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_independent_validator_accepts_mock_structure_but_not_as_formal_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 342, in test_independent_validator_accepts_mock_structure_but_not_as_formal_evidence
+    runner, _result = self.run_mock_scenario("S6", Path(directory))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 79, in run_mock_scenario
+    return runner, runner.run()
+                   ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_parse_failure_retains_raw_response_without_semantic_repair (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_parse_failure_retains_raw_response_without_semantic_repair)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 231, in test_parse_failure_retains_raw_response_without_semantic_repair
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_researcher_edit_uses_same_authenticated_review_layer (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_researcher_edit_uses_same_authenticated_review_layer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 147, in test_researcher_edit_uses_same_authenticated_review_layer
+    _runner, result = self.run_mock_scenario("S7", Path(directory))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 79, in run_mock_scenario
+    return runner, runner.run()
+                   ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s8_includes_before_exclude_and_resolves_every_candidate (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_s8_includes_before_exclude_and_resolves_every_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 191, in test_s8_includes_before_exclude_and_resolves_every_candidate
+    _runner, result = self.run_mock_scenario("S8", Path(directory))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 79, in run_mock_scenario
+    return runner, runner.run()
+                   ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_stop_uses_adapter_then_public_post_stop_guard_and_rolls_back (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_stop_uses_adapter_then_public_post_stop_guard_and_rolls_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 104, in test_stop_uses_adapter_then_public_post_stop_guard_and_rolls_back
+    runner, result = self.run_mock_scenario("S5", Path(directory))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 79, in run_mock_scenario
+    return runner, runner.run()
+                   ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_validator_rejects_tampered_raw_baseline_response (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_validator_rejects_tampered_raw_baseline_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 352, in test_validator_rejects_tampered_raw_baseline_response
+    runner, result = self.run_mock_scenario("S1", Path(directory))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 79, in run_mock_scenario
+    return runner, runner.run()
+                   ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_append_only_export_creates_a_new_directory_each_time (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_append_only_export_creates_a_new_directory_each_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 306, in test_append_only_export_creates_a_new_directory_each_time
+    runner = self.run_mvp("S1", root / "runs")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 92, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_failed_run_and_raw_parse_failure_are_exported_without_fabricated_result (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_failed_run_and_raw_parse_failure_are_exported_without_fabricated_result)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 230, in test_failed_run_and_raw_parse_failure_are_exported_without_fabricated_result
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_management_command_exports_without_starting_metrics_or_human_coding (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_management_command_exports_without_starting_metrics_or_human_coding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 326, in test_management_command_exports_without_starting_metrics_or_human_coding
+    runner = self.run_mvp("S1", root / "runs")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 92, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_pair_integrity_exposes_a_model_mismatch (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_pair_integrity_exposes_a_model_mismatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 200, in test_pair_integrity_exposes_a_model_mismatch
+    mvp = self.run_mvp("S1", root / "runs" / "mvp")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 92, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_stale_validator_is_retained_but_cannot_confer_status_or_eligibility (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_stale_validator_is_retained_but_cannot_confer_status_or_eligibility)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 272, in test_stale_validator_is_retained_but_cannot_confer_status_or_eligibility
+    runner = self.run_mvp("S1", root / "runs")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 92, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_unified_export_preserves_paired_raw_records_and_writes_frozen_tables (evaluation.django_tests.test_exporter.EvaluationBundleExporterTests.test_unified_export_preserves_paired_raw_records_and_writes_frozen_tables)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 117, in test_unified_export_preserves_paired_raw_records_and_writes_frozen_tables
+    mvp = self.run_mvp("S7", run_root / "mvp")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_exporter.py", line 92, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_all_s1_to_s8_pair_without_becoming_formal_evidence (evaluation.django_tests.test_metric_calculator.EvaluationMetricCalculatorTests.test_all_s1_to_s8_pair_without_becoming_formal_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 345, in test_all_s1_to_s8_pair_without_becoming_formal_evidence
+    _runners, _export_manifest, export_directory = self.export_runs(
+                                                   ^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 109, in export_runs
+    runners.append(self.run_mvp(scenario_id, root / "runs" / "mvp"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 87, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_calculates_seven_automatic_metrics_and_keeps_ucr_mp_pending (evaluation.django_tests.test_metric_calculator.EvaluationMetricCalculatorTests.test_calculates_seven_automatic_metrics_and_keeps_ucr_mp_pending)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 126, in test_calculates_seven_automatic_metrics_and_keeps_ucr_mp_pending
+    runners, export_manifest, export_directory = self.export_runs(root)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 109, in export_runs
+    runners.append(self.run_mvp(scenario_id, root / "runs" / "mvp"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 87, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_calculation_is_append_only_and_command_keeps_human_work_pending (evaluation.django_tests.test_metric_calculator.EvaluationMetricCalculatorTests.test_calculation_is_append_only_and_command_keeps_human_work_pending)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 313, in test_calculation_is_append_only_and_command_keeps_human_work_pending
+    _runners, _manifest, export_directory = self.export_runs(
+                                            ^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 109, in export_runs
+    runners.append(self.run_mvp(scenario_id, root / "runs" / "mvp"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 87, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_tampered_export_is_rejected_and_failed_attempt_is_retained (evaluation.django_tests.test_metric_calculator.EvaluationMetricCalculatorTests.test_tampered_export_is_rejected_and_failed_attempt_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 287, in test_tampered_export_is_rejected_and_failed_attempt_is_retained
+    _runners, _manifest, export_directory = self.export_runs(
+                                            ^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 109, in export_runs
+    runners.append(self.run_mvp(scenario_id, root / "runs" / "mvp"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 87, in run_mvp
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_wrong_observed_action_is_reported_not_repaired (evaluation.django_tests.test_metric_calculator.EvaluationMetricCalculatorTests.test_wrong_observed_action_is_reported_not_repaired)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 248, in test_wrong_observed_action_is_reported_not_repaired
+    runner = self.run_baseline("S1", root / "runs")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_metric_calculator.py", line 98, in run_baseline
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 361, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 397, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 129, in _git
+    raise BaselinePreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_all_s1_to_s8_complete_one_infrastructure_dry_run (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_all_s1_to_s8_complete_one_infrastructure_dry_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 336, in test_all_s1_to_s8_complete_one_infrastructure_dry_run
+    call_command(
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 194, in call_command
+    return command.execute(*args, **defaults)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/interviews/management/commands/run_mvp_scenarios.py", line 126, in handle
+    raise CommandError(
+django.core.management.base.CommandError: 8 MVP scenario attempt(s) failed. Every failure record was retained at the path shown above.
+
+======================================================================
+ERROR: test_command_retains_non_adjudicated_dry_run_record (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_command_retains_non_adjudicated_dry_run_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 309, in test_command_retains_non_adjudicated_dry_run_record
+    call_command(
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 194, in call_command
+    return command.execute(*args, **defaults)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/.venv/lib/python3.12/site-packages/django/core/management/base.py", line 464, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/interviews/management/commands/run_mvp_scenarios.py", line 126, in handle
+    raise CommandError(
+django.core.management.base.CommandError: 1 MVP scenario attempt(s) failed. Every failure record was retained at the path shown above.
+
+======================================================================
+ERROR: test_researcher_edit_runs_through_authenticated_review_view (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_researcher_edit_runs_through_authenticated_review_view)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 154, in test_researcher_edit_runs_through_authenticated_review_view
+    _runner, result = self.run_dry_scenario("S7", Path(directory))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 86, in run_dry_scenario
+    result = runner.run()
+             ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s8_includes_before_exclude_and_resolves_every_candidate (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_s8_includes_before_exclude_and_resolves_every_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 212, in test_s8_includes_before_exclude_and_resolves_every_candidate
+    _runner, result = self.run_dry_scenario("S8", Path(directory))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 86, in run_dry_scenario
+    result = runner.run()
+             ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_stop_scenario_uses_public_http_path_and_rolls_back (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_stop_scenario_uses_public_http_path_and_rolls_back)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 93, in test_stop_scenario_uses_public_http_path_and_rolls_back
+    runner, result = self.run_dry_scenario("S5", Path(directory))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 86, in run_dry_scenario
+    result = runner.run()
+             ^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_all_s1_to_s8_match_the_automatic_oracle_in_dry_run (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_all_s1_to_s8_match_the_automatic_oracle_in_dry_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 101, in test_all_s1_to_s8_match_the_automatic_oracle_in_dry_run
+    runner = self.run_scenario(f"S{index}", root)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_formal_evidence_eligibility_cannot_be_faked_on_dry_record (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_formal_evidence_eligibility_cannot_be_faked_on_dry_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 196, in test_formal_evidence_eligibility_cannot_be_faked_on_dry_record
+    runner = self.run_scenario("S1", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_management_command_validates_saved_record (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_management_command_validates_saved_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 336, in test_management_command_validates_saved_record
+    runner = self.run_scenario("S1", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s5_validator_requires_real_post_stop_zero_record_probe (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_s5_validator_requires_real_post_stop_zero_record_probe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 224, in test_s5_validator_requires_real_post_stop_zero_record_probe
+    runner = self.run_scenario("S5", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s6_validator_rejects_boundary_message_as_evidence_source (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_s6_validator_rejects_boundary_message_as_evidence_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 245, in test_s6_validator_rejects_boundary_message_as_evidence_source
+    runner = self.run_scenario("S6", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s7_validator_requires_the_frozen_completed_overall_review_event (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_s7_validator_requires_the_frozen_completed_overall_review_event)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 257, in test_s7_validator_requires_the_frozen_completed_overall_review_event
+    runner = self.run_scenario("S7", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_s8_validator_rejects_a_missing_or_reordered_completion_action (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_s8_validator_rejects_a_missing_or_reordered_completion_action)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 287, in test_s8_validator_rejects_a_missing_or_reordered_completion_action
+    runner = self.run_scenario("S8", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_validator_is_append_only_and_does_not_change_runner_record (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_validator_is_append_only_and_does_not_change_runner_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 82, in test_validator_is_append_only_and_does_not_change_runner_record
+    runner = self.run_scenario("S1", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_validator_rejects_missing_cross_session_agent_and_cross_topic_sources (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_validator_rejects_missing_cross_session_agent_and_cross_topic_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 129, in test_validator_rejects_missing_cross_session_agent_and_cross_topic_sources
+    runner = self.run_scenario("S1", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+ERROR: test_validator_rejects_tampered_action_without_repair (evaluation.django_tests.test_run_validator.EvaluationRunValidatorTests.test_validator_rejects_tampered_action_without_repair)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 176, in test_validator_rejects_tampered_action_without_repair
+    runner = self.run_scenario("S1", Path(directory))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_run_validator.py", line 73, in run_scenario
+    runner.run()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 346, in run
+    self._preflight()
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 387, in _preflight
+    tracked_changes = _git(
+                      ^^^^^
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 130, in _git
+    raise RunnerPreflightError(f"Cannot record Git identity: {error}") from error
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+======================================================================
+FAIL: test_internally_inconsistent_stop_output_is_retained_as_parse_error (evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_internally_inconsistent_stop_output_is_retained_as_parse_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/baseline_runner.py", line 121, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+evaluation.baseline_runner.BaselinePreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_baseline_runner.py", line 300, in test_internally_inconsistent_stop_output_is_retained_as_parse_error
+    with self.assertRaisesMessage(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+AssertionError: 'Stop control must remain not_assessed' not found in "Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128."
+
+======================================================================
+FAIL: test_formal_run_is_blocked_without_api_key_and_failure_is_retained (evaluation.django_tests.test_mvp_runner.MvpScenarioRunnerTests.test_formal_run_is_blocked_without_api_key_and_failure_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/mvp_runner.py", line 122, in _git
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+The above exception was the direct cause of the following exception:
+
+evaluation.mvp_runner.RunnerPreflightError: Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/purrstone_v10_qa_20260809/source/evaluation/django_tests/test_mvp_runner.py", line 253, in test_formal_run_is_blocked_without_api_key_and_failure_is_retained
+    with self.assertRaisesMessage(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+AssertionError: 'OPENAI_API_KEY' not found in "Cannot record Git identity: Command '['git', 'status', '--porcelain', '--untracked-files=no']' returned non-zero exit status 128."
+
+----------------------------------------------------------------------
+Ran 197 tests in 8.348s
+
+FAILED (failures=2, errors=33)
+Destroying test database for alias 'default'...
+Found 197 test(s).
+System check identified no issues (0 silenced).
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01

@@ -1,0 +1,33 @@
+﻿pair_key,condition,scenario_id,repetition,run_id,execution_status,validation_status,formal_evidence_eligible,evidence_record_status,raw_model_call_count,error_type,error_message
+S1-R01,mvp,S1,1,mvp-s1-r01-20260809T044219619644Z-bbcc4a8d,completed,PASS,true,copied,5,,
+S1-R01,prompt_only_baseline,S1,1,baseline-s1-r01-20260809T044234949628Z-ef0f7b4b,completed,PASS,true,copied,6,,
+S1-R02,mvp,S1,2,mvp-s1-r02-20260809T044249800598Z-7548174a,completed,PASS,true,copied,5,,
+S1-R02,prompt_only_baseline,S1,2,baseline-s1-r02-20260809T044305579495Z-d5c9e638,execution_error,FAIL,false,not_recorded,4,BaselineParseError,Covered output must advance and must not report missing information.
+S1-R03,mvp,S1,3,mvp-s1-r03-20260809T044315654585Z-951ad86d,completed,PASS,true,copied,5,,
+S1-R03,prompt_only_baseline,S1,3,baseline-s1-r03-20260809T044329454524Z-e2ffb48f,completed,PASS,true,copied,6,,
+S2-R01,mvp,S2,1,mvp-s2-r01-20260809T044345576641Z-9de1baaf,completed,PASS,true,copied,7,,
+S2-R01,prompt_only_baseline,S2,1,baseline-s2-r01-20260809T044402351202Z-30daf9e4,completed,PASS,true,copied,7,,
+S2-R02,mvp,S2,2,mvp-s2-r02-20260809T044422632918Z-4975ce39,completed,PASS,true,copied,7,,
+S2-R02,prompt_only_baseline,S2,2,baseline-s2-r02-20260809T044439101928Z-e1dc6bd9,completed,PASS,true,copied,7,,
+S2-R03,mvp,S2,3,mvp-s2-r03-20260809T044459081130Z-8bd5020d,completed,PASS,true,copied,7,,
+S2-R03,prompt_only_baseline,S2,3,baseline-s2-r03-20260809T044519502604Z-a35f5e71,execution_error,FAIL,false,not_recorded,5,BaselineParseError,Covered output must advance and must not report missing information.
+S3-R01,mvp,S3,1,mvp-s3-r01-20260809T044532259075Z-54cf8d6b,completed,PASS,true,copied,7,,
+S3-R01,prompt_only_baseline,S3,1,baseline-s3-r01-20260809T044550535264Z-2101aa13,completed,PASS,true,copied,7,,
+S3-R02,mvp,S3,2,mvp-s3-r02-20260809T044610299137Z-92d1b491,completed,PASS,true,copied,7,,
+S3-R02,prompt_only_baseline,S3,2,baseline-s3-r02-20260809T044626088142Z-d75aa8e0,execution_error,FAIL,false,not_recorded,7,BaselineExecutionError,Evidence Record returned HTTP 404; expected [200].
+S3-R03,mvp,S3,3,mvp-s3-r03-20260809T044644566071Z-f2929725,completed,PASS,true,copied,7,,
+S3-R03,prompt_only_baseline,S3,3,baseline-s3-r03-20260809T044702095354Z-87f589cd,completed,PASS,true,copied,7,,
+S4-R01,mvp,S4,1,mvp-s4-r01-20260809T044721031920Z-f261fef8,completed,PASS,true,copied,4,,
+S4-R01,prompt_only_baseline,S4,1,baseline-s4-r01-20260809T044731999786Z-7df64640,completed,PASS,true,copied,6,,
+S5-R01,mvp,S5,1,mvp-s5-r01-20260809T044747093951Z-c8928576,completed,PASS,true,copied,1,,
+S5-R01,prompt_only_baseline,S5,1,baseline-s5-r01-20260809T044749755593Z-470c6233,completed,PASS,true,copied,3,,
+S6-R01,mvp,S6,1,mvp-s6-r01-20260809T044755729212Z-e4f3f8e0,completed,PASS,true,copied,5,,
+S6-R01,prompt_only_baseline,S6,1,baseline-s6-r01-20260809T044808810611Z-5693f829,completed,PASS,true,copied,7,,
+S6-R02,mvp,S6,2,mvp-s6-r02-20260809T044827706684Z-b4cba446,completed,PASS,true,copied,5,,
+S6-R02,prompt_only_baseline,S6,2,baseline-s6-r02-20260809T044840803208Z-f83441dc,execution_error,FAIL,false,not_recorded,5,BaselineParseError,Covered output must advance and must not report missing information.
+S6-R03,mvp,S6,3,mvp-s6-r03-20260809T044852685093Z-6ecc7db4,completed,PASS,true,copied,5,,
+S6-R03,prompt_only_baseline,S6,3,baseline-s6-r03-20260809T044906555168Z-195c3ef6,completed,PASS,true,copied,7,,
+S7-R01,mvp,S7,1,mvp-s7-r01-20260809T044924941567Z-e1942d7e,completed,PASS,true,copied,5,,
+S7-R01,prompt_only_baseline,S7,1,baseline-s7-r01-20260809T044939508018Z-2c90f523,execution_error,FAIL,false,not_recorded,6,DoesNotExist,StructuredDigestItem matching query does not exist.
+S8-R01,mvp,S8,1,mvp-s8-r01-20260809T044954794256Z-fc76b8d6,completed,PASS,true,copied,5,,
+S8-R01,prompt_only_baseline,S8,1,baseline-s8-r01-20260809T045010670387Z-e293132a,execution_error,FAIL,false,not_recorded,6,DoesNotExist,StructuredDigestItem matching query does not exist.

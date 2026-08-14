@@ -1,21 +1,41 @@
 import json
 import os
+import re
 from typing import Any, Dict, List, Optional, TypedDict
 
 from django.utils import timezone
 from langgraph.graph import END, StateGraph
 from openai import OpenAI
 
+from .digest import ensure_digest_items
 from .models import AgentDecision, InterviewSession, Message, Stakeholder
 
 
 MAX_PROBES_PER_SECTION = 1
+DEFAULT_OPENAI_MODEL = "gpt-4.1-mini"
+SENSORY_SECTION_CODES = {
+    "experience",
+    "triggers_signs",
+    "coping_support",
+    "support_concept_reaction",
+    "public_use_acceptability",
+}
+
+
+def get_openai_model() -> str:
+    """Return the explicitly configured MVP model without changing its role."""
+
+    return (
+        os.getenv("PURRSTONE_OPENAI_MODEL", DEFAULT_OPENAI_MODEL).strip()
+        or DEFAULT_OPENAI_MODEL
+    )
 
 
 class InterviewAgentState(TypedDict, total=False):
     session_id: int
     participant_message_id: Optional[int]
     reply_text: str
+    cumulative_reply_text: str
 
     current_section_index: int
     current_section_code: str
@@ -23,8 +43,13 @@ class InterviewAgentState(TypedDict, total=False):
     section_purpose: str
     primary_question: str
     required_information: List[str]
+    assessment_guidance: str
+    follow_up_focus: str
+    interaction_boundary: str
+    protocol_rules: List[str]
 
-    answer_status: str
+    coverage_assessment: str
+    participant_control: str
     covered_information: List[str]
     missing_information: List[str]
     evidence_quote: str
@@ -94,6 +119,33 @@ STOP_TERMS = [
 
 ]
 
+
+STOP_REQUEST_PATTERNS = [
+    re.compile(
+        r"^(?:please\s+)?stop(?:\s+(?:now|here|this|interview|the interview|this interview))?"
+        r"(?:\s+please)?[.!?]*$",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"^(?:please\s+)?(?:end|finish|quit)(?:\s+(?:now|here|this|interview|the interview|this interview))?"
+        r"(?:\s+please)?[.!?]*$",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\b(?:i|we)\s+(?:want|would like|need)\s+to\s+stop\b",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"\bi\s+(?:do not|don't)\s+want\s+to\s+continue\b",
+        re.IGNORECASE,
+    ),
+    re.compile(r"\bdo\s+not\s+continue\b", re.IGNORECASE),
+    re.compile(
+        r"\bcan\s+we\s+stop(?:\s+(?:now|here|this|the interview|this interview))?\b",
+        re.IGNORECASE,
+    ),
+]
+
 SKIP_TERMS = [
     "skip",
     "next question",
@@ -151,7 +203,7 @@ SAFETY_TERMS = [
     "can you prescribe",
     "prescribe medicine",
     "prescribe medication",
-    "medcine",
+    "medicine",
     "am i autistic",
     "do i have anxiety",
     "do i have a disorder",
@@ -174,11 +226,28 @@ def contains_any(text: str, terms: List[str]) -> bool:
     return any(term in lowered for term in terms)
 
 
+def detect_stop_request(text: str) -> bool:
+    """Detect an explicit request, not incidental narrative use of "stop".
+
+    Participant-page Stop still sends the exact control text ``stop``.  This
+    narrower detector also supports clear typed requests, while avoiding false
+    positives such as "the train stopped" or "I left at the next stop".
+    """
+
+    normalised = " ".join((text or "").split())
+    return any(pattern.search(normalised) for pattern in STOP_REQUEST_PATTERNS)
+
+
 def detect_control_or_safety_signal(state: InterviewAgentState) -> InterviewAgentState:
     text = state.get("reply_text", "")
 
-    state["stop_requested"] = contains_any(text, STOP_TERMS)
+    state["stop_requested"] = detect_stop_request(text)
     state["skip_requested"] = contains_any(text, SKIP_TERMS)
+    state["participant_control"] = AgentDecision.ParticipantControl.NONE
+    if state["stop_requested"]:
+        state["participant_control"] = AgentDecision.ParticipantControl.STOP
+    elif state["skip_requested"]:
+        state["participant_control"] = AgentDecision.ParticipantControl.SKIP
     state["safety_flag"] = contains_any(text, SAFETY_TERMS)
     state["discomfort_flag"] = contains_any(text, DISCOMFORT_TERMS)
     state["derailment_flag"] = contains_any(text, DERAILMENT_TERMS)
@@ -354,56 +423,105 @@ def word_count(text: str) -> int:
     return len((text or "").split())
 
 
-def assess_response_sufficiency_heuristic(state: InterviewAgentState) -> InterviewAgentState:
+def is_vague_response(text: str) -> bool:
+    """Treat a short vague-only reply differently from a cumulative answer."""
+
+    return word_count(text) <= 6 and contains_any(text, VAGUE_TERMS)
+
+
+FALLBACK_TERM_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "for",
+    "from",
+    "how",
+    "information",
+    "of",
+    "or",
+    "the",
+    "their",
+    "this",
+    "to",
+    "what",
+    "when",
+    "where",
+    "which",
+    "with",
+}
+
+
+def _explicit_requirement_match(text: str, requirement: str) -> bool:
+    """Conservative lexical fallback for a custom Protocol requirement.
+
+    This is deliberately narrower than semantic assessment: it only marks a
+    requirement as covered when meaningful wording from that requirement is
+    explicit in the response.  Ambiguous custom-topic coverage therefore stays
+    visible for the researcher instead of being inferred from answer length.
+    """
+
+    response_terms = set(re.findall(r"[a-z0-9]+", (text or "").lower()))
+    requirement_terms = [
+        term
+        for term in re.findall(r"[a-z0-9]+", (requirement or "").lower())
+        if len(term) > 2 and term not in FALLBACK_TERM_STOPWORDS
+    ]
+    return bool(requirement_terms) and any(
+        term in response_terms for term in requirement_terms
+    )
+
+
+def assess_protocol_coverage_heuristic(state: InterviewAgentState) -> InterviewAgentState:
     """
     This node does not decide the next action.
 
-    It only assesses whether the participant response appears to cover the
-    current protocol section's required information.
+    It only makes a provisional check of whether the participant response
+    explicitly covers the current Protocol section's required information.
 
     Later, this function can be replaced with constrained LLM assessment
     returning the same fields:
-    - answer_status
+    - coverage_assessment
     - covered_information
     - missing_information
     - evidence_quote
     - decision_reason
     """
-    text = state.get("reply_text", "").strip()
+    latest_text = state.get("reply_text", "").strip()
+    text = state.get("cumulative_reply_text", "").strip() or latest_text
     section_code = state.get("current_section_code", "")
     required = state.get("required_information", [])
 
     if state.get("stop_requested"):
-        state["answer_status"] = AgentDecision.AnswerStatus.STOPPED
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.NOT_ASSESSED
         state["covered_information"] = []
         state["missing_information"] = required
-        state["evidence_quote"] = text
+        state["evidence_quote"] = latest_text
         state["decision_reason"] = "Participant requested to stop the interview."
         return state
 
     if state.get("skip_requested"):
-        state["answer_status"] = AgentDecision.AnswerStatus.SKIPPED
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.NOT_ASSESSED
         state["covered_information"] = []
         state["missing_information"] = required
-        state["evidence_quote"] = text
+        state["evidence_quote"] = latest_text
         state["decision_reason"] = "Participant requested to skip the current question."
         return state
 
     if state.get("safety_flag") or state.get("derailment_flag"):
-        state["answer_status"] = AgentDecision.AnswerStatus.SAFETY_BOUNDARY
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.NOT_ASSESSED
         state["covered_information"] = []
         state["missing_information"] = required
-        state["evidence_quote"] = text
+        state["evidence_quote"] = latest_text
         state["decision_reason"] = (
             "Participant input triggered a non-clinical or instruction-boundary response."
         )
         return state
 
     if state.get("discomfort_flag"):
-        state["answer_status"] = AgentDecision.AnswerStatus.SAFETY_BOUNDARY
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.NOT_ASSESSED
         state["covered_information"] = []
         state["missing_information"] = required
-        state["evidence_quote"] = text
+        state["evidence_quote"] = latest_text
         state["decision_reason"] = (
             "Participant expressed discomfort with the current question, so the agent should "
             "prioritise participant control and offer skip/stop rather than collect more data."
@@ -411,10 +529,10 @@ def assess_response_sufficiency_heuristic(state: InterviewAgentState) -> Intervi
         return state
 
     if section_code == "opening":
-        state["answer_status"] = AgentDecision.AnswerStatus.SUFFICIENT
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.NOT_ASSESSED
         state["covered_information"] = ["opening acknowledged"]
         state["missing_information"] = []
-        state["evidence_quote"] = text
+        state["evidence_quote"] = latest_text
         state["decision_reason"] = (
             "Opening section is a boundary and transition step "
             "rather than a research-content section."
@@ -422,8 +540,8 @@ def assess_response_sufficiency_heuristic(state: InterviewAgentState) -> Intervi
         return state
 
 
-    if contains_any(text, VAGUE_TERMS):
-        state["answer_status"] = AgentDecision.AnswerStatus.VAGUE
+    if is_vague_response(text):
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.UNCLEAR
         state["covered_information"] = []
         state["missing_information"] = required
         state["evidence_quote"] = text
@@ -434,7 +552,7 @@ def assess_response_sufficiency_heuristic(state: InterviewAgentState) -> Intervi
 
 
     if not text or word_count(text) <= 3:
-        state["answer_status"] = AgentDecision.AnswerStatus.TOO_SHORT
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.UNCLEAR
         state["covered_information"] = []
         state["missing_information"] = required
         state["evidence_quote"] = text
@@ -533,42 +651,70 @@ def assess_response_sufficiency_heuristic(state: InterviewAgentState) -> Intervi
             missing.append("acceptability condition or concern")
 
     else:
-        if word_count(text) >= 12:
-            covered = required or ["general response"]
+        covered = [
+            item for item in required
+            if _explicit_requirement_match(text, item)
+        ]
+        missing = [item for item in required if item not in covered]
+
+        if not required:
+            covered = ["participant response recorded"]
             missing = []
-        else:
-            covered = []
-            missing = required or ["more detail"]
+        elif not covered:
+            # A custom-topic response is still retained as partial evidence,
+            # but the system does not claim semantic coverage merely because
+            # it is long.  One bounded follow-up can clarify the requirements.
+            covered = ["participant response recorded; coverage not verified"]
 
     state["covered_information"] = covered
     state["missing_information"] = missing
     state["evidence_quote"] = text[:300]
 
-    if not missing:
-        state["answer_status"] = AgentDecision.AnswerStatus.SUFFICIENT
+    if section_code not in SENSORY_SECTION_CODES and section_code != "opening":
+        if not missing:
+            state["coverage_assessment"] = AgentDecision.CoverageAssessment.COVERED
+            state["decision_reason"] = (
+                "The conservative Protocol fallback found explicit wording for each "
+                "required-information item."
+            )
+        else:
+            state["coverage_assessment"] = AgentDecision.CoverageAssessment.PARTIALLY_COVERED
+            state["decision_reason"] = (
+                "A participant response was recorded, but semantic coverage was not "
+                "available. The conservative Protocol fallback kept these requirements "
+                "visible as unverified: " + ", ".join(missing) + "."
+            )
+    elif not missing:
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.COVERED
         state["decision_reason"] = (
             "The answer covers the protocol-defined required information for this section."
         )
     elif covered:
-        state["answer_status"] = AgentDecision.AnswerStatus.PARTIAL
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.PARTIALLY_COVERED
         state["decision_reason"] = (
             "The answer covers some required information but is missing: "
             + ", ".join(missing)
             + "."
         )
     else:
-        state["answer_status"] = AgentDecision.AnswerStatus.VAGUE
+        state["coverage_assessment"] = AgentDecision.CoverageAssessment.UNCLEAR
         state["decision_reason"] = (
             "The answer does not clearly cover the protocol-defined required information."
         )
 
+    if "\n" in text:
+        state["decision_reason"] = (
+            "Cumulative section assessment: "
+            + state["decision_reason"]
+        )
+
     return state
 
-ALLOWED_LLM_ANSWER_STATUSES = {
-    AgentDecision.AnswerStatus.SUFFICIENT,
-    AgentDecision.AnswerStatus.PARTIAL,
-    AgentDecision.AnswerStatus.VAGUE,
-    AgentDecision.AnswerStatus.OFF_TOPIC,
+ALLOWED_LLM_COVERAGE_ASSESSMENTS = {
+    AgentDecision.CoverageAssessment.COVERED,
+    AgentDecision.CoverageAssessment.PARTIALLY_COVERED,
+    AgentDecision.CoverageAssessment.UNCLEAR,
+    AgentDecision.CoverageAssessment.OFF_TOPIC,
 }
 
 
@@ -580,31 +726,37 @@ def _safe_list(value):
     return []
 
 
-def get_section_assessment_guidance(section_code: str) -> str:
+def get_section_assessment_guidance(
+    section_code: str,
+    protocol_guidance: str = "",
+) -> str:
+    if (protocol_guidance or "").strip():
+        return protocol_guidance.strip()
+
     guidance = {
         "experience": (
-            "For the Experience section, treat the response as sufficient if it includes "
+            "For the Experience section, mark Protocol coverage as covered if the response includes "
             "a concrete setting or context, a concrete situation or sensory difficulty, "
             "and a reason or effect showing why it felt overwhelming. "
             "A phrase such as 'I could not hear what people were saying' counts as what happened "
             "because it describes the experienced difficulty."
         ),
         "triggers_signs": (
-            "For the Triggers and signs section, treat the response as sufficient only if it includes "
+            "For the Triggers and signs section, mark Protocol coverage as covered only if it includes "
             "at least one trigger and at least one bodily, emotional, cognitive, or behavioural sign. "
             "If it only describes a trigger, mark it partial and list the missing sign or reaction."
         ),
         "coping_support": (
-            "For the Coping and support section, treat the response as sufficient if it describes "
+            "For the Coping and support section, mark Protocol coverage as covered if it describes "
             "what the participant did to cope and/or what support would have helped. "
             "If only one of these is present, mark it partial."
         ),
         "support_concept_reaction": (
-            "For the Support concept reaction section, treat the response as sufficient if it gives "
+            "For the Support concept reaction section, mark Protocol coverage as covered if it gives "
             "a reaction to the PurrStone concept and at least one reason, usefulness, concern, or condition."
         ),
         "public_use_acceptability": (
-            "For the Public-use acceptability section, treat the response as sufficient if it discusses "
+            "For the Public-use acceptability section, mark Protocol coverage as covered if it discusses "
             "a public or shared context and a condition, concern, or reason related to acceptability."
         ),
     }
@@ -614,13 +766,14 @@ def get_section_assessment_guidance(section_code: str) -> str:
         "Assess against the required information for the current section."
     )
 
-def llm_assess_response_sufficiency(state: InterviewAgentState) -> Dict[str, Any]:
+def llm_assess_protocol_coverage(state: InterviewAgentState) -> Dict[str, Any]:
     """
-    LLM-assisted semantic assessment.
+    LLM-assisted provisional Protocol-coverage check.
 
-    The LLM assesses whether the participant response covers the current
-    protocol section's required information. It is not allowed to decide
-    next_action. LangGraph routing remains responsible for action selection.
+    The LLM checks only whether the participant response explicitly covers the
+    current Protocol section's researcher-defined information. It does not
+    assess truth, psychological meaning, clinical significance, research value,
+    or the next action. LangGraph remains responsible for action selection.
     """
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -631,14 +784,24 @@ def llm_assess_response_sufficiency(state: InterviewAgentState) -> Dict[str, Any
     section_label = state.get("current_section_label", "")
     section_purpose = state.get("section_purpose", "")
     required_information = state.get("required_information", [])
-    participant_answer = state.get("reply_text", "")
+    latest_participant_answer = state.get("reply_text", "")
+    participant_answer = (
+        state.get("cumulative_reply_text", "").strip()
+        or latest_participant_answer
+    )
     section_code = state.get("current_section_code", "")
-    assessment_guidance = get_section_assessment_guidance(section_code)
+    assessment_guidance = get_section_assessment_guidance(
+        section_code,
+        state.get("assessment_guidance", ""),
+    )
+    interaction_boundary = state.get("interaction_boundary", "")
+    protocol_rules = state.get("protocol_rules", [])
 
     prompt = f"""
-You are assessing a participant response for a semi-structured design research interview.
+You are making a provisional Protocol-coverage check for one participant response in a semi-structured design research interview.
 
-Your task is ONLY to assess whether the participant response covers the required information for the current protocol section.
+Your task is ONLY to check whether the participant response explicitly covers the researcher-defined required information for the current Protocol section.
+This is not a judgement of truth, participant quality, psychological meaning, clinical significance, or research value.
 
 You must not decide the next interview action.
 You must not decide whether to ask a follow-up, move next, skip, stop, or give a boundary response.
@@ -656,12 +819,21 @@ Required information:
 Section-specific assessment guidance:
 {assessment_guidance}
 
-Participant response:
+Section interaction boundary:
+{interaction_boundary or "No additional topic-specific boundary."}
+
+Additional rules from the locked Protocol:
+{json.dumps(protocol_rules, ensure_ascii=False)}
+
+Latest participant response:
+{latest_participant_answer}
+
+Cumulative participant response for this section:
 {participant_answer}
 
 Return only valid JSON with exactly these fields:
 {{
-  "answer_status": "sufficient" | "partial" | "vague" | "off_topic",
+  "coverage_assessment": "covered" | "partially_covered" | "unclear" | "off_topic",
   "covered_information": ["..."],
   "missing_information": ["..."],
   "evidence_quote": "...",
@@ -669,18 +841,55 @@ Return only valid JSON with exactly these fields:
 }}
 
 Assessment rules:
-- Use "sufficient" only if the response covers the key required information for this section.
-- Use "partial" if it covers some relevant information but misses important required information.
-- Use "vague" if it is too general, unclear, or does not provide usable detail.
+- Use "covered" only if the response explicitly covers the key required information for this section.
+- Use "partially_covered" if it covers some relevant information but misses important required information.
+- Use "unclear" if explicit coverage cannot be determined from the response.
 - Use "off_topic" if it does not answer the current section.
 - Do not invent information that is not in the participant response.
+- Evaluate the cumulative response, so the initial answer and one follow-up can cover different requirements.
 - Keep evidence_quote short and copied from the participant response where possible.
 """
 
     response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=get_openai_model(),
         input=prompt,
         temperature=0,
+        max_output_tokens=500,
+        store=False,
+        text={
+            "format": {
+                "type": "json_schema",
+                    "name": "purrstone_protocol_coverage_check",
+                "strict": True,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "coverage_assessment": {
+                            "type": "string",
+                            "enum": ["covered", "partially_covered", "unclear", "off_topic"],
+                        },
+                        "covered_information": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                        },
+                        "missing_information": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                        },
+                        "evidence_quote": {"type": "string"},
+                        "assessment_reason": {"type": "string"},
+                    },
+                    "required": [
+                        "coverage_assessment",
+                        "covered_information",
+                        "missing_information",
+                        "evidence_quote",
+                        "assessment_reason",
+                    ],
+                    "additionalProperties": False,
+                },
+            }
+        },
     )
 
     raw_text = response.output_text.strip()
@@ -691,13 +900,15 @@ Assessment rules:
 
     data = json.loads(raw_text)
 
-    answer_status = str(data.get("answer_status", "")).strip().lower()
+    coverage_assessment = str(data.get("coverage_assessment", "")).strip().lower()
 
-    if answer_status not in ALLOWED_LLM_ANSWER_STATUSES:
-        raise ValueError(f"Invalid LLM answer_status: {answer_status}")
+    if coverage_assessment not in ALLOWED_LLM_COVERAGE_ASSESSMENTS:
+        raise ValueError(
+            f"Invalid LLM coverage_assessment: {coverage_assessment}"
+        )
 
     return {
-        "answer_status": answer_status,
+        "coverage_assessment": coverage_assessment,
         "covered_information": _safe_list(data.get("covered_information")),
         "missing_information": _safe_list(data.get("missing_information")),
         "evidence_quote": str(data.get("evidence_quote", ""))[:300],
@@ -705,7 +916,7 @@ Assessment rules:
     }
 
 
-def assess_response_sufficiency(state: InterviewAgentState) -> InterviewAgentState:
+def assess_protocol_coverage(state: InterviewAgentState) -> InterviewAgentState:
     """
     Main assessment node.
 
@@ -714,6 +925,7 @@ def assess_response_sufficiency(state: InterviewAgentState) -> InterviewAgentSta
     If the LLM fails, fall back to protocol-defined heuristic assessment.
     """
     text = state.get("reply_text", "").strip()
+    assessment_text = state.get("cumulative_reply_text", "").strip() or text
     section_code = state.get("current_section_code", "")
 
     # These cases should not rely on LLM interpretation.
@@ -724,28 +936,29 @@ def assess_response_sufficiency(state: InterviewAgentState) -> InterviewAgentSta
         or state.get("discomfort_flag")
         or state.get("derailment_flag")
         or section_code == "opening"
-        or not text
-        or word_count(text) <= 3
-        or contains_any(text, VAGUE_TERMS)
+        or not assessment_text
+        or word_count(assessment_text) <= 3
+        or is_vague_response(assessment_text)
     ):
-        return assess_response_sufficiency_heuristic(state)
+        return assess_protocol_coverage_heuristic(state)
 
     try:
-        assessment = llm_assess_response_sufficiency(state)
+        assessment = llm_assess_protocol_coverage(state)
 
-        state["answer_status"] = assessment["answer_status"]
+        state["coverage_assessment"] = assessment["coverage_assessment"]
         state["covered_information"] = assessment["covered_information"]
         state["missing_information"] = assessment["missing_information"]
         state["evidence_quote"] = assessment["evidence_quote"]
         state["decision_reason"] = (
-            "LLM-assisted assessment: " + assessment["decision_reason"]
+            "LLM-assisted provisional cumulative Protocol-coverage check: "
+            + assessment["decision_reason"]
         )
 
         return state
 
     except Exception as error:
         # Do not break the interview if the LLM fails.
-        state = assess_response_sufficiency_heuristic(state)
+        state = assess_protocol_coverage_heuristic(state)
         state["decision_reason"] = (
             state.get("decision_reason", "")
             + f" Fallback used because LLM assessment failed: {error}"
@@ -756,7 +969,7 @@ def assess_response_sufficiency(state: InterviewAgentState) -> InterviewAgentSta
 
 
 def decide_next_action(state: InterviewAgentState) -> InterviewAgentState:
-    answer_status = state.get("answer_status")
+    coverage_assessment = state.get("coverage_assessment")
     probe_count = state.get("probe_count", 0)
     max_probes = state.get("max_probes", MAX_PROBES_PER_SECTION)
 
@@ -788,15 +1001,14 @@ def decide_next_action(state: InterviewAgentState) -> InterviewAgentState:
         )
         return state
 
-    if answer_status == AgentDecision.AnswerStatus.SUFFICIENT:
+    if coverage_assessment == AgentDecision.CoverageAssessment.COVERED:
         state["next_action"] = AgentDecision.Action.MOVE_NEXT
         return state
 
-    if answer_status in [
-        AgentDecision.AnswerStatus.PARTIAL,
-        AgentDecision.AnswerStatus.VAGUE,
-        AgentDecision.AnswerStatus.TOO_SHORT,
-        AgentDecision.AnswerStatus.OFF_TOPIC,
+    if coverage_assessment in [
+        AgentDecision.CoverageAssessment.PARTIALLY_COVERED,
+        AgentDecision.CoverageAssessment.UNCLEAR,
+        AgentDecision.CoverageAssessment.OFF_TOPIC,
     ]:
         if probe_count < max_probes:
             state["next_action"] = AgentDecision.Action.ASK_FOLLOW_UP
@@ -878,11 +1090,21 @@ LEADING_OR_UNSAFE_FOLLOW_UP_TERMS = [
 ]
 
 
-def get_template_follow_up(section_code: str) -> str:
-    return FOLLOW_UP_TEMPLATES.get(
-        section_code,
-        "Could you give one concrete example or detail about that?",
-    )
+def get_template_follow_up(
+    section_code: str,
+    follow_up_focus: str = "",
+    missing_information: Optional[List[str]] = None,
+) -> str:
+    if section_code in FOLLOW_UP_TEMPLATES:
+        return FOLLOW_UP_TEMPLATES[section_code]
+
+    focus = " ".join((follow_up_focus or "").strip().split()).rstrip(".?!")
+    if not focus and missing_information:
+        focus = str(missing_information[0]).strip().rstrip(".?!")
+    if focus:
+        focus = focus[:150]
+        return f"Could you add one concrete detail about {focus}?"
+    return "Could you give one concrete example or detail about that?"
 
 
 def clean_llm_follow_up(raw_text: str) -> str:
@@ -958,10 +1180,14 @@ def llm_generate_follow_up_question(state: InterviewAgentState) -> str:
     primary_question = state.get("primary_question", "")
     participant_answer = state.get("reply_text", "")
     missing_information = state.get("missing_information", [])
+    follow_up_focus = state.get("follow_up_focus", "")
+    interaction_boundary = state.get("interaction_boundary", "")
+    protocol_rules = state.get("protocol_rules", [])
 
     scope_guidance = FOLLOW_UP_SCOPE_GUIDANCE.get(
         section_code,
-        "Ask only for one concrete missing detail within the current protocol section.",
+        follow_up_focus
+        or "Ask only for one concrete missing detail within the current protocol section.",
     )
 
     prompt = f"""
@@ -995,14 +1221,22 @@ Participant answer:
 Scope guidance:
 {scope_guidance}
 
+Topic-specific interaction boundary:
+{interaction_boundary or "No additional topic-specific boundary."}
+
+Additional rules from the locked Protocol:
+{json.dumps(protocol_rules, ensure_ascii=False)}
+
 Return only the follow-up question as plain text.
 The question must be one sentence, under 35 words, neutral, and focused on the missing information.
 """
 
     response = client.responses.create(
-        model="gpt-4.1-mini",
+        model=get_openai_model(),
         input=prompt,
         temperature=0.2,
+        max_output_tokens=120,
+        store=False,
     )
 
     question = clean_llm_follow_up(response.output_text)
@@ -1025,7 +1259,11 @@ def generate_agent_message(state: InterviewAgentState) -> InterviewAgentState:
             ).strip()
 
         except Exception as error:
-            state["agent_message"] = get_template_follow_up(section_code)
+            state["agent_message"] = get_template_follow_up(
+                section_code,
+                state.get("follow_up_focus", ""),
+                state.get("missing_information", []),
+            )
             state["decision_reason"] = (
                 state.get("decision_reason", "")
                 + f" Template follow-up used because LLM wording support failed: {type(error).__name__}."
@@ -1120,6 +1358,7 @@ def complete_interview(session: InterviewSession) -> None:
     session.output_quality_status = InterviewSession.OutputQualityStatus.WAITING
     session.completed_at = timezone.now()
     session.save()
+    ensure_digest_items(session)
 
     session.stakeholder.status = Stakeholder.Status.COMPLETED
     session.stakeholder.save()
@@ -1159,14 +1398,22 @@ def persist_turn_and_decision(state: InterviewAgentState) -> InterviewAgentState
     if participant_message_id:
         participant_message = Message.objects.filter(id=participant_message_id).first()
 
-    AgentDecision.objects.create(
+    decision_record = AgentDecision.objects.create(
         session=session,
         message=participant_message,
         section=get_section_label(section),
         section_index=section_index,
-        answer_status=state.get("answer_status", AgentDecision.AnswerStatus.PARTIAL),
+        coverage_assessment=state.get(
+            "coverage_assessment",
+            AgentDecision.CoverageAssessment.NOT_ASSESSED,
+        ),
+        participant_control=state.get(
+            "participant_control",
+            AgentDecision.ParticipantControl.NONE,
+        ),
         action=action,
         probe_count_before=state.get("probe_count", 0),
+        covered_information=state.get("covered_information", []),
         missing_information=state.get("missing_information", []),
         decision_reason=state.get("decision_reason", ""),
     )
@@ -1190,6 +1437,15 @@ def persist_turn_and_decision(state: InterviewAgentState) -> InterviewAgentState
         return state
 
     if action == AgentDecision.Action.STOP:
+        if participant_message is None:
+            control_message = create_system_message(
+                session=session,
+                content="Participant used the Stop control.",
+                section=section,
+                section_index=section_index,
+            )
+            decision_record.message = control_message
+            decision_record.save(update_fields=["message"])
         create_agent_message(
             session=session,
             content=state.get("agent_message", "Thank you. I will stop the interview here."),
@@ -1203,26 +1459,23 @@ def persist_turn_and_decision(state: InterviewAgentState) -> InterviewAgentState
         session.output_quality_status = InterviewSession.OutputQualityStatus.WAITING
         session.completed_at = timezone.now()
         session.save()
+        ensure_digest_items(session)
         return state
 
     if action == AgentDecision.Action.SKIP:
-        create_system_message(
-            session=session,
-            content="Participant skipped this question.",
-            section=section,
-            section_index=section_index,
-        )
+        if participant_message is None:
+            control_message = create_system_message(
+                session=session,
+                content="Participant used the Skip control.",
+                section=section,
+                section_index=section_index,
+            )
+            decision_record.message = control_message
+            decision_record.save(update_fields=["message"])
         move_to_next_or_complete(session)
         return state
 
     if action == AgentDecision.Action.FLAG_MISSING_AND_MOVE_NEXT:
-        missing = state.get("missing_information", [])
-        create_system_message(
-            session=session,
-            content="Missing information flagged: " + ", ".join(missing),
-            section=section,
-            section_index=section_index,
-        )
         move_to_next_or_complete(session)
         return state
 
@@ -1251,8 +1504,24 @@ def load_session_state(state: InterviewAgentState) -> InterviewAgentState:
     state["section_purpose"] = section.get("purpose", "") if section else ""
     state["primary_question"] = section.get("primary_question", "") if section else ""
     state["required_information"] = section.get("required_information", []) if section else []
+    state["assessment_guidance"] = section.get("assessment_guidance", "") if section else ""
+    state["follow_up_focus"] = section.get("follow_up_focus", "") if section else ""
+    state["interaction_boundary"] = section.get("interaction_boundary", "") if section else ""
+    state["protocol_rules"] = [
+        str(rule) for rule in (session.protocol.ethics_rules or [])
+        if str(rule).strip()
+    ]
     state["probe_count"] = count_probes_for_section(session, session.current_section_index)
     state["max_probes"] = MAX_PROBES_PER_SECTION
+    participant_answers = session.messages.filter(
+        sender=Message.Sender.PARTICIPANT,
+        section_index=session.current_section_index,
+    ).order_by("created_at", "id")
+    state["cumulative_reply_text"] = "\n".join(
+        message.content.strip()
+        for message in participant_answers
+        if message.content.strip()
+    )
 
     return state
 
@@ -1262,15 +1531,15 @@ def build_interview_graph():
 
     graph.add_node("load_session_state", load_session_state)
     graph.add_node("detect_control_or_safety_signal", detect_control_or_safety_signal)
-    graph.add_node("assess_response_sufficiency", assess_response_sufficiency)
+    graph.add_node("assess_protocol_coverage", assess_protocol_coverage)
     graph.add_node("decide_next_action", decide_next_action)
     graph.add_node("generate_agent_message", generate_agent_message)
     graph.add_node("persist_turn_and_decision", persist_turn_and_decision)
 
     graph.set_entry_point("load_session_state")
     graph.add_edge("load_session_state", "detect_control_or_safety_signal")
-    graph.add_edge("detect_control_or_safety_signal", "assess_response_sufficiency")
-    graph.add_edge("assess_response_sufficiency", "decide_next_action")
+    graph.add_edge("detect_control_or_safety_signal", "assess_protocol_coverage")
+    graph.add_edge("assess_protocol_coverage", "decide_next_action")
     graph.add_edge("decide_next_action", "generate_agent_message")
     graph.add_edge("generate_agent_message", "persist_turn_and_decision")
     graph.add_edge("persist_turn_and_decision", END)

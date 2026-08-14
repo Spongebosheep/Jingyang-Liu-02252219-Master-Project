@@ -1,0 +1,34 @@
+scenario_id,check_id,status,scope,reason
+S7,RUN-REVIEW-COMPLETION-FILE-HASH,PASS,run,The runner recorded the frozen review-completion hash.
+S7,TOPIC-1-SOURCE-GROUNDING,PASS,TOPIC-1,Sources are same-Session participant messages from the same topic.
+S7,TOPIC-2-SOURCE-GROUNDING,PASS,TOPIC-2,Sources are same-Session participant messages from the same topic.
+S7,TOPIC-3-SOURCE-GROUNDING,PASS,TOPIC-3,Sources are same-Session participant messages from the same topic.
+S7,TOPIC-4-SOURCE-GROUNDING,PASS,TOPIC-4,Sources are same-Session participant messages from the same topic.
+S7,TOPIC-5-SOURCE-GROUNDING,PASS,TOPIC-5,Sources are same-Session participant messages from the same topic.
+S7,RESEARCHER-EDIT-ONE-HTTP-ACTION,PASS,RESEARCHER-EDIT,Exactly one frozen researcher action was executed through the view.
+S7,RESEARCHER-EDIT-FROZEN-INPUT,PASS,RESEARCHER-EDIT,The observed researcher action matches the frozen action and oracle.
+S7,RESEARCHER-EDIT-AUDIT-FIELDS,PASS,RESEARCHER-EDIT,The complete researcher-action audit fields and final evidence consequence are saved.
+S7,RESEARCHER-EDIT-EVIDENCE-RECORD,PASS,RESEARCHER-EDIT,The rendered Evidence Record contains the saved researcher outcome.
+S7,REVIEW-COMPLETION-ITEM-ACTIONS,PASS,review_completion_items,Every frozen remaining-item action was executed once through the review view.
+S7,REVIEW-COMPLETION-ACTION-ORDER,PASS,review_completion_items,The focal and remaining item actions follow the frozen order.
+S7,REVIEW-COMPLETION-FINAL-STATUSES,PASS,review_completion_items,All candidate items have the frozen final review state.
+S7,OVERALL-REVIEW-ONE-HTTP-ACTION,PASS,overall_review,Exactly one frozen overall review action was executed through the view.
+S7,OVERALL-REVIEW-FROZEN-INPUT,PASS,overall_review,The submitted overall review action matches the frozen contract.
+S7,OVERALL-REVIEW-AUDIT-FIELDS,PASS,overall_review,"The overall decision, note, reviewer, time and non-approval boundary are saved."
+S8,RUN-REVIEW-COMPLETION-FILE-HASH,PASS,run,The runner recorded the frozen review-completion hash.
+S8,TOPIC-1-SOURCE-GROUNDING,PASS,TOPIC-1,Sources are same-Session participant messages from the same topic.
+S8,TOPIC-2-SOURCE-GROUNDING,PASS,TOPIC-2,Sources are same-Session participant messages from the same topic.
+S8,TOPIC-3-SOURCE-GROUNDING,PASS,TOPIC-3,Sources are same-Session participant messages from the same topic.
+S8,TOPIC-4-SOURCE-GROUNDING,PASS,TOPIC-4,Sources are same-Session participant messages from the same topic.
+S8,TOPIC-5-SOURCE-GROUNDING,PASS,TOPIC-5,Sources are same-Session participant messages from the same topic.
+S8,RESEARCHER-EXCLUDE-ONE-HTTP-ACTION,PASS,RESEARCHER-EXCLUDE,Exactly one frozen researcher action was executed through the view.
+S8,RESEARCHER-EXCLUDE-FROZEN-INPUT,PASS,RESEARCHER-EXCLUDE,The observed researcher action matches the frozen action and oracle.
+S8,RESEARCHER-EXCLUDE-AUDIT-FIELDS,PASS,RESEARCHER-EXCLUDE,The complete researcher-action audit fields and final evidence consequence are saved.
+S8,RESEARCHER-EXCLUDE-EVIDENCE-RECORD,PASS,RESEARCHER-EXCLUDE,The rendered Evidence Record contains the saved researcher outcome.
+S8,REVIEW-COMPLETION-ITEM-ACTIONS,PASS,review_completion_items,Every frozen remaining-item action was executed once through the review view.
+S8,REVIEW-COMPLETION-ACTION-ORDER,PASS,review_completion_items,The focal and remaining item actions follow the frozen order.
+S8,REVIEW-COMPLETION-FINAL-STATUSES,PASS,review_completion_items,All candidate items have the frozen final review state.
+S8,OVERALL-REVIEW-ONE-HTTP-ACTION,PASS,overall_review,Exactly one frozen overall review action was executed through the view.
+S8,OVERALL-REVIEW-FROZEN-INPUT,PASS,overall_review,The submitted overall review action matches the frozen contract.
+S8,OVERALL-REVIEW-AUDIT-FIELDS,PASS,overall_review,"The overall decision, note, reviewer, time and non-approval boundary are saved."
+

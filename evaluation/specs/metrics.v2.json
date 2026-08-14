@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "2.0",
+  "preregistration": {
+    "status": "frozen_before_formal_runs",
+    "frozen_on": "2026-08-06",
+    "supersedes": "metrics.v1.json",
+    "revision_reason": "Operational eligibility, UCR atomic-proposition coding, and MP disagreement rules were made explicit before any formal run; the nine metric definitions and formulae are unchanged."
+  },
+  "source": "Classroom section 4.3 Metric Definitions and Calculation Rules",
+  "eligibility_rules": {
+    "AI": "All scripted participant_turn and participant_control steps after Consent that are expected to create an AgentDecision are eligible, including Opening, Skip, Stop, and Boundary steps.",
+    "AC": "Only scripted steps with oracle.eligible_for_ac=true are eligible. The deterministic Opening acknowledgement is excluded; research-content, Boundary, Skip, and Stop decisions are included.",
+    "SLC_MP": "All evidence items whose final review status is included or edited are eligible.",
+    "MIV": "All limitation outcomes explicitly preregistered in the current scenario contract are eligible.",
+    "PCC": "All scripted Skip and Stop control events are eligible.",
+    "UCR": "All atomic propositions in evidence items whose final review status is included or edited are eligible.",
+    "RAC": "All completed item-level review events plus the completed overall review event are eligible.",
+    "TCR": "Protocol research topics 1-5 are eligible; Opening and Completion are excluded."
+  },
+  "manual_coding_rules": {
+    "UCR": {
+      "unit": "One independently supportable factual or experiential assertion in final reviewed evidence text.",
+      "segmentation": "Split coordinated clauses when each clause could be supported or contradicted independently; do not code interface labels, coverage-status labels, or reviewer metadata as propositions.",
+      "judgement": "supported only when the cited same-Session participant source directly entails or clearly paraphrases the proposition; otherwise unsupported",
+      "disagreement": "Two coders record independent labels first; retain both labels and the disagreement, then record a consensus label and note without deleting the originals.",
+      "metric_value": "Use consensus unsupported and total proposition counts; report initial disagreement counts separately."
+    },
+    "MP": {
+      "unit": "One included or edited evidence item and its cited participant sources.",
+      "judgement": "preserved only when the final text does not add, remove, or change a material meaning, qualification, uncertainty, or attribution from the cited sources",
+      "labels": ["preserved", "not_preserved", "uncertain"],
+      "disagreement": "Two coders record independent labels first; retain both labels and the disagreement, then record a consensus label and note without deleting the originals.",
+      "metric_value": "Consensus preserved items form the numerator; all eligible items form the denominator. Report uncertain and initial disagreement counts separately."
+    }
+  },
+  "metrics": [
+    {
+      "code": "AI",
+      "name": "Action Inspectability",
+      "numerator": "Eligible participant turns with a complete control record.",
+      "denominator": "All eligible participant turns.",
+      "calculation_mode": "automatic_record_completeness",
+      "details": "Complete means Session/run ID, source message ID, protocol topic, answer status, selected action, missing information, and reason are present."
+    },
+    {
+      "code": "AC",
+      "name": "Action Consistency",
+      "numerator": "Eligible turns whose observed next action matches the pre-registered scenario oracle.",
+      "denominator": "All eligible turns.",
+      "calculation_mode": "automatic_oracle_comparison",
+      "details": "Report numerator, denominator, and every mismatch; do not report only a percentage."
+    },
+    {
+      "code": "SLC",
+      "name": "Source-link Coverage",
+      "numerator": "Included or edited evidence items with at least one valid same-Session participant-message source.",
+      "denominator": "All included or edited evidence items.",
+      "calculation_mode": "automatic_source_validation",
+      "details": "A valid source belongs to the same Session, was sent by the participant, and matches the evidence item's protocol topic."
+    },
+    {
+      "code": "MIV",
+      "name": "Missing-information Visibility",
+      "numerator": "Expected limitation states correctly represented.",
+      "denominator": "All expected limitation states in the scripted scenarios.",
+      "calculation_mode": "automatic_oracle_comparison",
+      "details": "Limitation states include partial or insufficient, skipped, stopped, and not reached."
+    },
+    {
+      "code": "PCC",
+      "name": "Participant-control Compliance",
+      "numerator": "Scripted Skip or Stop events followed by the required state transition.",
+      "denominator": "All scripted participant-control events.",
+      "calculation_mode": "automatic_control_transition_validation",
+      "details": "Skip must leave the topic without a later decision on that topic; Stop must end all later interview decisions."
+    },
+    {
+      "code": "UCR",
+      "name": "Unsupported-content Rate",
+      "numerator": "Atomic propositions in reviewed draft evidence that are not supported by the cited participant source.",
+      "denominator": "All coded atomic propositions in reviewed draft evidence.",
+      "calculation_mode": "manual_atomic_proposition_coding",
+      "details": "Report raw unsupported and total counts plus examples. A 1-5 rating cannot replace proposition coding."
+    },
+    {
+      "code": "RAC",
+      "name": "Review Audit Completeness",
+      "numerator": "Completed review events containing every field required for that action.",
+      "denominator": "All completed review events.",
+      "calculation_mode": "automatic_field_completeness",
+      "details": "Include requires status, reviewer, and time. Edit and Exclude additionally require a reason; Edit requires before and after text. An overall decision requires reviewer, time, and note."
+    },
+    {
+      "code": "MP",
+      "name": "Meaning Preservation",
+      "numerator": "Included or edited evidence items judged to preserve participant meaning.",
+      "denominator": "All included or edited evidence items.",
+      "calculation_mode": "manual_item_judgement",
+      "details": "Report coder disagreements and consensus notes separately."
+    },
+    {
+      "code": "TCR",
+      "name": "Topic Coverage Representation",
+      "numerator": "Protocol research topics with exactly one explicit evidence-or-limitation record.",
+      "denominator": "All protocol research topics.",
+      "calculation_mode": "automatic_topic_cardinality",
+      "details": "Every research topic must have exactly one explicit record, including partial, skipped, stopped, and not-reached limitations."
+    }
+  ],
+  "reporting_rules": [
+    "Report numerator and denominator for every metric, including zero-denominator cases.",
+    "Retain and list every failed item or turn; do not report percentages alone.",
+    "Calculate summaries from saved raw and coded files, never from manually edited summary values.",
+    "Keep UCR atomic-proposition coding and MP item judgement as separate manual records."
+  ]
+}

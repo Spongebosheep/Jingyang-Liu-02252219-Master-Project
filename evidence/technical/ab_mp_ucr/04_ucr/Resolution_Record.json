@@ -1,0 +1,14 @@
+{
+  "schema": "purrstone-v10.2-ucr-phase2-resolution-derived-v1",
+  "proposition_id": "SF-008-P02",
+  "coder01_label": "unsupported",
+  "coder02_label": "supported",
+  "final_label": "unsupported",
+  "resolution_rationale": "The source says the participant felt trapped and overwhelmed, but it does not state or clearly entail that the participant described the experience using the category 'sensory overload'. Under the frozen Phase 2 rule, that interpretive category is not established by the displayed source.",
+  "resolver_field_as_supplied": "Coder01 and Coder02",
+  "resolver_identity_boundary": "The field is reproduced from the original resolution workbook; the workbook alone does not independently verify who entered it.",
+  "resolved_at": "2026-08-10T01:05:00+0800",
+  "original_resolution_sha256": "57276f7e424998e1428afdd92d95a71f0a8e4650fa29f2a1055e12768a07b3a1",
+  "original_file_in_public_package": false,
+  "privacy_treatment": "Identity-bearing OOXML metadata omitted from the shareable package; exact original hash retained."
+}

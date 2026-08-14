@@ -1,0 +1,7 @@
+﻿blind_pair_id,field,coder01,coder02,absolute_difference,pair_key,condition,status
+BP-002,a_q2,4,5,1,S3-R03,mvp,UNRESOLVED_RAW_DISAGREEMENT
+BP-003,b_q2,4,5,1,S3-R01,mvp,UNRESOLVED_RAW_DISAGREEMENT
+BP-007,b_q2,4,5,1,S2-R02,mvp,UNRESOLVED_RAW_DISAGREEMENT
+BP-008,b_q2,4,5,1,S2-R01,mvp,UNRESOLVED_RAW_DISAGREEMENT
+BP-007,overall_preference,Prompt-only baseline,Tie,,S2-R02,pair-level,UNRESOLVED_RAW_DISAGREEMENT
+BP-008,overall_preference,Prompt-only baseline,Tie,,S2-R01,pair-level,UNRESOLVED_RAW_DISAGREEMENT

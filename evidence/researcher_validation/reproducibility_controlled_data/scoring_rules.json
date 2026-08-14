@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "topic_rule": "A topic row is correct when the final coverage status matches the confirmed Gold status. Missingness is evaluated on the three Gold rows that require missing information.",
+  "item_action_rules": {
+    "include": {
+      "allowed_actual_actions": ["include", "edit", "edit_source"],
+      "require_correct_sources": true,
+      "require_missingness": false
+    },
+    "edit": {
+      "allowed_actual_actions": ["edit", "edit_and_flag_partial"],
+      "require_correct_sources": true,
+      "require_missingness": false
+    },
+    "exclude": {
+      "allowed_actual_actions": ["exclude"],
+      "require_correct_sources": false,
+      "require_missingness": false
+    },
+    "edit_source": {
+      "allow_any_non_exclude": true,
+      "require_correct_sources": true,
+      "require_missingness": false
+    },
+    "edit_and_flag_partial": {
+      "allowed_actual_actions": ["edit", "edit_and_flag_partial", "exclude"],
+      "require_correct_sources": true,
+      "require_missingness": true
+    }
+  },
+  "issue_detection_rule": "Rows with a non-none Gold designed issue are issue-bearing. An issue is recognized when that Evidence-item row meets its Gold full-score treatment.",
+  "false_approval_rule": "Count inclusion without the required correction for edit rows, retention of an incorrect source for edit-source rows, inclusion of an exclude row, or inclusion without required missingness for edit-and-flag-partial rows.",
+  "time_rule": "PC11 records objectively timed active review minutes for each condition, excluding instructions, breaks and the questionnaire. Report descriptively for n=3.",
+  "formal_sample_rule": "Only P01, P02 and P03 enter formal statistics. Pilot-01 and Pilot-02 are excluded."
+}

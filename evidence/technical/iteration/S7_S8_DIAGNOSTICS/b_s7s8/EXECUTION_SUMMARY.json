@@ -1,0 +1,74 @@
+{
+  "schema": "purrstone-baseline-s7-s8-supplementary-diagnostic-1.0",
+  "completed_at_utc": "2026-08-10T05:39:00Z",
+  "scope": "post-formal deterministic downstream review-layer diagnostic",
+  "source": {
+    "archive_name": "source_HEAD_35c930d92119d47560879496902e928daf20ac02.zip",
+    "archive_sha256": "39178f573fafb0542d26a927f77b43bbcbbe16de3fdab0c1d7b7dcdb43da833d",
+    "source_manifest_entries": 153,
+    "source_manifest_status": "PASS",
+    "local_snapshot_commit": "b7f3c8682b364ed1d9381eafa8408bd595d4450e",
+    "local_snapshot_tree": "a7562237ec5a13a50f3aef540b92406f04086897",
+    "tracked_worktree_clean": true
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "django": "5.2.14",
+    "model_label": "gpt-4.1-mini",
+    "transport": "frozen_fixture_mock",
+    "live_openai_calls": 0,
+    "run_type": "dry_run",
+    "formal_evidence_eligible": false
+  },
+  "targeted_tests": {
+    "test_count": 2,
+    "pass_count": 2,
+    "exit_code": 0,
+    "tests": [
+      "evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_researcher_edit_uses_same_authenticated_review_layer",
+      "evaluation.django_tests.test_baseline_runner.PromptOnlyBaselineRunnerTests.test_s8_includes_before_exclude_and_resolves_every_candidate"
+    ]
+  },
+  "runs": [
+    {
+      "scenario_id": "S7",
+      "run_id": "baseline-s7-r01-20260810T053723387040Z-26c0bc40",
+      "execution_status": "completed",
+      "validation_status": "PASS",
+      "validator_checks": 126,
+      "validator_passes": 126,
+      "validator_failures": 0,
+      "source_grounding_checks": 5,
+      "source_grounding_passes": 5,
+      "researcher_action": "edit",
+      "final_section_1_status": "edited",
+      "evidence_record_http_status": 200,
+      "evidence_record_sha256": "db915b6092ebacee3912e04d89b26a17da90bec93f4be52de6113e13ec51b43c"
+    },
+    {
+      "scenario_id": "S8",
+      "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+      "execution_status": "completed",
+      "validation_status": "PASS",
+      "validator_checks": 126,
+      "validator_passes": 126,
+      "validator_failures": 0,
+      "source_grounding_checks": 5,
+      "source_grounding_passes": 5,
+      "researcher_action": "exclude",
+      "final_section_1_status": "excluded",
+      "evidence_record_http_status": 200,
+      "evidence_record_sha256": "77c6376cb6c89556c9f9cb84e9a4c6dcba012cb7064c500f55ecf1076855a90f"
+    }
+  ],
+  "formal_32_boundary": {
+    "formal_baseline_completed": 10,
+    "formal_baseline_planned": 16,
+    "formal_s7_completed": false,
+    "formal_s8_completed": false,
+    "formal_results_modified": false,
+    "formal_pairs_added": 0
+  },
+  "claim_boundary": "The diagnostic demonstrates deterministic downstream Edit/Exclude execution after a review-ready digest exists. It does not demonstrate live Baseline end-to-end completion, reliability, meaning preservation, target-user utility or comparative superiority."
+}
+

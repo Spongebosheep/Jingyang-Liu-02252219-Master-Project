@@ -1,0 +1,28 @@
+﻿representative_proposition_id,all_proposition_ids,atomic_proposition,occurrences,coder01_label,coder02_label,initial_agreement,final_label
+SF-001-P01,"SF-001-P01, SF-005-P01",Sharp braking noise was one of the participant's strongest triggers.,2,supported,supported,AGREE,supported
+SF-001-P02,"SF-001-P02, SF-005-P02",Flashing carriage lights were one of the participant's strongest triggers.,2,supported,supported,AGREE,supported
+SF-001-P03,"SF-001-P03, SF-005-P03",Crowding was one of the participant's strongest triggers.,2,supported,supported,AGREE,supported
+SF-001-P04,"SF-001-P04, SF-005-P04",The participant's shoulders tightened.,2,supported,supported,AGREE,supported
+SF-001-P05,"SF-001-P05, SF-005-P05",The participant's heart raced.,2,supported,supported,AGREE,supported
+SF-001-P06,"SF-001-P06, SF-005-P06",The participant felt panicked.,2,supported,supported,AGREE,supported
+SF-002-P01,"SF-002-P01, SF-004-P01",The participant covered their ears.,2,supported,supported,AGREE,supported
+SF-002-P02,"SF-002-P02, SF-004-P02",The participant focused on slow breathing.,2,supported,supported,AGREE,supported
+SF-002-P03,"SF-002-P03, SF-004-P03",The participant left at the next stop.,2,supported,supported,AGREE,supported
+SF-002-P04,"SF-002-P04, SF-004-P04",A quieter carriage would have helped the participant.,2,supported,supported,AGREE,supported
+SF-002-P05,"SF-002-P05, SF-004-P05",A warning before the alarm would have helped the participant.,2,supported,supported,AGREE,supported
+SF-002-P06,"SF-002-P06, SF-004-P06",The repeated announcements did not help because they added more noise.,2,supported,supported,AGREE,supported
+SF-003-P01,"SF-003-P01, SF-006-P01",The squeeze interaction seemed useful because it would give the participant's hands a focus.,2,supported,supported,AGREE,supported
+SF-003-P02,"SF-003-P02, SF-006-P02",Gentle haptics might help the participant pace their breathing.,2,supported,supported,AGREE,supported
+SF-003-P03,"SF-003-P03, SF-006-P03",The participant would avoid scent because it could be another trigger.,2,supported,supported,AGREE,supported
+SF-003-P04,"SF-003-P04, SF-006-P04",The participant wanted every feature to be optional.,2,supported,supported,AGREE,supported
+SF-007-P01,"SF-007-P01, SF-009-P01","The participant might use the referenced item (""it"") while commuting if it looked discreet and made no sound.",2,supported,supported,AGREE,supported
+SF-007-P02,"SF-007-P02, SF-009-P02",Obvious lights would embarrass the participant.,2,supported,supported,AGREE,supported
+SF-007-P03,"SF-007-P03, SF-009-P03",Scent would be a concern for people nearby in a shared space.,2,supported,supported,AGREE,supported
+SF-008-P01,SF-008-P01,The described experience occurred on a crowded train.,1,supported,supported,AGREE,supported
+SF-008-P02,SF-008-P02,The participant described the experience as sensory overload.,1,unsupported,supported,DISAGREE,unsupported
+SF-008-P03,SF-008-P03,Alarms made the participant feel trapped.,1,unsupported,unsupported,AGREE,unsupported
+SF-008-P04,SF-008-P04,Noise made the participant feel trapped.,1,supported,supported,AGREE,supported
+SF-008-P05,SF-008-P05,Crowding made the participant feel trapped.,1,supported,supported,AGREE,supported
+SF-008-P06,SF-008-P06,Alarms made the participant feel overwhelmed.,1,unsupported,unsupported,AGREE,unsupported
+SF-008-P07,SF-008-P07,Noise made the participant feel overwhelmed.,1,supported,supported,AGREE,supported
+SF-008-P08,SF-008-P08,Crowding made the participant feel overwhelmed.,1,supported,supported,AGREE,supported

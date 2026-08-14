@@ -1,0 +1,245 @@
+PurrStone v10.2 post-run offline QA
+Source: frozen source archive at commit 35c930d92119d47560879496902e928daf20ac02
+Scope: read-only verification in an isolated copy; Formal 32 was not rerun
+
+$ sha256sum -c SOURCE_MANIFEST.sha256
+./.gitignore: OK
+./AGENTS.md: OK
+./README.md: OK
+./V10_1_HANDOFF.md: OK
+./config/__init__.py: OK
+./config/asgi.py: OK
+./config/settings.py: OK
+./config/urls.py: OK
+./config/wsgi.py: OK
+./docs/V10_1_EXECUTION_CONTRACT.md: OK
+./docs/V10_2_EXECUTION_CONTRACT.md: OK
+./docs/V10_2_METHOD_AMENDMENT.md: OK
+./docs/live_openai_e2e_check.md: OK
+./docs/scripted_test_evidence.md: OK
+./evaluation/.gitignore: OK
+./evaluation/COMPARISON_FREEZE_V8_STATUS.md: OK
+./evaluation/COMPARISON_FREEZE_V9_STATUS.md: OK
+./evaluation/EXPORTER_STATUS.md: OK
+./evaluation/METRIC_CALCULATOR_STATUS.md: OK
+./evaluation/MVP_RUNNER_STATUS.md: OK
+./evaluation/OVERALL_REVIEW_COMPLETION_STATUS.md: OK
+./evaluation/PROMPT_BASELINE_STATUS.md: OK
+./evaluation/README.md: OK
+./evaluation/RUN_VALIDATOR_STATUS.md: OK
+./evaluation/STEP3_STATUS.md: OK
+./evaluation/V10_1_BASELINE_RELIABILITY_STATUS.md: OK
+./evaluation/__init__.py: OK
+./evaluation/baseline_adapter.py: OK
+./evaluation/baseline_development_gate.py: OK
+./evaluation/baseline_runner.py: OK
+./evaluation/django_tests/__init__.py: OK
+./evaluation/django_tests/test_baseline_development_gate.py: OK
+./evaluation/django_tests/test_baseline_runner.py: OK
+./evaluation/django_tests/test_exporter.py: OK
+./evaluation/django_tests/test_formal_evaluation_plan.py: OK
+./evaluation/django_tests/test_metric_calculator.py: OK
+./evaluation/django_tests/test_mvp_runner.py: OK
+./evaluation/django_tests/test_run_validator.py: OK
+./evaluation/execution_plan.py: OK
+./evaluation/exporter.py: OK
+./evaluation/formal_evaluation_plan.py: OK
+./evaluation/metric_calculator.py: OK
+./evaluation/mvp_runner.py: OK
+./evaluation/prompts/prompt_only_baseline.v1.txt: OK
+./evaluation/prompts/prompt_only_baseline.v2.txt: OK
+./evaluation/prompts/prompt_only_baseline.v3.txt: OK
+./evaluation/quality_review.py: OK
+./evaluation/run_validator.py: OK
+./evaluation/schemas.py: OK
+./evaluation/specs/baseline_contract.v1.json: OK
+./evaluation/specs/baseline_contract.v2.json: OK
+./evaluation/specs/export_bundle_schema.v1.json: OK
+./evaluation/specs/export_bundle_schema.v2.json: OK
+./evaluation/specs/freeze_manifest.v1.json: OK
+./evaluation/specs/freeze_manifest.v10.json: OK
+./evaluation/specs/freeze_manifest.v10_1.json: OK
+./evaluation/specs/freeze_manifest.v10_2.json: OK
+./evaluation/specs/freeze_manifest.v2.json: OK
+./evaluation/specs/freeze_manifest.v3.json: OK
+./evaluation/specs/freeze_manifest.v4.json: OK
+./evaluation/specs/freeze_manifest.v5.json: OK
+./evaluation/specs/freeze_manifest.v6.json: OK
+./evaluation/specs/freeze_manifest.v7.json: OK
+./evaluation/specs/freeze_manifest.v8.json: OK
+./evaluation/specs/freeze_manifest.v9.json: OK
+./evaluation/specs/metric_calculation_schema.v1.json: OK
+./evaluation/specs/metric_calculation_schema.v2.json: OK
+./evaluation/specs/metrics.v1.json: OK
+./evaluation/specs/metrics.v2.json: OK
+./evaluation/specs/metrics.v3.json: OK
+./evaluation/specs/prompt_only_output_schema.v1.json: OK
+./evaluation/specs/prompt_only_output_schema.v2.json: OK
+./evaluation/specs/quality_review.v1.json: OK
+./evaluation/specs/quality_review.v2.json: OK
+./evaluation/specs/review_completion.v1.json: OK
+./evaluation/specs/review_completion.v2.json: OK
+./evaluation/specs/scenarios.v1.json: OK
+./evaluation/specs/scenarios.v2.json: OK
+./evaluation/specs/scenarios.v3.json: OK
+./evaluation/specs/scenarios.v4.json: OK
+./evaluation/tests/__init__.py: OK
+./evaluation/tests/test_baseline_adapter_v3.py: OK
+./evaluation/tests/test_execution_plan.py: OK
+./evaluation/tests/test_quality_review_workflow.py: OK
+./evaluation/tests/test_specifications.py: OK
+./evaluation/validate_specs.py: OK
+./interviews/__init__.py: OK
+./interviews/admin.py: OK
+./interviews/agent.py: OK
+./interviews/apps.py: OK
+./interviews/consent.py: OK
+./interviews/demo_reset.py: OK
+./interviews/digest.py: OK
+./interviews/forms.py: OK
+./interviews/langgraph_agent.py: OK
+./interviews/management/__init__.py: OK
+./interviews/management/commands/__init__.py: OK
+./interviews/management/commands/calculate_evaluation_metrics.py: OK
+./interviews/management/commands/export_evaluation_bundle.py: OK
+./interviews/management/commands/generate_blinded_quality_review.py: OK
+./interviews/management/commands/import_coder_submission.py: OK
+./interviews/management/commands/report_manual_metric_consensus.py: OK
+./interviews/management/commands/report_quality_consensus.py: OK
+./interviews/management/commands/reset_demo_session.py: OK
+./interviews/management/commands/reset_mvp.py: OK
+./interviews/management/commands/run_baseline_development_gate.py: OK
+./interviews/management/commands/run_formal_evaluation_plan.py: OK
+./interviews/management/commands/run_mvp_scenarios.py: OK
+./interviews/management/commands/run_openai_e2e_check.py: OK
+./interviews/management/commands/run_prompt_baseline.py: OK
+./interviews/management/commands/seed_mvp.py: OK
+./interviews/management/commands/validate_evaluation_runs.py: OK
+./interviews/migrations/0001_initial.py: OK
+./interviews/migrations/0002_interviewsession_researcher_note.py: OK
+./interviews/migrations/0003_agentdecision.py: OK
+./interviews/migrations/0004_reviewdecision_limitations_and_missing_information_visible.py: OK
+./interviews/migrations/0005_interviewsession_access_token.py: OK
+./interviews/migrations/0006_protocol_versioning.py: OK
+./interviews/migrations/0007_structured_digest_and_reviewer_identity.py: OK
+./interviews/migrations/0008_agentdecision_covered_information.py: OK
+./interviews/migrations/0009_rename_final_review_checks.py: OK
+./interviews/migrations/0010_protocol_coverage_and_consent_snapshot.py: OK
+./interviews/migrations/__init__.py: OK
+./interviews/models.py: OK
+./interviews/protocol_snapshot.py: OK
+./interviews/release_conditions.py: OK
+./interviews/review_audit.py: OK
+./interviews/summary.py: OK
+./interviews/tests.py: OK
+./interviews/views.py: OK
+./interviews/workflow_status.py: OK
+./manage.py: OK
+./requirements.txt: OK
+./static/interviews/img/purrstone-logo.png: OK
+./templates/interviews/base.html: OK
+./templates/interviews/consent.html: OK
+./templates/interviews/evidence_record.html: OK
+./templates/interviews/interview_completed.html: OK
+./templates/interviews/interview_session.html: OK
+./templates/interviews/login.html: OK
+./templates/interviews/output_detail.html: OK
+./templates/interviews/output_quality.html: OK
+./templates/interviews/overview.html: OK
+./templates/interviews/participant_base.html: OK
+./templates/interviews/protocol_detail.html: OK
+./templates/interviews/protocol_form.html: OK
+./templates/interviews/protocol_list.html: OK
+./templates/interviews/researcher_interview_sessions.html: OK
+./templates/interviews/session_form.html: OK
+./templates/interviews/stakeholder_detail.html: OK
+./templates/interviews/stakeholder_form.html: OK
+./templates/interviews/stakeholder_list.html: OK
+./templates/interviews/stakeholder_record_detail.html: OK
+
+$ python -m evaluation.validate_specs
+{
+  "contracts": {
+    "baseline_contract": {
+      "path": "specs/baseline_contract.v2.json",
+      "sha256": "abda4c9395988bf7616cde45ad4a8c776007009dfee98a1d4233b006319738dc"
+    },
+    "baseline_output_schema": {
+      "path": "specs/prompt_only_output_schema.v2.json",
+      "sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0"
+    },
+    "export_bundle_schema": {
+      "path": "specs/export_bundle_schema.v2.json",
+      "sha256": "713f5bd4e1721ee826f9d4a619b01cfe8b8786c62dd3bd99d96a771da14e50d9"
+    },
+    "freeze_manifest": {
+      "path": "specs/freeze_manifest.v10_2.json",
+      "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+    },
+    "metric_calculation_schema": {
+      "path": "specs/metric_calculation_schema.v2.json",
+      "sha256": "1d762c63111c3057596feb5de5dd9e48dfdaeb997d1162c35899085cc856de11"
+    },
+    "metrics": {
+      "path": "specs/metrics.v3.json",
+      "sha256": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4"
+    },
+    "quality_review": {
+      "path": "specs/quality_review.v2.json",
+      "sha256": "221a50d6dbc8bc15ccb65898ab694a8cc2d72f13a821d54a05bcb133f6809017"
+    },
+    "review_completion": {
+      "path": "specs/review_completion.v2.json",
+      "sha256": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72"
+    },
+    "scenarios": {
+      "path": "specs/scenarios.v4.json",
+      "sha256": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6"
+    }
+  },
+  "formal_run": false,
+  "status": "PASS"
+}
+
+$ python manage.py check
+System check identified no issues (0 silenced).
+
+$ python manage.py makemigrations --check --dry-run
+No changes detected
+
+$ python manage.py migrate --noinput
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, interviews, sessions
+Running migrations:
+  No migrations to apply.
+
+$ python manage.py test
+Creating test database for alias 'default'...
+.....................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 197 tests in 37.927s
+
+OK
+Destroying test database for alias 'default'...
+Found 197 test(s).
+System check identified no issues (0 silenced).
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01
+Seeded PurrStone MVP data successfully.
+Protocol: Sensory Overload Interview
+Stakeholder: P01
+Session: IS-01

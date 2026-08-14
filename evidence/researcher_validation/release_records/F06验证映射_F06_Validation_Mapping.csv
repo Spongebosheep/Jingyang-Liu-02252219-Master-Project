@@ -1,0 +1,11 @@
+Record type,Session or item position,Case or defect pattern,Required handling,Binding
+Session,Pilot-02,NP02-A-P06,Pilot release check; exclude from formal n=3,Controlled F06 fixture
+Session,P01 Prototype,NP01-B-F06,Formal researcher validation,Controlled F06 fixture
+Session,P02 Prototype,NP02-A-F06,Formal researcher validation,Controlled F06 fixture
+Session,P03 Prototype,NP03-A-F06,Formal researcher validation,Controlled F06 fixture
+Item,E1,Supported single-source item,Include,Correct source retained
+Item,E2,Supported cumulative-source item,Include or minor edit,All supporting sources retained
+Item,E3,Partially supported overstatement,Edit to supported scope,Source pair retained
+Item,E4,Unsupported inference,Exclude,Absence of supporting evidence recorded
+Item,E5,Supported statement with wrong suggested source,Edit source,Replace with correct source ID
+Item,E6,False sufficient status with missing expected effect,Edit or defensibly exclude; set topic partial and record missing information,Missing expected effect retained explicitly

@@ -1,0 +1,698 @@
+{
+  "automatic_metric_codes": [
+    "AI",
+    "AC",
+    "SLC",
+    "MIV",
+    "PCC",
+    "RAC",
+    "TCR"
+  ],
+  "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+  "claim_boundary": "This summary reports frozen automatic numerators, denominators, failures and mechanical pairing only. UCR, MP, blinded quality review and any comparative interpretation remain human tasks.",
+  "condition_counts": {
+    "mvp": 16,
+    "prompt_only_baseline": 16
+  },
+  "condition_metrics": [
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_record_completeness",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 102,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "AI",
+      "metric_name": "Action Inspectability",
+      "not_evaluable_run_count": 0,
+      "numerator": 102,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_oracle_comparison",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 86,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "AC",
+      "metric_name": "Action Consistency",
+      "not_evaluable_run_count": 0,
+      "numerator": 86,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_source_validation",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 9,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "SLC",
+      "metric_name": "Source-link Coverage",
+      "not_evaluable_run_count": 0,
+      "numerator": 9,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_oracle_comparison",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 8,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "MIV",
+      "metric_name": "Missing-information Visibility",
+      "not_evaluable_run_count": 0,
+      "numerator": 8,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_control_transition_validation",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 2,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "PCC",
+      "metric_name": "Participant-control Compliance",
+      "not_evaluable_run_count": 0,
+      "numerator": 2,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "manual_atomic_proposition_coding",
+      "calculation_status": "PENDING_MANUAL",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": null,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": true,
+      "metric_code": "UCR",
+      "metric_name": "Unsupported-content Rate",
+      "not_evaluable_run_count": 0,
+      "numerator": null,
+      "pending_manual_run_count": 16,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_field_completeness",
+      "calculation_status": "FAIL",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 26,
+      "failure_count": 14,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "RAC",
+      "metric_name": "Review Audit Completeness",
+      "not_evaluable_run_count": 0,
+      "numerator": 12,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 0.461538
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "manual_item_judgement",
+      "calculation_status": "PENDING_MANUAL",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 9,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": true,
+      "metric_code": "MP",
+      "metric_name": "Meaning Preservation",
+      "not_evaluable_run_count": 0,
+      "numerator": null,
+      "pending_manual_run_count": 16,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_topic_cardinality",
+      "calculation_status": "PASS",
+      "completed_run_count": 16,
+      "condition": "mvp",
+      "denominator": 80,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 16,
+      "manual_coding_required": false,
+      "metric_code": "TCR",
+      "metric_name": "Topic Coverage Representation",
+      "not_evaluable_run_count": 0,
+      "numerator": 80,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_record_completeness",
+      "calculation_status": "FAIL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 102,
+      "failure_count": 9,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "AI",
+      "metric_name": "Action Inspectability",
+      "not_evaluable_run_count": 0,
+      "numerator": 93,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 0.911765
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_oracle_comparison",
+      "calculation_status": "FAIL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 86,
+      "failure_count": 12,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "AC",
+      "metric_name": "Action Consistency",
+      "not_evaluable_run_count": 0,
+      "numerator": 74,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 0.860465
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_source_validation",
+      "calculation_status": "INCOMPLETE",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 0,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "SLC",
+      "metric_name": "Source-link Coverage",
+      "not_evaluable_run_count": 6,
+      "numerator": 0,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_oracle_comparison",
+      "calculation_status": "FAIL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 8,
+      "failure_count": 1,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "MIV",
+      "metric_name": "Missing-information Visibility",
+      "not_evaluable_run_count": 0,
+      "numerator": 7,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 0.875
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_control_transition_validation",
+      "calculation_status": "PASS",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 2,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "PCC",
+      "metric_name": "Participant-control Compliance",
+      "not_evaluable_run_count": 0,
+      "numerator": 2,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 1.0
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "manual_atomic_proposition_coding",
+      "calculation_status": "PENDING_MANUAL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": null,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": true,
+      "metric_code": "UCR",
+      "metric_name": "Unsupported-content Rate",
+      "not_evaluable_run_count": 0,
+      "numerator": null,
+      "pending_manual_run_count": 16,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_field_completeness",
+      "calculation_status": "INCOMPLETE",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 10,
+      "failure_count": 10,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "RAC",
+      "metric_name": "Review Audit Completeness",
+      "not_evaluable_run_count": 6,
+      "numerator": 0,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "manual_item_judgement",
+      "calculation_status": "PENDING_MANUAL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 0,
+      "failure_count": 0,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": true,
+      "metric_code": "MP",
+      "metric_name": "Meaning Preservation",
+      "not_evaluable_run_count": 0,
+      "numerator": null,
+      "pending_manual_run_count": 16,
+      "run_count": 16,
+      "value": null
+    },
+    {
+      "calculation_id": "metric-calculation-20260809T045140496027Z-3752056e",
+      "calculation_mode": "automatic_topic_cardinality",
+      "calculation_status": "FAIL",
+      "completed_run_count": 10,
+      "condition": "prompt_only_baseline",
+      "denominator": 80,
+      "failure_count": 30,
+      "formal_evidence_eligible_run_count": 10,
+      "manual_coding_required": false,
+      "metric_code": "TCR",
+      "metric_name": "Topic Coverage Representation",
+      "not_evaluable_run_count": 0,
+      "numerator": 50,
+      "pending_manual_run_count": 0,
+      "run_count": 16,
+      "value": 0.625
+    }
+  ],
+  "formal_evidence_eligible": false,
+  "input_export_id": "evaluation-export-20260809T045130957515Z-327e4a1d",
+  "manual_metrics": {
+    "MP": "PENDING independent item judgement and consensus; no reviewer checkbox was substituted.",
+    "UCR": "PENDING independent atomic-proposition coding; no text-similarity proxy was used."
+  },
+  "pair_integrity": {
+    "ambiguous_count": 0,
+    "fairness_fail_count": 0,
+    "formal_pair_evidence_eligible_count": 10,
+    "incomplete_count": 0,
+    "matched_fields": [
+      "model_id",
+      "code_commit",
+      "protocol_snapshot_sha256",
+      "scenario_sha256",
+      "metric_rules_sha256",
+      "scenario_instance_sha256"
+    ],
+    "pair_count": 16,
+    "pairs": [
+      {
+        "baseline_run_ids": [
+          "baseline-s1-r01-20260809T044234949628Z-ef0f7b4b"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s1-r01-20260809T044219619644Z-bbcc4a8d"
+        ],
+        "pair_key": "S1-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s1-r02-20260809T044305579495Z-d5c9e638"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s1-r02-20260809T044249800598Z-7548174a"
+        ],
+        "pair_key": "S1-R02",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s1-r03-20260809T044329454524Z-e2ffb48f"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s1-r03-20260809T044315654585Z-951ad86d"
+        ],
+        "pair_key": "S1-R03",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s2-r01-20260809T044402351202Z-30daf9e4"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s2-r01-20260809T044345576641Z-9de1baaf"
+        ],
+        "pair_key": "S2-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s2-r02-20260809T044439101928Z-e1dc6bd9"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s2-r02-20260809T044422632918Z-4975ce39"
+        ],
+        "pair_key": "S2-R02",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s2-r03-20260809T044519502604Z-a35f5e71"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s2-r03-20260809T044459081130Z-8bd5020d"
+        ],
+        "pair_key": "S2-R03",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s3-r01-20260809T044550535264Z-2101aa13"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s3-r01-20260809T044532259075Z-54cf8d6b"
+        ],
+        "pair_key": "S3-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s3-r02-20260809T044626088142Z-d75aa8e0"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s3-r02-20260809T044610299137Z-92d1b491"
+        ],
+        "pair_key": "S3-R02",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s3-r03-20260809T044702095354Z-87f589cd"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s3-r03-20260809T044644566071Z-f2929725"
+        ],
+        "pair_key": "S3-R03",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s4-r01-20260809T044731999786Z-7df64640"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s4-r01-20260809T044721031920Z-f261fef8"
+        ],
+        "pair_key": "S4-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s5-r01-20260809T044749755593Z-470c6233"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s5-r01-20260809T044747093951Z-c8928576"
+        ],
+        "pair_key": "S5-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s6-r01-20260809T044808810611Z-5693f829"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s6-r01-20260809T044755729212Z-e4f3f8e0"
+        ],
+        "pair_key": "S6-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s6-r02-20260809T044840803208Z-f83441dc"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s6-r02-20260809T044827706684Z-b4cba446"
+        ],
+        "pair_key": "S6-R02",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s6-r03-20260809T044906555168Z-195c3ef6"
+        ],
+        "formal_pair_evidence_eligible": true,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s6-r03-20260809T044852685093Z-6ecc7db4"
+        ],
+        "pair_key": "S6-R03",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s7-r01-20260809T044939508018Z-2c90f523"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s7-r01-20260809T044924941567Z-e1942d7e"
+        ],
+        "pair_key": "S7-R01",
+        "status": "PASS"
+      },
+      {
+        "baseline_run_ids": [
+          "baseline-s8-r01-20260809T045010670387Z-e293132a"
+        ],
+        "formal_pair_evidence_eligible": false,
+        "matched_fields": [
+          "model_id",
+          "code_commit",
+          "protocol_snapshot_sha256",
+          "scenario_sha256",
+          "metric_rules_sha256",
+          "scenario_instance_sha256"
+        ],
+        "mismatched_fields": [],
+        "mvp_run_ids": [
+          "mvp-s8-r01-20260809T044954794256Z-fc76b8d6"
+        ],
+        "pair_key": "S8-R01",
+        "status": "PASS"
+      }
+    ],
+    "pass_count": 16
+  },
+  "pairing": {
+    "ambiguous_pair_count": 0,
+    "ambiguous_pair_keys": [],
+    "fairness_fail_pair_count": 0,
+    "fairness_fail_pair_keys": [],
+    "incomplete_pair_count": 0,
+    "incomplete_pair_keys": [],
+    "paired_pair_count": 16
+  },
+  "run_count": 32,
+  "schema_version": "1.0"
+}

@@ -1,23 +1,50 @@
+# Python virtual environments
 .venv/
+.venv-*/
 venv/
 env/
 
+# Python caches and test output
 __pycache__/
 *.py[cod]
 *$py.class
-
-db.sqlite3
-*.sqlite3
-
-.env
-.env.*
-
-*.log
 .pytest_cache/
 .coverage
 htmlcov/
 
-.DS_Store
-Thumbs.db
+# Local secrets and environment configuration
+.env
+.env.*
+*.pem
+*.key
+
+# Local Django data and runtime output
+db.sqlite3
+db.sqlite3-*
+*.log
+evaluation/_runs/
+evaluation/_exports/
+evaluation/_metrics/
+evaluation/_quality_reviews/
+evaluation/_quality_coding/
+evaluation/_quality_reports/
+evaluation/_development_gates/
+evaluation/_formal_plans/
+
+# Editors and operating systems
 .vscode/
 .idea/
+.DS_Store
+Thumbs.db
+
+# Local deliverables
+*.zip
+!evidence/**/*.zip
+
+# Uploaded or controlled research material
+upload/
+controlled_data/
+private_data/
+raw_participant_data/
+*.docx
+*.doc

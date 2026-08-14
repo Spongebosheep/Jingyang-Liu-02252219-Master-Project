@@ -1,0 +1,78 @@
+{
+  "schema": "purrstone-v10.2-ucr-source-material-set-v1",
+  "file_count": 18,
+  "files": [
+    {
+      "file": "materials/mp_ucr/items/SF-001.html",
+      "sha256": "60e4a8eff355412ab376eb13aea32915c243854c3509aa12400bc27867fcea07"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-001.json",
+      "sha256": "7ee3e15b539a84ff7cffa8e0cfe42d848e3bef88ad1d4f16b114b457d80e1da1"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-002.html",
+      "sha256": "7e906438d1434f8b5da455ff47be8cfe233b8c947510c9e1d6c1ebcc72bc4549"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-002.json",
+      "sha256": "3612b04a813e85b7319a69f536e629b44d21e9a104df700f0c2ae238056b2732"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-003.html",
+      "sha256": "333c485dd0b2adaba9855295b612db34ad86739b211e06320f6a6f87bf945888"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-003.json",
+      "sha256": "c2f4d48008d70795b45ab1fbda80bdfebba546c2b7a7c02fe3c30252d7b8d77b"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-004.html",
+      "sha256": "10131bd3c9d25c59f81de07732ffc5de669b4f1b5484967d9a2c8aefe1dce261"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-004.json",
+      "sha256": "d3ff0d40dc1399e8f5c00a5c3e77dd76169ad49332f058579a1e6b13e3e8a298"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-005.html",
+      "sha256": "ca403949c25dd8991971ff80f300d5235a5374c9bba4a3f5b32dcfe72c84076f"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-005.json",
+      "sha256": "dd57f39ee4dcace19b90ac15afff2e1693fd773f16a4919965ccfd9784913ccd"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-006.html",
+      "sha256": "0c14f22cbfa71e49811e60af6f0ac78f21bdfb48ec8e6aafde7188029928f009"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-006.json",
+      "sha256": "72942009df5e33b7a531c8ea7a7a9f6c9ca217c5d60e8bff145f423c6c385ac2"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-007.html",
+      "sha256": "9defae02495da17fac785430ff7d5f53f614eb8b548c93069aa1a64de25593ce"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-007.json",
+      "sha256": "5c83d276ca75f89660dffb24d7df34f1f071e545b17e72f875533f4ef7d5b61f"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-008.html",
+      "sha256": "1511fab9f4a6370c7fb96f88bfe3811b21950acf94294663cfc480291301260f"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-008.json",
+      "sha256": "581d92744d1b61ac9f1ed008be67e3683e00adc708c4d1f49c7e084df9ac47ff"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-009.html",
+      "sha256": "9310b3cae2dbcbdfebac246a65b09fe9da21c10ae6d220be90784307f025c025"
+    },
+    {
+      "file": "materials/mp_ucr/items/SF-009.json",
+      "sha256": "53c8e6412f5b0e624088b0c69b7433164978b3a02711e614ce157dd850ca72fc"
+    }
+  ]
+}

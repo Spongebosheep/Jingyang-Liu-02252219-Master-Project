@@ -1,0 +1,15 @@
+重建结果摘要 / Rebuilt Result Summary
+
+Formal n=3
+- Objective rows: 60 (24 Topic + 36 Evidence-item).
+- Topic correct: Manual 11/12; Prototype 12/12.
+- Evidence-item correct: Manual 16/18; Prototype 17/18.
+- E3-E6 issues detected: Manual 10/12; Prototype 11/12.
+- Missingness correct: Manual 2/3; Prototype 3/3.
+- False approvals: Manual 2; Prototype 1.
+- PC11 objectively timed active review time: Manual mean 20.3 min, median 21; Prototype mean 17.3 min, median 19; mean paired difference 3.0 min.
+- PC8 mental effort median: Manual 6; Prototype 5.
+- Condition preference: Prototype 3/3.
+
+Interpretation boundary
+Exploratory n=3 results from controlled synthetic protocols; no claim of statistical significance, general effectiveness, production readiness, or generalisable large-scale efficiency.
