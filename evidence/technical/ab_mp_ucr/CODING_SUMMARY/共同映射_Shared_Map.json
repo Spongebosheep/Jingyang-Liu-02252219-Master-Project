@@ -1,0 +1,167 @@
+{
+  "schema": "purrstone-v10.2-matched-draft-public-map-1.0",
+  "material_set_sha256": "67afa8c732e79b430031f6e40678989fd5efe1fd65c0fb26d6527be54b050901",
+  "included_pair_keys": [
+    "S1-R01",
+    "S1-R03",
+    "S2-R01",
+    "S2-R02",
+    "S3-R01",
+    "S3-R03",
+    "S4-R01",
+    "S5-R01",
+    "S6-R01",
+    "S6-R03"
+  ],
+  "nominal_items_per_condition": {
+    "mvp": 45,
+    "baseline": 45
+  },
+  "unique_bundle_count": 9,
+  "bundles": [
+    {
+      "blind_item_id": "MD-001",
+      "topic_label": "Experience",
+      "bundle_hash": "124fb7775dfc87b4b7b6914088aed2ff1413f2c11d877951d7ea87e8937b7219",
+      "mvp_nominal_instances": 2,
+      "baseline_nominal_instances": 2,
+      "frozen_propositions": 7,
+      "nominal_propositions_per_condition": 14,
+      "pair_keys": [
+        "S2-R01",
+        "S2-R02"
+      ]
+    },
+    {
+      "blind_item_id": "MD-002",
+      "topic_label": "Experience",
+      "bundle_hash": "6d8d8f375e07e9ee382f7bc6eece0e3d99aaed05f0a828fed9c55fb73be523bd",
+      "mvp_nominal_instances": 2,
+      "baseline_nominal_instances": 2,
+      "frozen_propositions": 2,
+      "nominal_propositions_per_condition": 4,
+      "pair_keys": [
+        "S3-R01",
+        "S3-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-003",
+      "topic_label": "Experience",
+      "bundle_hash": "7b4d99b72ed77f82c90f18eff42ff0dbef109e921c4775816a5c6b7030e21276",
+      "mvp_nominal_instances": 2,
+      "baseline_nominal_instances": 2,
+      "frozen_propositions": 5,
+      "nominal_propositions_per_condition": 10,
+      "pair_keys": [
+        "S6-R01",
+        "S6-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-004",
+      "topic_label": "Support concept reaction",
+      "bundle_hash": "87a812ac4beef0a48aa7049febc98f2704a36aebdc716b7b090507816b132672",
+      "mvp_nominal_instances": 9,
+      "baseline_nominal_instances": 9,
+      "frozen_propositions": 4,
+      "nominal_propositions_per_condition": 36,
+      "pair_keys": [
+        "S1-R01",
+        "S1-R03",
+        "S2-R01",
+        "S2-R02",
+        "S3-R01",
+        "S3-R03",
+        "S4-R01",
+        "S6-R01",
+        "S6-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-005",
+      "topic_label": "Coping & support",
+      "bundle_hash": "970c7ac4eb7782b6ca70008240fef96b65e4cee6b083f7a1a0a65f4ee18c21c8",
+      "mvp_nominal_instances": 9,
+      "baseline_nominal_instances": 9,
+      "frozen_propositions": 6,
+      "nominal_propositions_per_condition": 54,
+      "pair_keys": [
+        "S1-R01",
+        "S1-R03",
+        "S2-R01",
+        "S2-R02",
+        "S3-R01",
+        "S3-R03",
+        "S4-R01",
+        "S6-R01",
+        "S6-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-006",
+      "topic_label": "Experience",
+      "bundle_hash": "a78444a67dad52bad90473c4a54ed0398ffdade8fdfc9a087bf47579e9ab3f40",
+      "mvp_nominal_instances": 1,
+      "baseline_nominal_instances": 1,
+      "frozen_propositions": 5,
+      "nominal_propositions_per_condition": 5,
+      "pair_keys": [
+        "S5-R01"
+      ]
+    },
+    {
+      "blind_item_id": "MD-007",
+      "topic_label": "Triggers & signs",
+      "bundle_hash": "b308301c06201e75bafa439e3f4264040b521b862ff072d030ee06ecc9cd9ef6",
+      "mvp_nominal_instances": 9,
+      "baseline_nominal_instances": 9,
+      "frozen_propositions": 6,
+      "nominal_propositions_per_condition": 54,
+      "pair_keys": [
+        "S1-R01",
+        "S1-R03",
+        "S2-R01",
+        "S2-R02",
+        "S3-R01",
+        "S3-R03",
+        "S4-R01",
+        "S6-R01",
+        "S6-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-008",
+      "topic_label": "Experience",
+      "bundle_hash": "c6e97d7b7c5464a6addfaaaedfe22c3b50e02ede78a7fac11887aaafb9923681",
+      "mvp_nominal_instances": 2,
+      "baseline_nominal_instances": 2,
+      "frozen_propositions": 8,
+      "nominal_propositions_per_condition": 16,
+      "pair_keys": [
+        "S1-R01",
+        "S1-R03"
+      ]
+    },
+    {
+      "blind_item_id": "MD-009",
+      "topic_label": "Public-use acceptability",
+      "bundle_hash": "d69cf8439a2cccee2c1b827a373787270a89924ded218689ab2a2f6c61390e2e",
+      "mvp_nominal_instances": 9,
+      "baseline_nominal_instances": 9,
+      "frozen_propositions": 3,
+      "nominal_propositions_per_condition": 27,
+      "pair_keys": [
+        "S1-R01",
+        "S1-R03",
+        "S2-R01",
+        "S2-R02",
+        "S3-R01",
+        "S3-R03",
+        "S4-R01",
+        "S6-R01",
+        "S6-R03"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "purrstone-v10.2-q2-r1-evidence-material-comparison",
+  "status": "PASS",
+  "comparisons": [
+    {
+      "coder_id": "Coder01",
+      "file_count": 38,
+      "byte_identical_by_sha256": true
+    },
+    {
+      "coder_id": "Coder02",
+      "file_count": 38,
+      "byte_identical_by_sha256": true
+    }
+  ],
+  "boundary": "Only the derived coder instrument/protocol/QA/package metadata changed; the blinded evidence material is byte-identical."
+}

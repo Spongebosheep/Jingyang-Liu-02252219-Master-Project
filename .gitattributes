@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Evidence CSV files retain their delivered byte representation. This keeps
+# recorded hashes and the public integrity manifest reproducible after clone.
+*.csv -text

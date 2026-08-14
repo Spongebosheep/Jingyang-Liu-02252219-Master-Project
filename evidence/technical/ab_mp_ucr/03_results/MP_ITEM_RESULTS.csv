@@ -1,0 +1,10 @@
+﻿blind_item_id,unique_content_group,coder01_label,coder02_label,exact_agreement,descriptive_item_result
+SF-001,UG-01,preserved,preserved,True,preserved
+SF-002,UG-02,preserved,preserved,True,preserved
+SF-003,UG-03,preserved,preserved,True,preserved
+SF-004,UG-02,preserved,preserved,True,preserved
+SF-005,UG-01,preserved,preserved,True,preserved
+SF-006,UG-03,preserved,preserved,True,preserved
+SF-007,UG-04,preserved,preserved,True,preserved
+SF-008,UG-05,not_preserved,not_preserved,True,not_preserved
+SF-009,UG-04,preserved,preserved,True,preserved

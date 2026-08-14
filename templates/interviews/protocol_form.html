@@ -1,0 +1,316 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        {% if form_mode == "create" %}
+            <h1 class="overview-title">New protocol</h1>
+            <p class="overview-kicker">
+                Create a separate protocol family as v1. Opening and completion stay fixed as workflow boundaries; research topics between them are configurable.
+            </p>
+        {% else %}
+            <h1 class="overview-title">Edit protocol: {{ protocol.title }}</h1>
+            <p class="overview-kicker">
+                Editing draft v{{ protocol.version }}. Add, remove, reorder, or rewrite research topics before this version is used by a Session.
+            </p>
+        {% endif %}
+    </div>
+
+    {% if form_mode == "create" %}
+        <a class="button-secondary" href="{% url 'protocol_list' %}">Back to protocol library</a>
+    {% else %}
+        <a class="button-secondary" href="{% url 'protocol_detail' protocol.slug %}">Back to protocol detail</a>
+    {% endif %}
+</div>
+
+<div class="card protocol-runtime-note">
+    <strong>How this Protocol runs</strong>
+    <p>
+        The primary question is asked exactly as written. Required information and assessment guidance define semantic coverage; LangGraph then chooses continue, one bounded follow-up, Skip, Stop, or a boundary response. Follow-up focus and interaction boundary constrain wording. A newly created Protocol demonstrates configurability only—it is not automatically validated research content.
+    </p>
+</div>
+
+<form method="post" novalidate id="protocol-form">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="card field-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="card stakeholder-form-card protocol-edit-card">
+        <h2>Protocol overview</h2>
+
+        <div class="stakeholder-form-grid">
+            {% for field in form %}
+                {% if field.name != "ethics_rules_text" %}
+                    <div class="stakeholder-form-field {% if field.name == 'purpose' or field.name == 'output_description' %}stakeholder-form-field-wide{% endif %}">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}<div class="field-help">{{ field.help_text }}</div>{% endif %}
+                        {% if field.errors %}<div class="field-errors">{{ field.errors }}</div>{% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card protocol-edit-card">
+        <div class="protocol-editor-heading">
+            <div>
+                <h2>Interview flow</h2>
+                <p class="muted">
+                    Each research topic becomes one evidence item in Output Review. The stable topic key links saved interview state to the correct topic.
+                </p>
+            </div>
+            <button class="button-secondary" type="button" id="add-protocol-section">+ Add research topic</button>
+        </div>
+
+        <div class="protocol-edit-sections" id="protocol-sections">
+            {% for section in section_rows %}
+                <section class="protocol-edit-section" data-section-row data-boundary="{% if section.is_boundary %}true{% else %}false{% endif %}">
+                    <div class="protocol-edit-section-heading">
+                        <span class="section-number" data-section-number>{{ section.position }}</span>
+                        <div class="protocol-section-title-block">
+                            <strong data-section-title>{{ section.label|default:"Untitled section" }}</strong>
+                            {% if section.is_boundary %}
+                                <div class="field-help">Required workflow boundary</div>
+                            {% else %}
+                                <div class="field-help">Research topic</div>
+                            {% endif %}
+                        </div>
+
+                        {% if not section.is_boundary %}
+                            <div class="protocol-row-actions">
+                                <button class="button-secondary" type="button" data-move-up aria-label="Move topic up">↑</button>
+                                <button class="button-secondary" type="button" data-move-down aria-label="Move topic down">↓</button>
+                                <button class="button-secondary protocol-remove-button" type="button" data-remove-section>Remove</button>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="stakeholder-form-grid">
+                        <div class="stakeholder-form-field">
+                            <label>Section label</label>
+                            <input type="text" name="section_label" value="{{ section.label }}" required data-section-label>
+                        </div>
+
+                        <div class="stakeholder-form-field">
+                            <label>Stable topic key</label>
+                            <input
+                                type="text"
+                                name="section_code"
+                                value="{{ section.code }}"
+                                pattern="[a-z][a-z0-9_]*"
+                                required
+                                {% if section.is_boundary %}readonly{% endif %}
+                            >
+                            <div class="field-help">Lower-case letters, numbers, and underscores only. Keep it stable after data collection begins.</div>
+                        </div>
+
+                        <div class="stakeholder-form-field stakeholder-form-field-wide">
+                            <label>Section purpose</label>
+                            <textarea name="section_purpose" rows="3" required>{{ section.purpose }}</textarea>
+                        </div>
+
+                        <div class="stakeholder-form-field stakeholder-form-field-wide">
+                            <label>Primary message / question</label>
+                            <textarea name="section_question" rows="3" required>{{ section.question }}</textarea>
+                        </div>
+
+                        <div class="stakeholder-form-field stakeholder-form-field-wide">
+                            <label>Required information</label>
+                            <textarea name="section_required" rows="3">{{ section.required }}</textarea>
+                            <div class="field-help">Enter one requirement per line. Research topics need at least one requirement for the bounded coverage check.</div>
+                        </div>
+
+                        {% if section.is_boundary %}
+                            <input type="hidden" name="section_assessment_guidance" value="{{ section.assessment_guidance }}">
+                            <input type="hidden" name="section_follow_up_focus" value="{{ section.follow_up_focus }}">
+                            <input type="hidden" name="section_interaction_boundary" value="{{ section.interaction_boundary }}">
+                        {% else %}
+                            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                                <details class="protocol-runtime-guidance">
+                                    <summary>Runtime guidance for this topic <span>Optional but recommended</span></summary>
+                                    <div class="protocol-runtime-guidance-grid">
+                                        <label>
+                                            Assessment guidance
+                                            <textarea name="section_assessment_guidance" rows="3" placeholder="Explain what counts as covered, partially covered, unclear, or outside this topic.">{{ section.assessment_guidance }}</textarea>
+                                            <span class="field-help">Used with required information during constrained semantic assessment.</span>
+                                        </label>
+                                        <label>
+                                            Permitted follow-up focus
+                                            <textarea name="section_follow_up_focus" rows="2" placeholder="e.g. the work setting and what made it difficult">{{ section.follow_up_focus }}</textarea>
+                                            <span class="field-help">Keeps the single follow-up inside this topic.</span>
+                                        </label>
+                                        <label>
+                                            Interaction boundary
+                                            <textarea name="section_interaction_boundary" rows="2" placeholder="e.g. Ask about experience only; do not request medical explanation.">{{ section.interaction_boundary }}</textarea>
+                                            <span class="field-help">Adds a topic-specific boundary; it cannot weaken universal Skip, Stop, or non-medical controls.</span>
+                                        </label>
+                                    </div>
+                                </details>
+                            </div>
+                        {% endif %}
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="card stakeholder-form-card protocol-edit-card">
+        <div class="stakeholder-form-field">
+            {{ form.ethics_rules_text.label_tag }}
+            {{ form.ethics_rules_text }}
+            {% if form.ethics_rules_text.help_text %}<div class="field-help">{{ form.ethics_rules_text.help_text }}</div>{% endif %}
+            {% if form.ethics_rules_text.errors %}<div class="field-errors">{{ form.ethics_rules_text.errors }}</div>{% endif %}
+        </div>
+    </div>
+
+    <div class="protocol-edit-actions">
+        {% if form_mode == "create" %}
+            <a class="button-secondary" href="{% url 'protocol_list' %}">Cancel</a>
+            <button class="button" type="submit">Create protocol v1</button>
+        {% else %}
+            <a class="button-secondary" href="{% url 'protocol_detail' protocol.slug %}">Cancel</a>
+            <button class="button" type="submit">Save draft changes</button>
+        {% endif %}
+    </div>
+</form>
+
+<template id="protocol-section-template">
+    <section class="protocol-edit-section" data-section-row data-boundary="false">
+        <div class="protocol-edit-section-heading">
+            <span class="section-number" data-section-number></span>
+            <div class="protocol-section-title-block">
+                <strong data-section-title>New research topic</strong>
+                <div class="field-help">Research topic</div>
+            </div>
+            <div class="protocol-row-actions">
+                <button class="button-secondary" type="button" data-move-up aria-label="Move topic up">↑</button>
+                <button class="button-secondary" type="button" data-move-down aria-label="Move topic down">↓</button>
+                <button class="button-secondary protocol-remove-button" type="button" data-remove-section>Remove</button>
+            </div>
+        </div>
+        <div class="stakeholder-form-grid">
+            <div class="stakeholder-form-field">
+                <label>Section label</label>
+                <input type="text" name="section_label" value="New research topic" required data-section-label>
+            </div>
+            <div class="stakeholder-form-field">
+                <label>Stable topic key</label>
+                <input type="text" name="section_code" value="" pattern="[a-z][a-z0-9_]*" required>
+                <div class="field-help">Lower-case letters, numbers, and underscores only.</div>
+            </div>
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                <label>Section purpose</label>
+                <textarea name="section_purpose" rows="3" required placeholder="Describe what this topic should explore."></textarea>
+            </div>
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                <label>Primary message / question</label>
+                <textarea name="section_question" rows="3" required placeholder="Enter the exact question participants should receive."></textarea>
+            </div>
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                <label>Required information</label>
+                <textarea name="section_required" rows="3" placeholder="Enter one evidence requirement per line."></textarea>
+                <div class="field-help">Enter one requirement per line.</div>
+            </div>
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                <details class="protocol-runtime-guidance" open>
+                    <summary>Runtime guidance for this topic <span>Optional but recommended</span></summary>
+                    <div class="protocol-runtime-guidance-grid">
+                        <label>
+                            Assessment guidance
+                            <textarea name="section_assessment_guidance" rows="3" placeholder="Explain what counts as covered, partially covered, unclear, or outside this topic."></textarea>
+                        </label>
+                        <label>
+                            Permitted follow-up focus
+                            <textarea name="section_follow_up_focus" rows="2" placeholder="e.g. the setting and the participant's experienced effect"></textarea>
+                        </label>
+                        <label>
+                            Interaction boundary
+                            <textarea name="section_interaction_boundary" rows="2" placeholder="e.g. Ask about experience only; do not request medical explanation."></textarea>
+                        </label>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+</template>
+
+<script>
+    (function () {
+        const container = document.getElementById("protocol-sections");
+        const addButton = document.getElementById("add-protocol-section");
+        const template = document.getElementById("protocol-section-template");
+
+        function researchRows() {
+            return Array.from(container.querySelectorAll('[data-section-row][data-boundary="false"]'));
+        }
+
+        function nextTopicKey() {
+            const used = new Set(
+                Array.from(container.querySelectorAll('input[name="section_code"]'))
+                    .map((input) => input.value)
+            );
+            let number = 1;
+            while (used.has(`research_topic_${number}`)) number += 1;
+            return `research_topic_${number}`;
+        }
+
+        function refreshRows() {
+            const rows = Array.from(container.querySelectorAll("[data-section-row]"));
+            const topics = researchRows();
+            rows.forEach((row, index) => {
+                row.querySelector("[data-section-number]").textContent = index + 1;
+                const label = row.querySelector("[data-section-label]");
+                const title = row.querySelector("[data-section-title]");
+                if (label && title) title.textContent = label.value || "Untitled section";
+            });
+            topics.forEach((row, index) => {
+                const up = row.querySelector("[data-move-up]");
+                const down = row.querySelector("[data-move-down]");
+                if (up) up.disabled = index === 0;
+                if (down) down.disabled = index === topics.length - 1;
+            });
+        }
+
+        container.addEventListener("input", (event) => {
+            if (event.target.matches("[data-section-label]")) refreshRows();
+        });
+
+        container.addEventListener("click", (event) => {
+            const row = event.target.closest("[data-section-row]");
+            if (!row) return;
+
+            if (event.target.closest("[data-remove-section]")) {
+                if (researchRows().length <= 1) {
+                    window.alert("A protocol needs at least one research topic.");
+                    return;
+                }
+                row.remove();
+            } else if (event.target.closest("[data-move-up]")) {
+                const previous = row.previousElementSibling;
+                if (previous && previous.dataset.boundary === "false") {
+                    container.insertBefore(row, previous);
+                }
+            } else if (event.target.closest("[data-move-down]")) {
+                const next = row.nextElementSibling;
+                if (next && next.dataset.boundary === "false") {
+                    container.insertBefore(next, row);
+                }
+            }
+            refreshRows();
+        });
+
+        addButton.addEventListener("click", () => {
+            const fragment = template.content.cloneNode(true);
+            fragment.querySelector('input[name="section_code"]').value = nextTopicKey();
+            const completion = container.querySelector('[data-section-row][data-boundary="true"]:last-child');
+            container.insertBefore(fragment, completion);
+            refreshRows();
+        });
+
+        refreshRows();
+    })();
+</script>
+{% endblock %}

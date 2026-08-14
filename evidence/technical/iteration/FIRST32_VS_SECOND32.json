@@ -1,0 +1,68 @@
+[
+  {
+    "field": "dataset_role",
+    "v9_first_32": "Historical design/evaluation iteration",
+    "v10_2_second_32": "Authoritative current machine and post-coder result source",
+    "interpretation": "Archive both; do not pool."
+  },
+  {
+    "field": "code_commit",
+    "v9_first_32": "be2c30a8e5e08036ed29da89645e60c71f423cf1",
+    "v10_2_second_32": "35c930d92119d47560879496902e928daf20ac02",
+    "interpretation": "Different builds."
+  },
+  {
+    "field": "model",
+    "v9_first_32": "gpt-4.1-mini",
+    "v10_2_second_32": "gpt-4.1-mini",
+    "interpretation": "Same model label, but other identities changed."
+  },
+  {
+    "field": "baseline_policy",
+    "v9_first_32": "v1.0",
+    "v10_2_second_32": "v3.0",
+    "interpretation": "Not an unchanged replication."
+  },
+  {
+    "field": "mvp_completed",
+    "v9_first_32": "16/16",
+    "v10_2_second_32": "16/16",
+    "interpretation": "Completion only; eligibility differs."
+  },
+  {
+    "field": "mvp_formally_eligible",
+    "v9_first_32": "13/16",
+    "v10_2_second_32": "16/16",
+    "interpretation": "The earlier missing-information annotation failures were resolved in the later build."
+  },
+  {
+    "field": "baseline_completed",
+    "v9_first_32": "1/16",
+    "v10_2_second_32": "10/16",
+    "interpretation": "Descriptive iteration outcome; not pooled stability evidence."
+  },
+  {
+    "field": "a_b_denominator",
+    "v9_first_32": "16 failure-inclusive pairs",
+    "v10_2_second_32": "10 complete eligible pairs",
+    "interpretation": "Human scores are not directly comparable."
+  },
+  {
+    "field": "a_b_current_use",
+    "v9_first_32": "Historical consensus only",
+    "v10_2_second_32": "Two independent raw returns; no consensus",
+    "interpretation": "Use v10.2 for current reporting."
+  },
+  {
+    "field": "mp_target",
+    "v9_first_32": "80 generated draft items; one coder",
+    "v10_2_second_32": "9 final reviewed items / 5 unique bundles; two coders",
+    "interpretation": "Different construct and denominator."
+  },
+  {
+    "field": "ucr",
+    "v9_first_32": "Historical one-coder 0%",
+    "v10_2_second_32": "Resolved supplementary UCR: 3/46; unique-text sensitivity 3/27",
+    "interpretation": "Current within-MVP result; do not pool with the historical one-coder 0% or treat as a condition comparison."
+  }
+]

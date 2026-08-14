@@ -1,0 +1,181 @@
+{
+  "schema": "purrstone-v10.2-evidence-results-1.1",
+  "analysis_date": "2026-08-10",
+  "authoritative_machine_source_sha256": "c5904e3b39afdb1918aec2d1d4f300698b37794488c13066cfac31cc3af9d43e",
+  "condition_scope": "One frozen PurrStone/Sensory Overload protocol, scripted participant inputs, gpt-4.1-mini, current v10.2 harness.",
+  "formal_runs": {
+    "planned": 32,
+    "attempted_once": 32,
+    "retry_count": 0,
+    "mvp": {
+      "attempted": 16,
+      "completed": 16,
+      "eligible": 16,
+      "execution_errors": 0
+    },
+    "prompt_only_baseline": {
+      "attempted": 16,
+      "completed": 10,
+      "eligible": 10,
+      "execution_errors": 6
+    },
+    "complete_matched_pairs": 10,
+    "minimum_pair_threshold": 8,
+    "recommended_pair_target": 16
+  },
+  "ab_review": {
+    "coder_count": 2,
+    "pair_count": 10,
+    "rating_cells_applicable": 88,
+    "rating_cells_exact": 84,
+    "exact_agreement_rate": 0.9545454545454546,
+    "rating_cells_within_one_point": 88,
+    "within_one_point_rate": 1.0,
+    "preference_exact": 8,
+    "preference_n": 10,
+    "preference_counts_by_coder": {
+      "Coder01": {
+        "MVP": 6,
+        "Tie": 2,
+        "Prompt-only baseline": 2
+      },
+      "Coder02": {
+        "MVP": 6,
+        "Tie": 4
+      }
+    },
+    "pair_disposition_counts": {
+      "Unanimous MVP": 6,
+      "Unanimous Tie": 2,
+      "Disagreement: Prompt-only baseline vs Tie": 2
+    },
+    "condition_metric_summary": [
+      {
+        "metric": "Q1",
+        "condition": "mvp",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.4,
+        "minimum": 2.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q1",
+        "condition": "prompt_only_baseline",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.4,
+        "minimum": 2.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q2",
+        "condition": "mvp",
+        "n_coder_pair_ratings": 8,
+        "mean": 4.5,
+        "minimum": 4.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q2",
+        "condition": "prompt_only_baseline",
+        "n_coder_pair_ratings": 8,
+        "mean": 5.0,
+        "minimum": 5.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q3",
+        "condition": "mvp",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.9,
+        "minimum": 4.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q3",
+        "condition": "prompt_only_baseline",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.9,
+        "minimum": 4.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q4",
+        "condition": "mvp",
+        "n_coder_pair_ratings": 20,
+        "mean": 5.0,
+        "minimum": 5.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q4",
+        "condition": "prompt_only_baseline",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.1,
+        "minimum": 2.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q5",
+        "condition": "mvp",
+        "n_coder_pair_ratings": 20,
+        "mean": 5.0,
+        "minimum": 5.0,
+        "maximum": 5.0
+      },
+      {
+        "metric": "Q5",
+        "condition": "prompt_only_baseline",
+        "n_coder_pair_ratings": 20,
+        "mean": 4.5,
+        "minimum": 3.0,
+        "maximum": 5.0
+      }
+    ],
+    "consensus_status": "NOT_PERFORMED_TIME_CONSTRAINED_DEVIATION"
+  },
+  "mp_supplementary": {
+    "coder_count": 2,
+    "nominal_items": 9,
+    "unique_text_source_bundles": 5,
+    "label_exact_agreement": 9,
+    "nominal_preserved": 8,
+    "nominal_preservation_rate": 0.8888888888888888,
+    "unique_preserved": 4,
+    "unique_preservation_rate": 0.8,
+    "not_preserved_item": "SF-008",
+    "scope": "Final reviewed MVP evidence from S7/S8 only; supplementary because Baseline counterparts failed and frozen contracts conflict."
+  },
+  "ucr": {
+    "status": "RESOLVED_SUPPLEMENTARY",
+    "phase1_segmentation_completed": true,
+    "phase1_coder01_propositions": 52,
+    "phase1_coder02_propositions": 52,
+    "common_inventory_frozen": true,
+    "common_inventory_confirmation": "administrator-frozen pre-existing blind proposal; no separate coder-confirmation round",
+    "phase2_support_labels_completed": true,
+    "nominal_proposition_instances": 46,
+    "unique_proposition_texts": 27,
+    "initial_exact_agreement_numerator": 45,
+    "initial_exact_agreement_denominator": 46,
+    "initial_exact_agreement_rate": 0.9782608695652174,
+    "cohen_kappa": 0.7889908256880735,
+    "coder01_unsupported": 3,
+    "coder01_ucr": 0.06521739130434782,
+    "coder02_unsupported": 2,
+    "coder02_ucr": 0.043478260869565216,
+    "resolved_disagreement": "SF-008-P02 = unsupported",
+    "final_unsupported": 3,
+    "final_denominator": 46,
+    "final_ucr": 0.06521739130434782,
+    "unique_text_unsupported": 3,
+    "unique_text_denominator": 27,
+    "unique_text_ucr": 0.1111111111111111,
+    "scope": "Supplementary within-MVP analysis of nine final-reviewed evidence items; no Baseline UCR and no condition-comparison claim.",
+    "procedure_deviation": "The common inventory was administrator-frozen without a separate coder-confirmation round.",
+    "reliability_boundary": "Initial independent agreement remains 45/46 (97.8%), kappa=0.789; do not report post-resolution 100% as independent agreement.",
+    "evidence": "05_quality_review/04_ucr_phase2/UCR_Audit.xlsx"
+  },
+  "claim_boundary": "The evidence supports bounded scripted workflow feasibility and descriptive differences in completion, participant-control clarity and researcher reviewability. It does not establish generally better interviews, useful insights, target-researcher adoption, scalability, production readiness or commercial superiority.",
+  "reporting_status": "CURRENT_EVIDENCE_ARCHIVE_UCR_PHASE2_RESOLVED",
+  "source_commit": "35c930d92119d47560879496902e928daf20ac02"
+}

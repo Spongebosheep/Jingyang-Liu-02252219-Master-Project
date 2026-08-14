@@ -1,0 +1,19 @@
+﻿
+方法与计分 / Method and Scoring
+
+- Formal sample: P01 P01, P02 P02, P03 P03; n=3.
+- Design: each researcher completed one Manual and one Prototype condition across three controlled synthetic protocols.
+- Objective rows: 24 Topic judgments + 36 Evidence-item judgments = 60 rows.
+- Authority: GoldReviewer01 completed six-item Gold v0.8.0; the v0.7.1 frozen archive is method/freeze provenance only.
+- Correctness: final decision compared with Gold, including explicitly allowed alternative handling.
+- False approval: an issue-bearing evidence item approved as acceptable.
+- Source correction: retaining the wrong sole source for an Edit source item is incorrect and is counted as a false approval.
+- PC11 timing: objectively timed active review minutes recorded for each condition, excluding instructions, breaks and the questionnaire; reported descriptively for n=3.
+- Pilot-01 and Pilot-02 are procedural/release evidence and are excluded from formal n=3.
+- No inferential statistics are claimed from this small exploratory sample.
+
+Reproducibility / 分析复现
+- The executable rebuild is stored in 05_分析_Analysis/06_分析复现_Reproducibility/.
+- It reads the three sealed formal return ZIPs and the completed Gold v0.8.0 directly.
+- It does not use the existing Analysis_Data.json as a calculation input.
+- The rebuilt 60-row table and five integrity tests must pass before the outputs are accepted.

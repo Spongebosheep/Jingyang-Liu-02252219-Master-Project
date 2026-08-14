@@ -1,0 +1,11 @@
+﻿metric,condition,n_coder_pair_ratings,mean,minimum,maximum
+Q1,mvp,20,4.4,2.0,5.0
+Q1,prompt_only_baseline,20,4.4,2.0,5.0
+Q2,mvp,8,4.5,4.0,5.0
+Q2,prompt_only_baseline,8,5.0,5.0,5.0
+Q3,mvp,20,4.9,4.0,5.0
+Q3,prompt_only_baseline,20,4.9,4.0,5.0
+Q4,mvp,20,5.0,5.0,5.0
+Q4,prompt_only_baseline,20,4.1,2.0,5.0
+Q5,mvp,20,5.0,5.0,5.0
+Q5,prompt_only_baseline,20,4.5,3.0,5.0

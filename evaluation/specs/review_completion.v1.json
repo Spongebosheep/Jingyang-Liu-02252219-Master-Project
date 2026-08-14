@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "preregistration": {
+    "status": "frozen_before_formal_runs",
+    "frozen_on": "2026-08-06",
+    "purpose": "Add the missing scripted overall-review completion event for S7 and S8 before any formal run, without changing participant inputs, the S1-S8 oracle, metric formulae, or product behaviour.",
+    "change_policy": "This contract is append-only. Any later correction requires a new version, a recorded reason, and new hashes before formal runs resume."
+  },
+  "applicable_scenarios": [
+    "S7",
+    "S8"
+  ],
+  "actions": {
+    "S7": {
+      "decision": "request_revision",
+      "researcher_note": "The frozen Edit action is complete; the remaining topic evidence requires review before overall approval.",
+      "participant_meaning_preserved": false,
+      "protocol_boundaries_respected": false,
+      "oracle": {
+        "saved_decision": "revision_requested",
+        "reviewer_identity_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_note_recorded": true,
+        "remaining_items_auto_resolved": false
+      }
+    },
+    "S8": {
+      "decision": "request_revision",
+      "researcher_note": "The frozen Exclude action is complete; the remaining topic evidence requires review before overall approval.",
+      "participant_meaning_preserved": false,
+      "protocol_boundaries_respected": false,
+      "oracle": {
+        "saved_decision": "revision_requested",
+        "reviewer_identity_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_note_recorded": true,
+        "remaining_items_auto_resolved": false
+      }
+    }
+  },
+  "claim_boundaries": {
+    "scripted_audit_event_only": true,
+    "overall_approval_claimed": false,
+    "human_quality_judgement_performed": false,
+    "remaining_items_auto_resolved": false
+  }
+}

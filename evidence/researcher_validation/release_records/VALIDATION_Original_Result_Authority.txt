@@ -1,0 +1,34 @@
+PurrStone 结果权威说明 / Result Authority
+Version: v1.0.0
+Date: 2026-08-12
+
+1. 技术 A/B 基准 / Technical A/B benchmark
+当前技术结果权威为 PSE_v10.2_R6_FINAL_WINDOWS_SAFE_2026-08-11(1).zip（SHA256: 7a15c2383c999d4fbc2810eb7d894a49977d50b79c713fe700914ca5e7c8c5e5）及其中：
+- 01_Results/
+- 04_Core/06_metrics/FINAL_RESULTS_POST_CODER.json
+- Results.xlsx
+- SUPPLEMENTARY_MP_UCR_ITEM_UNIVERSE.json
+
+PSE 内嵌 source_HEAD_35c930d92119f83f146760261ac75543650bd2e5.zip 是正式 A/B 基准的干净源代码权威：commit 35c930d92119f83f146760261ac75543650bd2e5，tree a7562237，SHA256 39178f573fafb0542d26a927f77b43bbcbbe16de3fdab0c1d7b7dcdb43da833d。
+
+PSE/04_Core/05_review/03_results/UCR_STATUS.md 与 04_ucr/UCR_Result.* 是 MVP 阶段记录，不作为当前 Baseline UCR 结果权威。当前 Baseline UCR 为 nominal unsupported 0/220、unique unsupported 0/46、coder agreement 46/46；不同阶段不作直接等同比较。
+
+2. 验证源代码 / Validation source
+新代码(3).zip（SHA256: dbcde7c73c3e53d1eacbd14b7620a57f35f9615a3624187579b4c949e38597e6）是 A/B 应用加研究者验证 F06 的源代码快照。F06 使用受控 fixture 直接写入验证会话：每个会话 17 个 transcript turns、6 个 evidence items；物化阶段不调用 LLM。
+
+绑定会话：NP02-A-P06、NP01-B-F06、NP02-A-F06、NP03-A-F06。fixture SHA256 为 9e3b3eefd200a50ee010f7b5d0f1fe65e86affc2fcb5a115fdcfa986aaf12b95；数据库 SHA256 为 ad56c3fa30ec1f33506911026fd3e92b2df7de93fa32c6d1829e44d2bfb01692。
+
+PurrStone_v10_2_SYSTEM_SOURCE_FROZEN_35c930d_2026-08-09 (2)(2).zip（SHA256: 6769fe5bda4b032a3731d54c6c8f9fcbf79aad44f0f31c106ff58ac502b2a67d）作为独立源代码参考保留；正式 A/B 仍以 PSE 内嵌干净源代码为权威。
+
+3. 研究者验证 / Researcher validation
+正式分析只纳入 P01、P02、P03 三份最终回包。Gold v0.8.0 是计分权威；Pilot-01 与 Pilot-02 均保留为试点里程碑，不计入正式 n=3。
+
+当前验证结果权威为：
+- P01、P02与P03三份正式回包；
+- 03_Gold_GoldReviewer01/03_最终Gold_Final_Gold_v0.8.0.xlsx；
+- 05_分析_Analysis/研究者验证汇总_Validation_Summary.xlsx；
+- 05_分析_Analysis/06_分析复现_Reproducibility/ 的输入哈希、60 行重建数据、结果输出与测试记录。
+
+P02 NP02-A-E5链接Participant response 3，而Gold要求Participant response 4。因此P02 Prototype为5/6，Prototype合计为17/18。
+
+PC11 是客观记录的 active review time。当前每个 condition 的工作上限为 25 分钟。

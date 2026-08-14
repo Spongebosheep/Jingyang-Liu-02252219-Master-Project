@@ -1,0 +1,14 @@
+Cross-package source-commit correction
+
+The sealed Validation v1.0.0 source ZIP is retained byte-for-byte with SHA-256:
+dd753a5d4fa301397f7ad00352e26d0eb7b8ebaf5daa5c4e112c636c6165dbd4
+
+Three metadata statements inside that sealed source refer to a non-matching full SHA beginning with the same seven-character prefix `35c930d`. They are retained as original release metadata and must not be used as the technical authority.
+
+The authoritative current technical commit is:
+35c930d92119d47560879496902e928daf20ac02
+
+This is supported by the embedded source ZIP filename and hash, all 32 current formal run records, the current run indexes and current result summaries. The source ZIP SHA-256 remains:
+39178f573fafb0542d26a927f77b43bbcbbe16de3fdab0c1d7b7dcdb43da833d
+
+No researcher-validation data, P02 NP02-A-E5 record, timing value, score or analytical output was changed by this correction notice.

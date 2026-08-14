@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "2.0",
+  "created_on": "2026-08-06",
+  "supersedes": "freeze_manifest.v1.json",
+  "revision_reason": "Versioned pre-run correction: add the fixed Opening acknowledgement required by the public application path and freeze metric eligibility plus UCR/MP manual-coding rules. No formal run or OpenAI call had started.",
+  "product_baseline": {
+    "authoritative_phase4_commit": "da71a3f464402091dae412b8be4f54b8d97b7e57",
+    "verified_combined_archive_sha256": "6196a48b5641f78cc710559fe40f57f17cafd5412b2b0fab854f600ab78c4a4d",
+    "local_baseline_commit": "ed109c1",
+    "controlled_file_count": 63
+  },
+  "formal_runs_started": false,
+  "live_openai_gate": {
+    "status": "PENDING",
+    "required_fields": {
+      "status": "PASS",
+      "live_assessment": true,
+      "live_follow_up_wording": true
+    },
+    "mock_or_fallback_is_acceptable": false
+  },
+  "run_plan": {
+    "minimum_individual_sessions": 16,
+    "minimum_matched_pairs": 8,
+    "recommended_individual_sessions": 32,
+    "recommended_matched_pairs": 16,
+    "recommended_repetitions_per_condition": {
+      "S1": 3,
+      "S2": 3,
+      "S3": 3,
+      "S4": 1,
+      "S5": 1,
+      "S6": 3,
+      "S7": 1,
+      "S8": 1
+    }
+  },
+  "frozen_files": {
+    "baseline_contract.v1.json": "a08becfccfa1ee90ad4eb0a645a1e1f99c6db0725699617fe41eeae77fbd64a6",
+    "metrics.v2.json": "9c37bb10d9ae6dcf56f25717b682a33c4cfab1b7780a1fc611ab18070808b782",
+    "scenarios.v2.json": "b63b11d5ddc7100cd6d012387f73cef4a0df83da97a508481e1c36a6d995a70d"
+  }
+}

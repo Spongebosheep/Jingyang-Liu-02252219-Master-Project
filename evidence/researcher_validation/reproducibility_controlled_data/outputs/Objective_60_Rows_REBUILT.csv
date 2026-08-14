@@ -1,0 +1,61 @@
+row_id,participant,condition,round,case,level,target_id,topic_code,gold_decision,actual_decision,correct,issue_bearing,issue_recognized,missingness_expected,missingness_actual,missingness_correct,false_approval,source_file
+NP01-A-TOPIC-breakdown_response,P01,Manual,1,NP01-A,Topic,breakdown_response,breakdown_response,fully_answered,fully_answered,True,False,,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-TOPIC-improvement_priority,P01,Manual,1,NP01-A,Topic,improvement_priority,improvement_priority,partially_answered,fully_answered,False,False,,True,False,False,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-TOPIC-meeting_context,P01,Manual,1,NP01-A,Topic,meeting_context,meeting_context,fully_answered,fully_answered,True,False,,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-TOPIC-participation_experience,P01,Manual,1,NP01-A,Topic,participation_experience,participation_experience,fully_answered,fully_answered,True,False,,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E1,P01,Manual,1,NP01-A,Evidence item,NP01-A-E1,meeting_context,include,include,True,False,,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E2,P01,Manual,1,NP01-A,Evidence item,NP01-A-E2,participation_experience,include,include,True,False,,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E3,P01,Manual,1,NP01-A,Evidence item,NP01-A-E3,breakdown_response,edit,include,False,True,False,False,False,,True,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E4,P01,Manual,1,NP01-A,Evidence item,NP01-A-E4,breakdown_response,exclude,exclude,True,True,True,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E5,P01,Manual,1,NP01-A,Evidence item,NP01-A-E5,participation_experience,edit_source,edit_source,True,True,True,False,False,,False,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-A-E6,P01,Manual,1,NP01-A,Evidence item,NP01-A-E6,improvement_priority,edit_and_flag_partial,include,False,True,False,True,False,,True,P01_R1_Manual_NP01-A_COMPLETED_v0.8.0.xlsx
+NP01-B-TOPIC-breakdown_response,P01,Prototype,2,NP01-B,Topic,breakdown_response,breakdown_response,fully_answered,fully_answered,True,False,,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-TOPIC-improvement_priority,P01,Prototype,2,NP01-B,Topic,improvement_priority,improvement_priority,partially_answered,partially_answered,True,False,,True,True,True,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-TOPIC-meeting_context,P01,Prototype,2,NP01-B,Topic,meeting_context,meeting_context,fully_answered,fully_answered,True,False,,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-TOPIC-participation_experience,P01,Prototype,2,NP01-B,Topic,participation_experience,participation_experience,fully_answered,fully_answered,True,False,,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E1,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E1,meeting_context,include,include,True,False,,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E2,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E2,participation_experience,include,include,True,False,,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E3,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E3,breakdown_response,edit,edit,True,True,True,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E4,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E4,breakdown_response,exclude,exclude,True,True,True,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E5,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E5,participation_experience,edit_source,include,True,True,True,False,False,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP01-B-E6,P01,Prototype,2,NP01-B,Evidence item,NP01-B-E6,improvement_priority,edit_and_flag_partial,edit,True,True,True,True,True,,False,P01_R2_Evidence_Record_NP01-B-F06_v0.8.0.html
+NP02-A-TOPIC-decision_outcome,P02,Prototype,1,NP02-A,Topic,decision_outcome,decision_outcome,fully_answered,fully_answered,True,False,,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-TOPIC-information_improvement,P02,Prototype,1,NP02-A,Topic,information_improvement,information_improvement,partially_answered,partially_answered,True,False,,True,True,True,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-TOPIC-information_search,P02,Prototype,1,NP02-A,Topic,information_search,information_search,fully_answered,fully_answered,True,False,,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-TOPIC-journey_context,P02,Prototype,1,NP02-A,Topic,journey_context,journey_context,fully_answered,fully_answered,True,False,,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E1,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E1,journey_context,include,include,True,False,,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E2,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E2,information_search,include,include,True,False,,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E3,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E3,decision_outcome,edit,edit,True,True,True,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E4,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E4,information_search,exclude,exclude,True,True,True,False,False,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E5,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E5,information_search,edit_source,include,False,True,False,False,False,,True,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-A-E6,P02,Prototype,1,NP02-A,Evidence item,NP02-A-E6,information_improvement,edit_and_flag_partial,edit,True,True,True,True,True,,False,P02_R1_Evidence_Record_NP02-A-F06_v0.8.0.html
+NP02-B-TOPIC-decision_outcome,P02,Manual,2,NP02-B,Topic,decision_outcome,decision_outcome,fully_answered,fully_answered,True,False,,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-TOPIC-information_improvement,P02,Manual,2,NP02-B,Topic,information_improvement,information_improvement,partially_answered,partially_answered,True,False,,True,True,True,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-TOPIC-information_search,P02,Manual,2,NP02-B,Topic,information_search,information_search,fully_answered,fully_answered,True,False,,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-TOPIC-journey_context,P02,Manual,2,NP02-B,Topic,journey_context,journey_context,fully_answered,fully_answered,True,False,,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E1,P02,Manual,2,NP02-B,Evidence item,NP02-B-E1,journey_context,include,edit,True,False,,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E2,P02,Manual,2,NP02-B,Evidence item,NP02-B-E2,information_search,include,include,True,False,,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E3,P02,Manual,2,NP02-B,Evidence item,NP02-B-E3,decision_outcome,edit,edit,True,True,True,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E4,P02,Manual,2,NP02-B,Evidence item,NP02-B-E4,information_search,exclude,exclude,True,True,True,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E5,P02,Manual,2,NP02-B,Evidence item,NP02-B-E5,information_search,edit_source,edit_source,True,True,True,False,False,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP02-B-E6,P02,Manual,2,NP02-B,Evidence item,NP02-B-E6,information_improvement,edit_and_flag_partial,edit_and_flag_partial,True,True,True,True,True,,False,P02_R2_Manual_NP02-B_COMPLETED_v0.8.0.xlsx
+NP03-B-TOPIC-adoption_condition,P03,Manual,1,NP03-B,Topic,adoption_condition,adoption_condition,partially_answered,partially_answered,True,False,,True,True,True,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-TOPIC-friction_enabler,P03,Manual,1,NP03-B,Topic,friction_enabler,friction_enabler,fully_answered,fully_answered,True,False,,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-TOPIC-return_process,P03,Manual,1,NP03-B,Topic,return_process,return_process,fully_answered,fully_answered,True,False,,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-TOPIC-use_context,P03,Manual,1,NP03-B,Topic,use_context,use_context,fully_answered,fully_answered,True,False,,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E1,P03,Manual,1,NP03-B,Evidence item,NP03-B-E1,use_context,include,include,True,False,,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E2,P03,Manual,1,NP03-B,Evidence item,NP03-B-E2,return_process,include,include,True,False,,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E3,P03,Manual,1,NP03-B,Evidence item,NP03-B-E3,friction_enabler,edit,edit,True,True,True,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E4,P03,Manual,1,NP03-B,Evidence item,NP03-B-E4,return_process,exclude,exclude,True,True,True,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E5,P03,Manual,1,NP03-B,Evidence item,NP03-B-E5,return_process,edit_source,edit_source,True,True,True,False,False,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-B-E6,P03,Manual,1,NP03-B,Evidence item,NP03-B-E6,adoption_condition,edit_and_flag_partial,edit_and_flag_partial,True,True,True,True,True,,False,P03_R1_Manual_NP03-B_COMPLETED_v0.8.0.xlsx
+NP03-A-TOPIC-adoption_condition,P03,Prototype,2,NP03-A,Topic,adoption_condition,adoption_condition,partially_answered,partially_answered,True,False,,True,True,True,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-TOPIC-friction_enabler,P03,Prototype,2,NP03-A,Topic,friction_enabler,friction_enabler,fully_answered,fully_answered,True,False,,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-TOPIC-return_process,P03,Prototype,2,NP03-A,Topic,return_process,return_process,fully_answered,fully_answered,True,False,,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-TOPIC-use_context,P03,Prototype,2,NP03-A,Topic,use_context,use_context,fully_answered,fully_answered,True,False,,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E1,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E1,use_context,include,include,True,False,,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E2,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E2,return_process,include,include,True,False,,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E3,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E3,friction_enabler,edit,edit,True,True,True,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E4,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E4,return_process,exclude,exclude,True,True,True,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E5,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E5,return_process,edit_source,include,True,True,True,False,False,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html
+NP03-A-E6,P03,Prototype,2,NP03-A,Evidence item,NP03-A-E6,adoption_condition,edit_and_flag_partial,edit,True,True,True,True,True,,False,P03_R2_Evidence_Record_NP03-A-F06_v0.8.0.html

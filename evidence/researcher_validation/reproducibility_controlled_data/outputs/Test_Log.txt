@@ -1,0 +1,12 @@
+test_confirmed_objective_results (__main__.AnalysisRebuildTests.test_confirmed_objective_results) ... ok
+test_deterministic_analysis_object (__main__.AnalysisRebuildTests.test_deterministic_analysis_object) ... ok
+test_formal_sample_and_runs (__main__.AnalysisRebuildTests.test_formal_sample_and_runs) ... ok
+test_objective_universe (__main__.AnalysisRebuildTests.test_objective_universe) ... ok
+test_timing_effort_and_preference (__main__.AnalysisRebuildTests.test_timing_effort_and_preference) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.164s
+
+OK
+
+status: PASS

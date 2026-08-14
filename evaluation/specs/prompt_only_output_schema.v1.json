@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "answer_status": {
+      "type": "string",
+      "enum": [
+        "sufficient",
+        "partial",
+        "vague",
+        "too_short",
+        "off_topic",
+        "skipped",
+        "stopped",
+        "safety_boundary"
+      ]
+    },
+    "selected_action": {
+      "type": "string",
+      "enum": [
+        "ask_follow_up",
+        "move_next",
+        "flag_missing_and_move_next",
+        "skip",
+        "stop",
+        "boundary_response",
+        "complete"
+      ]
+    },
+    "covered_information": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "participant_response": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    }
+  },
+  "required": [
+    "answer_status",
+    "selected_action",
+    "covered_information",
+    "missing_information",
+    "reason",
+    "participant_response"
+  ],
+  "additionalProperties": false
+}

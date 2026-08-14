@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "1.0",
+  "preregistration": {
+    "status": "frozen_before_live_comparison_results",
+    "frozen_on": "2026-08-06",
+    "purpose": "Freeze the blinded paired-quality review material, questions, coder process and result fields before any live comparison result."
+  },
+  "unit": "One matched scenario-and-repetition pair presented as condition A and condition B.",
+  "minimum_independent_coders": 2,
+  "blinding": {
+    "assignment": "Randomly assign MVP and prompt-only outputs to A/B independently for each pair and retain the key separately from coder materials.",
+    "excluded_from_coder_material": [
+      "mvp_or_prompt_only_condition_name",
+      "langgraph_reference",
+      "code_commit_or_tree",
+      "internal_decision_reason",
+      "runner_validator_or_model_provenance_label"
+    ],
+    "included_in_coder_material": [
+      "full_transcript",
+      "participant_facing_follow_up",
+      "structured_draft_evidence",
+      "source_labels_and_extracts",
+      "missing_information_and_limitation_presentation"
+    ]
+  },
+  "criteria": [
+    {
+      "question_id": "Q1",
+      "name": "Protocol coverage",
+      "prompt": "Rate how well the material addresses the information required by the Protocol.",
+      "scale": [1, 2, 3, 4, 5],
+      "not_applicable_allowed": false
+    },
+    {
+      "question_id": "Q2",
+      "name": "Probing relevance and neutrality",
+      "prompt": "Rate whether any probe targets missing information, is concise, and is not leading.",
+      "scale": [1, 2, 3, 4, 5],
+      "not_applicable_allowed": true,
+      "not_applicable_rule": "Use N/A only when neither condition contains a probe for the evaluated material."
+    },
+    {
+      "question_id": "Q3",
+      "name": "Transcript grounding and fidelity",
+      "prompt": "Rate whether draft evidence is supported by participant sources and preserves participant meaning.",
+      "scale": [1, 2, 3, 4, 5],
+      "not_applicable_allowed": false
+    },
+    {
+      "question_id": "Q4",
+      "name": "Participant clarity and control",
+      "prompt": "Rate whether questions, Skip, Stop, boundary and missing-information handling are clear to the participant.",
+      "scale": [1, 2, 3, 4, 5],
+      "not_applicable_allowed": false
+    },
+    {
+      "question_id": "Q5",
+      "name": "Researcher reviewability",
+      "prompt": "Rate whether a researcher can understand, inspect and decide Include, Edit or Exclude from the material.",
+      "scale": [1, 2, 3, 4, 5],
+      "not_applicable_allowed": false
+    }
+  ],
+  "pair_judgement": {
+    "overall_preference": ["A", "B", "Tie"],
+    "confidence": [1, 2, 3],
+    "short_rationale_required": true,
+    "issue_flags_required": true
+  },
+  "coder_process": {
+    "independent_before_consensus": true,
+    "retain_original_labels": true,
+    "retain_disagreements": true,
+    "consensus_label_and_note_required_for_disagreement": true,
+    "condition_key_hidden_until_independent_submissions_locked": true
+  },
+  "coding_sheet_fields": [
+    "review_package_id",
+    "pair_key",
+    "scenario_id",
+    "repetition",
+    "coder_id",
+    "blind_key",
+    "a_q1_protocol_coverage",
+    "b_q1_protocol_coverage",
+    "a_q2_probing_relevance_neutrality",
+    "b_q2_probing_relevance_neutrality",
+    "a_q3_transcript_grounding_fidelity",
+    "b_q3_transcript_grounding_fidelity",
+    "a_q4_participant_clarity_control",
+    "b_q4_participant_clarity_control",
+    "a_q5_researcher_reviewability",
+    "b_q5_researcher_reviewability",
+    "overall_preference",
+    "confidence",
+    "short_rationale",
+    "issue_flags_json",
+    "completed_at"
+  ],
+  "consensus_report_fields": [
+    "pair_key",
+    "field_name",
+    "coder_labels_json",
+    "disagreement",
+    "consensus_label",
+    "consensus_note",
+    "resolved_at"
+  ],
+  "boundaries": {
+    "ucr_is_separate_atomic_proposition_coding": true,
+    "meaning_preservation_is_separate_item_level_coding": true,
+    "five_quality_questions_do_not_replace_ucr_or_mp": true,
+    "no_automatic_winner_or_superiority_claim": true
+  }
+}

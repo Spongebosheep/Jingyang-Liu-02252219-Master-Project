@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PurrStone Evidence Record</title>
+
+    <style>
+        :root {
+            --navy: #00124a;
+            --blue: #1557ff;
+            --muted: #62708a;
+            --border: #dbe4f2;
+            --bg: #f4f7fc;
+            --green: #16a34a;
+            --orange: #d97706;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--navy);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.45;
+        }
+
+        .report-shell {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 24px 48px;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .brand {
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        h1 {
+            margin: 14px 0 8px;
+            font-size: 36px;
+            line-height: 1.1;
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 22px;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 17px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .print-button {
+            border: 1px solid #bcd0ff;
+            background: #ffffff;
+            color: var(--blue);
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .overview-stat {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            background: #fbfdff;
+        }
+
+        .overview-stat-number {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .session-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 11px;
+            border-radius: 999px;
+            font-weight: 900;
+            font-size: 13px;
+            background: #ecfdf3;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .badge.orange {
+            background: #fff7ed;
+            color: var(--orange);
+        }
+
+        .badge.blue {
+            background: #eef4ff;
+            color: var(--blue);
+        }
+
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .metadata-item {
+            padding: 14px 16px;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        .metadata-item:nth-child(odd) {
+            border-right: 1px solid #edf1f7;
+        }
+
+        .metadata-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .metadata-value {
+            font-weight: 800;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            text-align: left;
+            vertical-align: top;
+            padding: 13px 14px;
+            border-bottom: 1px solid #edf1f7;
+        }
+
+        .summary-table th {
+            background: #fbfdff;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .summary-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .source-link {
+            color: var(--blue);
+            font-weight: 900;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .criteria-record-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .criteria-record-item {
+            display: grid;
+            grid-template-columns: 118px minmax(0, 1fr);
+            gap: 10px;
+            align-items: center;
+            padding: 9px 11px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fbfdff;
+        }
+
+        .criteria-record-item .badge {
+            padding: 5px 9px;
+            font-size: 12px;
+        }
+
+        .criteria-record-item .badge {
+            justify-self: start;
+        }
+
+        .criteria-record-item strong {
+            display: block;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .flags {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .researcher-note {
+            padding: 16px;
+            border: 1px solid #dbe7ff;
+            background: #f8fbff;
+            border-radius: 14px;
+            min-height: 70px;
+            white-space: pre-wrap;
+        }
+
+        .transcript-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .message {
+            border: 1px solid #e5eaf3;
+            border-radius: 12px;
+            padding: 13px 15px;
+            background: #ffffff;
+        }
+
+        .message.participant {
+            background: #f1f6ff;
+        }
+
+        .message.system {
+            background: #fff7ed;
+        }
+
+        .message-meta {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .decision-trace-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .decision-item {
+            border: 1px solid #e5eaf3;
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: #fbfdff;
+        }
+
+        .decision-top-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .decision-step {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .decision-title {
+            font-weight: 900;
+        }
+
+        .decision-meta-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 8px 14px;
+            font-size: 14px;
+        }
+
+        .decision-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .missing-chip {
+            display: inline-flex;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #fff7ed;
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 900;
+            margin: 0 4px 4px 0;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .report-shell {
+                max-width: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+
+            .session-card {
+                page-break-before: always;
+            }
+
+            .session-card:first-of-type {
+                page-break-before: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="report-shell">
+        <header class="report-header">
+            <div>
+                <div class="brand">PurrStone</div>
+                <h1>Evidence Record</h1>
+                <p class="muted">
+                    Transcript-grounded reviewed evidence, researcher decisions, limitations, and audit metadata.
+                </p>
+                <p class="muted">
+                    Generated at: 10 Aug 2026 05:37
+                </p>
+                <p class="muted">Export scope: Single Session: EVB-S7-R01-26C0BC40</p>
+                <p class="muted">Format: self-contained HTML snapshot; use Print / Save as PDF for a PDF copy.</p>
+            </div>
+
+            <button class="print-button" onclick="window.print()">
+                Print / Save as PDF
+            </button>
+        </header>
+
+        <section class="card">
+            <h2>Evidence record overview</h2>
+            <p class="muted" style="margin-bottom: 16px;">
+                The full transcript is the complete saved conversation log. Each Session section below is a reviewed
+                snapshot containing selected verbatim or researcher-edited extracts, their transcript sources,
+                unavailable or excluded topics, researcher decisions, and the full transcript for audit. Approval
+                records completion of this workflow review; it does not verify outcome quality or the participant's account.
+            </p>
+
+            <div class="overview-grid">
+                <div class="overview-stat">
+                    <div class="overview-stat-number">1</div>
+                    <div class="muted">Saved Session records</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number">6</div>
+                    <div class="muted">Diagnostic steps</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number">0</div>
+                    <div class="muted">Limitation flags</div>
+                </div>
+
+                <div class="overview-stat">
+                    <div class="overview-stat-number" style="font-size: 22px;">
+                        Revision requested
+                    </div>
+                    <div class="muted">Review state</div>
+                </div>
+            </div>
+        </section>
+
+        
+            <section class="card session-card">
+                <div class="session-title-row">
+                    <div>
+                        <h2>Session EVB-S7-R01-26C0BC40 · Participant EB-S7-R01-26C0B</h2>
+                        <p class="muted">
+                            Sensory Overload Interview
+                        </p>
+                    </div>
+
+                    
+                        <span class="badge orange">Revision requested</span>
+                    
+                </div>
+
+                <div class="metadata-grid">
+                    <div class="metadata-item">
+                        <div class="metadata-label">Participant</div>
+                        <div class="metadata-value">EB-S7-R01-26C0B</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Stakeholder group</div>
+                        <div class="metadata-value">
+                            
+                                Evaluation participant
+                            
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Protocol version</div>
+                        <div class="metadata-value">
+                            Sensory Overload Interview · v1
+                            (locked)
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Interview status</div>
+                        <div class="metadata-value">Completed</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Consent confirmed</div>
+                        <div class="metadata-value">Yes</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Full transcript</div>
+                        <div class="metadata-value">Saved</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Consent confirmed at</div>
+                        <div class="metadata-value">
+                            
+                                10 Aug 2026 05:37
+                            
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Consent notice version</div>
+                        <div class="metadata-value">purrstone-ai-transparency-v1</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Consent snapshot SHA-256</div>
+                        <div class="metadata-value">afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Consent snapshot integrity</div>
+                        <div class="metadata-value">Valid</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Session closed at</div>
+                        <div class="metadata-value">
+                            
+                                10 Aug 2026 05:37
+                            
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Evidence review status</div>
+                        <div class="metadata-value">Revision requested</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Workflow conditions</div>
+                        <div class="metadata-value">Met</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Researcher judgements</div>
+                        <div class="metadata-value">Not confirmed</div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Topic evidence review</div>
+                        <div class="metadata-value">
+                            5 / 5 evidence topics reviewed
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Overall reviewer</div>
+                        <div class="metadata-value">
+                            
+                                Evaluation Reviewer
+                            
+                        </div>
+                    </div>
+
+                    <div class="metadata-item">
+                        <div class="metadata-label">Overall reviewed at</div>
+                        <div class="metadata-value">
+                            
+                                10 Aug 2026 05:37
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                    <h3>Consent notice snapshot shown to the participant</h3>
+                    <div class="card" style="box-shadow: none; margin-top: 10px;">
+                        <p><strong>Protocol purpose:</strong> Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.</p>
+                        <p style="margin-top: 8px;"><strong>How the AI-supported interview works:</strong></p>
+                        <ul>
+                            <li>The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.</li>
+                            <li>It may generate and ask up to one follow-up question for each interview topic.</li>
+                            <li>It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.</li>
+                            <li>The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up.</li>
+                            <li>Any material included in the final Evidence Record must be reviewed and approved by a researcher.</li>
+                        </ul>
+                        <p><strong>Study boundary:</strong> This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion.</p>
+                        <p style="margin-top: 8px;"><strong>Participant acknowledgement:</strong> I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.</p>
+                    </div>
+                
+
+                <h3>Researcher-reviewed extracts by protocol topic</h3>
+                <p class="muted">
+                    These are selected extracts from the typed interview log, not independent verification of the participant's account.
+                    Skipped, stopped, and not-reached topics remain limitations.
+                </p>
+
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Included extract</th>
+                            <th>Source / review</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                            <tr>
+                                <td><strong>Situation</strong></td>
+                                <td>The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.</td>
+                                <td>
+                                    <div>
+                                        <span class="badge">
+                                            Edited
+                                        </span>
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">Covered</div>
+                                    <div style="margin-top: 6px;">
+                                        
+                                            <a class="source-link" href="#session-2-transcript-turn-4">Participant response 2</a>
+                                        
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">
+                                        Evaluation Reviewer · 10 Aug 2026 05:37
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>Main triggers</strong></td>
+                                <td>Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”</td>
+                                <td>
+                                    <div>
+                                        <span class="badge">
+                                            Included
+                                        </span>
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">Covered</div>
+                                    <div style="margin-top: 6px;">
+                                        
+                                            <a class="source-link" href="#session-2-transcript-turn-6">Participant response 3</a>
+                                        
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">
+                                        Evaluation Reviewer · 10 Aug 2026 05:37
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>Coping / support</strong></td>
+                                <td>Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”</td>
+                                <td>
+                                    <div>
+                                        <span class="badge">
+                                            Included
+                                        </span>
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">Covered</div>
+                                    <div style="margin-top: 6px;">
+                                        
+                                            <a class="source-link" href="#session-2-transcript-turn-8">Participant response 4</a>
+                                        
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">
+                                        Evaluation Reviewer · 10 Aug 2026 05:37
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>Support concept reaction</strong></td>
+                                <td>Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”</td>
+                                <td>
+                                    <div>
+                                        <span class="badge">
+                                            Included
+                                        </span>
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">Covered</div>
+                                    <div style="margin-top: 6px;">
+                                        
+                                            <a class="source-link" href="#session-2-transcript-turn-10">Participant response 5</a>
+                                        
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">
+                                        Evaluation Reviewer · 10 Aug 2026 05:37
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>Public-use concerns</strong></td>
+                                <td>Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”</td>
+                                <td>
+                                    <div>
+                                        <span class="badge">
+                                            Included
+                                        </span>
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">Covered</div>
+                                    <div style="margin-top: 6px;">
+                                        
+                                            <a class="source-link" href="#session-2-transcript-turn-12">Participant response 6</a>
+                                        
+                                    </div>
+                                    <div class="muted" style="margin-top: 6px;">
+                                        Evaluation Reviewer · 10 Aug 2026 05:37
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+
+                
+
+                
+
+                
+
+                <div class="two-column" style="margin-top: 22px;">
+                    <div>
+                        <h3>Session release conditions</h3>
+
+                        <p class="muted" style="margin-bottom: 10px;">
+                            Three workflow conditions are system checked and two judgements require the researcher.
+                            These project-specific safeguards gate only the Session's Approved review state; they do not
+                            block export, form a validated scale, or measure research or outcome quality.
+                        </p>
+
+                        <h4>System-checked workflow conditions</h4>
+                        <div class="criteria-record-list">
+                            
+                                <div class="criteria-record-item">
+                                    
+                                        <span class="badge">Met</span>
+                                    
+
+                                    <div>
+                                        <strong>Included extracts have valid transcript source links</strong>
+                                    </div>
+                                </div>
+                            
+                                <div class="criteria-record-item">
+                                    
+                                        <span class="badge">Met</span>
+                                    
+
+                                    <div>
+                                        <strong>Skip and Stop controls were followed</strong>
+                                    </div>
+                                </div>
+                            
+                                <div class="criteria-record-item">
+                                    
+                                        <span class="badge">Met</span>
+                                    
+
+                                    <div>
+                                        <strong>Coverage limitations remain represented</strong>
+                                    </div>
+                                </div>
+                            
+                        </div>
+
+                        <h4>Researcher judgements</h4>
+                        <div class="criteria-record-list">
+                            
+                                <div class="criteria-record-item">
+                                    
+                                        <span class="badge blue">Not confirmed</span>
+                                    
+                                    <div><strong>Included extracts preserve the participant&#x27;s meaning</strong></div>
+                                </div>
+                            
+                                <div class="criteria-record-item">
+                                    
+                                        <span class="badge blue">Not confirmed</span>
+                                    
+                                    <div><strong>Protocol-specific interaction boundaries were respected</strong></div>
+                                </div>
+                            
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Missing information / flags</h3>
+
+                        
+                            <p>No topic-level missing or not-reached flags were generated. Turn-level detail is retained in the secondary diagnostic record.</p>
+                        
+                    </div>
+                </div>
+
+                
+                    <div style="margin-top: 22px;">
+                        <h3>Topic evidence review history</h3>
+                        <div class="decision-trace-list">
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">10 Aug 2026 05:37 · Situation</div>
+                                            <div class="decision-title">Edited</div>
+                                        </div>
+                                        <span class="badge blue">Evaluation Reviewer</span>
+                                    </div>
+                                    <div>Condensed the source extract into a neutral topic-level statement without adding a new claim.</div>
+                                    
+                                        <div class="decision-meta-grid" style="margin-top: 10px;">
+                                            <div class="decision-label">Previous</div>
+                                            <div>Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”</div>
+                                            <div class="decision-label">New</div>
+                                            <div>The participant described sensory overload on a crowded train when alarms, noise, and crowding made them feel trapped and overwhelmed.</div>
+                                        </div>
+                                    
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">10 Aug 2026 05:37 · Main triggers</div>
+                                            <div class="decision-title">Approved</div>
+                                        </div>
+                                        <span class="badge blue">Evaluation Reviewer</span>
+                                    </div>
+                                    <div>Retained as transcript-grounded topic evidence in the scripted review-completion check.</div>
+                                    
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">10 Aug 2026 05:37 · Coping / support</div>
+                                            <div class="decision-title">Approved</div>
+                                        </div>
+                                        <span class="badge blue">Evaluation Reviewer</span>
+                                    </div>
+                                    <div>Retained as transcript-grounded topic evidence in the scripted review-completion check.</div>
+                                    
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">10 Aug 2026 05:37 · Support concept reaction</div>
+                                            <div class="decision-title">Approved</div>
+                                        </div>
+                                        <span class="badge blue">Evaluation Reviewer</span>
+                                    </div>
+                                    <div>Retained as transcript-grounded topic evidence in the scripted review-completion check.</div>
+                                    
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">10 Aug 2026 05:37 · Public-use concerns</div>
+                                            <div class="decision-title">Approved</div>
+                                        </div>
+                                        <span class="badge blue">Evaluation Reviewer</span>
+                                    </div>
+                                    <div>Retained as transcript-grounded topic evidence in the scripted review-completion check.</div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                
+
+                <div style="margin-top: 22px;">
+                    <h3>Researcher review note</h3>
+
+                    <div class="researcher-note">
+                        
+                            All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.
+                        
+                    </div>
+                </div>
+
+                <div style="margin-top: 22px;">
+                    <h3>Full transcript</h3>
+
+                    <div class="transcript-list">
+                        
+                            <div class="message agent" id="session-2-transcript-turn-1">
+                                <div class="message-meta">
+                                    Interview prompt 1 · Opening
+                                </div>
+                                <div>Before we begin, this interview is about sensory overload.
+
+In this project, sensory overload means a moment when a place or situation feels overwhelming because there is too much noise, light, movement, crowding, smell, touch, or other sensory input. For example, this might happen in a supermarket, on public transport, or in a busy public space.
+
+I will ask you about one specific moment like this: what happened, what made it overwhelming, how you reacted, and what support might have helped. Later, I will also ask for your reaction to a sensory-support concept called PurrStone.
+
+This is a design research interview, not medical advice. You can skip any question or stop at any time. Is it okay to continue?</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-2">
+                                <div class="message-meta">
+                                    Participant response 1 · Opening
+                                </div>
+                                <div>Yes, it is okay to continue.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-3">
+                                <div class="message-meta">
+                                    Interview prompt 2 · Experience
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-4">
+                                <div class="message-meta">
+                                    Participant response 2 · Experience
+                                </div>
+                                <div>On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-5">
+                                <div class="message-meta">
+                                    Interview prompt 3 · Triggers &amp; signs
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-6">
+                                <div class="message-meta">
+                                    Participant response 3 · Triggers &amp; signs
+                                </div>
+                                <div>The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-7">
+                                <div class="message-meta">
+                                    Interview prompt 4 · Coping &amp; support
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-8">
+                                <div class="message-meta">
+                                    Participant response 4 · Coping &amp; support
+                                </div>
+                                <div>I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-9">
+                                <div class="message-meta">
+                                    Interview prompt 5 · Support concept reaction
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-10">
+                                <div class="message-meta">
+                                    Participant response 5 · Support concept reaction
+                                </div>
+                                <div>The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-11">
+                                <div class="message-meta">
+                                    Interview prompt 6 · Public-use acceptability
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                            <div class="message participant" id="session-2-transcript-turn-12">
+                                <div class="message-meta">
+                                    Participant response 6 · Public-use acceptability
+                                </div>
+                                <div>I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.</div>
+                            </div>
+                        
+                            <div class="message agent" id="session-2-transcript-turn-13">
+                                <div class="message-meta">
+                                    Interview prompt 7 · Faithful summary
+                                </div>
+                                <div>Thank you. Let us continue with the next topic.</div>
+                            </div>
+                        
+                    </div>
+                </div>
+
+                <div style="margin-top: 22px;">
+                    <h3>Secondary diagnostic record</h3>
+                    <p class="muted" style="margin-bottom: 12px;">
+                        <strong>System-step explanations.</strong> 6 steps recorded.
+                        These diagnostic explanations show why the interview continued, asked one follow-up,
+                        recorded missing information, respected Skip/Stop, or used a non-medical boundary response.
+                        They support process inspection; they are not primary evidence or a measure of outcome quality.
+                    </p>
+
+                    
+                        <div class="decision-trace-list">
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 1 · Opening
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge blue">Not assessed</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                No covered-information list was saved for this step.
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 2 · Experience
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge">Covered</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                mocked infrastructure coverage
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 3 · Triggers &amp; signs
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge">Covered</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                mocked infrastructure coverage
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 4 · Coping &amp; support
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge">Covered</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                mocked infrastructure coverage
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 5 · Support concept reaction
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge">Covered</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                mocked infrastructure coverage
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                                <div class="decision-item">
+                                    <div class="decision-top-row">
+                                        <div>
+                                            <div class="decision-step">
+                                                Step 6 · Public-use acceptability
+                                            </div>
+                                            <div class="decision-title">
+                                                Continued to the next Protocol section
+                                            </div>
+                                        </div>
+
+                                        
+                                            <span class="badge">Covered</span>
+                                        
+                                    </div>
+
+                                    <div class="decision-meta-grid">
+                                        <div class="decision-label">Action</div>
+                                        <div>Continued to the next Protocol section</div>
+
+                                        <div class="decision-label">Participant control</div>
+                                        <div>None</div>
+
+                                        
+
+                                        <div class="decision-label">Information covered</div>
+                                        <div>
+                                            
+                                                mocked infrastructure coverage
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Missing info</div>
+                                        <div>
+                                            
+                                                <span class="muted">No missing information flagged.</span>
+                                            
+                                        </div>
+
+                                        <div class="decision-label">Reason</div>
+                                        <div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    
+                </div>
+            </section>
+        
+
+        <p class="footer-note">
+            This evidence record is generated from saved interview session data. It is intended for researcher review and project evaluation, not medical or therapeutic assessment.
+        </p>
+    </main>
+</body>
+</html>

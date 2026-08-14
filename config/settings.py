@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-bm%rt1jkg31f+cp5)b*ik7bim^prq)1z0jtl@!l+w-6m+@&-=8"
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-purrstone-local-development-only",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Local development plus temporary TryCloudflare access for an MVP demonstration.
+# A Quick Tunnel is not a production deployment and its random hostname may change.
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "[::1]",
+    ".trycloudflare.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.trycloudflare.com",
+]
+
+# Cloudflare terminates HTTPS before forwarding the request to local Django.
+# This lets build_absolute_uri() generate an https:// participant link.
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Application definition
@@ -122,3 +141,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "overview"
+LOGOUT_REDIRECT_URL = "login"

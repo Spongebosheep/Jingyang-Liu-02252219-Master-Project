@@ -1,0 +1,11 @@
+Git tag status
+
+No independently verifiable Git tag was present in the retained source archive or technical evidence package.
+
+This release therefore does not claim that a Git tag existed. The evaluated build is frozen by the full commit SHA, Git tree recorded in the formal run records, source ZIP identity and SHA-256 ledger:
+
+- commit: 35c930d92119d47560879496902e928daf20ac02
+- tree: a7562237ec5a13a50f3aef540b92406f04086897
+- source ZIP SHA-256: 39178f573fafb0542d26a927f77b43bbcbbe16de3fdab0c1d7b7dcdb43da833d
+
+This is a documented metadata limitation, not a substitute or fabricated tag.

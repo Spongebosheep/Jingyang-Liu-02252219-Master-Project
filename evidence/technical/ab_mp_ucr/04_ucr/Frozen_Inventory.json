@@ -1,0 +1,338 @@
+{
+  "schema": "purrstone-v10.2-ucr-phase2-frozen-common-inventory-v1",
+  "freeze_version": "UCR-P2-R1",
+  "package_build_id": "purrstone-v10.2-ucr-phase2-r1-20260809",
+  "blind_item_count": 9,
+  "nominal_proposition_count": 46,
+  "unique_proposition_text_count": 27,
+  "support_labels_present_at_freeze": false,
+  "source_phase1_workbook_sha256": {
+    "Coder01": "d3ad051f7a97db21f2ff20eda5e251ddc0f237d638259557b355ab92bee7ca48",
+    "Coder02": "efb1b3b6293873e288d8ecd79fa31448c97dfe6b13875c42f5dca85150d7ecec"
+  },
+  "source_blind_reconciliation_workbook_sha256": "102dcbe44f35bc7549b5dd350de2bf3ffdca41dc00fd55d9c06cf7b178f50839",
+  "rows": [
+    {
+      "proposition_id": "SF-001-P01",
+      "blind_item_id": "SF-001",
+      "proposition_index": 1,
+      "atomic_proposition": "Sharp braking noise was one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-001-P02",
+      "blind_item_id": "SF-001",
+      "proposition_index": 2,
+      "atomic_proposition": "Flashing carriage lights were one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-001-P03",
+      "blind_item_id": "SF-001",
+      "proposition_index": 3,
+      "atomic_proposition": "Crowding was one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-001-P04",
+      "blind_item_id": "SF-001",
+      "proposition_index": 4,
+      "atomic_proposition": "The participant's shoulders tightened.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-001-P05",
+      "blind_item_id": "SF-001",
+      "proposition_index": 5,
+      "atomic_proposition": "The participant's heart raced.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-001-P06",
+      "blind_item_id": "SF-001",
+      "proposition_index": 6,
+      "atomic_proposition": "The participant felt panicked.",
+      "material_file": "materials/mp_ucr/items/SF-001.html"
+    },
+    {
+      "proposition_id": "SF-002-P01",
+      "blind_item_id": "SF-002",
+      "proposition_index": 1,
+      "atomic_proposition": "The participant covered their ears.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-002-P02",
+      "blind_item_id": "SF-002",
+      "proposition_index": 2,
+      "atomic_proposition": "The participant focused on slow breathing.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-002-P03",
+      "blind_item_id": "SF-002",
+      "proposition_index": 3,
+      "atomic_proposition": "The participant left at the next stop.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-002-P04",
+      "blind_item_id": "SF-002",
+      "proposition_index": 4,
+      "atomic_proposition": "A quieter carriage would have helped the participant.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-002-P05",
+      "blind_item_id": "SF-002",
+      "proposition_index": 5,
+      "atomic_proposition": "A warning before the alarm would have helped the participant.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-002-P06",
+      "blind_item_id": "SF-002",
+      "proposition_index": 6,
+      "atomic_proposition": "The repeated announcements did not help because they added more noise.",
+      "material_file": "materials/mp_ucr/items/SF-002.html"
+    },
+    {
+      "proposition_id": "SF-003-P01",
+      "blind_item_id": "SF-003",
+      "proposition_index": 1,
+      "atomic_proposition": "The squeeze interaction seemed useful because it would give the participant's hands a focus.",
+      "material_file": "materials/mp_ucr/items/SF-003.html"
+    },
+    {
+      "proposition_id": "SF-003-P02",
+      "blind_item_id": "SF-003",
+      "proposition_index": 2,
+      "atomic_proposition": "Gentle haptics might help the participant pace their breathing.",
+      "material_file": "materials/mp_ucr/items/SF-003.html"
+    },
+    {
+      "proposition_id": "SF-003-P03",
+      "blind_item_id": "SF-003",
+      "proposition_index": 3,
+      "atomic_proposition": "The participant would avoid scent because it could be another trigger.",
+      "material_file": "materials/mp_ucr/items/SF-003.html"
+    },
+    {
+      "proposition_id": "SF-003-P04",
+      "blind_item_id": "SF-003",
+      "proposition_index": 4,
+      "atomic_proposition": "The participant wanted every feature to be optional.",
+      "material_file": "materials/mp_ucr/items/SF-003.html"
+    },
+    {
+      "proposition_id": "SF-004-P01",
+      "blind_item_id": "SF-004",
+      "proposition_index": 1,
+      "atomic_proposition": "The participant covered their ears.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-004-P02",
+      "blind_item_id": "SF-004",
+      "proposition_index": 2,
+      "atomic_proposition": "The participant focused on slow breathing.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-004-P03",
+      "blind_item_id": "SF-004",
+      "proposition_index": 3,
+      "atomic_proposition": "The participant left at the next stop.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-004-P04",
+      "blind_item_id": "SF-004",
+      "proposition_index": 4,
+      "atomic_proposition": "A quieter carriage would have helped the participant.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-004-P05",
+      "blind_item_id": "SF-004",
+      "proposition_index": 5,
+      "atomic_proposition": "A warning before the alarm would have helped the participant.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-004-P06",
+      "blind_item_id": "SF-004",
+      "proposition_index": 6,
+      "atomic_proposition": "The repeated announcements did not help because they added more noise.",
+      "material_file": "materials/mp_ucr/items/SF-004.html"
+    },
+    {
+      "proposition_id": "SF-005-P01",
+      "blind_item_id": "SF-005",
+      "proposition_index": 1,
+      "atomic_proposition": "Sharp braking noise was one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-005-P02",
+      "blind_item_id": "SF-005",
+      "proposition_index": 2,
+      "atomic_proposition": "Flashing carriage lights were one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-005-P03",
+      "blind_item_id": "SF-005",
+      "proposition_index": 3,
+      "atomic_proposition": "Crowding was one of the participant's strongest triggers.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-005-P04",
+      "blind_item_id": "SF-005",
+      "proposition_index": 4,
+      "atomic_proposition": "The participant's shoulders tightened.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-005-P05",
+      "blind_item_id": "SF-005",
+      "proposition_index": 5,
+      "atomic_proposition": "The participant's heart raced.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-005-P06",
+      "blind_item_id": "SF-005",
+      "proposition_index": 6,
+      "atomic_proposition": "The participant felt panicked.",
+      "material_file": "materials/mp_ucr/items/SF-005.html"
+    },
+    {
+      "proposition_id": "SF-006-P01",
+      "blind_item_id": "SF-006",
+      "proposition_index": 1,
+      "atomic_proposition": "The squeeze interaction seemed useful because it would give the participant's hands a focus.",
+      "material_file": "materials/mp_ucr/items/SF-006.html"
+    },
+    {
+      "proposition_id": "SF-006-P02",
+      "blind_item_id": "SF-006",
+      "proposition_index": 2,
+      "atomic_proposition": "Gentle haptics might help the participant pace their breathing.",
+      "material_file": "materials/mp_ucr/items/SF-006.html"
+    },
+    {
+      "proposition_id": "SF-006-P03",
+      "blind_item_id": "SF-006",
+      "proposition_index": 3,
+      "atomic_proposition": "The participant would avoid scent because it could be another trigger.",
+      "material_file": "materials/mp_ucr/items/SF-006.html"
+    },
+    {
+      "proposition_id": "SF-006-P04",
+      "blind_item_id": "SF-006",
+      "proposition_index": 4,
+      "atomic_proposition": "The participant wanted every feature to be optional.",
+      "material_file": "materials/mp_ucr/items/SF-006.html"
+    },
+    {
+      "proposition_id": "SF-007-P01",
+      "blind_item_id": "SF-007",
+      "proposition_index": 1,
+      "atomic_proposition": "The participant might use the referenced item (\"it\") while commuting if it looked discreet and made no sound.",
+      "material_file": "materials/mp_ucr/items/SF-007.html"
+    },
+    {
+      "proposition_id": "SF-007-P02",
+      "blind_item_id": "SF-007",
+      "proposition_index": 2,
+      "atomic_proposition": "Obvious lights would embarrass the participant.",
+      "material_file": "materials/mp_ucr/items/SF-007.html"
+    },
+    {
+      "proposition_id": "SF-007-P03",
+      "blind_item_id": "SF-007",
+      "proposition_index": 3,
+      "atomic_proposition": "Scent would be a concern for people nearby in a shared space.",
+      "material_file": "materials/mp_ucr/items/SF-007.html"
+    },
+    {
+      "proposition_id": "SF-008-P01",
+      "blind_item_id": "SF-008",
+      "proposition_index": 1,
+      "atomic_proposition": "The described experience occurred on a crowded train.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P02",
+      "blind_item_id": "SF-008",
+      "proposition_index": 2,
+      "atomic_proposition": "The participant described the experience as sensory overload.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P03",
+      "blind_item_id": "SF-008",
+      "proposition_index": 3,
+      "atomic_proposition": "Alarms made the participant feel trapped.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P04",
+      "blind_item_id": "SF-008",
+      "proposition_index": 4,
+      "atomic_proposition": "Noise made the participant feel trapped.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P05",
+      "blind_item_id": "SF-008",
+      "proposition_index": 5,
+      "atomic_proposition": "Crowding made the participant feel trapped.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P06",
+      "blind_item_id": "SF-008",
+      "proposition_index": 6,
+      "atomic_proposition": "Alarms made the participant feel overwhelmed.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P07",
+      "blind_item_id": "SF-008",
+      "proposition_index": 7,
+      "atomic_proposition": "Noise made the participant feel overwhelmed.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-008-P08",
+      "blind_item_id": "SF-008",
+      "proposition_index": 8,
+      "atomic_proposition": "Crowding made the participant feel overwhelmed.",
+      "material_file": "materials/mp_ucr/items/SF-008.html"
+    },
+    {
+      "proposition_id": "SF-009-P01",
+      "blind_item_id": "SF-009",
+      "proposition_index": 1,
+      "atomic_proposition": "The participant might use the referenced item (\"it\") while commuting if it looked discreet and made no sound.",
+      "material_file": "materials/mp_ucr/items/SF-009.html"
+    },
+    {
+      "proposition_id": "SF-009-P02",
+      "blind_item_id": "SF-009",
+      "proposition_index": 2,
+      "atomic_proposition": "Obvious lights would embarrass the participant.",
+      "material_file": "materials/mp_ucr/items/SF-009.html"
+    },
+    {
+      "proposition_id": "SF-009-P03",
+      "blind_item_id": "SF-009",
+      "proposition_index": 3,
+      "atomic_proposition": "Scent would be a concern for people nearby in a shared space.",
+      "material_file": "materials/mp_ucr/items/SF-009.html"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+﻿field,v9_first_32,v10_2_second_32,interpretation
+dataset_role,Historical design/evaluation iteration,Authoritative current machine and post-coder result source,Archive both; do not pool.
+code_commit,be2c30a8e5e08036ed29da89645e60c71f423cf1,35c930d92119d47560879496902e928daf20ac02,Different builds.
+model,gpt-4.1-mini,gpt-4.1-mini,"Same model label, but other identities changed."
+baseline_policy,v1.0,v3.0,Not an unchanged replication.
+mvp_completed,16/16,16/16,Completion only; eligibility differs.
+mvp_formally_eligible,13/16,16/16,The earlier missing-information annotation failures were resolved in the later build.
+baseline_completed,1/16,10/16,Descriptive iteration outcome; not pooled stability evidence.
+a_b_denominator,16 failure-inclusive pairs,10 complete eligible pairs,Human scores are not directly comparable.
+a_b_current_use,Historical consensus only,Two independent raw returns; no consensus,Use v10.2 for current reporting.
+mp_target,80 generated draft items; one coder,9 final reviewed items / 5 unique bundles; two coders,Different construct and denominator.
+ucr,Historical one-coder 0%,Resolved supplementary UCR: 3/46; unique-text sensitivity 3/27,Current within-MVP result; do not pool with the historical one-coder 0% or treat as a condition comparison.

@@ -1,0 +1,12 @@
+scenario_id,run_id,topic_index,topic_code,source_message_id,source_sender,source_topic_index,validator_relation_valid,validator_all_relations_valid,validator_valid_source_count,validator_status,final_review_status,final_included
+S7,baseline-s7-r01-20260810T053723387040Z-26c0bc40,1,experience,4,participant,1,true,true,1,PASS,edited,true
+S7,baseline-s7-r01-20260810T053723387040Z-26c0bc40,2,triggers_signs,6,participant,2,true,true,1,PASS,approved,true
+S7,baseline-s7-r01-20260810T053723387040Z-26c0bc40,3,coping_support,8,participant,3,true,true,1,PASS,approved,true
+S7,baseline-s7-r01-20260810T053723387040Z-26c0bc40,4,support_concept_reaction,10,participant,4,true,true,1,PASS,approved,true
+S7,baseline-s7-r01-20260810T053723387040Z-26c0bc40,5,public_use_acceptability,12,participant,5,true,true,1,PASS,approved,true
+S8,baseline-s8-r01-20260810T053723837025Z-a77ce6fa,1,experience,4,participant,1,true,true,1,PASS,excluded,false
+S8,baseline-s8-r01-20260810T053723837025Z-a77ce6fa,2,triggers_signs,6,participant,2,true,true,1,PASS,approved,true
+S8,baseline-s8-r01-20260810T053723837025Z-a77ce6fa,3,coping_support,8,participant,3,true,true,1,PASS,approved,true
+S8,baseline-s8-r01-20260810T053723837025Z-a77ce6fa,4,support_concept_reaction,10,participant,4,true,true,1,PASS,approved,true
+S8,baseline-s8-r01-20260810T053723837025Z-a77ce6fa,5,public_use_acceptability,12,participant,5,true,true,1,PASS,approved,true
+

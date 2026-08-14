@@ -1,0 +1,67 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<h1 class="overview-title">Stakeholder record: {{ stakeholder.participant_id }}</h1>
+<p class="overview-kicker">{{ stakeholder.stakeholder_group }} · {{ stakeholder.role }}</p>
+
+<div class="card stakeholder-setup-record-card">
+    <div class="stakeholder-setup-record-heading">
+        <div>
+            <h2>Stakeholder details</h2>
+            <p class="muted">This record has been created, but no interview session has been created yet.</p>
+        </div>
+        <span class="status status-muted">No session</span>
+    </div>
+
+    <table class="record-table">
+        <tr>
+            <th>Participant ID:</th>
+            <td><strong>{{ stakeholder.participant_id }}</strong></td>
+        </tr>
+        <tr>
+            <th>Stakeholder group:</th>
+            <td>{{ stakeholder.stakeholder_group }}</td>
+        </tr>
+        <tr>
+            <th>Role:</th>
+            <td>{{ stakeholder.role }}</td>
+        </tr>
+        <tr>
+            <th>Assigned protocol:</th>
+            <td>
+                {% if stakeholder.assigned_protocol %}
+                    {{ stakeholder.assigned_protocol.title }} · v{{ stakeholder.assigned_protocol.version }}
+                {% else %}
+                    Not assigned
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td><span class="status {{ stakeholder.workflow_display.css_class }}">{{ stakeholder.workflow_display.label }}</span></td>
+        </tr>
+        <tr>
+            <th>Notes:</th>
+            <td>{{ stakeholder.notes|default:"No notes added."|linebreaksbr }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="action-bar">
+    {% if stakeholder.assigned_protocol %}
+        <a class="button-secondary" href="{% url 'protocol_detail' stakeholder.assigned_protocol.slug %}">
+            Preview assigned protocol
+        </a>
+    {% else %}
+        <span class="button-secondary button-disabled">Preview assigned protocol</span>
+    {% endif %}
+
+    <a class="button" href="{% url 'interview_session_create' %}?stakeholder={{ stakeholder.participant_id|urlencode }}">
+        Create interview session
+    </a>
+
+    <a class="button-secondary" href="{% url 'stakeholder_list' %}?selected={{ stakeholder.participant_id|urlencode }}">
+        Back to stakeholder records
+    </a>
+</div>
+{% endblock %}

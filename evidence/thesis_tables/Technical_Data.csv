@@ -1,0 +1,49 @@
+section,scope,condition,metric,numerator,denominator,rate,status_or_reliability,boundary
+Formal 32,Frozen,MVP,Completion / 完成率,16,16,1,PASS,All registered MVP runs completed
+Formal 32,Frozen,Prompt-only Baseline,Completion / 完成率,10,16,0.625,FAIL,Six failures retained; no retries
+Formal 32,Frozen,MVP,AI Action Inspectability,102,102,1,PASS,Frozen Formal 32
+Formal 32,Frozen,Prompt-only Baseline,AI Action Inspectability,93,102,0.9117647058823529,FAIL,Frozen Formal 32
+Formal 32,Frozen,MVP,AC Action Consistency,86,86,1,PASS,Frozen Formal 32
+Formal 32,Frozen,Prompt-only Baseline,AC Action Consistency,74,86,0.8604651162790697,FAIL,Frozen Formal 32
+Formal 32,Frozen,MVP,MIV Missing-information Visibility,8,8,1,PASS,Frozen Formal 32
+Formal 32,Frozen,Prompt-only Baseline,MIV Missing-information Visibility,7,8,0.875,FAIL,Frozen Formal 32
+Formal 32,Frozen,MVP,PCC Participant-control Compliance,2,2,1,PASS,Frozen Formal 32
+Formal 32,Frozen,Prompt-only Baseline,PCC Participant-control Compliance,2,2,1,PASS,Frozen Formal 32
+Formal 32,Frozen,MVP,TCR Topic Coverage Representation,80,80,1,PASS,Frozen Formal 32
+Formal 32,Frozen,Prompt-only Baseline,TCR Topic Coverage Representation,50,80,0.625,FAIL,Failures caused missing topic records
+Formal 32,Frozen,MVP,SLC Source-link Coverage,9,9,1,PASS,Formal retained/edited items
+Formal 32,Frozen,Prompt-only Baseline,SLC Source-link Coverage,0,0,,INCOMPLETE,No eligible Formal items; not a 0% result
+Formal 32,Frozen,MVP,RAC Review Audit Completeness,12,26,0.46153846153846156,FAIL,Frozen implemented denominator; 14 pending placeholders
+Formal 32,Frozen,Prompt-only Baseline,RAC Review Audit Completeness,0,10,,INCOMPLETE,Frozen raw result; no completed Formal review actions
+A/B,10 pairs,MVP,Q1 Protocol coverage,4.4,mean,,n=20,Equal means
+A/B,10 pairs,Baseline,Q1 Protocol coverage,4.4,mean,,n=20,Equal means
+A/B,10 pairs,MVP,Q2 Follow-up relevance/neutrality,4.5,mean,,n=8,Only four applicable pairs
+A/B,10 pairs,Baseline,Q2 Follow-up relevance/neutrality,5,mean,,n=8,Only four applicable pairs
+A/B,10 pairs,MVP,Q3 Source fidelity,4.9,mean,,n=20,Equal means
+A/B,10 pairs,Baseline,Q3 Source fidelity,4.9,mean,,n=20,Equal means
+A/B,10 pairs,MVP,Q4 Participant clarity/control,5,mean,,n=20,MVP higher descriptively
+A/B,10 pairs,Baseline,Q4 Participant clarity/control,4.1,mean,,n=20,MVP higher descriptively
+A/B,10 pairs,MVP,Q5 Researcher reviewability,5,mean,,n=20,MVP higher descriptively
+A/B,10 pairs,Baseline,Q5 Researcher reviewability,4.5,mean,,n=20,MVP higher descriptively
+A/B,88 applicable rating cells,Coder01 vs Coder02,Exact rating agreement,84,88,0.9545454545454546,descriptive,
+A/B,88 applicable rating cells,Coder01 vs Coder02,Ratings within one point,88,88,1,descriptive,
+A/B,10 pairs,Coder01 vs Coder02,Overall preference exact agreement,8,10,0.8,descriptive,
+A/B,10 pairs,Coder01 vs Coder02,Overall preference Cohen kappa,0.6875,kappa,,descriptive,Original blinded A/B/Tie labels
+A/B,10 pairs,Coder01 vs Coder02,Condition-label recoding kappa sensitivity,0.6428571428571429,kappa,,sensitivity only,MVP/Baseline/Tie recoding; not the frozen blind-label kappa
+MP/UCR,Earlier MVP-only final-reviewed,See scope,MP preserved — nominal,8,9,0.8888888888888888,9/9 exact; kappa=Not reported,S7/S8 final-reviewed MVP evidence
+MP/UCR,Earlier MVP-only final-reviewed,See scope,MP preserved — unique bundles,4,5,0.8,Sensitivity; kappa=Not reported,Five unique draft-source bundles
+MP/UCR,Earlier MVP-only final-reviewed,See scope,UCR unsupported — resolved,3,46,0.06521739130434782,45/46 independent; kappa=0.789,Resolved after one disagreement
+MP/UCR,Earlier MVP-only final-reviewed,See scope,UCR unsupported — unique text,3,27,0.1111111111111111,Sensitivity; kappa=—,Duplication sensitivity
+MP/UCR,Later Baseline supplement — pre-review,See scope,MP preserved — nominal,45,45,1,9/9 exact; kappa=N/E,Mapped from nine unique blind bundles
+MP/UCR,Later Baseline supplement — pre-review,See scope,MP preserved — unique bundles,9,9,1,9/9 exact; kappa=N/E,Both coders used only Preserved
+MP/UCR,Later Baseline supplement — pre-review,See scope,UCR unsupported — nominal,0,220,0,46/46 exact; kappa=N/E,Mapped from 46 frozen propositions
+MP/UCR,Later Baseline supplement — pre-review,See scope,UCR unsupported — deduplicated,0,46,0,46/46 exact; kappa=N/E,Both coders used only Supported
+SLC/RAC,Formal 32,MVP,SLC retained/edited,9,9,1,PASS,Frozen Formal result
+SLC/RAC,Formal 32,Baseline,SLC,0,0,,INCOMPLETE,No eligible S7/S8 items; not a 0% result
+SLC/RAC,Post-formal diagnostic,Baseline S7/S8,SLC retained/edited,9,9,1,PASS,Deterministic dry-run only
+SLC/RAC,Post-formal diagnostic,Baseline S7/S8,All candidate source checks,10,10,1,PASS,Includes one later-excluded item
+SLC/RAC,Formal 32,MVP,RAC frozen denominator,12,26,0.46153846153846156,FAIL,Includes 14 pending placeholders
+SLC/RAC,Formal diagnostic,MVP,RAC executed actions,12,12,1,PASS,Explains executed actions; does not replace 12/26
+SLC/RAC,Formal 32,Baseline,RAC frozen denominator,0,10,,INCOMPLETE,Frozen raw value; no completed review actions
+SLC/RAC,Post-formal diagnostic,Baseline S7/S8,RAC executed actions,12,12,1,PASS,10 item actions + 2 overall decisions
+SLC/RAC,Post-formal diagnostic,Baseline S7/S8,Validator runs,2,2,1,PASS,Each run passed 126/126 checks

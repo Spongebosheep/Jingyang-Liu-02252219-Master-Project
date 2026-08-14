@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "10.2",
+  "created_on": "2026-08-08",
+  "supersedes": "freeze_manifest.v10_1.json",
+  "revision_reason": "Pre-formal v10.2 methodology and orchestration amendment made after a non-formal Baseline development observation and before Formal 32. The unavailable raw development directory was contemporaneously reported as 13/16 passes and three retained failures; that observation is not independently re-verifiable or formal evidence. The former 16/16 behavioural readiness criterion incorrectly treated measured Baseline behaviour as infrastructure readiness. Neither condition nor any frozen evaluated input changed. Formal 32 now attempts every registered identity exactly once and retains all outcomes without replacement.",
+  "product_baseline": {
+    "authoritative_phase4_commit": "da71a3f464402091dae412b8be4f54b8d97b7e57",
+    "verified_combined_archive_sha256": "6196a48b5641f78cc710559fe40f57f17cafd5412b2b0fab854f600ab78c4a4d",
+    "local_baseline_commit": "995d265897b0524abc149517f6fd7f2495e7b8c8",
+    "controlled_file_count": 153
+  },
+  "formal_runs_started": false,
+  "baseline_development_gate": {
+    "status": "HISTORICAL_OBSERVATION_NOT_A_CRITERION",
+    "condition": "prompt_only_baseline",
+    "reported_attempt_count": 16,
+    "reported_pass_count": 13,
+    "reported_retained_failure_count": 3,
+    "raw_directory_available": false,
+    "independently_reverifiable": false,
+    "formal_evidence_eligible": false,
+    "formal_readiness_criterion": false,
+    "rerun_forbidden": true,
+    "reconstruction_forbidden": true
+  },
+  "formal_comparison": {
+    "status": "FROZEN_BEFORE_LIVE_RESULTS",
+    "eligibility_source": "directly_recorded_run_and_matched_pair_evidence",
+    "external_gate_artifact_required": false,
+    "model_id": "gpt-4.1-mini",
+    "model_parameters_by_condition": {
+      "mvp": {
+        "protocol_coverage_check": {
+          "temperature": 0,
+          "max_output_tokens": 500,
+          "store": false
+        },
+        "follow_up_wording": {
+          "temperature": 0.2,
+          "max_output_tokens": 120,
+          "store": false
+        }
+      },
+      "prompt_only_baseline": {
+        "prompt_only_turn": {
+          "temperature": 0,
+          "max_output_tokens": 500,
+          "store": false
+        }
+      }
+    },
+    "required_run_evidence": [
+      "formal_flags_agree",
+      "tracked_worktree_clean",
+      "code_commit_and_tree_recorded",
+      "runtime_model_matches_frozen_model",
+      "openai_api_key_configured",
+      "raw_model_calls_recorded",
+      "raw_model_calls_completed",
+      "raw_model_call_envelopes_match_frozen_parameters",
+      "condition_call_kind_recorded",
+      "mock_transport_absent",
+      "fallback_reason_absent",
+      "named_active_reviewer",
+      "protocol_snapshot_and_sha256_recorded",
+      "frozen_contract_hashes_recorded",
+      "transcript_decisions_review_and_evidence_record_recorded",
+      "versioned_consent_snapshot_timestamp_and_sha256_recorded"
+    ],
+    "matched_pair_requirements": [
+      "same_scenario_and_repetition",
+      "same_participant_inputs_and_order",
+      "same_model_id",
+      "same_code_commit",
+      "same_protocol_snapshot_sha256",
+      "same_scenario_sha256",
+      "same_metric_rules_sha256",
+      "same_scenario_instance_sha256",
+      "one_mvp_and_one_prompt_only_baseline_run",
+      "both_runs_independently_validated"
+    ]
+  },
+  "run_plan": {
+    "minimum_individual_sessions": 16,
+    "minimum_matched_pairs": 8,
+    "recommended_individual_sessions": 32,
+    "recommended_matched_pairs": 16,
+    "recommended_repetitions_per_condition": {
+      "S1": 3,
+      "S2": 3,
+      "S3": 3,
+      "S4": 1,
+      "S5": 1,
+      "S6": 3,
+      "S7": 1,
+      "S8": 1
+    }
+  },
+  "evidence_recording": {
+    "required_per_run": [
+      "run_id",
+      "condition_scenario_and_repetition",
+      "code_commit_tree_and_clean_status",
+      "model_id_and_call_parameters",
+      "baseline_prompt_and_schema_sha256_when_applicable",
+      "protocol_snapshot_and_sha256",
+      "scenario_metric_review_and_manifest_sha256",
+      "raw_model_requests_and_responses",
+      "parsed_outputs_and_agent_decisions",
+      "participant_turns_and_full_transcript",
+      "structured_items_source_relations_and_limitations",
+      "review_events_and_overall_review",
+      "evidence_record",
+      "validator_result",
+      "execution_parsing_validation_and_metric_failures",
+      "consent_notice_version_snapshot_timestamp_and_sha256"
+    ],
+    "required_for_final_evidence_package": [
+      "selected_interface_screenshots_tied_to_run_id",
+      "blinded_ab_review_material",
+      "ucr_atomic_proposition_coding",
+      "meaning_preservation_coding",
+      "coder_identity_disagreement_and_consensus_records"
+    ],
+    "all_attempts_retained": true,
+    "runner_validator_exporter_and_calculator_separated": true
+  },
+  "frozen_files": {
+    "scenarios.v4.json": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6",
+    "metrics.v3.json": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4",
+    "baseline_contract.v2.json": "abda4c9395988bf7616cde45ad4a8c776007009dfee98a1d4233b006319738dc",
+    "prompt_only_output_schema.v2.json": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+    "export_bundle_schema.v2.json": "713f5bd4e1721ee826f9d4a619b01cfe8b8786c62dd3bd99d96a771da14e50d9",
+    "metric_calculation_schema.v2.json": "1d762c63111c3057596feb5de5dd9e48dfdaeb997d1162c35899085cc856de11",
+    "review_completion.v2.json": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72",
+    "quality_review.v2.json": "221a50d6dbc8bc15ccb65898ab694a8cc2d72f13a821d54a05bcb133f6809017",
+    "../prompts/prompt_only_baseline.v3.txt": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7"
+  }
+}

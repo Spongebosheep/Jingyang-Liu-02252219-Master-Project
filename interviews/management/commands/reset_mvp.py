@@ -1,31 +1,47 @@
-from django.core.management.base import BaseCommand
+from io import StringIO
 
-from interviews.models import AgentDecision, InterviewSession, Message, Stakeholder, Summary, ReviewDecision
+from django.core.management import call_command
+from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
+
+from interviews.models import InterviewSession, Protocol, Stakeholder
 
 
 class Command(BaseCommand):
-    help = "Reset PurrStone MVP test session."
+    help = (
+        "Restore the complete workflow database to the seeded P01 / IS-01 / "
+        "Sensory Protocol baseline while preserving researcher user accounts."
+    )
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--all",
+            action="store_true",
+            dest="reset_all",
+            help=(
+                "Confirm deletion of all workflow-created Stakeholders, Sessions, "
+                "Protocols, transcripts, and review data."
+            ),
+        )
 
     def handle(self, *args, **options):
-        session = InterviewSession.objects.get(session_code="IS-01")
+        if not options["reset_all"]:
+            raise CommandError(
+                "No data was changed. Use `python manage.py reset_demo_session` to "
+                "reset only IS-01, or `python manage.py reset_mvp --all` to restore "
+                "the complete seeded workflow baseline."
+            )
 
-        Message.objects.filter(session=session).delete()
-        Summary.objects.filter(session=session).delete()
-        ReviewDecision.objects.filter(session=session).delete()
-        AgentDecision.objects.filter(session=session).delete()
+        with transaction.atomic():
+            InterviewSession.objects.all().delete()
+            Stakeholder.objects.all().delete()
+            Protocol.objects.all().delete()
+            seed_output = StringIO()
+            call_command("seed_mvp", stdout=seed_output)
 
-        session.status = InterviewSession.Status.NOT_STARTED
-        session.current_section_index = 0
-        session.consent_confirmed = False
-        session.transcript_saved = False
-        session.summary_generated = False
-        session.review_status = InterviewSession.ReviewStatus.NOT_REVIEWED
-        session.output_quality_status = InterviewSession.OutputQualityStatus.NOT_STARTED
-        session.started_at = None
-        session.completed_at = None
-        session.save()
-
-        session.stakeholder.status = Stakeholder.Status.READY
-        session.stakeholder.save()
-
-        self.stdout.write(self.style.SUCCESS("Reset IS-01 successfully."))
+        self.stdout.write(
+            self.style.SUCCESS(
+                "Restored the complete MVP baseline: Sensory Overload Interview v1, "
+                "P01, and IS-01. Researcher user accounts were preserved."
+            )
+        )

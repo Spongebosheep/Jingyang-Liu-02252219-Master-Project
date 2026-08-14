@@ -3,404 +3,393 @@
 {% block content %}
 <div class="review-header">
     <div>
-        <h1 class="overview-title">Output review: {{ session.stakeholder.participant_id }}</h1>
+        <h1 class="overview-title">Output review: {{ session.stakeholder.participant_id }} · {{ session.session_code }}</h1>
         <p class="overview-kicker">
-            {{ session.protocol.title }} · {{ session.get_status_display }}
+            {{ session.protocol.title }} · v{{ session.protocol.version }} · Transcript-led researcher review
         </p>
     </div>
 
     <div class="review-header-actions">
+        <span class="status status-blue">Reviewer: {{ active_reviewer_name }}</span>
+
         {% if session.review_status == "approved" or session.review_status == "reviewed" %}
-            <span class="review-approved-badge">
-                <span class="review-dot"></span>
-                Approved
-            </span>
+            <span class="review-approved-badge"><span class="review-dot"></span>Approved</span>
+        {% elif session.review_status == "not_usable" %}
+            <span class="review-revision-badge"><span class="review-dot"></span>Not usable</span>
         {% elif session.review_status == "revision_requested" %}
-            <span class="review-revision-badge">
-                <span class="review-dot"></span>
-                Revision requested
-            </span>
+            <span class="review-revision-badge"><span class="review-dot"></span>Revision requested</span>
         {% else %}
-            <span class="review-pending-badge">
-                <span class="review-dot"></span>
-                Review pending
-            </span>
+            <span class="review-pending-badge"><span class="review-dot"></span>Review pending</span>
         {% endif %}
 
-        <a class="button-secondary" href="{% url 'interview_sessions' %}">
-            ← Back to interviews
-        </a>
+        <a class="button-secondary" href="{% url 'interview_sessions' %}">← Back to interviews</a>
     </div>
 </div>
+
+<section class="card output-session-picker">
+    <div>
+        <div class="metric-label">Selected interview output</div>
+        <strong>{{ session.stakeholder.participant_id }} · {{ session.session_code }}</strong>
+    </div>
+    <form method="get" action="{% url 'outputs_home' %}">
+        <label for="output-session-select">Change Session</label>
+        <select id="output-session-select" name="session">
+            {% for output_session in available_output_sessions %}
+                <option value="{{ output_session.session_code }}" {% if output_session.pk == session.pk %}selected{% endif %}>
+                    {{ output_session.stakeholder.participant_id }} · {{ output_session.session_code }} · {{ output_session.protocol.title }} v{{ output_session.protocol.version }}
+                </option>
+            {% endfor %}
+        </select>
+        <button class="button" type="submit">Open output</button>
+    </form>
+</section>
 
 <div class="card review-meta-grid">
+    <div class="review-meta-item"><div><div class="metric-label">Participant</div><div class="review-meta-value">{{ session.stakeholder.participant_id }}</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Session</div><div class="review-meta-value">{{ session.session_code }}</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Protocol</div><div class="review-meta-value">{{ session.protocol.title }} · v{{ session.protocol.version }}</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Interview</div><div class="review-meta-value"><span class="status">{{ session.get_status_display }}</span></div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Transcript</div><div class="review-meta-value">{% if session.transcript_saved %}<span class="status">Saved</span>{% else %}<span class="status status-muted">Not saved</span>{% endif %}</div></div></div>
     <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="8" r="4"></circle>
-                <path d="M5 21a7 7 0 0 1 14 0"></path>
-            </svg>
-        </div>
         <div>
-            <div class="metric-label">Participant</div>
-            <div class="review-meta-value">{{ session.stakeholder.participant_id }}</div>
-        </div>
-    </div>
-
-    <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Group</div>
-            <div class="review-meta-value">{{ stakeholder_group }}</div>
-        </div>
-    </div>
-
-    <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M7 3h7l5 5v13H7z"></path>
-                <path d="M14 3v5h5"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Protocol</div>
-            <div class="review-meta-value">{{ session.protocol.title }}</div>
-        </div>
-    </div>
-
-    <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M8 2v4"></path>
-                <path d="M16 2v4"></path>
-                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Session</div>
-            <div class="review-meta-value">
-                <span class="status">{{ session.get_status_display }}</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M7 3h7l5 5v13H7z"></path>
-                <path d="M14 3v5h5"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Transcript</div>
-            <div class="review-meta-value">
-                {% if session.transcript_saved %}
-                    <span class="status">Saved</span>
-                {% else %}
-                    <span class="status status-muted">Not saved</span>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    <div class="review-meta-item">
-        <div class="review-meta-icon">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 3l2.2 5.3L20 9l-4.3 3.8L17 19l-5-3.2L7 19l1.3-6.2L4 9l5.8-.7z"></path>
-            </svg>
-        </div>
-        <div>
-            <div class="metric-label">Summary</div>
-            <div class="review-meta-value">
-                {% if session.review_status == "approved" or session.review_status == "reviewed" %}
-                    <span class="status">Approved</span>
-                {% elif session.review_status == "revision_requested" %}
-                    <span class="status status-waiting">Revision requested</span>
-                {% else %}
-                    <span class="status status-waiting">Draft preview</span>
-                {% endif %}
-            </div>
+            <div class="metric-label">Topic extracts</div>
+            <div class="review-meta-value"><span class="status {% if digest_summary.pending %}status-waiting{% endif %}">{{ digest_summary.resolved }} / {{ digest_summary.reviewable_total }} reviewed</span></div>
         </div>
     </div>
 </div>
 
-<div class="review-grid">
-    <div class="card review-panel">
-        <h2>Transcript excerpt</h2>
+<nav class="review-stage-nav" aria-label="Output review stages">
+    <a href="#review-transcript"><span>1</span><strong>Review typed transcript</strong><small>Source record</small></a>
+    <a href="#review-topic-evidence"><span>2</span><strong>Review topic extracts</strong><small>Include, edit, or exclude</small></a>
+    <a href="#review-final-decision"><span>3</span><strong>Final review</strong><small>Checks and decision</small></a>
+</nav>
 
-        <div class="transcript-excerpt">
-            {% for message in transcript_excerpt %}
-                <div class="review-message-row">
-                    <div class="review-avatar {% if message.sender == 'participant' %}participant-avatar{% endif %}">
-                        {% if message.sender == "participant" %}
-                            {{ session.stakeholder.participant_id }}
-                        {% else %}
-                            AI
-                        {% endif %}
-                    </div>
-
-                    <div class="review-message-bubble {% if message.sender == 'participant' %}participant-bubble{% endif %}">
-                        {{ message.content }}
-                    </div>
-                </div>
-            {% empty %}
-                <p class="muted">No transcript messages available yet.</p>
-            {% endfor %}
-        </div>
-
-        <a class="button-secondary review-wide-button" href="#full-transcript">
-            View full transcript
-        </a>
-    </div>
-
-    <div class="card review-panel">
-        <h2>Generated summary for review</h2>
-
-        <div class="summary-review-table">
-            {% for row in summary_rows %}
-                <div class="summary-review-row">
-                    <div class="summary-review-label">{{ row.label }}:</div>
-                    <div class="summary-review-content">
-                        <p>{{ row.content }}</p>
-                        <span class="topic-status-label topic-label-{{ row.status|lower }}">
-                            {{ row.status }}
-                        </span>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-<div class="review-grid review-bottom-grid">
-    <div class="card review-panel">
-        <h2>Review criteria</h2>
-
-        <p class="muted">
-            The researcher checks these criteria against the transcript, generated summary, missing flags, and agent decision trace before approving or requesting revision.
-        </p>
-
-        <div class="review-criteria-form-list">
-            {% for criterion in quality_criteria %}
-                <label class="review-criteria-check">
-                    <input
-                        form="review-decision-form"
-                        type="checkbox"
-                        name="{{ criterion.field }}"
-                        {% if criterion.checked %}checked{% endif %}
-                    >
-                    <span>{{ criterion.label }}</span>
-                </label>
-            {% endfor %}
-        </div>
-    </div>
-    
-
-    <div class="card review-panel">
-        <h2>Researcher decision</h2>
-
-        <div class="current-review-decision">
-            <strong>Current decision:</strong>
-
-            {% if session.review_status == "approved" or session.review_status == "reviewed" %}
-                <span class="status">Approved</span>
-            {% elif session.review_status == "revision_requested" %}
-                <span class="status status-waiting">Revision requested</span>
-            {% else %}
-                <span class="status status-waiting">Review pending</span>
-            {% endif %}
-        </div>
-        {% if quality_criteria_error %}
-            <p class="form-error">
-                {{ quality_criteria_error }}
-            </p>
-        {% endif %}
-        
-        {% if session.researcher_note %}
-            <div class="saved-review-note">
-                <div class="saved-review-note-label">Saved researcher note</div>
-                <p>{{ session.researcher_note }}</p>
-            </div>
-        {% endif %}
-
-        <form method="post" id="review-decision-form">
-            {% csrf_token %}
-
-            <label class="review-note-label" for="researcher-note">Researcher note</label>
-
-            <textarea
-                id="researcher-note"
-                name="researcher_note"
-                class="review-note-input"
-                placeholder="Add a brief review note..."
-            >{{ session.researcher_note }}</textarea>
-
-            <div class="researcher-decision-actions">
-                <button class="button" type="submit" name="decision" value="approve">
-                    Approve summary
-                </button>
-
-                <button class="button-secondary" type="submit" name="decision" value="request_revision">
-                    Request revision
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<section class="card" style="margin-top: 24px;">
-    <div class="section-header" style="align-items: flex-start; gap: 16px;">
+<section class="card review-stage-card" id="review-transcript">
+    <div class="section-header output-section-heading">
         <div>
-            <h2>Agent decision trace</h2>
+            <div class="review-stage-kicker">Stage 1 · Source record</div>
+            <h2>Full typed transcript</h2>
             <p class="muted">
-                This trace records the agent’s state-based decisions during the interview.
-                It shows when the agent moved on, asked a follow-up, flagged missing information,
-                respected skip/stop requests, or triggered a boundary response.
+                This is the saved interaction log: system prompts, typed participant responses, and control events. No audio or speech-to-text verification is claimed.
+                Open only the topic you are reviewing; system-step explanations stay collapsed unless needed.
             </p>
         </div>
-
-        <span class="status">{{ agent_decision_count }} decisions</span>
+        <span class="status status-blue">{{ messages|length }} saved turns</span>
     </div>
 
-    {% if agent_decisions %}
-        <div style="display: grid; gap: 14px; margin-top: 18px;">
-            {% for decision in agent_decisions %}
-                <div
-                    style="
-                        border: 1px solid #dbe4f2;
-                        border-radius: 16px;
-                        padding: 16px 18px;
-                        background: #fbfdff;
-                    "
-                >
-                    <div
-                        style="
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: flex-start;
-                            gap: 16px;
-                            margin-bottom: 12px;
-                        "
-                    >
-                        <div>
-                            <div class="metric-label">
-                                Step {{ forloop.counter }} · {{ decision.section }}
+    <div class="transcript-topic-list" data-single-open-list>
+        {% for transcript_section in transcript_sections %}
+            <details class="transcript-topic-group" {% if transcript_section.open_by_default %}open{% endif %}>
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>{{ transcript_section.kind_label }}</span>
+                        <strong>{{ transcript_section.label }}</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        {% if not transcript_section.is_boundary %}
+                            <span class="topic-status-label topic-label-{{ transcript_section.coverage_status }}">{{ transcript_section.coverage_label }}</span>
+                        {% endif %}
+                        <span>{{ transcript_section.participant_count }} response{{ transcript_section.participant_count|pluralize }}</span>
+                        <span>{{ transcript_section.turn_count }} turn{{ transcript_section.turn_count|pluralize }}</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    {% for message in transcript_section.messages %}
+                        <article class="review-transcript-turn transcript-{{ message.sender }}" id="{{ message.review_anchor }}">
+                            <div class="review-transcript-meta">
+                                <strong>{{ message.review_label }}</strong>
+                                <span>{{ message.section|default:"Workflow" }}</span>
                             </div>
+                            <p>{{ message.content }}</p>
 
-                            <h3 style="margin: 4px 0 0;">
-                                {{ decision.get_action_display }}
-                            </h3>
-                        </div>
+                            {% for decision in message.review_decisions %}
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>{{ decision.review_action_label }}</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>{{ decision.get_coverage_assessment_display }}</div>
+                                        <div class="metric-label">System action</div><div>{{ decision.review_action_label }}</div>
+                                        {% if decision.action == "ask_follow_up" or decision.action == "flag_missing_and_move_next" %}
+                                            <div class="metric-label">One-follow-up limit</div>
+                                            <div>{{ decision.follow_up_usage_before }}<br>{{ decision.follow_up_usage_after }}</div>
+                                        {% endif %}
+                                        <div class="metric-label">Information covered</div>
+                                        <div>{% if decision.covered_information %}{{ decision.covered_information|join:", " }}{% else %}Nothing verified for this step{% endif %}</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>{% if decision.missing_information %}{{ decision.missing_information|join:", " }}{% else %}Nothing flagged{% endif %}</div>
+                                        <div class="metric-label">Reason</div><div>{{ decision.review_reason }}</div>
+                                    </div>
+                                </details>
+                            {% endfor %}
+                        </article>
+                    {% endfor %}
 
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
-                            <span class="status">
-                                {{ decision.get_answer_status_display }}
-                            </span>
-
-                            {% if decision.action == "ask_follow_up" %}
-                                <span class="status status-waiting">Follow-up</span>
-                            {% elif decision.action == "flag_missing_and_move_next" %}
-                                <span class="status status-waiting">Missing info</span>
-                            {% elif decision.action == "stop" %}
-                                <span class="status status-muted">Stopped</span>
-                            {% elif decision.action == "boundary_response" %}
-                                <span class="status status-waiting">Boundary</span>
-                            {% elif decision.action == "skip" %}
-                                <span class="status status-muted">Skipped</span>
-                            {% else %}
-                                <span class="status status-blue">{{ decision.get_action_display }}</span>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div
-                        style="
-                            display: grid;
-                            grid-template-columns: 120px 1fr;
-                            gap: 10px 16px;
-                            margin-top: 10px;
-                        "
-                    >
-                        <div class="metric-label">Probe count</div>
-                        <div>{{ decision.probe_count_before }}</div>
-
-                        <div class="metric-label">Missing info</div>
-                        <div>
-                            {% if decision.missing_information %}
-                                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                                    {% for item in decision.missing_information %}
-                                        <span
-                                            style="
-                                                display: inline-flex;
-                                                padding: 5px 9px;
-                                                border-radius: 999px;
-                                                background: #fff7ed;
-                                                color: #d97706;
-                                                font-size: 12px;
-                                                font-weight: 800;
-                                            "
-                                        >
-                                            {{ item }}
-                                        </span>
-                                    {% endfor %}
+                    {% for decision in transcript_section.control_decisions %}
+                        <article class="review-transcript-turn transcript-system" id="{{ decision.review_anchor }}">
+                            <div class="review-transcript-meta"><strong>Participant control</strong><span>{{ transcript_section.label }}</span></div>
+                            <p>{{ decision.get_participant_control_display }} through the visible participant control.</p>
+                            <details class="system-step-details">
+                                <summary><span>Why the interview took this step</span><strong>{{ decision.review_action_label }}</strong></summary>
+                                <div class="system-step-grid">
+                                    <div class="metric-label">Participant control</div><div>{{ decision.get_participant_control_display }}</div>
+                                    <div class="metric-label">System action</div><div>{{ decision.review_action_label }}</div>
+                                    <div class="metric-label">Reason</div><div>{{ decision.review_reason }}</div>
                                 </div>
-                            {% else %}
-                                <span class="muted">No missing information flagged.</span>
-                            {% endif %}
-                        </div>
-
-                        <div class="metric-label">Reason</div>
-                        <div style="line-height: 1.5;">
-                            {{ decision.decision_reason }}
-                        </div>
-                    </div>
+                            </details>
+                        </article>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="muted">No agent decisions have been recorded for this session yet.</p>
+            </details>
+        {% empty %}
+            <p class="muted">No transcript messages are available for this Session.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="card evidence-availability-card" aria-labelledby="evidence-availability-title">
+    <div>
+        <h2 id="evidence-availability-title">Evidence availability for {{ session.stakeholder.participant_id }} · {{ session.session_code }}</h2>
+        <p class="muted">These counts limit what can be concluded from this Session; they are not a score of the participant.</p>
+    </div>
+    <div class="evidence-availability-counts">
+        <div><strong>{{ digest_summary.reviewable_total }}</strong><span>available topic{{ digest_summary.reviewable_total|pluralize }}</span></div>
+        <div><strong>{{ unavailable_topic_count }}</strong><span>unavailable topic{{ unavailable_topic_count|pluralize }}</span></div>
+        <div><strong>{{ missing_information_flag_count }}</strong><span>missing-information flag{{ missing_information_flag_count|pluralize }}</span></div>
+    </div>
+    {% if missing_flags %}
+        <details class="evidence-limitations-details">
+            <summary>Show the recorded limitations</summary>
+            <ul class="missing-flags-list">{% for flag in missing_flags %}<li>{{ flag }}</li>{% endfor %}</ul>
+        </details>
     {% endif %}
 </section>
 
-<div class="review-grid" id="full-transcript">
-    <div class="card review-panel full-transcript-card">
-        <h2>Full transcript</h2>
-
-        <div class="full-transcript-list">
-            {% for message in messages %}
-                <div class="transcript-line">
-                    <strong>{{ message.sender|title }} · {{ message.section }}</strong>
-                    <p>{{ message.content }}</p>
-                </div>
-            {% empty %}
-                <p class="muted">No transcript messages available.</p>
-            {% endfor %}
+<section class="card review-stage-card evidence-by-topic-card" id="review-topic-evidence">
+    <div class="digest-review-intro">
+        <div>
+            <div class="review-stage-kicker">Stage 2 · Transcript extraction</div>
+            <h2>Reviewed extracts by protocol topic</h2>
+            <p>
+                Select which typed participant responses enter the Evidence Record. These extracts can be checked for fidelity to this saved interview log;
+                they do not establish whether the participant's account is factually true.
+            </p>
+        </div>
+        <div class="evidence-topic-counts">
+            <span class="status {% if digest_summary.pending %}status-waiting{% endif %}">{{ digest_summary.resolved }} / {{ digest_summary.reviewable_total }} reviewed</span>
+            {% if unavailable_topic_count %}<span class="status status-muted">{{ unavailable_topic_count }} unavailable</span>{% endif %}
         </div>
     </div>
 
-    <div class="card review-panel">
-        <h2>Missing information / flags</h2>
+    {% if digest_review_notice %}<div class="digest-review-notice">{{ digest_review_notice }}</div>{% endif %}
+    {% if digest_review_error %}<div class="digest-review-error">{{ digest_review_error }}</div>{% endif %}
 
-        {% if missing_flags %}
-            <ul class="missing-flags-list">
-                {% for flag in missing_flags %}
-                    <li>{{ flag }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No major missing information flags were generated.</p>
-        {% endif %}
+    <div class="evidence-topic-accordion" data-single-open-list>
+        {% for row in summary_rows %}
+            <details class="evidence-topic-details" id="digest-item-{{ row.digest_item.id }}" {% if forloop.first %}open{% endif %}>
+                <summary>
+                    <div>
+                        <strong>{{ row.section }}</strong>
+                        <span>{{ row.label }}</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-{{ row.digest_item.coverage_status }}">{{ row.status }}</span>
+                        {% if row.digest_item.participant_control == "skip" %}
+                            <span class="status status-muted">Participant control outcome: Skipped</span>
+                        {% elif row.digest_item.participant_control == "stop" %}
+                            <span class="status status-muted">Participant control outcome: Stopped</span>
+                        {% elif not row.digest_item.topic_reached %}
+                            <span class="status status-muted">Topic reach: Not reached</span>
+                        {% endif %}
+                        {% if not row.is_evidence_candidate %}
+                            <span class="status status-muted">Recorded as limitation</span>
+                        {% elif row.digest_item.review_status == "approved" %}
+                            <span class="status">Included</span>
+                        {% elif row.digest_item.review_status == "edited" %}
+                            <span class="status status-blue">Edited</span>
+                        {% elif row.digest_item.review_status == "excluded" %}
+                            <span class="status status-waiting">Excluded</span>
+                        {% else %}
+                            <span class="status status-muted">Pending</span>
+                        {% endif %}
+                    </div>
+                </summary>
 
-        <p class="muted">
-            This draft is generated only from saved transcript messages. It should be reviewed by a researcher before use.
-        </p>
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block {% if not row.is_evidence_candidate %}digest-limitation-block{% endif %}">
+                        <span class="digest-block-label">{% if row.is_evidence_candidate %}Source extract from typed responses{% else %}Limitation record{% endif %}</span>
+                        <p>{{ row.digest_item.generated_text }}</p>
+                        {% if row.digest_item.missing_information %}
+                            <p class="digest-missing-information"><strong>Still missing:</strong> {{ row.digest_item.missing_information|join:", " }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        {% for message in row.source_messages %}
+                            <a class="summary-source-link" href="#{{ message.review_anchor }}">{{ message.review_label }}</a>
+                        {% empty %}
+                            <span class="summary-source-empty">No usable participant response recorded</span>
+                        {% endfor %}
+                    </div>
+
+                    {% if row.digest_item.review_status == "edited" and row.is_evidence_candidate %}
+                        <div class="digest-final-block"><span class="digest-block-label">Included edited extract</span><p>{{ row.digest_item.reviewed_text }}</p></div>
+                    {% elif row.digest_item.review_status == "excluded" and row.is_evidence_candidate %}
+                        <div class="digest-final-block"><span class="digest-block-label">Evidence Record treatment</span><p>This item is excluded from reviewed evidence.</p></div>
+                    {% endif %}
+
+                    {% if row.is_evidence_candidate %}
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="{% url 'review_digest_item' session.session_code row.digest_item.id %}">
+                            {% csrf_token %}
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" {% if row.digest_item.review_status == 'edited' %}open{% endif %}>
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="{% url 'review_digest_item' session.session_code row.digest_item.id %}">
+                                {% csrf_token %}
+                                <label for="digest-text-{{ row.digest_item.id }}">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-{{ row.digest_item.id }}" name="reviewed_text">{% if row.digest_item.review_status == "edited" %}{{ row.digest_item.reviewed_text }}{% else %}{{ row.digest_item.generated_text }}{% endif %}</textarea>
+                                <label for="digest-edit-comment-{{ row.digest_item.id }}">Reason for edit</label>
+                                <textarea id="digest-edit-comment-{{ row.digest_item.id }}" name="reviewer_comment" placeholder="Explain what changed and why.">{{ row.digest_item.reviewer_comment }}</textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" {% if row.digest_item.review_status == 'excluded' %}open{% endif %}>
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="{% url 'review_digest_item' session.session_code row.digest_item.id %}">
+                                {% csrf_token %}
+                                <label for="digest-exclude-comment-{{ row.digest_item.id }}">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-{{ row.digest_item.id }}" name="reviewer_comment" placeholder="Explain why this topic should not be included.">{{ row.digest_item.reviewer_comment }}</textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    {% else %}
+                        <p class="muted">This unavailable topic cannot be converted into participant evidence. It remains visible as a Session limitation.</p>
+                    {% endif %}
+
+                    {% if row.digest_item.reviewed_at and row.is_evidence_candidate %}
+                        <div class="digest-review-meta">Last reviewed by <strong>{{ row.digest_item.reviewer_display }}</strong> · {{ row.digest_item.reviewed_at|date:"d M Y H:i" }}{% if row.digest_item.reviewer_comment %} · {{ row.digest_item.reviewer_comment }}{% endif %}</div>
+                    {% endif %}
+
+                    {% if row.digest_item.review_events.all %}
+                        <details class="digest-review-history">
+                            <summary>Review history ({{ row.digest_item.review_events.count }})</summary>
+                            <ul>{% for event in row.digest_item.review_events.all %}<li>{{ event.created_at|date:"d M Y H:i" }} · {{ event.reviewer_name_snapshot }} · {{ event.get_new_status_display }}{% if event.comment %} — {{ event.comment }}{% endif %}</li>{% endfor %}</ul>
+                        </details>
+                    {% endif %}
+                </div>
+            </details>
+        {% empty %}
+            <p class="muted">No research-topic evidence items are available for this Protocol version.</p>
+        {% endfor %}
     </div>
+</section>
+
+<div class="review-stage-kicker final-review-kicker" id="review-final-decision">Stage 3 · Final review</div>
+<div class="review-grid review-bottom-grid">
+    <section class="card review-panel">
+        <h2>Session release conditions</h2>
+        <p class="muted">
+            Three workflow conditions are checked by the system. Two judgements still require researcher review.
+            These project-specific safeguards gate only the Session's Approved review state. They do not block
+            Evidence Record export, form a validated scale, or measure research or outcome quality.
+        </p>
+        <div class="quality-confirmed-summary">
+            <span class="status {% if not release_conditions.system_conditions_met %}status-blue{% endif %}">
+                Workflow conditions: {% if release_conditions.system_conditions_met %}Met{% else %}Not met{% endif %}
+            </span>
+            <span class="status {% if not release_conditions.researcher_judgements_confirmed %}status-blue{% endif %}">
+                Researcher judgements: {% if release_conditions.researcher_judgements_confirmed %}Confirmed{% else %}Not confirmed{% endif %}
+            </span>
+        </div>
+        <h3>System-checked workflow conditions</h3>
+        <div class="review-criteria-form-list">
+            {% for condition in release_conditions.system_conditions %}
+                <div class="review-criteria-check">
+                    <span class="status {% if not condition.met %}status-muted{% endif %}">{% if condition.met %}Met{% else %}Not met{% endif %}</span>
+                    <span><strong>{{ condition.label }}</strong><small>{{ condition.help }}</small></span>
+                </div>
+            {% endfor %}
+        </div>
+        <h3>Researcher judgements</h3>
+        <div class="review-criteria-form-list">
+            {% for judgement in release_conditions.researcher_judgements %}
+                <label class="review-criteria-check">
+                    <input form="review-decision-form" type="checkbox" name="{{ judgement.field }}" {% if judgement.confirmed %}checked{% endif %}>
+                    <span><strong>{{ judgement.label }}</strong><small>{{ judgement.help }}</small></span>
+                </label>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="card review-panel">
+        <h2>Researcher decision · {{ session.stakeholder.participant_id }} · {{ session.session_code }}</h2>
+        <div class="current-review-decision">
+            <strong>Current decision:</strong>
+            {% if session.review_status == "approved" or session.review_status == "reviewed" %}<span class="status">Approved</span>
+            {% elif session.review_status == "not_usable" %}<span class="status status-waiting">Not usable</span>
+            {% elif session.review_status == "revision_requested" %}<span class="status status-waiting">Revision requested</span>
+            {% else %}<span class="status status-blue">Review pending</span>{% endif %}
+        </div>
+
+        {% if release_conditions_error %}<p class="form-error">{{ release_conditions_error }}</p>{% endif %}
+        {% if overall_review_error %}<p class="form-error">{{ overall_review_error }}</p>{% endif %}
+        {% if review_decision.reviewed_at %}<div class="saved-review-note"><div class="saved-review-note-label">Last overall decision recorded by</div><p>{{ review_decision.reviewer_display }} · {{ review_decision.reviewed_at|date:"d M Y H:i" }}</p></div>{% endif %}
+
+        <form method="post" id="review-decision-form">
+            {% csrf_token %}
+            <label class="review-note-label" for="researcher-note">Researcher note</label>
+            <textarea id="researcher-note" name="researcher_note" class="review-note-input" placeholder="Required when requesting revision or marking the output not usable.">{{ session.researcher_note }}</textarea>
+            <div class="researcher-decision-actions researcher-decision-actions-three">
+                <button class="button" type="submit" name="decision" value="approve">Approve reviewed evidence</button>
+                <button class="button-secondary" type="submit" name="decision" value="request_revision">Request revision</button>
+                <button class="button-secondary decision-not-usable-button" type="submit" name="decision" value="mark_not_usable">Mark not usable</button>
+            </div>
+        </form>
+    </section>
 </div>
+
+<script>
+    function openWithinAccordion(target) {
+        const details = target instanceof HTMLDetailsElement
+            ? target
+            : target.closest("details");
+        if (!details) return;
+        const list = details.parentElement;
+        if (list && list.matches("[data-single-open-list]")) {
+            Array.from(list.children).forEach((item) => {
+                if (item instanceof HTMLDetailsElement && item !== details) item.open = false;
+            });
+        }
+        details.open = true;
+    }
+
+    document.querySelectorAll("[data-single-open-list]").forEach((list) => {
+        list.addEventListener("toggle", (event) => {
+            const opened = event.target;
+            if (!(opened instanceof HTMLDetailsElement) || !opened.open || opened.parentElement !== list) return;
+            Array.from(list.children).forEach((item) => {
+                if (item instanceof HTMLDetailsElement && item !== opened) item.open = false;
+            });
+        }, true);
+    });
+
+    document.querySelectorAll(".summary-source-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            const target = document.getElementById(link.hash.slice(1));
+            if (target) openWithinAccordion(target);
+        });
+    });
+
+    function openCurrentHashTarget() {
+        if (!window.location.hash) return;
+        const target = document.getElementById(window.location.hash.slice(1));
+        if (target) openWithinAccordion(target);
+    }
+    openCurrentHashTarget();
+    window.addEventListener("hashchange", openCurrentHashTarget);
+</script>
 {% endblock %}

@@ -5,14 +5,21 @@
     <div>
         <h1 class="overview-title">Stakeholder records</h1>
         <p class="overview-kicker">
-            This page shows the P01 participant record used in the evaluated MVP. Other stakeholder and reviewer roles are shown only as future workflow examples.
+            Every participant record uses the same workflow. Select a record to inspect its latest Session, or open its detail page to see all Sessions.
         </p>
     </div>
 
-    <span class="button button-disabled">
-        + Add stakeholder record · Future extension
-    </span>
+    <a class="button" href="{% url 'stakeholder_create' %}">
+        + Add stakeholder record
+    </a>
 </div>
+
+{% if created_participant_id %}
+    <div class="stakeholder-created-notice" role="status">
+        <strong>Stakeholder record {{ created_participant_id }} created.</strong>
+        <span>The interview session is created separately.</span>
+    </div>
+{% endif %}
 
 <div class="card grouping-card">
     <div class="info-icon">
@@ -27,9 +34,8 @@
     <div>
         <h2>How grouping works</h2>
         <p class="muted">
-            Stakeholder grouping defines which interview or review workflow a person would follow.
-            In this MVP, P01 is assigned to the Sensory Overload Interview. Future roles are shown
-            to explain how the workflow could scale later, not as tested study records.
+            Stakeholder grouping and the assigned protocol define the intended interview workflow.
+            Session and review states below are calculated from the current database records.
         </p>
     </div>
 </div>
@@ -44,8 +50,8 @@
             </svg>
         </div>
         <div>
-            <div class="metric-label">MVP participant record</div>
-            <div class="metric">{{ active_stakeholder_count }}</div>
+            <div class="metric-label">Stakeholder records</div>
+            <div class="metric">{{ stakeholder_count }}</div>
         </div>
     </div>
 
@@ -59,10 +65,8 @@
             </svg>
         </div>
         <div>
-            <div class="metric-label">Active protocol</div>
-            <div class="metric">
-                {% if selected_stakeholder and selected_stakeholder.assigned_protocol %}1{% else %}0{% endif %}
-            </div>
+            <div class="metric-label">Assigned protocols</div>
+            <div class="metric">{{ assigned_protocol_count }}</div>
         </div>
     </div>
 
@@ -76,8 +80,8 @@
             </svg>
         </div>
         <div>
-            <div class="metric-label">Future workflow examples</div>
-            <div class="metric">4</div>
+            <div class="metric-label">Interview sessions</div>
+            <div class="metric">{{ session_count }}</div>
         </div>
     </div>
 </div>
@@ -86,77 +90,49 @@
     <div class="card stakeholder-main-card">
         <div class="stakeholder-card-header">
             <div>
-                <h2>Implemented MVP participant record</h2>
+                <h2>Participant records</h2>
                 <p class="muted">
-                    P01 is the implemented participant record used to run the evaluated interview-to-review workflow.
+                    Participant IDs are pseudonymous workflow identifiers. Evaluation evidence is kept in the report rather than assigned to a special database row.
                 </p>
             </div>
         </div>
 
         {% for stakeholder in stakeholders %}
-            <div class="p01-record-card">
-                <div class="p01-record-primary">
-                    <div class="p01-id">{{ stakeholder.participant_id }}</div>
-                    <div class="p01-title">{{ stakeholder.stakeholder_group }}</div>
-                    <div class="p01-subtitle">{{ stakeholder.role }}</div>
+            <div class="stakeholder-record-card {% if stakeholder.pk == selected_stakeholder.pk %}selected-stakeholder-record{% endif %}">
+                <div class="stakeholder-record-primary">
+                    <div class="stakeholder-record-id">{{ stakeholder.participant_id }}</div>
+                    <div class="stakeholder-record-title">{{ stakeholder.stakeholder_group }}</div>
+                    <div class="stakeholder-record-subtitle">{{ stakeholder.role }}</div>
                 </div>
 
-                <div class="p01-record-divider"></div>
+                <div class="stakeholder-record-divider"></div>
 
-                <div class="p01-record-info">
+                <div class="stakeholder-record-info">
                     <div class="record-label">Assigned workflow</div>
                     <div class="record-value">
                         {% if stakeholder.assigned_protocol %}
-                            {{ stakeholder.assigned_protocol.title }}
+                            {{ stakeholder.assigned_protocol.title }} · v{{ stakeholder.assigned_protocol.version }}
                         {% else %}
                             Not assigned
                         {% endif %}
                     </div>
                 </div>
 
-                <div class="p01-record-info">
+                <div class="stakeholder-record-info">
                     <div class="record-label">Status</div>
-                    <span class="status">{{ stakeholder.get_status_display }}</span>
+                    <span class="status {{ stakeholder.workflow_display.css_class }}">{{ stakeholder.workflow_display.label }}</span>
+                    <div class="record-status-detail">{{ stakeholder.session_count }} session{{ stakeholder.session_count|pluralize }}</div>
                 </div>
 
-                <div class="p01-record-action">
-                    <a class="button-secondary" href="{% url 'interview_consent' stakeholder.participant_id %}">
-                        View interview record
+                <div class="stakeholder-record-action">
+                    <a class="button-secondary" href="{% url 'stakeholder_list' %}?selected={{ stakeholder.participant_id|urlencode }}">
+                        {% if stakeholder.pk == selected_stakeholder.pk %}Selected{% else %}Select{% endif %}
                     </a>
                 </div>
             </div>
+        {% empty %}
+            <p class="muted">No stakeholder records have been created.</p>
         {% endfor %}
-
-        <div class="future-inline-section">
-            <div class="future-inline-header">
-                <h2>Future workflow examples</h2>
-                <p class="muted">
-                    These examples show possible extensions beyond P01. They are not part of the evaluated MVP.
-                </p>
-            </div>
-
-            <div class="future-inline-list">
-                <div class="future-inline-item">
-                    <strong>Everyday overwhelm participant</strong>
-                    <span>Everyday Overwhelm Interview</span>
-                </div>
-
-                <div class="future-inline-item">
-                    <strong>Qualitative research expert</strong>
-                    <span>Expert Review Rubric</span>
-                </div>
-
-                <div class="future-inline-item">
-                    <strong>Product / design reviewer</strong>
-                    <span>Design Implication Review</span>
-                </div>
-
-                <div class="future-inline-item">
-                    <strong>Business / adoption stakeholder</strong>
-                    <span>Market / Adoption Protocol</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="card selected-panel">
@@ -180,7 +156,7 @@
                     <div class="detail-label">Assigned workflow:</div>
                     <div>
                         {% if selected_stakeholder.assigned_protocol %}
-                            {{ selected_stakeholder.assigned_protocol.title }}
+                            {{ selected_stakeholder.assigned_protocol.title }} · v{{ selected_stakeholder.assigned_protocol.version }}
                         {% else %}
                             Not assigned
                         {% endif %}
@@ -188,19 +164,45 @@
                 </div>
 
                 <div class="detail-row">
+                    <div class="detail-label">Record status:</div>
+                    <div><span class="status {{ selected_stakeholder.workflow_display.css_class }}">{{ selected_stakeholder.workflow_display.label }}</span></div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Sessions:</div>
+                    <div>{{ selected_stakeholder.session_count }}</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Latest session:</div>
+                    <div>{% if selected_session %}{{ selected_session.session_code }}{% else %}Not created{% endif %}</div>
+                </div>
+
+                {% if selected_session %}
+                    <div class="detail-row">
+                        <div class="detail-label">Status updated:</div>
+                        <div>{{ selected_session.updated_at|date:"d M Y H:i:s" }}</div>
+                    </div>
+                {% endif %}
+
+                <div class="detail-row">
                     <div class="detail-label">Interview status:</div>
-                    <div><span class="status">{{ selected_stakeholder.get_status_display }}</span></div>
+                    <div>
+                        {% if selected_session %}
+                            <span class="status {{ selected_session.interview_display.css_class }}">{{ selected_session.interview_display.label }}</span>
+                        {% else %}
+                            <span class="status status-muted">No session</span>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="detail-row">
                     <div class="detail-label">Transcript / output:</div>
                     <div>
-                        {% if selected_session and selected_session.transcript_saved %}
-                            Saved
-                        {% elif selected_session and selected_session.summary_generated %}
-                            Generated
+                        {% if selected_session %}
+                            <span class="status {{ selected_session.output_display.css_class }}">{{ selected_session.output_display.label }}</span>
                         {% else %}
-                            Not generated
+                            <span class="status status-muted">No session</span>
                         {% endif %}
                     </div>
                 </div>
@@ -209,9 +211,20 @@
                     <div class="detail-label">Review status:</div>
                     <div>
                         {% if selected_session %}
-                            {{ selected_session.get_review_status_display }}
+                            <span class="status {{ selected_session.review_display.css_class }}">{{ selected_session.review_display.label }}</span>
                         {% else %}
-                            Not reviewed
+                            <span class="status status-muted">No session</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Evidence status:</div>
+                    <div>
+                        {% if selected_session %}
+                            <span class="status {{ selected_session.evidence_display.css_class }}">{{ selected_session.evidence_display.label }}</span>
+                        {% else %}
+                            <span class="status status-muted">No session</span>
                         {% endif %}
                     </div>
                 </div>
@@ -230,9 +243,15 @@
                     <span class="button-secondary button-disabled">Preview assigned protocol</span>
                 {% endif %}
 
-                <a class="button" href="{% url 'interview_consent' selected_stakeholder.participant_id %}">
-                    View interview record
-                </a>
+                {% if selected_session %}
+                    <a class="button" href="{% url 'interview_sessions' %}?session={{ selected_session.session_code|urlencode }}">
+                        View latest session
+                    </a>
+                {% else %}
+                    <a class="button" href="{% url 'interview_session_create' %}?stakeholder={{ selected_stakeholder.participant_id|urlencode }}">
+                        Create interview session
+                    </a>
+                {% endif %}
             </div>
         {% else %}
             <p>No stakeholder selected.</p>

@@ -1,0 +1,15 @@
+ID,Area,Issue,Required interpretation,Status
+D01,Objective timing,PC11 records active review time for each completed condition,Use as a descriptive n=3 timing comparison,Closed
+D02,Negative case,P01 Manual falsely approved E3/E6 and missed topic missingness,Retain unchanged; do not repair,Documented
+D03,Prototype audit,Repeated save events in some HTML histories,Preserve append-only history; score the final P02 E5 source separately under D14,Documented
+D04,Provenance,Final formal Excel files contain PC11 timing records,Use current final ZIP hashes as authority,Closed
+D05,Governance,Ethics and consent records archived,Retain with the validation package,Closed
+D06,Consent,Four v0.2 consent documents retained,Use the current filed versions,Closed
+D07,Consent,P01–P03 indicate all six consent items by yellow highlighting and include names/signatures/dates,Record as yellow-indicated signed and dated consent,Closed
+D08,Consent,Pilot01's six consent boxes are ticked and the Gold reviewer role record is retained separately,Retain consent and role records,Closed
+D09,Governance reference,Consent files cite Imperial internal record ID=881,Use the archived reference,Closed
+D10,Timing provenance,Formal P01–P03 workbooks contain PC11 active-time records,Use PC11 values in descriptive timing analysis,Closed
+D11,Versioning,v0.7.1 frozen Gold predates completed v0.8.0 Gold,Use v0.8.0 for scoring; v0.7.1 for provenance,Documented
+D12,Scope,Pilot-01 and Pilot-02 excluded from formal n=3,Never pool Pilot ratings with formal results,Documented
+D13,Reproducibility,Executable rebuild and integrity tests are retained,Use the reproduction outputs and PASS test log,Closed
+D14,P02 Prototype source traceability,NP02-A-E5 retained Participant response 3; Gold requires Participant response 4,Retain as the researcher's source-link error; score E5 incorrect and as a false approval under the frozen Gold rule,Documented

@@ -10,9 +10,60 @@
         </p>
     </div>
 
-    <span class="button button-disabled">
-        <span>+</span> Create new protocol version · Future extension
-    </span>
+    <div class="protocol-version-actions">
+        <a class="button-secondary" href="{% url 'protocol_list' %}">← Protocol library</a>
+
+        <span class="status {% if protocol.is_locked %}status-muted{% else %}status-blue{% endif %}">
+            v{{ protocol.version }} · {{ protocol.get_status_display }}
+        </span>
+
+        {% if not protocol.is_locked %}
+            <a class="button-secondary" href="{% url 'protocol_edit' protocol.slug %}">Edit draft</a>
+            <form method="post" action="{% url 'protocol_lock' protocol.slug %}">
+                {% csrf_token %}
+                <button class="button-secondary" type="submit">Lock version</button>
+            </form>
+        {% endif %}
+
+        <form method="post" action="{% url 'protocol_duplicate' protocol.slug %}">
+            {% csrf_token %}
+            <button class="button" type="submit">Copy as new version</button>
+        </form>
+    </div>
+</div>
+
+{% if created %}
+    <div class="stakeholder-created-notice" role="status">
+        New protocol family created as editable v1. It is configurable workflow evidence, not an evaluated research protocol until separately validated.
+    </div>
+{% elif updated %}
+    <div class="stakeholder-created-notice" role="status">Protocol v{{ protocol.version }} was updated.</div>
+{% elif locked %}
+    <div class="stakeholder-created-notice" role="status">Protocol v{{ protocol.version }} is now locked.</div>
+{% elif copied %}
+    <div class="stakeholder-created-notice" role="status">
+        Editable protocol v{{ protocol.version }} was copied from v{{ protocol.parent_version.version }}.
+    </div>
+{% endif %}
+
+<div class="card protocol-runtime-card">
+    <div class="protocol-runtime-card-heading">
+        <div>
+            <h2>Runtime behaviour</h2>
+            <p class="muted">What this locked Protocol controls during an interview.</p>
+        </div>
+        {% if is_evaluated_case %}
+            <span class="status">Evaluated case: Sensory / PurrStone</span>
+        {% else %}
+            <span class="status status-waiting">Configurable workflow only · not yet validated</span>
+        {% endif %}
+    </div>
+    <div class="protocol-runtime-grid">
+        <div><strong>Question sequence</strong><span>Each primary question is asked exactly as saved, in section order.</span></div>
+        <div><strong>Provisional Protocol-coverage check</strong><span>The LLM checks only whether the response explicitly covers researcher-defined required information, guidance, and Protocol rules. It does not assess truth, psychological meaning, clinical significance, or research value. If unavailable, a conservative fallback keeps unverified requirements visible.</span></div>
+        <div><strong>Interview control</strong><span>LangGraph—not the LLM—chooses continue, one follow-up, Skip, Stop, boundary response, or completion.</span></div>
+        <div><strong>Follow-up wording</strong><span>Only runs after the graph permits one follow-up and is constrained by the topic focus and interaction boundary.</span></div>
+    </div>
 </div>
 
 <div class="grid-2">
@@ -42,15 +93,35 @@
             </tr>
             <tr>
                 <th>Protocol version</th>
-                <td>v1</td>
+                <td>
+                    {% for version_item in versions %}
+                        {% if version_item.pk == protocol.pk %}
+                            <strong class="protocol-current-version">v{{ version_item.version }} (current)</strong>
+                        {% else %}
+                            <a class="table-action-link" href="{% url 'protocol_detail' version_item.slug %}">v{{ version_item.version }}</a>
+                        {% endif %}
+                        {% if not forloop.last %} · {% endif %}
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
-                <th>Evaluation status</th>
-                <td>Locked for MVP evaluation</td>
+                <th>Version status</th>
+                <td>
+                    <span class="status {% if protocol.is_locked %}status-muted{% else %}status-blue{% endif %}">
+                        {{ protocol.get_status_display }}
+                    </span>
+                    {% if protocol.locked_at %} · {{ protocol.locked_at|date:"d M Y H:i" }}{% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Future editing</th>
-                <td>Create a new protocol version rather than overwriting this evaluated protocol.</td>
+                <th>Editing rule</th>
+                <td>
+                    {% if protocol.is_locked %}
+                        This version cannot be overwritten because it is locked or already used by a Session. Copy it to make changes.
+                    {% else %}
+                        This draft can be edited until it is manually locked or first used by a Session.
+                    {% endif %}
+                </td>
             </tr>
                     </table>
     </div>
@@ -117,33 +188,34 @@
 
     <div class="key-section-list">
         {% for section in sections %}
-            {% if section.code != "opening" and section.code != "faithful_summary" %}
+            {% if section.code != "opening" and section.code != "faithful_summary" and section.code != "completion" and section.code != "researcher_handoff" %}
                 <div class="key-section-item">
                     <div class="key-section-number">{{ section.index|add:"1" }}</div>
                     <div>
                         <strong>{{ section.label }}</strong>
                         <p class="muted">{{ section.purpose }}</p>
 
-                        {% if section.code == "experience" %}
-                            <p class="muted">
-                                <strong>Required:</strong> situation, context, sensory difficulty, effect.
-                            </p>
-                        {% elif section.code == "triggers_signs" %}
-                            <p class="muted">
-                                <strong>Required:</strong> sensory triggers, body signs, emotional signs.
-                            </p>
-                        {% elif section.code == "coping_support" %}
-                            <p class="muted">
-                                <strong>Required:</strong> coping actions, what helped, what did not help, support needs.
-                            </p>
-                        {% elif section.code == "support_concept_reaction" %}
-                            <p class="muted">
-                                <strong>Required:</strong> squeeze, haptics, scent, usefulness, concerns.
-                            </p>
-                        {% elif section.code == "public_use_acceptability" %}
-                            <p class="muted">
-                                <strong>Required:</strong> comfort, visibility, social concerns, public-use acceptability.
-                            </p>
+                        <p>
+                            <strong>Primary question:</strong><br>
+                            {{ section.primary_question }}
+                        </p>
+
+                        <p class="muted">
+                            <strong>Required:</strong>
+                            {% for item in section.required_information %}
+                                {{ item }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                No research-content requirement for this transition section.
+                            {% endfor %}
+                        </p>
+
+                        {% if section.assessment_guidance or section.follow_up_focus or section.interaction_boundary %}
+                            <details class="protocol-detail-runtime-guidance">
+                                <summary>Topic runtime guidance</summary>
+                                {% if section.assessment_guidance %}<p><strong>Assessment:</strong> {{ section.assessment_guidance }}</p>{% endif %}
+                                {% if section.follow_up_focus %}<p><strong>Follow-up focus:</strong> {{ section.follow_up_focus }}</p>{% endif %}
+                                {% if section.interaction_boundary %}<p><strong>Interaction boundary:</strong> {{ section.interaction_boundary }}</p>{% endif %}
+                            </details>
                         {% endif %}
                     </div>
                 </div>
@@ -153,7 +225,10 @@
 </div>
 
 <div class="card agent-rules-wide-card">
-    <h2>Agent control & ethics rules</h2>
+    <h2>Additional Protocol rules</h2>
+    <p class="muted">
+        These rules are supplied to constrained semantic assessment and follow-up wording. Universal Skip, Stop, one-follow-up, and non-medical controls remain enforced by LangGraph and cannot be weakened here.
+    </p>
 
     <ol class="ethics-list">
         {% for rule in ethics_rules %}
@@ -165,8 +240,8 @@
 </div>
 
 <div class="protocol-action-bar protocol-action-bar-single">
-    <a class="button-secondary" href="{% url 'stakeholder_detail' 'P01' %}">
-        Back to stakeholder record
+    <a class="button-secondary" href="{% url 'protocol_list' %}">
+        Back to protocol library
     </a>
 </div>
 </div>

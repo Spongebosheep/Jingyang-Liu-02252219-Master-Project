@@ -1,0 +1,19 @@
+﻿coder_id,blind_item_id,unique_content_group,scenario_id,pair_key,condition,section_code,review_status,label,error_category,confidence,rationale
+Coder01,SF-001,UG-01,S7,S7-R01,mvp,triggers_signs,approved,preserved,none,3,"The final evidence retains the three stated triggers, both bodily reactions, and panic without adding or dropping substantive meaning."
+Coder01,SF-002,UG-02,S7,S7-R01,mvp,coping_support,approved,preserved,none,3,"The three coping actions, both forms of support that might have helped, and the reason repeated announcements were unhelpful are all retained."
+Coder01,SF-003,UG-03,S7,S7-R01,mvp,support_concept_reaction,approved,preserved,none,3,"Squeeze, haptic pacing, the scent concern, and the requirement that features remain optional all preserve the participant's qualifications."
+Coder01,SF-004,UG-02,S8,S8-R01,mvp,coping_support,approved,preserved,none,3,"This is a direct source extract; no substantive content or qualification has been added, removed, or contradicted."
+Coder01,SF-005,UG-01,S8,S8-R01,mvp,triggers_signs,approved,preserved,none,3,"The trigger list and the participant's shoulder, heart, and panic responses match the source directly."
+Coder01,SF-006,UG-03,S8,S8-R01,mvp,support_concept_reaction,approved,preserved,none,3,"The wording keeps the tentative usefulness of squeeze and haptics, the avoidance of scent, its trigger risk, and the preference for optional features."
+Coder01,SF-007,UG-04,S7,S7-R01,mvp,public_use_acceptability,approved,preserved,none,3,"The commuting conditions, embarrassment about visible lights, and concern about scent affecting nearby people in a shared space are all preserved."
+Coder01,SF-008,UG-05,S7,S7-R01,mvp,experience,edited,not_preserved,other,2,"The episode remains recognisable, but the final text adds the label 'sensory overload', attributes the trapped/overwhelmed feeling to alarms as well as noise and crowding, and omits that the carriage stopped between stations."
+Coder01,SF-009,UG-04,S8,S8-R01,mvp,public_use_acceptability,approved,preserved,none,3,The public-use evidence is a direct extract and retains the participant's conditions and concerns without changing attribution or qualification.
+Coder02,SF-001,UG-01,S7,S7-R01,mvp,triggers_signs,approved,preserved,none,3,Same trigger set and same physical and emotional reactions; no material change.
+Coder02,SF-002,UG-02,S7,S7-R01,mvp,coping_support,approved,preserved,none,3,"The actions taken, the two preferred supports, and the problem caused by repeated announcements all remain in the final text."
+Coder02,SF-003,UG-03,S7,S7-R01,mvp,support_concept_reaction,approved,preserved,none,3,The final text keeps the same useful/not-useful reactions and the requirement that features be optional.
+Coder02,SF-004,UG-02,S8,S8-R01,mvp,coping_support,approved,preserved,none,3,This is effectively identical to the participant source apart from the extract framing.
+Coder02,SF-005,UG-01,S8,S8-R01,mvp,triggers_signs,approved,preserved,none,3,All trigger and reaction information is traceable to the source with no material change.
+Coder02,SF-006,UG-03,S8,S8-R01,mvp,support_concept_reaction,approved,preserved,none,3,"The squeeze, haptic, and scent judgements are retained with the same cautious wording."
+Coder02,SF-007,UG-04,S7,S7-R01,mvp,public_use_acceptability,approved,preserved,none,3,The conditions for public use and the concerns about lights and scent are unchanged.
+Coder02,SF-008,UG-05,S7,S7-R01,mvp,experience,edited,not_preserved,other,2,"The final version drops the stop between stations, calls the episode sensory overload, and treats alarms as part of the cause of feeling trapped and overwhelmed. That changes the source meaning."
+Coder02,SF-009,UG-04,S8,S8-R01,mvp,public_use_acceptability,approved,preserved,none,3,Direct source extract; I see no change in meaning.

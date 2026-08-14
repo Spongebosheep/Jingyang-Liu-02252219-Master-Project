@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "2.0",
+  "preregistration": {
+    "status": "frozen_before_formal_runs",
+    "frozen_on": "2026-08-09",
+    "supersedes": "metric_calculation_schema.v1.json",
+    "purpose": "Freeze v10 append-only calculator outputs, failure retention, pairing fields, and human-coding boundaries before any v10 formal paired result exists."
+  },
+  "input": {
+    "type": "completed_evaluation_export_bundle",
+    "integrity_requirement": "Every file listed by the export inventory must exist with the recorded byte count and SHA-256 before and after calculation.",
+    "source_of_truth": "Saved raw runner records and frozen exporter tables; summaries may never be manually supplied."
+  },
+  "required_outputs": [
+    "calculation_manifest.json",
+    "input/export_manifest.json",
+    "contracts/metric_calculation_schema.v2.json",
+    "contracts/metrics.v3.json",
+    "contracts/scenarios.v4.json",
+    "metrics/detail.csv",
+    "metrics/run_summary.csv",
+    "metrics/condition_summary.csv",
+    "metrics/pair_summary.csv",
+    "metrics/summary.json"
+  ],
+  "tables": {
+    "detail": {
+      "filename": "metrics/detail.csv",
+      "row_unit": "One eligible, failed, not-evaluable or pending-manual metric unit.",
+      "fields": [
+        "calculation_id",
+        "detail_order",
+        "metric_code",
+        "metric_name",
+        "calculation_mode",
+        "run_id",
+        "condition",
+        "scenario_id",
+        "repetition",
+        "pair_key",
+        "unit_type",
+        "unit_id",
+        "eligible",
+        "evaluation_status",
+        "passed",
+        "numerator_contribution",
+        "denominator_contribution",
+        "expected_json",
+        "observed_json",
+        "failure_reasons_json",
+        "source_paths_json",
+        "manual_coding_required"
+      ]
+    },
+    "run_summary": {
+      "filename": "metrics/run_summary.csv",
+      "row_unit": "One run and one frozen metric, including zero-denominator and pending-manual rows.",
+      "fields": [
+        "calculation_id",
+        "run_id",
+        "condition",
+        "scenario_id",
+        "repetition",
+        "pair_key",
+        "run_execution_status",
+        "validation_status",
+        "formal_evidence_eligible",
+        "metric_code",
+        "metric_name",
+        "calculation_mode",
+        "calculation_status",
+        "numerator",
+        "denominator",
+        "value",
+        "failure_count",
+        "not_evaluable_count",
+        "pending_manual_count",
+        "detail_count",
+        "manual_coding_required"
+      ]
+    },
+    "condition_summary": {
+      "filename": "metrics/condition_summary.csv",
+      "row_unit": "One condition and one frozen metric, aggregated from run summaries without dropping failed attempts.",
+      "fields": [
+        "calculation_id",
+        "condition",
+        "metric_code",
+        "metric_name",
+        "calculation_mode",
+        "run_count",
+        "completed_run_count",
+        "formal_evidence_eligible_run_count",
+        "calculation_status",
+        "numerator",
+        "denominator",
+        "value",
+        "failure_count",
+        "not_evaluable_run_count",
+        "pending_manual_run_count",
+        "manual_coding_required"
+      ]
+    },
+    "pair_summary": {
+      "filename": "metrics/pair_summary.csv",
+      "row_unit": "One scenario/repetition pair and one frozen metric; both conditions are shown side by side without a winner or superiority claim.",
+      "fields": [
+        "calculation_id",
+        "pair_key",
+        "scenario_id",
+        "repetition",
+        "metric_code",
+        "metric_name",
+        "calculation_mode",
+        "pairing_status",
+        "mvp_run_ids_json",
+        "baseline_run_ids_json",
+        "mvp_calculation_status",
+        "mvp_numerator",
+        "mvp_denominator",
+        "mvp_value",
+        "baseline_calculation_status",
+        "baseline_numerator",
+        "baseline_denominator",
+        "baseline_value",
+        "formal_evidence_eligible",
+        "manual_coding_required"
+      ]
+    }
+  },
+  "calculation_statuses": [
+    "PASS",
+    "FAIL",
+    "INCOMPLETE",
+    "NOT_APPLICABLE",
+    "PENDING_MANUAL"
+  ],
+  "detail_statuses": [
+    "PASS",
+    "FAIL",
+    "NOT_EVALUABLE",
+    "PENDING_MANUAL"
+  ],
+  "integrity_rules": [
+    "input_export_is_read_only",
+    "input_inventory_is_verified_before_and_after",
+    "all_exported_run_attempts_are_retained",
+    "zero_denominators_are_explicit",
+    "failed_units_are_listed",
+    "ambiguous_or_missing_pairs_are_not_silently_selected",
+    "calculation_directory_is_append_only"
+  ],
+  "claim_boundaries": {
+    "automatic_metrics_calculated": true,
+    "ucr_human_coding_performed": false,
+    "mp_human_coding_performed": false,
+    "comparative_superiority_claim_generated": false,
+    "formal_runs_started": false,
+    "database_or_model_used": false
+  }
+}

@@ -1,0 +1,64 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Create interview session</h1>
+        <p class="overview-kicker">
+            Connect one existing stakeholder record to one protocol. Each new session receives its own participant link;
+            consent and interview data remain empty until that link is used.
+        </p>
+    </div>
+
+    <a class="button-secondary" href="{% url 'interview_sessions' %}">Back to interview sessions</a>
+</div>
+
+<div class="card stakeholder-form-card">
+    <h2>Session setup</h2>
+
+    {% if initial_stakeholder %}
+        <p class="stakeholder-form-intro muted">
+            Started from stakeholder record {{ initial_stakeholder.participant_id }}.
+            Its assigned protocol has been preselected where available.
+        </p>
+    {% else %}
+        <p class="stakeholder-form-intro muted">
+            Select the coded stakeholder record and the protocol version to be used for this session.
+        </p>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="field-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="stakeholder-form-grid">
+            <div class="stakeholder-form-field">
+                {{ form.stakeholder.label_tag }}
+                {{ form.stakeholder }}
+                {% if form.stakeholder.errors %}<div class="field-errors">{{ form.stakeholder.errors }}</div>{% endif %}
+            </div>
+
+            <div class="stakeholder-form-field">
+                {{ form.protocol.label_tag }}
+                {{ form.protocol }}
+                {% if form.protocol.errors %}<div class="field-errors">{{ form.protocol.errors }}</div>{% endif %}
+            </div>
+
+            <div class="stakeholder-form-field stakeholder-form-field-wide">
+                {{ form.session_code.label_tag }}
+                {{ form.session_code }}
+                {% if form.session_code.help_text %}<div class="field-help">{{ form.session_code.help_text }}</div>{% endif %}
+                {% if form.session_code.errors %}<div class="field-errors">{{ form.session_code.errors }}</div>{% endif %}
+            </div>
+        </div>
+
+        <div class="stakeholder-form-actions">
+            <a class="button-secondary" href="{% url 'interview_sessions' %}">Cancel</a>
+            <button class="button" type="submit">Create interview session</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+PurrStone 验证收口最终发布记录 / Validation Closeout Final Release Record
+Release: Researcher Validation v1.0.0
+Date: 2026-08-12
+
+Release gate
+- Formal A/B benchmark bound to PSE R6 final and its embedded clean source at commit 35c930d92119f83f146760261ac75543650bd2e5 / tree a7562237.
+- Validation F06 bound to 新代码(3).zip, the controlled six-item fixture, validation database and four mapped pilot/formal session IDs.
+- Formal researcher analysis bound to the P01/P02/P03 final returns and completed Gold v0.8.0.
+- Pilot-01 and Pilot-02 retained as separate milestones and excluded from formal n=3.
+- Six evidence items retained per validation session; source, coverage, missingness and edited-text validation paths retained.
+- Analysis rebuilt to 60 objective rows; five integrity tests PASS.
+- P02 NP02-A-E5 links Participant response 3, while Gold requires Participant response 4; P02 Prototype scores 5/6.
+- PC11 treated as objectively timed active review time.
+- Per-condition working limit set to 25 minutes in current participant and analysis materials.
+- Summary workbook, reproduction outputs, deviation log, manifest and SHA256 list aligned to v1.0.0.
+
+Release decision: PASS — validation closeout authority established.

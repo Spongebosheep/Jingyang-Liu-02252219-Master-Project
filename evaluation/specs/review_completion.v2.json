@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "2.0",
+  "preregistration": {
+    "status": "frozen_before_formal_runs",
+    "frozen_on": "2026-08-06",
+    "supersedes": "review_completion.v1.json",
+    "purpose": "Complete the explicitly scripted S7/S8 item-review paths required by the classroom plan before any live comparison output: S7 retains the edited item and resolves the other candidates; S8 includes one item before excluding another and then resolves the remaining candidates.",
+    "revision_reason": "A pre-result source-to-code audit found that v1 recorded only the focal Edit/Exclude event and left other evidence candidates pending, while the classroom plan requires a complete researcher-review consequence and specifically requires S8 to Include at least one item, Exclude another, and resolve the remaining pending items. Participant inputs, S1-S8 decision oracle, baseline prompt, nine metrics and human-judgement boundaries are unchanged.",
+    "change_policy": "This contract is append-only. Any later correction requires a new version, a recorded reason, and new hashes before formal runs resume."
+  },
+  "applicable_scenarios": [
+    "S7",
+    "S8"
+  ],
+  "actions": {
+    "S7": {
+      "pre_focal_item_actions": [],
+      "post_focal_item_actions": [
+        {
+          "action": "include",
+          "section_index": 2,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        },
+        {
+          "action": "include",
+          "section_index": 3,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        },
+        {
+          "action": "include",
+          "section_index": 4,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        },
+        {
+          "action": "include",
+          "section_index": 5,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        }
+      ],
+      "decision": "request_revision",
+      "researcher_note": "All scripted item actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+      "participant_meaning_preserved": false,
+      "protocol_boundaries_respected": false,
+      "oracle": {
+        "saved_decision": "revision_requested",
+        "reviewer_identity_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_note_recorded": true,
+        "remaining_items_auto_resolved": false,
+        "scripted_item_actions_complete": true,
+        "expected_review_statuses": {
+          "1": "edited",
+          "2": "approved",
+          "3": "approved",
+          "4": "approved",
+          "5": "approved"
+        }
+      }
+    },
+    "S8": {
+      "pre_focal_item_actions": [
+        {
+          "action": "include",
+          "section_index": 2,
+          "reason": "Retained as transcript-grounded topic evidence before the scripted Exclude action."
+        }
+      ],
+      "post_focal_item_actions": [
+        {
+          "action": "include",
+          "section_index": 3,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        },
+        {
+          "action": "include",
+          "section_index": 4,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        },
+        {
+          "action": "include",
+          "section_index": 5,
+          "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+        }
+      ],
+      "decision": "request_revision",
+      "researcher_note": "All scripted Include and Exclude actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+      "participant_meaning_preserved": false,
+      "protocol_boundaries_respected": false,
+      "oracle": {
+        "saved_decision": "revision_requested",
+        "reviewer_identity_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_note_recorded": true,
+        "remaining_items_auto_resolved": false,
+        "scripted_item_actions_complete": true,
+        "expected_review_statuses": {
+          "1": "excluded",
+          "2": "approved",
+          "3": "approved",
+          "4": "approved",
+          "5": "approved"
+        }
+      }
+    }
+  },
+  "claim_boundaries": {
+    "scripted_review_actions_only": true,
+    "overall_approval_claimed": false,
+    "human_quality_judgement_performed": false,
+    "remaining_items_auto_resolved": false,
+    "all_candidate_items_scriptedly_reviewed": true
+  }
+}

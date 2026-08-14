@@ -1,0 +1,5410 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PurrStone MVP</title>
+
+    <style>
+        :root {
+            --bg: #f7f9ff;
+            --sidebar-bg: #ffffff;
+            --card-bg: #ffffff;
+            --border: #e3e8f5;
+            --border-strong: #d7def0;
+            --text: #07133d;
+            --muted: #64748b;
+            --muted-light: #94a3b8;
+            --blue: #1557ff;
+            --blue-soft: #eef4ff;
+            --green: #16a34a;
+            --green-soft: #eaf8ef;
+            --amber: #d97706;
+            --amber-soft: #fff7ed;
+            --red: #dc2626;
+            --red-soft: #fef2f2;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .app-shell {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 24px 18px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .brand-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .researcher-account {
+            margin-top: 24px;
+            padding: 13px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfdff;
+        }
+
+        .researcher-account-label {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .researcher-account-name {
+            margin-top: 5px;
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
+
+        .researcher-account-role {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .researcher-logout-form {
+            margin-top: 10px;
+        }
+
+        .researcher-logout-button {
+            width: 100%;
+            padding: 7px 9px;
+            border: 1px solid var(--border-strong);
+            border-radius: 9px;
+            background: #ffffff;
+            color: #334155;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            border-radius: 12px;
+            color: #334155;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 650;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .nav-link.active {
+            background: var(--blue-soft);
+            color: var(--blue);
+            border-color: #d8e5ff;
+        }
+
+        .nav-link.disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: currentColor;
+        }
+
+        .nav-icon svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .main {
+            padding: 34px 42px;
+        }
+
+        .content {
+            max-width: 1360px;
+            margin: 0 auto;
+        }
+
+        .overview-workflow-list {
+            margin: 0;
+            padding-left: 1.1rem;
+            line-height: 1.55;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .page-title-block h1 {
+            margin: 0;
+            font-size: 34px;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin: 8px 0 0;
+            font-size: 15px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            margin-bottom: 18px;
+        }
+
+        .card h2 {
+            margin: 0 0 14px;
+            font-size: 19px;
+            letter-spacing: -0.02em;
+        }
+
+        .card p {
+            line-height: 1.55;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .metric {
+            font-size: 30px;
+            font-weight: 800;
+            margin: 6px 0 6px;
+            letter-spacing: -0.04em;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--green-soft);
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .status-waiting {
+            background: var(--amber-soft);
+            color: var(--amber);
+        }
+
+        .status-neutral {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .status-muted {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            background: var(--blue);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 11px;
+            font-weight: 800;
+            font-size: 14px;
+            border: 1px solid var(--blue);
+            margin-right: 8px;
+            margin-top: 12px;
+        }
+
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            background: #fff;
+            color: var(--blue);
+            padding: 10px 14px;
+            border-radius: 11px;
+            font-weight: 800;
+            font-size: 14px;
+            border: 1px solid #bcd0ff;
+            margin-right: 8px;
+            margin-top: 12px;
+        }
+
+        .table-card {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .table-card-header {
+            padding: 20px 22px 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 13px 18px;
+            border-bottom: 1px solid #eef2f7;
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: none;
+            width: 170px;
+        }
+
+        tr:last-child td,
+        tr:last-child th {
+            border-bottom: none;
+        }
+
+        .workflow-strip {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .workflow-step {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .workflow-dot {
+            width: 28px;
+            height: 28px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            color: #64748b;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .workflow-step.ready .workflow-dot {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .workflow-step.waiting .workflow-dot {
+            background: #f8fafc;
+            color: #94a3b8;
+        }
+
+        .workflow-step-title {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .workflow-step-status {
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .section-row:last-child {
+            border-bottom: none;
+        }
+
+        .section-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 3px 5px;
+            border-radius: 5px;
+        }
+        .overview-title {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -0.045em;
+            margin: 0 0 16px;
+        }
+
+        .overview-kicker {
+            color: #475569;
+            font-size: 16px;
+            margin: 0 0 18px;
+        }
+
+        .overview-intro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 28px 0 20px;
+        }
+
+        .overview-info-card {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 16px;
+            align-items: flex-start;
+            min-height: 190px;
+        }
+
+        .info-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon svg {
+            width: 25px;
+            height: 25px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .metric-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .metric-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 28px 0 20px;
+        }
+
+        .implemented-record-card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: #ffffff;
+        }
+
+        .future-strip {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .future-strip-header {
+            margin-bottom: 14px;
+        }
+
+        .future-strip-header h2 {
+            margin-bottom: 6px;
+        }
+
+        .future-chip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .future-chip-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #ffffff;
+            padding: 14px;
+            min-height: 82px;
+        }
+
+        .future-chip-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .future-chip-text {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        .compact-record-card {
+            display: grid;
+            grid-template-columns: 1.8fr 1.8fr 0.9fr auto;
+            gap: 22px;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .record-main {
+            min-width: 0;
+        }
+
+        .record-id {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .record-subtitle {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        .record-meta {
+            min-width: 0;
+        }
+
+        .record-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .record-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+        }
+
+        .record-action {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .future-examples-header {
+            margin-top: 28px;
+        }
+
+        .future-examples-note {
+            margin: 0 0 16px;
+        }
+
+        .future-example-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .future-example-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            background: #ffffff;
+        }
+
+        .future-example-title {
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .future-example-purpose {
+            color: var(--muted);
+            line-height: 1.45;
+            margin-bottom: 10px;
+        }
+
+        .future-example-workflow {
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .future-examples-header {
+            margin-top: 28px;
+        }
+        
+        .metric-card-horizontal {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .metric-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--blue-soft);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .workflow-status-card {
+            padding: 22px 28px;
+        }
+
+        .workflow-card-heading,
+        .overview-session-status-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .workflow-card-heading h2,
+        .workflow-card-heading p,
+        .overview-session-status-heading h3,
+        .overview-session-status-heading p {
+            margin: 0;
+        }
+
+        .workflow-card-heading p,
+        .overview-session-status-heading p {
+            margin-top: 5px;
+        }
+
+        .workflow-card-heading .button-secondary {
+            margin: 0;
+            flex: 0 0 auto;
+        }
+
+        .workflow-timeline {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            align-items: start;
+            gap: 0;
+            margin-top: 22px;
+            position: relative;
+        }
+
+        .workflow-timeline::before {
+            content: "";
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 22px;
+            height: 4px;
+            background: #d1d5db;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .timeline-circle {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            margin: 0 auto 10px;
+            background: #ffffff;
+            border: 2px solid #d1d5db;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .timeline-item.ready .timeline-circle {
+            background: #58b861;
+            border-color: #58b861;
+            color: white;
+            font-size: 26px;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .timeline-status {
+            margin-top: 5px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .timeline-item.ready .timeline-status {
+            color: #58b861;
+        }
+
+        .timeline-item.warning .timeline-circle {
+            background: var(--amber);
+            border-color: var(--amber);
+            color: #ffffff;
+            font-size: 22px;
+        }
+
+        .timeline-item.warning .timeline-status {
+            color: var(--amber);
+        }
+
+        .overview-session-status {
+            margin-top: 26px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .overview-session-status-heading {
+            margin-bottom: 14px;
+        }
+
+        .overview-session-table-wrap {
+            overflow-x: auto;
+        }
+
+        .overview-session-table {
+            min-width: 980px;
+        }
+
+        .overview-session-table th,
+        .overview-session-table td {
+            padding: 11px 10px;
+            white-space: nowrap;
+        }
+
+        .table-action-link {
+            color: var(--blue);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .table-action-link:hover {
+            text-decoration: underline;
+        }
+
+        .next-actions-card {
+            padding: 22px 26px;
+        }
+
+        .action-list {
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.45;
+            margin: 8px 0 16px;
+            padding-left: 18px;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .action-buttons .button,
+        .action-buttons .button-secondary {
+            margin: 0;
+            width: 100%;
+        }
+
+        .button-disabled {
+            background: #f8fafc !important;
+            color: #94a3b8 !important;
+            border-color: #dbe4f0 !important;
+            opacity: 1;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        .page-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .grouping-card {
+            display: grid;
+            grid-template-columns: 54px 1fr;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .grouping-card h2 {
+            margin-bottom: 6px;
+        }
+
+        .stakeholder-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .stakeholder-table th,
+        .stakeholder-table td {
+            padding: 14px 14px;
+            font-size: 13px;
+        }
+
+        .stakeholder-table th {
+            width: auto;
+        }
+
+        .stakeholder-table td:first-child,
+        .stakeholder-table th:first-child {
+            width: 110px;
+        }
+
+        .stakeholder-table td:nth-child(2),
+        .stakeholder-table th:nth-child(2) {
+            width: 210px;
+        }
+
+        .stakeholder-table td:nth-child(3),
+        .stakeholder-table th:nth-child(3) {
+            width: 150px;
+        }
+
+        .stakeholder-table td:nth-child(4),
+        .stakeholder-table th:nth-child(4) {
+            width: 210px;
+        }
+
+        .stakeholder-table td:nth-child(5),
+        .stakeholder-table th:nth-child(5) {
+            width: 120px;
+        }
+
+        .stakeholder-table td:nth-child(6),
+        .stakeholder-table th:nth-child(6) {
+            width: 130px;
+        }
+
+        .stakeholder-table .button-secondary {
+            margin: 0;
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        .stakeholder-layout {
+            display: grid;
+            grid-template-columns: minmax(760px, 1fr) 380px;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .selected-panel {
+            min-height: 420px;
+        }
+
+        .detail-list {
+            display: grid;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .detail-label {
+            color: var(--muted);
+            font-weight: 800;
+        }
+
+        .panel-actions {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .panel-actions .button,
+        .panel-actions .button-secondary {
+            margin: 0;
+            width: 100%;
+        }
+
+        .pagination-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-chip {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: var(--blue);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .small-outline {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            border: 1px solid var(--border-strong);
+            background: white;
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .record-meta-row {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            margin: 18px 0 24px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .record-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .record-meta-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--blue);
+        }
+
+        .record-meta-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .record-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(460px, 1.05fr);
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .record-left-stack {
+            display: grid;
+            gap: 18px;
+        }
+
+        .record-card {
+            min-height: auto;
+        }
+
+        .protocol-card-large {
+            min-height: auto;
+        }
+
+        .record-table th,
+        .record-table td {
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+
+        .progress-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .progress-row {
+            display: grid;
+            grid-template-columns: 30px 1fr auto;
+            gap: 10px;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .progress-row:last-child {
+            border-bottom: none;
+        }
+
+        .progress-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+        }
+        .progress-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .progress-complete {
+            background: var(--green);
+            color: white;
+        }
+
+        .progress-pending {
+            background: #fff7ed;
+            color: var(--amber);
+            border: 1px solid #fed7aa;
+        }
+
+        .progress-waiting {
+            background: #eef2ff;
+            color: var(--blue);
+            border: 1px solid #bfdbfe;
+        }
+
+        .progress-muted {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #dbe4f0;
+        }
+
+        .action-bar {
+            margin-top: 14px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr 1.1fr 1fr;
+            gap: 12px;
+        }
+
+        .action-bar .button,
+        .action-bar .button-secondary {
+            margin: 0;
+            width: 100%;
+        }
+
+        .protocol-flow-card {
+            min-height: 260px;
+        }
+        
+        .protocol-details {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .protocol-details summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 20px 22px;
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .protocol-details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .protocol-page .overview-title {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .protocol-page .overview-kicker {
+            margin-bottom: 14px;
+        }
+
+        .protocol-page .grid-2 {
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: start;
+        }
+
+        .protocol-page .card {
+            padding: 18px;
+            margin-bottom: 0;
+        }
+
+        .protocol-page .card h2 {
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .protocol-page .record-table th,
+        .protocol-page .record-table td {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .protocol-page .protocol-flow-card {
+            min-height: 185px;
+        }
+        
+        .protocol-page .grid-2:first-of-type .card {
+            min-height: auto;
+        }
+
+        .protocol-page .protocol-steps-horizontal {
+            margin-top: 12px;
+            gap: 4px;
+        }
+
+        .protocol-page .protocol-step-circle {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+
+        .protocol-page .protocol-step-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+
+        .protocol-page .protocol-step-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .protocol-page .protocol-step-label {
+            font-size: 10.5px;
+            line-height: 1.15;
+        }
+
+        .protocol-page .key-section-item {
+            padding: 8px 0;
+        }
+
+        .protocol-page .key-section-number {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+        }
+
+        .protocol-page .key-section-item p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .protocol-page .ethics-list {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .protocol-page .protocol-action-bar {
+            margin-top: 14px;
+            padding: 12px;
+        }
+
+        .protocol-details summary::after {
+            content: "Show";
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--blue);
+            border: 1px solid #bcd0ff;
+            border-radius: 999px;
+            padding: 5px 10px;
+        }
+
+        .protocol-details[open] summary::after {
+            content: "Hide";
+        }
+
+        .protocol-details-body {
+            border-top: 1px solid #eef2f7;
+            padding: 0 22px 22px;
+        }
+
+        .protocol-steps-horizontal {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 8px;
+            align-items: start;
+            margin-top: 24px;
+        }
+
+        .protocol-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .protocol-step-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            margin: 0 auto 10px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .protocol-step-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 8px;
+            color: var(--blue);
+        }
+
+        .protocol-step-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .protocol-step-label {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.25;
+        }
+
+        .key-section-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .key-section-item {
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            gap: 12px;
+            align-items: start;
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .key-section-item:last-child {
+            border-bottom: none;
+        }
+
+        .key-section-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .ethics-list {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.65;
+        }
+
+        .protocol-action-bar {
+            margin-top: 18px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .protocol-action-bar .button,
+        .protocol-action-bar .button-secondary {
+            margin: 0;
+            width: 100%;
+        }
+
+        .page-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .info-banner {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .info-banner h2 {
+            margin: 0 0 8px;
+        }
+
+        .info-banner p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .info-banner-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #eef4ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-banner-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .session-metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .session-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(300px, 0.95fr);
+            gap: 20px;
+        }
+
+        .selected-session-card {
+            align-self: start;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .detail-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .detail-row strong {
+            color: var(--muted);
+        }
+
+        .selected-session-actions {
+            display: grid;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .selected-session-actions .button,
+        .selected-session-actions .button-secondary {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .status-blue {
+            background: #eef4ff;
+            color: var(--blue);
+        }
+
+        @media (max-width: 1100px) {
+            .protocol-steps-horizontal {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                row-gap: 20px;
+            }
+
+            .protocol-action-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .protocol-steps-horizontal {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .record-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .protocol-card-large {
+                min-height: auto;
+            }
+
+            .action-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .record-meta-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .stakeholder-metrics {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .stakeholder-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header-row {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .stakeholder-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .grouping-card {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .metric-grid-4,
+            .overview-intro-grid,
+            .action-buttons {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .workflow-timeline {
+                grid-template-columns: repeat(3, 1fr);
+                row-gap: 24px;
+            }
+
+            .workflow-timeline::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .metric-grid-4,
+            .overview-intro-grid,
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-info-card,
+            .metric-card-horizontal {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-timeline {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .app-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .brand {
+                flex-direction: row;
+                justify-content: flex-start;
+                margin-bottom: 18px;
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .main {
+                padding: 20px;
+            }
+
+            .grid,
+            .grid-2,
+            .workflow-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                flex-direction: column;
+            }
+        }
+
+        /* Topic status rows for researcher output detail */
+        .completed-topic-row {
+            display: grid;
+            grid-template-columns: 32px 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .completed-topic-row:last-child {
+            border-bottom: none;
+        }
+
+        .completed-topic-check {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .completed-topic-check svg {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .completed-topic-check.topic-answered {
+            background: #eaf8ef;
+            color: #16a34a;
+        }
+
+        .completed-topic-check.topic-skipped {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+        .completed-topic-check.topic-stopped {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+        .completed-topic-check.topic-reached {
+            background: #eef4ff;
+            color: #1557ff;
+        }
+
+        .completed-topic-check.topic-not_reached {
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
+
+        .topic-status-label {
+            font-size: 12px;
+            font-weight: 900;
+            border-radius: 999px;
+            padding: 5px 9px;
+            white-space: nowrap;
+        }
+
+        .topic-label-answered {
+            background: #eaf8ef;
+            color: #16a34a;
+        }
+
+        .topic-label-skipped,
+        .topic-label-stopped {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+        .topic-label-reached {
+            background: #eef4ff;
+            color: #1557ff;
+        }
+
+        .topic-label-not_reached {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .transcript-box {
+            max-height: 520px;
+            overflow-y: auto;
+            border: 1px solid #eef2f7;
+            border-radius: 14px;
+            padding: 14px;
+            background: #f8fbff;
+        }
+
+        .nav-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-icon svg path {
+            fill: none;
+            stroke: currentColor;
+        }
+
+        .transcript-line {
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid #eef2f7;
+            margin-bottom: 10px;
+        }
+
+        .transcript-meta {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .transcript-content {
+            line-height: 1.5;
+        }
+
+        .transcript-participant {
+            background: #eef4ff;
+            border-color: #d6e2ff;
+        }
+
+        .transcript-system {
+            background: #f8fafc;
+            color: #64748b;
+        }
+
+        
+
+        .summary-section {
+            padding: 14px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .summary-section:last-child {
+            border-bottom: none;
+        }
+
+        .summary-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .session-metric-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px 24px;
+            min-height: 94px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+
+        .review-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .review-pending-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: #fff7ed;
+            color: #d97706;
+            font-weight: 800;
+        }
+
+        .review-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #f59e0b;
+        }
+
+        .review-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+            padding: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .review-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 24px 28px;
+            border-right: 1px solid #e5eaf3;
+            border-bottom: 1px solid #e5eaf3;
+        }
+
+        .review-meta-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .review-meta-item:nth-child(n+4) {
+            border-bottom: none;
+        }
+
+        .review-meta-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .review-meta-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .review-meta-value {
+            font-weight: 900;
+            color: var(--navy);
+            margin-top: 4px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: start;
+        }
+
+        .review-panel h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        .transcript-excerpt {
+            display: grid;
+            gap: 14px;
+        }
+
+        .review-message-row {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 14px;
+            align-items: start;
+        }
+
+        .review-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            background: var(--blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .participant-avatar {
+            background: #1557ff;
+        }
+
+        .review-message-bubble {
+            background: #f3f7ff;
+            border: 1px solid #dbe7ff;
+            border-radius: 12px;
+            padding: 14px 16px;
+            line-height: 1.5;
+        }
+
+        .participant-bubble {
+            background: white;
+            border-color: #d8e0ee;
+        }
+
+        .review-wide-button {
+            width: 50%;
+            justify-content: center;
+            margin: 18px auto 0;
+        }
+
+        .summary-review-table {
+            border: 1px solid #e5eaf3;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .digest-review-intro {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .digest-review-panel {
+            max-height: 820px;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+        }
+
+        .digest-review-intro p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .digest-review-notice,
+        .digest-review-error {
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .digest-review-notice {
+            border: 1px solid #bbf7d0;
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .digest-review-error {
+            border: 1px solid #fecaca;
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+
+        .summary-review-row {
+            border-bottom: 1px solid #e5eaf3;
+            scroll-margin-top: 18px;
+        }
+
+        .summary-review-row:target {
+            box-shadow: inset 4px 0 0 var(--blue);
+            background: #fbfdff;
+        }
+
+        .summary-review-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-review-label {
+            padding: 14px 16px 8px;
+            font-weight: 900;
+            color: var(--navy);
+            background: #fbfdff;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .summary-review-content {
+            padding: 0 16px 16px;
+        }
+
+        .summary-review-content p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .digest-draft-block,
+        .digest-final-block {
+            padding: 11px 12px;
+            border: 1px solid #e5eaf3;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .digest-final-block {
+            margin-top: 9px;
+            border-color: #bfdbfe;
+            background: #f8fbff;
+        }
+
+        .digest-block-label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .digest-review-form {
+            display: grid;
+            gap: 9px;
+            margin-top: 2px;
+            padding-top: 8px;
+        }
+
+        .digest-review-controls {
+            margin-top: 11px;
+            border-top: 1px solid #edf1f7;
+            padding-top: 10px;
+        }
+
+        .digest-review-controls > summary {
+            cursor: pointer;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 850;
+            list-style-position: inside;
+        }
+
+        .digest-review-controls[open] > summary {
+            margin-bottom: 2px;
+        }
+
+        .digest-review-form label {
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .digest-review-form textarea {
+            width: 100%;
+            min-height: 72px;
+            resize: vertical;
+            padding: 10px 11px;
+            border: 1px solid #cbd8ee;
+            border-radius: 9px;
+            color: var(--text);
+            font: inherit;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .digest-review-form textarea[name="reviewer_comment"] {
+            min-height: 56px;
+        }
+
+        .digest-review-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .digest-review-actions button {
+            min-height: 36px;
+            padding: 8px 9px;
+            border-radius: 9px;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 850;
+            cursor: pointer;
+        }
+
+        .digest-approve-button {
+            border: 1px solid #16a34a;
+            background: #16a34a;
+            color: #ffffff;
+        }
+
+        .digest-edit-button {
+            border: 1px solid var(--blue);
+            background: var(--blue);
+            color: #ffffff;
+        }
+
+        .digest-exclude-button {
+            border: 1px solid #d97706;
+            background: #fff7ed;
+            color: #b45309;
+        }
+
+        .digest-review-meta {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .digest-review-history {
+            margin-top: 9px;
+            font-size: 12px;
+        }
+
+        .digest-review-history summary {
+            cursor: pointer;
+            color: var(--blue);
+            font-weight: 800;
+        }
+
+        .digest-review-history ul {
+            margin: 8px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .summary-source-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 7px 10px;
+            margin-top: 10px;
+        }
+
+        .summary-source-label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .summary-source-link {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .summary-source-link:hover {
+            text-decoration: underline;
+        }
+
+        .summary-source-empty {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .review-bottom-grid {
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        }
+
+        .review-checklist {
+            display: grid;
+            gap: 14px;
+        }
+
+        .review-check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+        }
+
+        .review-check-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid #22c55e;
+            color: #16a34a;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .review-note-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .review-note-input {
+            width: 100%;
+            min-height: 78px;
+            resize: vertical;
+            border: 1px solid #cbd8ee;
+            border-radius: 10px;
+            padding: 14px;
+            font: inherit;
+        }
+
+        .researcher-decision-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .researcher-decision-actions .button,
+        .researcher-decision-actions .button-secondary {
+            justify-content: center;
+            width: 100%;
+        }
+
+        .full-transcript-card {
+            max-height: 360px;
+            overflow: hidden;
+        }
+
+        .full-transcript-list {
+            max-height: 280px;
+            overflow-y: auto;
+            display: grid;
+            gap: 12px;
+            padding-right: 8px;
+        }
+
+        .review-approved-badge,
+        .review-revision-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 800;
+        }
+
+        .saved-review-note {
+            margin-bottom: 16px;
+            padding: 14px 16px;
+            border: 1px solid #dbe7ff;
+            border-radius: 12px;
+            background: #f8fbff;
+        }
+
+        .saved-review-note-label {
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .current-review-decision {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border: 1px solid #e5eaf3;
+            border-radius: 12px;
+            background: #fbfdff;
+        }
+
+        .current-review-decision strong {
+            color: var(--navy);
+        }
+
+        .saved-review-note p {
+            margin: 0;
+            color: var(--navy);
+            line-height: 1.5;
+        }
+
+        .review-approved-badge {
+            background: #ecfdf3;
+            color: #16a34a;
+        }
+
+        .review-revision-badge {
+            background: #fff7ed;
+            color: #d97706;
+        }
+
+        .review-approved-badge .review-dot {
+            background: #22c55e;
+        }
+
+        .review-revision-badge .review-dot {
+            background: #f59e0b;
+        }
+
+        .transcript-line {
+            border: 1px solid #e5eaf3;
+            border-radius: 10px;
+            padding: 12px 14px;
+            background: #fbfdff;
+            scroll-margin-top: 20px;
+        }
+
+        .transcript-line:target {
+            border-color: #93b8ef;
+            box-shadow: 0 0 0 3px rgba(47, 111, 221, 0.10);
+        }
+
+        .transcript-line p {
+            margin: 8px 0 0;
+            line-height: 1.5;
+        }
+
+        .transcript-control-decisions {
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .transcript-control-decisions h3,
+        .transcript-control-decisions p {
+            margin: 0;
+        }
+
+        .transcript-control-decisions p {
+            margin-top: 5px;
+        }
+
+        .missing-flags-list {
+            margin-top: 0;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 1100px) {
+            .review-meta-grid,
+            .review-grid,
+            .review-bottom-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-meta-item {
+                border-right: none;
+            }
+
+            .review-meta-item:nth-child(n+4) {
+                border-bottom: 1px solid #e5eaf3;
+            }
+
+            .review-meta-item:last-child {
+                border-bottom: none;
+            }
+
+        }
+
+        .session-metric-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .session-metric-icon svg,
+        .selected-session-actions svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .session-metric-icon-green {
+            background: #eaf8ef;
+            color: #16a34a;
+        }
+
+        .session-metric-icon-orange {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .session-metric-icon-purple {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+        .session-table-card {
+            min-height: 500px;
+            overflow-x: auto;
+        }
+
+        .session-table th,
+        .session-table td {
+            vertical-align: middle;
+        }
+
+        .participant-link-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .participant-url {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .copy-session-link {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .session-table {
+            min-width: 1120px;
+        }
+
+        /* Preserve the original left-right sessions layout on desktop. */
+        @media (max-width: 1100px) {
+            .session-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .session-table {
+                min-width: 0;
+                table-layout: fixed;
+            }
+
+            .session-table th,
+            .session-table td {
+                width: auto;
+                padding: 12px 9px;
+            }
+
+            .session-table th:nth-child(1) { width: 7%; }
+            .session-table th:nth-child(2) { width: 9%; }
+            .session-table th:nth-child(3) { width: 9%; }
+            .session-table th:nth-child(4) { width: 12%; }
+            .session-table th:nth-child(5) { width: 11%; }
+            .session-table th:nth-child(6) { width: 12%; }
+            .session-table th:nth-child(7) { width: 15%; }
+            .session-table th:nth-child(8) { width: 15%; }
+            .session-table th:nth-child(9) { width: 10%; }
+
+            .session-table .button-secondary {
+                width: 100%;
+                padding: 7px 6px;
+                white-space: normal;
+            }
+        }
+
+        .selected-session-actions .button,
+        .selected-session-actions .button-secondary {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selected-session-actions .button svg,
+        .selected-session-actions .button-secondary svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .quality-metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+            margin-bottom: 26px;
+        }
+
+        .quality-metric-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+        }
+
+        .quality-metric-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .quality-metric-icon svg,
+        .evidence-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .quality-icon-green {
+            background: #eaf8ef;
+            color: #16a34a;
+        }
+
+        .quality-icon-orange {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .quality-metric-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .quality-metric-label {
+            margin-top: 6px;
+            font-weight: 900;
+            color: var(--navy);
+        }
+
+        .quality-card-link {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--blue);
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .output-readiness-card {
+            margin-bottom: 22px;
+            overflow-x: auto;
+        }
+
+        .output-readiness-card .quality-table {
+            min-width: 980px;
+        }
+
+        .card-heading-row h2 {
+            margin: 0;
+        }
+
+        .card-heading-row p,
+        .quality-card-subtitle {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .quality-table {
+            margin-top: 18px;
+        }
+
+        .participant-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #eaf2ff;
+            color: var(--blue);
+            font-weight: 900;
+        }
+
+        .table-action-link {
+            color: var(--blue);
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .quality-table-footer {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .quality-table-footer a {
+            color: var(--blue);
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .quality-two-column {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 22px;
+            margin-bottom: 22px;
+        }
+
+        .quality-check-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 24px;
+            margin-top: 24px;
+        }
+
+        .quality-check-item {
+            display: grid;
+            grid-template-columns: 26px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .quality-check-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: #ecfdf3;
+            color: #16a34a;
+            border: 2px solid #22c55e;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .quality-check-item strong,
+        .evidence-item strong {
+            color: var(--navy);
+            font-weight: 900;
+        }
+
+        .quality-check-item p,
+        .evidence-item p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .quality-bottom-link {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 22px;
+            margin-top: 24px;
+        }
+
+        .evidence-item {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .evidence-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #eef4ff;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .evidence-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .next-actions-card {
+            margin-bottom: 40px;
+        }
+
+        .quality-next-actions {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .quality-next-action {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #ffffff;
+            text-decoration: none;
+            color: var(--navy);
+        }
+
+        .quality-next-action strong {
+            font-weight: 900;
+        }
+
+        .quality-next-action p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .quality-next-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid #cfe0ff;
+            color: var(--blue);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .disabled-action {
+            opacity: 0.65;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1200px) {
+            .quality-metric-grid,
+            .quality-two-column,
+            .quality-next-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-check-grid,
+            .evidence-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Compact Output Quality page */
+        .quality-metric-grid {
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .quality-metric-card {
+            padding: 18px 20px;
+            min-height: 92px;
+        }
+
+        .quality-metric-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .quality-metric-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .quality-metric-number {
+            font-size: 26px;
+        }
+
+        .quality-card-link {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .output-readiness-card {
+            margin-bottom: 18px;
+        }
+
+        .output-readiness-card .stakeholder-table th,
+        .output-readiness-card .stakeholder-table td {
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+
+        .quality-table-footer {
+            margin-top: 10px;
+        }
+
+        .quality-two-column {
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .quality-check-card,
+        .evidence-card {
+            min-height: 260px;
+        }
+
+        .quality-check-grid {
+            gap: 12px 18px;
+            margin-top: 18px;
+        }
+
+        .quality-check-item {
+            gap: 10px;
+        }
+
+        .quality-check-item p,
+        .evidence-item p {
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .evidence-grid {
+            gap: 14px 18px;
+            margin-top: 18px;
+        }
+
+        .evidence-item {
+            grid-template-columns: 36px 1fr auto;
+            gap: 10px;
+        }
+
+        .evidence-icon {
+            width: 34px;
+            height: 34px;
+        }
+
+        .evidence-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Stakeholder page final layout */
+        .stakeholder-main-card {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .stakeholder-card-header {
+            padding: 22px 24px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stakeholder-card-header h2 {
+            margin: 0 0 6px;
+        }
+
+        .stakeholder-card-header p {
+            margin: 0;
+        }
+
+        .stakeholder-record-card {
+            display: grid;
+            grid-template-columns: 1.3fr 1px 1.4fr 0.75fr auto;
+            gap: 22px;
+            align-items: center;
+            padding: 24px;
+            background: #ffffff;
+        }
+
+        .stakeholder-record-primary {
+            min-width: 0;
+        }
+
+        .stakeholder-record-id {
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .stakeholder-record-title {
+            font-size: 15px;
+            font-weight: 850;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .stakeholder-record-subtitle {
+            margin-top: 5px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .stakeholder-record-divider {
+            width: 1px;
+            height: 76px;
+            background: var(--border);
+        }
+
+        .stakeholder-record-info {
+            min-width: 0;
+        }
+
+        .stakeholder-record-action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .stakeholder-record-action .button-secondary {
+            margin: 0;
+            min-width: 112px;
+        }
+
+        .selected-stakeholder-record {
+            background: #f7faff;
+            box-shadow: inset 4px 0 0 var(--blue);
+        }
+
+        .future-inline-section {
+            border-top: 1px solid var(--border);
+            background: #fbfdff;
+            padding: 22px 24px 24px;
+        }
+
+        .future-inline-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .future-inline-header h2 {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .future-inline-header p {
+            margin: 0;
+            max-width: 620px;
+        }
+
+        .future-inline-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .future-inline-item {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .future-inline-item strong {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .future-inline-item span {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 1100px) {
+            .stakeholder-record-card {
+                grid-template-columns: 1fr;
+            }
+
+            .stakeholder-record-divider {
+                display: none;
+            }
+
+            .stakeholder-record-action {
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            .future-inline-header {
+                display: block;
+            }
+
+            .future-inline-header h2 {
+                margin-bottom: 8px;
+            }
+
+            .future-inline-list {
+                grid-template-columns: 1fr;
+            }
+
+            .future-inline-item {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .protocol-action-bar.protocol-action-bar-single {
+            grid-template-columns: 1fr !important;
+        }
+
+        .protocol-action-bar.protocol-action-bar-single .button-secondary {
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
+
+        .protocol-page .research-data-card {
+            margin-bottom: 16px;
+        }
+
+        .protocol-page .research-data-card .key-section-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .protocol-page .research-data-card .key-section-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 10px;
+        }
+
+        .protocol-page .research-data-card .key-section-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .protocol-page .research-data-card .key-section-item:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .protocol-page .research-data-card .key-section-number {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+        }
+
+        .protocol-page .research-data-card .key-section-item p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .protocol-page .agent-rules-wide-card {
+            margin-bottom: 16px;
+        }
+
+        .protocol-page .agent-rules-wide-card .ethics-list {
+            columns: 2;
+            column-gap: 40px;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .protocol-page .agent-rules-wide-card .ethics-list li {
+            break-inside: avoid;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 900px) {
+            .protocol-page .research-data-card .key-section-list {
+                grid-template-columns: 1fr;
+            }
+
+            .protocol-page .agent-rules-wide-card .ethics-list {
+                columns: 1;
+            }
+        }
+        
+        .stakeholder-layout {
+            align-items: stretch;
+        }
+
+        .stakeholder-main-card,
+        .selected-panel {
+            height: 100%;
+        }
+
+        .selected-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .selected-panel .panel-actions {
+            margin-top: auto;
+        }
+
+        .figma-chat-card {
+            min-height: auto;
+        }
+
+        .figma-messages {
+            min-height: 300px;
+            max-height: 430px;
+            overflow-y: auto;
+        }
+
+        .topic-label-partial {
+            background: #fff7ed;
+            color: #d97706;
+        }
+        
+        .review-criteria-list {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .review-criteria-list li {
+            position: relative;
+            padding-left: 22px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .review-criteria-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #64748b;
+        }
+
+        .review-criteria-form-list {
+            margin-top: 18px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .review-criteria-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text);
+        }
+
+        .review-criteria-check input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #2563eb;
+        }
+
+        .review-criteria-check > span {
+            display: grid;
+            gap: 3px;
+        }
+
+        .review-criteria-check strong {
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .review-criteria-check small {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .form-error {
+            margin: 12px 0 0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #fff7ed;
+            color: #d97706;
+            font-weight: 800;
+        }
+
+        .quality-check-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .quality-check-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            align-items: start;
+            gap: 14px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfdff;
+        }
+
+        .quality-check-item .status {
+            justify-self: start;
+            white-space: nowrap;
+        }
+
+        .quality-check-item strong {
+            display: block;
+            font-size: 15px;
+            line-height: 1.25;
+        }
+
+        .quality-check-item p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .quality-confirmed-summary {
+            margin-top: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Final Evidence Status layout */
+        .quality-check-grid,
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .quality-check-item,
+        .evidence-item {
+            min-height: 64px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfdff;
+        }
+
+        .quality-check-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            align-items: start;
+            gap: 14px;
+        }
+
+        .evidence-item {
+            display: grid;
+            grid-template-columns: 36px 1fr auto;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .quality-check-item .status,
+        .evidence-item .status {
+            white-space: nowrap;
+            justify-self: start;
+        }
+
+        .evidence-item .status {
+            justify-self: end;
+        }
+
+        .quality-check-item strong,
+        .evidence-item strong {
+            display: block;
+            font-size: 15px;
+            line-height: 1.25;
+        }
+
+        .quality-check-item p,
+        .evidence-item p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .quality-confirmed-summary {
+            margin-top: 10px;
+            margin-bottom: 12px;
+        }
+
+        .criteria-record-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .criteria-record-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 12px;
+            align-items: start;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fbfdff;
+        }
+
+        .criteria-record-item strong {
+            display: block;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .criteria-record-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .criteria-record-item {
+            display: grid;
+            grid-template-columns: 115px 1fr;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fbfdff;
+        }
+
+        .criteria-record-item .badge {
+            justify-self: start;
+        }
+
+        .criteria-record-item strong {
+            display: block;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        /* Step 1: stakeholder record creation */
+        .stakeholder-created-notice {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 18px;
+            padding: 12px 16px;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            background: var(--green-soft);
+            color: #166534;
+            font-size: 14px;
+        }
+
+        .additional-stakeholder-header {
+            padding: 20px 24px 14px;
+            border-top: 1px solid var(--border);
+            background: #fbfdff;
+        }
+
+        .additional-stakeholder-header h2,
+        .additional-stakeholder-header p {
+            margin: 0;
+        }
+
+        .additional-stakeholder-header p {
+            margin-top: 6px;
+        }
+
+        .additional-stakeholder-record {
+            border-top: 1px solid var(--border);
+        }
+
+        .record-status-detail {
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .session-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin: 14px 0 4px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .session-switcher-link {
+            padding: 6px 10px;
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
+            background: #ffffff;
+            color: var(--navy);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .session-switcher-link.selected {
+            border-color: var(--blue);
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .stakeholder-session-history {
+            margin-top: 18px;
+        }
+
+        .stakeholder-session-history-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 14px;
+        }
+
+        .stakeholder-session-history-heading h2,
+        .stakeholder-session-history-heading p {
+            margin: 0;
+        }
+
+        .stakeholder-session-history-heading p {
+            margin-top: 5px;
+        }
+
+        .stakeholder-session-history-table {
+            min-width: 1040px;
+        }
+
+        .selected-session-row {
+            background: #f8fbff;
+        }
+
+        .stakeholder-form-card {
+            max-width: 900px;
+        }
+
+        .stakeholder-form-intro {
+            margin: -4px 0 20px;
+        }
+
+        .stakeholder-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stakeholder-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .stakeholder-form-field-wide {
+            grid-column: 1 / -1;
+        }
+
+        .stakeholder-form-field label {
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .stakeholder-form-field input,
+        .stakeholder-form-field select,
+        .stakeholder-form-field textarea {
+            width: 100%;
+            border: 1px solid var(--border-strong);
+            border-radius: 11px;
+            background: #ffffff;
+            color: var(--text);
+            padding: 11px 12px;
+            font: inherit;
+        }
+
+        .stakeholder-form-field textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .stakeholder-form-field input:focus,
+        .stakeholder-form-field select:focus,
+        .stakeholder-form-field textarea:focus {
+            outline: 3px solid var(--blue-soft);
+            border-color: var(--blue);
+        }
+
+        .field-help {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .field-errors {
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .stakeholder-form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .stakeholder-form-actions .button,
+        .stakeholder-form-actions .button-secondary {
+            margin: 0;
+        }
+
+        .stakeholder-form-actions button {
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .stakeholder-setup-record-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 10px;
+        }
+
+        .stakeholder-setup-record-heading h2,
+        .stakeholder-setup-record-heading p {
+            margin: 0;
+        }
+
+        .stakeholder-setup-record-heading p {
+            margin-top: 6px;
+        }
+
+        .protocol-version-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .protocol-version-actions form {
+            margin: 0;
+        }
+
+        .protocol-version-actions .button,
+        .protocol-version-actions .button-secondary {
+            margin: 0;
+        }
+
+        .protocol-edit-card {
+            max-width: none;
+        }
+
+        .protocol-edit-sections {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .protocol-edit-section {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfdff;
+            padding: 18px;
+        }
+
+        .protocol-edit-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .protocol-edit-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .protocol-edit-actions .button,
+        .protocol-edit-actions .button-secondary {
+            margin: 0;
+        }
+
+        .protocol-library-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .protocol-library-heading,
+        .protocol-editor-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .protocol-library-heading h2,
+        .protocol-library-heading p,
+        .protocol-editor-heading h2,
+        .protocol-editor-heading p {
+            margin: 0;
+        }
+
+        .protocol-library-heading p,
+        .protocol-editor-heading p {
+            margin-top: 6px;
+        }
+
+        .protocol-library-stats,
+        .protocol-version-links,
+        .evidence-topic-counts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .protocol-library-stats {
+            margin: 16px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .protocol-library-stats span + span::before {
+            content: "·";
+            margin-right: 8px;
+        }
+
+        .protocol-version-links .button-secondary {
+            margin: 0;
+            padding: 7px 10px;
+            font-size: 12px;
+        }
+
+        .protocol-editor-heading > .button-secondary {
+            margin: 0;
+            flex: 0 0 auto;
+        }
+
+        .protocol-section-title-block {
+            flex: 1;
+        }
+
+        .protocol-row-actions {
+            display: flex;
+            gap: 6px;
+            margin-left: auto;
+        }
+
+        .protocol-row-actions .button-secondary {
+            margin: 0;
+            min-width: 38px;
+            padding: 7px 10px;
+        }
+
+        .protocol-row-actions button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .protocol-remove-button {
+            color: #b42318;
+            border-color: #fecaca;
+        }
+
+        .output-session-picker {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .output-session-picker form {
+            display: grid;
+            grid-template-columns: minmax(260px, 1fr) auto;
+            gap: 8px 10px;
+            align-items: end;
+            min-width: min(620px, 100%);
+        }
+
+        .output-session-picker label {
+            grid-column: 1 / -1;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .output-session-picker select {
+            min-width: 0;
+            border: 1px solid var(--border-strong);
+            border-radius: 11px;
+            padding: 10px 12px;
+            background: #ffffff;
+            color: var(--text);
+            font: inherit;
+        }
+
+        .output-session-picker .button {
+            margin: 0;
+        }
+
+        .output-review-primary-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .output-section-heading h2,
+        .output-section-heading p {
+            margin: 0;
+        }
+
+        .output-section-heading p {
+            margin-top: 6px;
+        }
+
+        .review-transcript-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .review-transcript-turn {
+            border: 1px solid var(--border);
+            border-left: 4px solid #94a3b8;
+            border-radius: 12px;
+            background: #ffffff;
+            padding: 15px 16px;
+            scroll-margin-top: 20px;
+        }
+
+        .review-transcript-turn:target {
+            border-color: #93b8ef;
+            box-shadow: 0 0 0 3px rgba(47, 111, 221, 0.10);
+        }
+
+        .review-transcript-turn.transcript-participant {
+            border-left-color: var(--blue);
+            background: #fbfdff;
+        }
+
+        .review-transcript-turn.transcript-agent {
+            border-left-color: #94a3b8;
+        }
+
+        .review-transcript-turn.transcript-system {
+            border-left-color: #f59e0b;
+            background: #fffdf8;
+        }
+
+        .review-transcript-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .review-transcript-meta strong {
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .review-transcript-turn > p {
+            margin: 10px 0 0;
+            line-height: 1.58;
+            white-space: pre-wrap;
+        }
+
+        .system-step-details {
+            margin-top: 12px;
+            border: 1px solid #d8e5ff;
+            border-radius: 10px;
+            background: #f5f8ff;
+        }
+
+        .system-step-details summary {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 12px;
+            cursor: pointer;
+            color: #334155;
+            font-size: 13px;
+        }
+
+        .system-step-details summary strong {
+            color: var(--blue);
+        }
+
+        .system-step-grid {
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 8px 14px;
+            padding: 12px;
+            border-top: 1px solid #d8e5ff;
+            line-height: 1.48;
+            font-size: 13px;
+        }
+
+        .output-limitations-card {
+            position: sticky;
+            top: 20px;
+        }
+
+        .output-coverage-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .output-coverage-summary > div {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fbfdff;
+        }
+
+        .output-coverage-summary strong,
+        .output-coverage-summary span {
+            display: block;
+        }
+
+        .output-coverage-summary strong {
+            font-size: 24px;
+        }
+
+        .output-coverage-summary span {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .evidence-by-topic-card {
+            margin-top: 2px;
+        }
+
+        .digest-limitation-block {
+            border-color: #fed7aa;
+            background: #fffaf2;
+        }
+
+        .researcher-decision-actions-three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .decision-not-usable-button {
+            color: #b42318;
+            border-color: #fecaca;
+        }
+
+        .protocol-runtime-note,
+        .protocol-runtime-card {
+            border-color: #cfe0ff;
+            background: #f8fbff;
+        }
+
+        .protocol-runtime-note p,
+        .protocol-runtime-card-heading h2,
+        .protocol-runtime-card-heading p {
+            margin: 0;
+        }
+
+        .protocol-runtime-note p {
+            margin-top: 6px;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .protocol-runtime-guidance {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: #fbfdff;
+        }
+
+        .protocol-runtime-guidance > summary,
+        .protocol-detail-runtime-guidance > summary {
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .protocol-runtime-guidance > summary {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+        }
+
+        .protocol-runtime-guidance > summary span {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .protocol-runtime-guidance-grid {
+            display: grid;
+            gap: 14px;
+            padding: 0 14px 14px;
+        }
+
+        .protocol-runtime-guidance-grid label {
+            display: grid;
+            gap: 7px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .protocol-runtime-card-heading,
+        .quality-export-actions,
+        .selected-evidence-record,
+        .selected-evidence-record-counts {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .protocol-runtime-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .protocol-runtime-grid > div {
+            display: grid;
+            gap: 5px;
+            padding: 14px;
+            border: 1px solid #d8e5ff;
+            border-radius: 11px;
+            background: #ffffff;
+        }
+
+        .protocol-runtime-grid span {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .protocol-detail-runtime-guidance {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: #ffffff;
+        }
+
+        .protocol-detail-runtime-guidance p {
+            margin: 8px 0 0;
+            line-height: 1.5;
+        }
+
+        .quality-export-actions .button,
+        .quality-export-actions .button-secondary {
+            margin: 0;
+        }
+
+        .selected-evidence-record {
+            margin-top: 18px;
+            border-color: #cfe0ff;
+            background: #f8fbff;
+        }
+
+        .selected-evidence-record > div:first-child {
+            display: grid;
+            gap: 3px;
+        }
+
+        .selected-evidence-record > div:first-child strong {
+            font-size: 20px;
+        }
+
+        .selected-evidence-record > div:first-child span,
+        .selected-evidence-record-counts span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .selected-evidence-record-counts span {
+            padding: 9px 11px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: #ffffff;
+        }
+
+        .review-stage-nav {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .review-stage-nav a {
+            display: grid;
+            grid-template-columns: 34px minmax(0, 1fr);
+            gap: 2px 10px;
+            align-items: center;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .review-stage-nav a:hover {
+            border-color: #a9c5f3;
+            background: #f8fbff;
+        }
+
+        .review-stage-nav a > span {
+            grid-row: 1 / 3;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e9f1ff;
+            color: var(--blue);
+            font-weight: 900;
+        }
+
+        .review-stage-nav small {
+            color: var(--muted);
+        }
+
+        .review-stage-card,
+        .evidence-availability-card,
+        .final-review-kicker {
+            scroll-margin-top: 18px;
+        }
+
+        .review-stage-kicker {
+            margin-bottom: 5px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .transcript-topic-list,
+        .evidence-topic-accordion {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .transcript-topic-group,
+        .evidence-topic-details {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .transcript-topic-group[open],
+        .evidence-topic-details[open] {
+            border-color: #b8cff4;
+            box-shadow: 0 8px 22px rgba(33, 58, 107, 0.06);
+        }
+
+        .transcript-topic-group > summary,
+        .evidence-topic-details > summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 16px;
+            cursor: pointer;
+            list-style: none;
+            background: #fbfdff;
+        }
+
+        .transcript-topic-group > summary::-webkit-details-marker,
+        .evidence-topic-details > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .transcript-topic-title,
+        .evidence-topic-details > summary > div:first-child {
+            display: grid;
+            gap: 3px;
+        }
+
+        .transcript-topic-title > span,
+        .evidence-topic-details > summary > div:first-child > span {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .transcript-topic-summary-meta,
+        .evidence-topic-summary-status {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .transcript-topic-content,
+        .evidence-topic-body {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .transcript-topic-content .review-transcript-turn {
+            margin: 0;
+        }
+
+        .transcript-topic-content .review-transcript-turn.transcript-agent {
+            border-left-width: 2px;
+            background: #fafafa;
+            color: #475569;
+        }
+
+        .transcript-topic-content .review-transcript-turn.transcript-participant {
+            border-left-width: 5px;
+            background: #f8fbff;
+        }
+
+        .evidence-availability-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 16px 24px;
+            align-items: center;
+            border-color: #fde2b4;
+            background: #fffdf8;
+        }
+
+        .evidence-availability-card h2,
+        .evidence-availability-card p {
+            margin: 0;
+        }
+
+        .evidence-availability-card p {
+            margin-top: 5px;
+        }
+
+        .evidence-availability-counts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(118px, 1fr));
+            gap: 8px;
+        }
+
+        .evidence-availability-counts > div {
+            padding: 10px 12px;
+            border: 1px solid #f3d29a;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .evidence-availability-counts strong,
+        .evidence-availability-counts span {
+            display: block;
+        }
+
+        .evidence-availability-counts strong {
+            font-size: 21px;
+        }
+
+        .evidence-availability-counts span {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .evidence-limitations-details {
+            grid-column: 1 / -1;
+            border-top: 1px solid #f3d29a;
+            padding-top: 12px;
+        }
+
+        .evidence-limitations-details > summary {
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .evidence-topic-details {
+            scroll-margin-top: 18px;
+        }
+
+        .evidence-topic-details:target {
+            border-color: #7da8ee;
+            box-shadow: 0 0 0 3px rgba(47, 111, 221, 0.10);
+        }
+
+        .evidence-topic-body .digest-review-form {
+            margin-top: 2px;
+            padding: 14px;
+            border: 1px solid #d8e5ff;
+            border-radius: 11px;
+            background: #f8fbff;
+        }
+
+        .digest-review-form-simple .digest-approve-button,
+        .digest-edit-details button {
+            min-height: 38px;
+            padding: 8px 12px;
+            border-radius: 9px;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 850;
+            cursor: pointer;
+        }
+
+        .digest-edit-details {
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: #ffffff;
+        }
+
+        .digest-edit-details > summary {
+            padding: 11px 13px;
+            cursor: pointer;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .digest-edit-details .digest-review-form {
+            margin: 0 10px 10px;
+        }
+
+        .digest-exclude-details > summary {
+            color: #b45309;
+        }
+
+        .digest-missing-information {
+            color: #8a4b08;
+        }
+
+        .digest-action-help {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .final-review-kicker {
+            margin: 22px 0 8px;
+        }
+
+        @media (max-width: 1100px) {
+            .protocol-library-grid,
+            .output-review-primary-grid,
+            .protocol-runtime-grid,
+            .evidence-availability-card {
+                grid-template-columns: 1fr;
+            }
+
+            .evidence-availability-counts {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .output-limitations-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .stakeholder-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stakeholder-form-field-wide {
+                grid-column: auto;
+            }
+
+            .stakeholder-form-actions,
+            .protocol-version-actions,
+            .protocol-edit-actions,
+            .stakeholder-created-notice,
+            .stakeholder-setup-record-heading,
+            .workflow-card-heading,
+            .overview-session-status-heading,
+            .stakeholder-session-history-heading {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .protocol-library-heading,
+            .protocol-editor-heading,
+            .output-session-picker,
+            .system-step-details summary,
+            .review-transcript-meta,
+            .protocol-runtime-card-heading,
+            .selected-evidence-record,
+            .selected-evidence-record-counts,
+            .transcript-topic-group > summary,
+            .evidence-topic-details > summary {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .output-session-picker form,
+            .researcher-decision-actions-three,
+            .system-step-grid,
+            .review-stage-nav,
+            .evidence-availability-counts {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-export-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .transcript-topic-summary-meta,
+            .evidence-topic-summary-status {
+                justify-content: flex-start;
+            }
+
+            .output-session-picker form {
+                min-width: 0;
+                width: 100%;
+            }
+
+            .digest-review-intro,
+            .summary-review-label {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .digest-review-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .digest-review-panel {
+                max-height: none;
+                overflow: visible;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <img class="brand-logo" src="/static/interviews/img/purrstone-logo.png" alt="PurrStone logo">
+                <div class="brand-name">PurrStone</div>
+            </div>
+
+           <nav class="sidebar-nav">
+                <a class="nav-link " href="/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 11.5L12 4l9 7.5"></path>
+                            <path d="M5.5 10.5V20h13v-9.5"></path>
+                            <path d="M9.5 20v-5h5v5"></path>
+                        </svg>
+                    </span>
+                    <span>Overview</span>
+                </a>
+
+                <a class="nav-link " href="/stakeholders/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9.5" cy="7" r="4"></circle>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </span>
+                    <span>Stakeholders</span>
+                </a>
+
+                <a class="nav-link " href="/protocols/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 3h7l5 5v13H7z"></path>
+                            <path d="M14 3v5h5"></path>
+                            <path d="M9.5 13h7"></path>
+                            <path d="M9.5 17h5"></path>
+                        </svg>
+                    </span>
+                    <span>Protocols</span>
+                </a>
+
+                <a class="nav-link " href="/interviews/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M9.5 9.5h5v5h-5z"></path>
+                        </svg>
+                    </span>
+                    <span>Interviews</span>
+                </a>
+
+                <a class="nav-link active" href="/outputs/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 4H19"></path>
+                            <path d="M19 4V20"></path>
+                            <path d="M19 20H5"></path>
+                            <path d="M5 20V4"></path>
+                            <path d="M8 8H16"></path>
+                            <path d="M8 12H16"></path>
+                            <path d="M8 16H13"></path>
+                        </svg>
+                    </span>
+                    <span>Output Review</span>
+                </a>
+
+                <a class="nav-link " href="/output-quality/">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 20V10"></path>
+                            <path d="M10 20V4"></path>
+                            <path d="M16 20v-7"></path>
+                            <path d="M22 20H2"></path>
+                        </svg>
+                    </span>
+                    <span>Evidence Status</span>
+                </a>
+            </nav>
+
+            
+                <div class="researcher-account">
+                    <div class="researcher-account-label">Signed in reviewer</div>
+                    <div class="researcher-account-name">
+                        Evaluation Reviewer
+                    </div>
+                    <div class="researcher-account-role">Researcher reviewer</div>
+                    <form class="researcher-logout-form" method="post" action="/logout/">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                        <button class="researcher-logout-button" type="submit">Sign out</button>
+                    </form>
+                </div>
+            
+        </aside>
+
+        <main class="main">
+            <div class="content">
+                
+<div class="review-header">
+    <div>
+        <h1 class="overview-title">Output review: EB-S7-R01-26C0B · EVB-S7-R01-26C0BC40</h1>
+        <p class="overview-kicker">
+            Sensory Overload Interview · v1 · Transcript-led researcher review
+        </p>
+    </div>
+
+    <div class="review-header-actions">
+        <span class="status status-blue">Reviewer: Evaluation Reviewer</span>
+
+        
+            <span class="review-pending-badge"><span class="review-dot"></span>Review pending</span>
+        
+
+        <a class="button-secondary" href="/interviews/">← Back to interviews</a>
+    </div>
+</div>
+
+<section class="card output-session-picker">
+    <div>
+        <div class="metric-label">Selected interview output</div>
+        <strong>EB-S7-R01-26C0B · EVB-S7-R01-26C0BC40</strong>
+    </div>
+    <form method="get" action="/outputs/">
+        <label for="output-session-select">Change Session</label>
+        <select id="output-session-select" name="session">
+            
+                <option value="EVB-S7-R01-26C0BC40" selected>
+                    EB-S7-R01-26C0B · EVB-S7-R01-26C0BC40 · Sensory Overload Interview v1
+                </option>
+            
+        </select>
+        <button class="button" type="submit">Open output</button>
+    </form>
+</section>
+
+<div class="card review-meta-grid">
+    <div class="review-meta-item"><div><div class="metric-label">Participant</div><div class="review-meta-value">EB-S7-R01-26C0B</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Session</div><div class="review-meta-value">EVB-S7-R01-26C0BC40</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Protocol</div><div class="review-meta-value">Sensory Overload Interview · v1</div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Interview</div><div class="review-meta-value"><span class="status">Completed</span></div></div></div>
+    <div class="review-meta-item"><div><div class="metric-label">Transcript</div><div class="review-meta-value"><span class="status">Saved</span></div></div></div>
+    <div class="review-meta-item">
+        <div>
+            <div class="metric-label">Topic extracts</div>
+            <div class="review-meta-value"><span class="status status-waiting">0 / 5 reviewed</span></div>
+        </div>
+    </div>
+</div>
+
+<nav class="review-stage-nav" aria-label="Output review stages">
+    <a href="#review-transcript"><span>1</span><strong>Review typed transcript</strong><small>Source record</small></a>
+    <a href="#review-topic-evidence"><span>2</span><strong>Review topic extracts</strong><small>Include, edit, or exclude</small></a>
+    <a href="#review-final-decision"><span>3</span><strong>Final review</strong><small>Checks and decision</small></a>
+</nav>
+
+<section class="card review-stage-card" id="review-transcript">
+    <div class="section-header output-section-heading">
+        <div>
+            <div class="review-stage-kicker">Stage 1 · Source record</div>
+            <h2>Full typed transcript</h2>
+            <p class="muted">
+                This is the saved interaction log: system prompts, typed participant responses, and control events. No audio or speech-to-text verification is claimed.
+                Open only the topic you are reviewing; system-step explanations stay collapsed unless needed.
+            </p>
+        </div>
+        <span class="status status-blue">13 saved turns</span>
+    </div>
+
+    <div class="transcript-topic-list" data-single-open-list>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Workflow boundary</span>
+                        <strong>Opening</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-1">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 1</strong>
+                                <span>Opening</span>
+                            </div>
+                            <p>Before we begin, this interview is about sensory overload.
+
+In this project, sensory overload means a moment when a place or situation feels overwhelming because there is too much noise, light, movement, crowding, smell, touch, or other sensory input. For example, this might happen in a supermarket, on public transport, or in a busy public space.
+
+I will ask you about one specific moment like this: what happened, what made it overwhelming, how you reacted, and what support might have helped. Later, I will also ask for your reaction to a sensory-support concept called PurrStone.
+
+This is a design research interview, not medical advice. You can skip any question or stop at any time. Is it okay to continue?</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-2">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 1</strong>
+                                <span>Opening</span>
+                            </div>
+                            <p>Yes, it is okay to continue.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Not assessed</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>Nothing verified for this step</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" open>
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Research topic</span>
+                        <strong>Experience</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                            <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-3">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 2</strong>
+                                <span>Experience</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-4">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 2</strong>
+                                <span>Experience</span>
+                            </div>
+                            <p>On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Covered</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>mocked infrastructure coverage</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Research topic</span>
+                        <strong>Triggers &amp; signs</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                            <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-5">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 3</strong>
+                                <span>Triggers &amp; signs</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-6">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 3</strong>
+                                <span>Triggers &amp; signs</span>
+                            </div>
+                            <p>The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Covered</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>mocked infrastructure coverage</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Research topic</span>
+                        <strong>Coping &amp; support</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                            <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-7">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 4</strong>
+                                <span>Coping &amp; support</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-8">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 4</strong>
+                                <span>Coping &amp; support</span>
+                            </div>
+                            <p>I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Covered</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>mocked infrastructure coverage</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Research topic</span>
+                        <strong>Support concept reaction</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                            <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-9">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 5</strong>
+                                <span>Support concept reaction</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-10">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 5</strong>
+                                <span>Support concept reaction</span>
+                            </div>
+                            <p>The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Covered</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>mocked infrastructure coverage</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Research topic</span>
+                        <strong>Public-use acceptability</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                            <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        <span>1 response</span>
+                        <span>2 turns</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-11">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 6</strong>
+                                <span>Public-use acceptability</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+                        <article class="review-transcript-turn transcript-participant" id="transcript-turn-12">
+                            <div class="review-transcript-meta">
+                                <strong>Participant response 6</strong>
+                                <span>Public-use acceptability</span>
+                            </div>
+                            <p>I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.</p>
+
+                            
+                                <details class="system-step-details">
+                                    <summary><span>Why the interview took this step</span><strong>Continued to the next Protocol section</strong></summary>
+                                    <div class="system-step-grid">
+                                        <div class="metric-label">Provisional Protocol-coverage check</div><div>Covered</div>
+                                        <div class="metric-label">System action</div><div>Continued to the next Protocol section</div>
+                                        
+                                        <div class="metric-label">Information covered</div>
+                                        <div>mocked infrastructure coverage</div>
+                                        <div class="metric-label">Still missing</div>
+                                        <div>Nothing flagged</div>
+                                        <div class="metric-label">Reason</div><div>Frozen fixture response for non-formal infrastructure testing.</div>
+                                    </div>
+                                </details>
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="transcript-topic-group" >
+                <summary>
+                    <div class="transcript-topic-title">
+                        <span>Workflow boundary</span>
+                        <strong>Faithful summary</strong>
+                    </div>
+                    <div class="transcript-topic-summary-meta">
+                        
+                        <span>0 responses</span>
+                        <span>1 turn</span>
+                    </div>
+                </summary>
+
+                <div class="transcript-topic-content">
+                    
+                        <article class="review-transcript-turn transcript-agent" id="transcript-turn-13">
+                            <div class="review-transcript-meta">
+                                <strong>Interview prompt 7</strong>
+                                <span>Faithful summary</span>
+                            </div>
+                            <p>Thank you. Let us continue with the next topic.</p>
+
+                            
+                        </article>
+                    
+
+                    
+                </div>
+            </details>
+        
+    </div>
+</section>
+
+<section class="card evidence-availability-card" aria-labelledby="evidence-availability-title">
+    <div>
+        <h2 id="evidence-availability-title">Evidence availability for EB-S7-R01-26C0B · EVB-S7-R01-26C0BC40</h2>
+        <p class="muted">These counts limit what can be concluded from this Session; they are not a score of the participant.</p>
+    </div>
+    <div class="evidence-availability-counts">
+        <div><strong>5</strong><span>available topics</span></div>
+        <div><strong>0</strong><span>unavailable topics</span></div>
+        <div><strong>0</strong><span>missing-information flags</span></div>
+    </div>
+    
+</section>
+
+<section class="card review-stage-card evidence-by-topic-card" id="review-topic-evidence">
+    <div class="digest-review-intro">
+        <div>
+            <div class="review-stage-kicker">Stage 2 · Transcript extraction</div>
+            <h2>Reviewed extracts by protocol topic</h2>
+            <p>
+                Select which typed participant responses enter the Evidence Record. These extracts can be checked for fidelity to this saved interview log;
+                they do not establish whether the participant's account is factually true.
+            </p>
+        </div>
+        <div class="evidence-topic-counts">
+            <span class="status status-waiting">0 / 5 reviewed</span>
+            
+        </div>
+    </div>
+
+    
+    
+
+    <div class="evidence-topic-accordion" data-single-open-list>
+        
+            <details class="evidence-topic-details" id="digest-item-1" open>
+                <summary>
+                    <div>
+                        <strong>Experience</strong>
+                        <span>Situation</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        
+                            <span class="status status-muted">Pending</span>
+                        
+                    </div>
+                </summary>
+
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block ">
+                        <span class="digest-block-label">Source extract from typed responses</span>
+                        <p>Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”</p>
+                        
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        
+                            <a class="summary-source-link" href="#transcript-turn-4">Participant response 2</a>
+                        
+                    </div>
+
+                    
+
+                    
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/1/review/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" >
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/1/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-text-1">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-1" name="reviewed_text">Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”</textarea>
+                                <label for="digest-edit-comment-1">Reason for edit</label>
+                                <textarea id="digest-edit-comment-1" name="reviewer_comment" placeholder="Explain what changed and why."></textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" >
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/1/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-exclude-comment-1">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-1" name="reviewer_comment" placeholder="Explain why this topic should not be included."></textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    
+
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="evidence-topic-details" id="digest-item-2" >
+                <summary>
+                    <div>
+                        <strong>Triggers &amp; signs</strong>
+                        <span>Main triggers</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        
+                            <span class="status status-muted">Pending</span>
+                        
+                    </div>
+                </summary>
+
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block ">
+                        <span class="digest-block-label">Source extract from typed responses</span>
+                        <p>Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”</p>
+                        
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        
+                            <a class="summary-source-link" href="#transcript-turn-6">Participant response 3</a>
+                        
+                    </div>
+
+                    
+
+                    
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/2/review/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" >
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/2/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-text-2">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-2" name="reviewed_text">Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”</textarea>
+                                <label for="digest-edit-comment-2">Reason for edit</label>
+                                <textarea id="digest-edit-comment-2" name="reviewer_comment" placeholder="Explain what changed and why."></textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" >
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/2/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-exclude-comment-2">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-2" name="reviewer_comment" placeholder="Explain why this topic should not be included."></textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    
+
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="evidence-topic-details" id="digest-item-3" >
+                <summary>
+                    <div>
+                        <strong>Coping &amp; support</strong>
+                        <span>Coping / support</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        
+                            <span class="status status-muted">Pending</span>
+                        
+                    </div>
+                </summary>
+
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block ">
+                        <span class="digest-block-label">Source extract from typed responses</span>
+                        <p>Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”</p>
+                        
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        
+                            <a class="summary-source-link" href="#transcript-turn-8">Participant response 4</a>
+                        
+                    </div>
+
+                    
+
+                    
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/3/review/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" >
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/3/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-text-3">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-3" name="reviewed_text">Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”</textarea>
+                                <label for="digest-edit-comment-3">Reason for edit</label>
+                                <textarea id="digest-edit-comment-3" name="reviewer_comment" placeholder="Explain what changed and why."></textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" >
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/3/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-exclude-comment-3">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-3" name="reviewer_comment" placeholder="Explain why this topic should not be included."></textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    
+
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="evidence-topic-details" id="digest-item-4" >
+                <summary>
+                    <div>
+                        <strong>Support concept reaction</strong>
+                        <span>Support concept reaction</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        
+                            <span class="status status-muted">Pending</span>
+                        
+                    </div>
+                </summary>
+
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block ">
+                        <span class="digest-block-label">Source extract from typed responses</span>
+                        <p>Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”</p>
+                        
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        
+                            <a class="summary-source-link" href="#transcript-turn-10">Participant response 5</a>
+                        
+                    </div>
+
+                    
+
+                    
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/4/review/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" >
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/4/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-text-4">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-4" name="reviewed_text">Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”</textarea>
+                                <label for="digest-edit-comment-4">Reason for edit</label>
+                                <textarea id="digest-edit-comment-4" name="reviewer_comment" placeholder="Explain what changed and why."></textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" >
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/4/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-exclude-comment-4">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-4" name="reviewer_comment" placeholder="Explain why this topic should not be included."></textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    
+
+                    
+
+                    
+                </div>
+            </details>
+        
+            <details class="evidence-topic-details" id="digest-item-5" >
+                <summary>
+                    <div>
+                        <strong>Public-use acceptability</strong>
+                        <span>Public-use concerns</span>
+                    </div>
+                    <div class="evidence-topic-summary-status">
+                        <span class="topic-status-label topic-label-covered">Covered</span>
+                        
+                        
+                            <span class="status status-muted">Pending</span>
+                        
+                    </div>
+                </summary>
+
+                <div class="evidence-topic-body">
+                    <div class="digest-draft-block ">
+                        <span class="digest-block-label">Source extract from typed responses</span>
+                        <p>Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”</p>
+                        
+                    </div>
+
+                    <div class="summary-source-links">
+                        <span class="summary-source-label">Transcript source</span>
+                        
+                            <a class="summary-source-link" href="#transcript-turn-12">Participant response 6</a>
+                        
+                    </div>
+
+                    
+
+                    
+                        <form class="digest-review-form digest-review-form-simple" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/5/review/">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                            <p class="digest-action-help">Include the source extract unchanged when it is relevant and faithful to the linked responses.</p>
+                            <button class="digest-approve-button" type="submit" name="digest_action" value="approve">Include source extract</button>
+                        </form>
+
+                        <details class="digest-edit-details" >
+                            <summary>Edit before including</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/5/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-text-5">Edited extract for the Evidence Record</label>
+                                <textarea id="digest-text-5" name="reviewed_text">Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”</textarea>
+                                <label for="digest-edit-comment-5">Reason for edit</label>
+                                <textarea id="digest-edit-comment-5" name="reviewer_comment" placeholder="Explain what changed and why."></textarea>
+                                <button class="digest-edit-button" type="submit" name="digest_action" value="edit">Include edited extract</button>
+                            </form>
+                        </details>
+
+                        <details class="digest-edit-details digest-exclude-details" >
+                            <summary>Exclude from the Evidence Record</summary>
+                            <form class="digest-review-form" method="post" action="/outputs/EVB-S7-R01-26C0BC40/digest/5/review/">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+                                <label for="digest-exclude-comment-5">Reason for exclusion</label>
+                                <textarea id="digest-exclude-comment-5" name="reviewer_comment" placeholder="Explain why this topic should not be included."></textarea>
+                                <button class="digest-exclude-button" type="submit" name="digest_action" value="exclude">Exclude topic</button>
+                            </form>
+                        </details>
+                    
+
+                    
+
+                    
+                </div>
+            </details>
+        
+    </div>
+</section>
+
+<div class="review-stage-kicker final-review-kicker" id="review-final-decision">Stage 3 · Final review</div>
+<div class="review-grid review-bottom-grid">
+    <section class="card review-panel">
+        <h2>Session release conditions</h2>
+        <p class="muted">
+            Three workflow conditions are checked by the system. Two judgements still require researcher review.
+            These project-specific safeguards gate only the Session's Approved review state. They do not block
+            Evidence Record export, form a validated scale, or measure research or outcome quality.
+        </p>
+        <div class="quality-confirmed-summary">
+            <span class="status status-blue">
+                Workflow conditions: Not met
+            </span>
+            <span class="status status-blue">
+                Researcher judgements: Not confirmed
+            </span>
+        </div>
+        <h3>System-checked workflow conditions</h3>
+        <div class="review-criteria-form-list">
+            
+                <div class="review-criteria-check">
+                    <span class="status status-muted">Not met</span>
+                    <span><strong>Included extracts have valid transcript source links</strong><small>Every Included or Edited extract links only to typed participant responses from the same Session and Protocol topic.</small></span>
+                </div>
+            
+                <div class="review-criteria-check">
+                    <span class="status ">Met</span>
+                    <span><strong>Skip and Stop controls were followed</strong><small>No later decision continued the skipped topic, and no interview decision followed a Stop action.</small></span>
+                </div>
+            
+                <div class="review-criteria-check">
+                    <span class="status ">Met</span>
+                    <span><strong>Coverage limitations remain represented</strong><small>Every research topic has an explicit coverage record; partial topics retain their missing-information fields.</small></span>
+                </div>
+            
+        </div>
+        <h3>Researcher judgements</h3>
+        <div class="review-criteria-form-list">
+            
+                <label class="review-criteria-check">
+                    <input form="review-decision-form" type="checkbox" name="participant_meaning_preserved" >
+                    <span><strong>Included extracts preserve the participant&#x27;s meaning</strong><small>Confirm that selection, shortening, or editing has not added a claim or changed the participant&#x27;s intended meaning.</small></span>
+                </label>
+            
+                <label class="review-criteria-check">
+                    <input form="review-decision-form" type="checkbox" name="protocol_boundaries_respected" >
+                    <span><strong>Protocol-specific interaction boundaries were respected</strong><small>Check the transcript against the interaction boundaries saved in this locked Protocol version.</small></span>
+                </label>
+            
+        </div>
+    </section>
+
+    <section class="card review-panel">
+        <h2>Researcher decision · EB-S7-R01-26C0B · EVB-S7-R01-26C0BC40</h2>
+        <div class="current-review-decision">
+            <strong>Current decision:</strong>
+            <span class="status status-blue">Review pending</span>
+        </div>
+
+        
+        
+        
+
+        <form method="post" id="review-decision-form">
+            <input type="hidden" name="csrfmiddlewaretoken" value="xq3JKE0ToK2JVoB75RTHmT8OFUK1wytEcAN7QKTa3TnYllTKMfOvRZy3Gp6nhdT3">
+            <label class="review-note-label" for="researcher-note">Researcher note</label>
+            <textarea id="researcher-note" name="researcher_note" class="review-note-input" placeholder="Required when requesting revision or marking the output not usable."></textarea>
+            <div class="researcher-decision-actions researcher-decision-actions-three">
+                <button class="button" type="submit" name="decision" value="approve">Approve reviewed evidence</button>
+                <button class="button-secondary" type="submit" name="decision" value="request_revision">Request revision</button>
+                <button class="button-secondary decision-not-usable-button" type="submit" name="decision" value="mark_not_usable">Mark not usable</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<script>
+    function openWithinAccordion(target) {
+        const details = target instanceof HTMLDetailsElement
+            ? target
+            : target.closest("details");
+        if (!details) return;
+        const list = details.parentElement;
+        if (list && list.matches("[data-single-open-list]")) {
+            Array.from(list.children).forEach((item) => {
+                if (item instanceof HTMLDetailsElement && item !== details) item.open = false;
+            });
+        }
+        details.open = true;
+    }
+
+    document.querySelectorAll("[data-single-open-list]").forEach((list) => {
+        list.addEventListener("toggle", (event) => {
+            const opened = event.target;
+            if (!(opened instanceof HTMLDetailsElement) || !opened.open || opened.parentElement !== list) return;
+            Array.from(list.children).forEach((item) => {
+                if (item instanceof HTMLDetailsElement && item !== opened) item.open = false;
+            });
+        }, true);
+    });
+
+    document.querySelectorAll(".summary-source-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            const target = document.getElementById(link.hash.slice(1));
+            if (target) openWithinAccordion(target);
+        });
+    });
+
+    function openCurrentHashTarget() {
+        if (!window.location.hash) return;
+        const target = document.getElementById(window.location.hash.slice(1));
+        if (target) openWithinAccordion(target);
+    }
+    openCurrentHashTarget();
+    window.addEventListener("hashchange", openCurrentHashTarget);
+</script>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

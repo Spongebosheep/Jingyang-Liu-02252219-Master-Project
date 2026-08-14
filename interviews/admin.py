@@ -8,13 +8,28 @@ from .models import (
     Summary,
     ReviewDecision,
     AgentDecision,
+    StructuredDigestItem,
+    DigestReviewEvent,
 )
 
 
 @admin.register(Protocol)
 class ProtocolAdmin(admin.ModelAdmin):
-    list_display = ("title", "stakeholder_group", "interview_mode", "estimated_duration")
+    list_display = (
+        "title",
+        "version",
+        "status",
+        "stakeholder_group",
+        "interview_mode",
+        "estimated_duration",
+    )
     search_fields = ("title", "stakeholder_group")
+    list_filter = ("status",)
+
+    def has_change_permission(self, request, obj=None):
+        if obj is not None and obj.is_locked:
+            return False
+        return super().has_change_permission(request, obj)
 
 
 @admin.register(Stakeholder)
@@ -32,6 +47,7 @@ class InterviewSessionAdmin(admin.ModelAdmin):
         "protocol",
         "status",
         "consent_confirmed",
+        "consent_confirmed_at",
         "summary_generated",
         "review_status",
         "output_quality_status",
@@ -56,13 +72,54 @@ class ReviewDecisionAdmin(admin.ModelAdmin):
     list_display = (
         "session",
         "decision",
-        "summary_grounded_in_transcript",
-        "no_unsupported_interpretation",
-        "no_medical_or_diagnostic_advice",
-        "participant_safety_respected",
-        "limitations_and_missing_information_visible"
+        "source_links_checked",
+        "participant_meaning_preserved",
+        "protocol_boundaries_respected",
+        "participant_controls_respected",
+        "limitations_and_missing_information_visible",
+        "reviewed_by",
+        "reviewed_at",
     )
     list_filter = ("decision",)
+
+
+@admin.register(StructuredDigestItem)
+class StructuredDigestItemAdmin(admin.ModelAdmin):
+    list_display = (
+        "session",
+        "section_title",
+        "coverage_status",
+        "participant_control",
+        "topic_reached",
+        "review_status",
+        "reviewed_by",
+        "reviewed_at",
+    )
+    list_filter = ("coverage_status", "participant_control", "topic_reached", "review_status")
+    search_fields = ("session__session_code", "section_title", "generated_text")
+    filter_horizontal = ("source_messages",)
+
+
+@admin.register(DigestReviewEvent)
+class DigestReviewEventAdmin(admin.ModelAdmin):
+    list_display = (
+        "digest_item",
+        "new_status",
+        "reviewer_name_snapshot",
+        "created_at",
+    )
+    list_filter = ("new_status",)
+    readonly_fields = (
+        "digest_item",
+        "previous_status",
+        "new_status",
+        "previous_text",
+        "new_text",
+        "comment",
+        "reviewer",
+        "reviewer_name_snapshot",
+        "created_at",
+    )
 
 @admin.register(AgentDecision)
 class AgentDecisionAdmin(admin.ModelAdmin):
@@ -70,19 +127,21 @@ class AgentDecisionAdmin(admin.ModelAdmin):
         "session",
         "section",
         "section_index",
-        "answer_status",
+        "coverage_assessment",
+        "participant_control",
         "action",
         "probe_count_before",
         "created_at",
     )
-    list_filter = ("action", "answer_status", "section")
+    list_filter = ("action", "coverage_assessment", "participant_control", "section")
     search_fields = ("session__session_code", "section", "decision_reason")
     readonly_fields = (
         "session",
         "message",
         "section",
         "section_index",
-        "answer_status",
+        "coverage_assessment",
+        "participant_control",
         "action",
         "probe_count_before",
         "missing_information",

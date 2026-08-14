@@ -1,0 +1,3344 @@
+{
+  "adapter_identity": {
+    "adapter_version": "3.0",
+    "graph_approved_follow_up_wording": "not_applicable_prompt_only_condition",
+    "model_parameters": {
+      "max_output_tokens": 500,
+      "store": false,
+      "temperature": 0
+    },
+    "output_schema_path": "specs/prompt_only_output_schema.v2.json",
+    "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+    "output_schema_version": "2.0",
+    "prompt_path": "prompts/prompt_only_baseline.v3.txt",
+    "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+    "prompt_version": "3.0",
+    "routing_provenance": "not_applicable_prompt_only_condition"
+  },
+  "code_identity": {
+    "branch": "master",
+    "commit": "b7f3c8682b364ed1d9381eafa8408bd595d4450e",
+    "tracked_changes": [],
+    "tracked_worktree_clean": true,
+    "tree": "a7562237ec5a13a50f3aef540b92406f04086897"
+  },
+  "comparison_boundaries": {
+    "graph_approved_follow_up_wording": "not_applicable",
+    "langgraph_routing_provenance": "not_applicable",
+    "post_hoc_action_correction": false,
+    "semantic_repair": false
+  },
+  "comparison_freeze": {
+    "contract_version": "10.2",
+    "eligibility_source": "directly_recorded_run_and_matched_pair_evidence",
+    "model_id": "gpt-4.1-mini",
+    "path": "evaluation/specs/freeze_manifest.v10_2.json",
+    "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+  },
+  "completed_at": "2026-08-10T05:37:24.247272+00:00",
+  "condition": "prompt_only_baseline",
+  "contract_validation": {
+    "contracts": {
+      "baseline_contract": {
+        "path": "specs/baseline_contract.v2.json",
+        "sha256": "abda4c9395988bf7616cde45ad4a8c776007009dfee98a1d4233b006319738dc"
+      },
+      "baseline_output_schema": {
+        "path": "specs/prompt_only_output_schema.v2.json",
+        "sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0"
+      },
+      "export_bundle_schema": {
+        "path": "specs/export_bundle_schema.v2.json",
+        "sha256": "713f5bd4e1721ee826f9d4a619b01cfe8b8786c62dd3bd99d96a771da14e50d9"
+      },
+      "freeze_manifest": {
+        "path": "specs/freeze_manifest.v10_2.json",
+        "sha256": "16baf1510b032e2271d03d050180864aa65b7f411b22688ac04e0d13be7345f1"
+      },
+      "metric_calculation_schema": {
+        "path": "specs/metric_calculation_schema.v2.json",
+        "sha256": "1d762c63111c3057596feb5de5dd9e48dfdaeb997d1162c35899085cc856de11"
+      },
+      "metrics": {
+        "path": "specs/metrics.v3.json",
+        "sha256": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4"
+      },
+      "quality_review": {
+        "path": "specs/quality_review.v2.json",
+        "sha256": "221a50d6dbc8bc15ccb65898ab694a8cc2d72f13a821d54a05bcb133f6809017"
+      },
+      "review_completion": {
+        "path": "specs/review_completion.v2.json",
+        "sha256": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72"
+      },
+      "scenarios": {
+        "path": "specs/scenarios.v4.json",
+        "sha256": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6"
+      }
+    },
+    "formal_run": false,
+    "status": "PASS"
+  },
+  "database_cleanup": {
+    "mode": "transaction_rolled_back",
+    "session_retained": false,
+    "stakeholder_retained": false,
+    "temporary_reviewer_retained": false
+  },
+  "error": null,
+  "execution_status": "completed",
+  "final_database_snapshot": {
+    "agent_decisions": [
+      {
+        "action": "move_next",
+        "coverage_assessment": "not_assessed",
+        "covered_information": [],
+        "created_at": "2026-08-10T05:37:23.882165+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 1,
+        "message_id": 2,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Opening",
+        "section_code": "opening",
+        "section_index": 0,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 2
+      },
+      {
+        "action": "move_next",
+        "coverage_assessment": "covered",
+        "covered_information": [
+          "mocked infrastructure coverage"
+        ],
+        "created_at": "2026-08-10T05:37:23.894989+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 2,
+        "message_id": 4,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Experience",
+        "section_code": "experience",
+        "section_index": 1,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 4
+      },
+      {
+        "action": "move_next",
+        "coverage_assessment": "covered",
+        "covered_information": [
+          "mocked infrastructure coverage"
+        ],
+        "created_at": "2026-08-10T05:37:23.909333+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 3,
+        "message_id": 6,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Triggers & signs",
+        "section_code": "triggers_signs",
+        "section_index": 2,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 6
+      },
+      {
+        "action": "move_next",
+        "coverage_assessment": "covered",
+        "covered_information": [
+          "mocked infrastructure coverage"
+        ],
+        "created_at": "2026-08-10T05:37:23.923415+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 4,
+        "message_id": 8,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Coping & support",
+        "section_code": "coping_support",
+        "section_index": 3,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 8
+      },
+      {
+        "action": "move_next",
+        "coverage_assessment": "covered",
+        "covered_information": [
+          "mocked infrastructure coverage"
+        ],
+        "created_at": "2026-08-10T05:37:23.939639+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 5,
+        "message_id": 10,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Support concept reaction",
+        "section_code": "support_concept_reaction",
+        "section_index": 4,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 10
+      },
+      {
+        "action": "move_next",
+        "coverage_assessment": "covered",
+        "covered_information": [
+          "mocked infrastructure coverage"
+        ],
+        "created_at": "2026-08-10T05:37:23.957073+00:00",
+        "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "id": 6,
+        "message_id": 12,
+        "missing_information": [],
+        "participant_control": "none",
+        "probe_count_before": 0,
+        "reason": "Frozen fixture response for non-formal infrastructure testing.",
+        "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+        "section": "Public-use acceptability",
+        "section_code": "public_use_acceptability",
+        "section_index": 5,
+        "selected_action": "move_next",
+        "session_id": 2,
+        "source_message_id": 12
+      }
+    ],
+    "digest_items": [
+      {
+        "coverage_status": "covered",
+        "display_visible": true,
+        "evidence_text": "",
+        "export_visible": true,
+        "final_text": "Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”",
+        "generated_text": "Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”",
+        "id": 1,
+        "is_evidence_candidate": true,
+        "is_included": false,
+        "missing_information": [],
+        "participant_control": "none",
+        "review_status": "excluded",
+        "reviewed_at": "2026-08-10T05:37:24.065577+00:00",
+        "reviewed_text": "",
+        "reviewer_comment": "Excluded from final evidence to test the explicit researcher-control and audit path.",
+        "reviewer_name_snapshot": "Evaluation Reviewer",
+        "section_code": "experience",
+        "section_index": 1,
+        "session_id": 2,
+        "source_message_ids": [
+          4
+        ],
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "display_visible": true,
+        "evidence_text": "Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”",
+        "export_visible": true,
+        "final_text": "Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”",
+        "generated_text": "Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”",
+        "id": 2,
+        "is_evidence_candidate": true,
+        "is_included": true,
+        "missing_information": [],
+        "participant_control": "none",
+        "review_status": "approved",
+        "reviewed_at": "2026-08-10T05:37:24.028815+00:00",
+        "reviewed_text": "",
+        "reviewer_comment": "Retained as transcript-grounded topic evidence before the scripted Exclude action.",
+        "reviewer_name_snapshot": "Evaluation Reviewer",
+        "section_code": "triggers_signs",
+        "section_index": 2,
+        "session_id": 2,
+        "source_message_ids": [
+          6
+        ],
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "display_visible": true,
+        "evidence_text": "Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”",
+        "export_visible": true,
+        "final_text": "Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”",
+        "generated_text": "Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”",
+        "id": 3,
+        "is_evidence_candidate": true,
+        "is_included": true,
+        "missing_information": [],
+        "participant_control": "none",
+        "review_status": "approved",
+        "reviewed_at": "2026-08-10T05:37:24.100424+00:00",
+        "reviewed_text": "",
+        "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "reviewer_name_snapshot": "Evaluation Reviewer",
+        "section_code": "coping_support",
+        "section_index": 3,
+        "session_id": 2,
+        "source_message_ids": [
+          8
+        ],
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "display_visible": true,
+        "evidence_text": "Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”",
+        "export_visible": true,
+        "final_text": "Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”",
+        "generated_text": "Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”",
+        "id": 4,
+        "is_evidence_candidate": true,
+        "is_included": true,
+        "missing_information": [],
+        "participant_control": "none",
+        "review_status": "approved",
+        "reviewed_at": "2026-08-10T05:37:24.136886+00:00",
+        "reviewed_text": "",
+        "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "reviewer_name_snapshot": "Evaluation Reviewer",
+        "section_code": "support_concept_reaction",
+        "section_index": 4,
+        "session_id": 2,
+        "source_message_ids": [
+          10
+        ],
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "display_visible": true,
+        "evidence_text": "Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”",
+        "export_visible": true,
+        "final_text": "Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”",
+        "generated_text": "Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”",
+        "id": 5,
+        "is_evidence_candidate": true,
+        "is_included": true,
+        "missing_information": [],
+        "participant_control": "none",
+        "review_status": "approved",
+        "reviewed_at": "2026-08-10T05:37:24.170406+00:00",
+        "reviewed_text": "",
+        "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "reviewer_name_snapshot": "Evaluation Reviewer",
+        "section_code": "public_use_acceptability",
+        "section_index": 5,
+        "session_id": 2,
+        "source_message_ids": [
+          12
+        ],
+        "topic_reached": true
+      }
+    ],
+    "messages": [
+      {
+        "content": "Before we begin, this interview is about sensory overload.\n\nIn this project, sensory overload means a moment when a place or situation feels overwhelming because there is too much noise, light, movement, crowding, smell, touch, or other sensory input. For example, this might happen in a supermarket, on public transport, or in a busy public space.\n\nI will ask you about one specific moment like this: what happened, what made it overwhelming, how you reacted, and what support might have helped. Later, I will also ask for your reaction to a sensory-support concept called PurrStone.\n\nThis is a design research interview, not medical advice. You can skip any question or stop at any time. Is it okay to continue?",
+        "created_at": "2026-08-10T05:37:23.869985+00:00",
+        "id": 1,
+        "section": "Opening",
+        "section_index": 0,
+        "sender": "agent"
+      },
+      {
+        "content": "Yes, it is okay to continue.",
+        "created_at": "2026-08-10T05:37:23.876914+00:00",
+        "id": 2,
+        "section": "Opening",
+        "section_index": 0,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.882705+00:00",
+        "id": 3,
+        "section": "Experience",
+        "section_index": 1,
+        "sender": "agent"
+      },
+      {
+        "content": "On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.",
+        "created_at": "2026-08-10T05:37:23.889465+00:00",
+        "id": 4,
+        "section": "Experience",
+        "section_index": 1,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.895469+00:00",
+        "id": 5,
+        "section": "Triggers & signs",
+        "section_index": 2,
+        "sender": "agent"
+      },
+      {
+        "content": "The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.",
+        "created_at": "2026-08-10T05:37:23.902867+00:00",
+        "id": 6,
+        "section": "Triggers & signs",
+        "section_index": 2,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.909807+00:00",
+        "id": 7,
+        "section": "Coping & support",
+        "section_index": 3,
+        "sender": "agent"
+      },
+      {
+        "content": "I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.",
+        "created_at": "2026-08-10T05:37:23.917243+00:00",
+        "id": 8,
+        "section": "Coping & support",
+        "section_index": 3,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.923996+00:00",
+        "id": 9,
+        "section": "Support concept reaction",
+        "section_index": 4,
+        "sender": "agent"
+      },
+      {
+        "content": "The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.",
+        "created_at": "2026-08-10T05:37:23.931865+00:00",
+        "id": 10,
+        "section": "Support concept reaction",
+        "section_index": 4,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.940134+00:00",
+        "id": 11,
+        "section": "Public-use acceptability",
+        "section_index": 5,
+        "sender": "agent"
+      },
+      {
+        "content": "I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.",
+        "created_at": "2026-08-10T05:37:23.948666+00:00",
+        "id": 12,
+        "section": "Public-use acceptability",
+        "section_index": 5,
+        "sender": "participant"
+      },
+      {
+        "content": "Thank you. Let us continue with the next topic.",
+        "created_at": "2026-08-10T05:37:23.957586+00:00",
+        "id": 13,
+        "section": "Faithful summary",
+        "section_index": 6,
+        "sender": "agent"
+      }
+    ],
+    "review_decision": {
+      "decision": "revision_requested",
+      "id": 1,
+      "limitations_and_missing_information_visible": true,
+      "participant_controls_respected": true,
+      "participant_meaning_preserved": false,
+      "protocol_boundaries_respected": false,
+      "reviewed_at": "2026-08-10T05:37:24.205720+00:00",
+      "reviewer_name_snapshot": "Evaluation Reviewer",
+      "reviewer_note": "All scripted Include and Exclude actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+      "source_links_checked": true
+    },
+    "review_events": [
+      {
+        "comment": "Retained as transcript-grounded topic evidence before the scripted Exclude action.",
+        "created_at": "2026-08-10T05:37:24.029339+00:00",
+        "digest_item_id": 2,
+        "id": 1,
+        "new_status": "approved",
+        "new_text": "Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”",
+        "previous_status": "pending",
+        "previous_text": "Typed response extract: “The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.”",
+        "reviewer_name_snapshot": "Evaluation Reviewer"
+      },
+      {
+        "comment": "Excluded from final evidence to test the explicit researcher-control and audit path.",
+        "created_at": "2026-08-10T05:37:24.066015+00:00",
+        "digest_item_id": 1,
+        "id": 2,
+        "new_status": "excluded",
+        "new_text": "",
+        "previous_status": "pending",
+        "previous_text": "Typed response extract: “On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.”",
+        "reviewer_name_snapshot": "Evaluation Reviewer"
+      },
+      {
+        "comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "created_at": "2026-08-10T05:37:24.100954+00:00",
+        "digest_item_id": 3,
+        "id": 3,
+        "new_status": "approved",
+        "new_text": "Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”",
+        "previous_status": "pending",
+        "previous_text": "Typed response extract: “I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.”",
+        "reviewer_name_snapshot": "Evaluation Reviewer"
+      },
+      {
+        "comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "created_at": "2026-08-10T05:37:24.137324+00:00",
+        "digest_item_id": 4,
+        "id": 4,
+        "new_status": "approved",
+        "new_text": "Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”",
+        "previous_status": "pending",
+        "previous_text": "Typed response extract: “The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.”",
+        "reviewer_name_snapshot": "Evaluation Reviewer"
+      },
+      {
+        "comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "created_at": "2026-08-10T05:37:24.170844+00:00",
+        "digest_item_id": 5,
+        "id": 5,
+        "new_status": "approved",
+        "new_text": "Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”",
+        "previous_status": "pending",
+        "previous_text": "Typed response extract: “I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.”",
+        "reviewer_name_snapshot": "Evaluation Reviewer"
+      }
+    ],
+    "session": {
+      "completed_at": "2026-08-10T05:37:23.957206+00:00",
+      "consent_confirmed": true,
+      "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+      "consent_notice_version": "purrstone-ai-transparency-v1",
+      "consent_snapshot": {
+        "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+        "ai_role": {
+          "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+          "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+          "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+          "heading": "How the AI-supported interview works",
+          "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+          "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+        },
+        "notice_version": "purrstone-ai-transparency-v1",
+        "participant_rights": [
+          "You can skip any question.",
+          "You can stop the interview at any time.",
+          "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+          "Your typed responses will be saved for researcher review."
+        ],
+        "protocol": {
+          "estimated_duration": "10–15 minutes",
+          "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+          "interview_mode": "AI-led semi-structured interview",
+          "output_description": "Typed transcript + reviewed extracts by protocol topic",
+          "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+          "research_topics": [
+            "Experience",
+            "Triggers & signs",
+            "Coping & support",
+            "Support concept reaction",
+            "Public-use acceptability"
+          ],
+          "stakeholder_group": "Sensory-sensitive participants",
+          "title": "Sensory Overload Interview",
+          "version": 1
+        },
+        "schema_version": "1.0",
+        "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+      },
+      "consent_snapshot_is_valid": true,
+      "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+      "current_section_index": 6,
+      "id": 2,
+      "output_quality_status": "revision_requested",
+      "participant_id": "EB-S8-R01-A77CE",
+      "protocol_id": 1,
+      "protocol_status": "locked",
+      "review_status": "revision_requested",
+      "session_code": "EVB-S8-R01-A77CE6FA",
+      "started_at": "2026-08-10T05:37:23.869223+00:00",
+      "status": "completed",
+      "summary_generated": true,
+      "transcript_saved": true
+    }
+  },
+  "formal_reviewer": null,
+  "formal_run": false,
+  "frozen_oracle": {
+    "claim_scope": "Human exclusion from final evidence while retaining the attributable audit event.",
+    "expected_topic_outcomes": [
+      {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "review_status": "excluded",
+        "section_code": "experience",
+        "section_index": 1,
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "triggers_signs",
+        "section_index": 2,
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "coping_support",
+        "section_index": 3,
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "support_concept_reaction",
+        "section_index": 4,
+        "topic_reached": true
+      },
+      {
+        "coverage_status": "covered",
+        "participant_control": "none",
+        "section_code": "public_use_acceptability",
+        "section_index": 5,
+        "topic_reached": true
+      }
+    ],
+    "required_artifacts": [
+      "generated_text",
+      "exclude_reason",
+      "review_event",
+      "source_links",
+      "final_evidence_record"
+    ],
+    "researcher_action": {
+      "action": "exclude",
+      "oracle": {
+        "audit_event_retained": true,
+        "excluded_from_final_evidence": true,
+        "overall_approval_recalculated": true,
+        "reason_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_identity_recorded": true
+      },
+      "reason": "Excluded from final evidence to test the explicit researcher-control and audit path.",
+      "section_index": 1
+    },
+    "scenario_id": "S8",
+    "steps": [
+      {
+        "kind": "consent",
+        "oracle": {
+          "consent_confirmed": true,
+          "consent_confirmed_at_recorded": true,
+          "consent_snapshot_recorded": true,
+          "consent_snapshot_sha256_valid": true,
+          "research_content_before_consent": false
+        },
+        "step_id": "S8-C01"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": false,
+          "eligible_for_ai": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "not_assessed"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "Yes, it is okay to continue.",
+        "section_code": "opening",
+        "section_index": 0,
+        "step_id": "S8-O01"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.",
+        "section_code": "experience",
+        "section_index": 1,
+        "step_id": "S8-T01"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.",
+        "section_code": "triggers_signs",
+        "section_index": 2,
+        "step_id": "S8-T02"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.",
+        "section_code": "coping_support",
+        "section_index": 3,
+        "step_id": "S8-T03"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.",
+        "section_code": "support_concept_reaction",
+        "section_index": 4,
+        "step_id": "S8-T04"
+      },
+      {
+        "kind": "participant_turn",
+        "oracle": {
+          "eligible_for_ac": true,
+          "expected_action": "move_next",
+          "expected_coverage_assessment_any_of": [
+            "covered"
+          ],
+          "expected_missing_information": [],
+          "expected_participant_control": "none",
+          "probe_count_before": 0
+        },
+        "participant_text": "I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.",
+        "section_code": "public_use_acceptability",
+        "section_index": 5,
+        "step_id": "S8-T05"
+      }
+    ],
+    "title": "Researcher Exclude"
+  },
+  "harness_events": [
+    {
+      "event": "researcher_create_stakeholder",
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "assigned_protocol": "1",
+            "notes": "dry_run baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "participant_id": "EB-S8-R01-A77CE",
+            "role": "Interview participant",
+            "stakeholder_group": "Evaluation participant"
+          },
+          "method": "POST",
+          "path": "/stakeholders/add/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/stakeholders/?selected=EB-S8-R01-A77CE&created=EB-S8-R01-A77CE",
+          "raw_body_path": "raw/http/001-researcher_create_stakeholder.html",
+          "status_code": 302
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.857452+00:00"
+    },
+    {
+      "event": "researcher_create_session",
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "protocol": "1",
+            "session_code": "EVB-S8-R01-A77CE6FA",
+            "stakeholder": "2"
+          },
+          "method": "POST",
+          "path": "/interviews/add/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/interviews/?session=EVB-S8-R01-A77CE6FA&created=EVB-S8-R01-A77CE6FA",
+          "raw_body_path": "raw/http/002-researcher_create_session.html",
+          "status_code": 302
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.861577+00:00"
+    },
+    {
+      "event": "participant_completed_page",
+      "http": {
+        "request": {
+          "client_role": "participant",
+          "data": {},
+          "method": "GET",
+          "path": "/interview/2277da23-bec8-4001-8b3e-18a382f3b5dd/completed/"
+        },
+        "response": {
+          "content_bytes": 31946,
+          "content_sha256": "610a6ba7627828d449fb0e2442d7285568b7697735c95711b8b4a1186d23fac3",
+          "content_type": "text/html; charset=utf-8",
+          "location": null,
+          "raw_body_path": "raw/http/004-participant_completed_page.html",
+          "status_code": 200
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.990131+00:00"
+    },
+    {
+      "event": "researcher_output_review_page",
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {},
+          "method": "GET",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/"
+        },
+        "response": {
+          "content_bytes": 165291,
+          "content_sha256": "5b5b3361edd3c20276e7aa5db8114688669487dbb853b9f38a58919ee9bb3136",
+          "content_type": "text/html; charset=utf-8",
+          "location": null,
+          "raw_body_path": "raw/http/005-researcher_output_review_page.html",
+          "status_code": 200
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.010777+00:00"
+    },
+    {
+      "event": "review_completion_item_action",
+      "frozen_input": {
+        "action": "include",
+        "reason": "Retained as transcript-grounded topic evidence before the scripted Exclude action.",
+        "section_index": 2
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "digest_action": "approve",
+            "reviewer_comment": "Retained as transcript-grounded topic evidence before the scripted Exclude action."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/digest/2/review/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/#digest-item-2",
+          "raw_body_path": "raw/http/006-s8-review-completion-2.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": [
+            1
+          ]
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.045796+00:00"
+    },
+    {
+      "action": "exclude",
+      "event": "researcher_action",
+      "expected": {
+        "audit_event_retained": true,
+        "excluded_from_final_evidence": true,
+        "overall_approval_recalculated": true,
+        "reason_recorded": true,
+        "review_timestamp_recorded": true,
+        "reviewer_identity_recorded": true
+      },
+      "frozen_input": {
+        "reason": "Excluded from final evidence to test the explicit researcher-control and audit path."
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "digest_action": "exclude",
+            "reviewer_comment": "Excluded from final evidence to test the explicit researcher-control and audit path."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/digest/1/review/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/#digest-item-1",
+          "raw_body_path": "raw/http/007-s8-researcher-exclude.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": [
+            2
+          ]
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.081982+00:00",
+      "section_index": 1
+    },
+    {
+      "event": "review_completion_item_action",
+      "frozen_input": {
+        "action": "include",
+        "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "section_index": 3
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "digest_action": "approve",
+            "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/digest/3/review/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/#digest-item-3",
+          "raw_body_path": "raw/http/008-s8-review-completion-3.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": [
+            3
+          ]
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.116061+00:00"
+    },
+    {
+      "event": "review_completion_item_action",
+      "frozen_input": {
+        "action": "include",
+        "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "section_index": 4
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "digest_action": "approve",
+            "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/digest/4/review/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/#digest-item-4",
+          "raw_body_path": "raw/http/009-s8-review-completion-4.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": [
+            4
+          ]
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.152842+00:00"
+    },
+    {
+      "event": "review_completion_item_action",
+      "frozen_input": {
+        "action": "include",
+        "reason": "Retained as transcript-grounded topic evidence in the scripted review-completion check.",
+        "section_index": 5
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "digest_action": "approve",
+            "reviewer_comment": "Retained as transcript-grounded topic evidence in the scripted review-completion check."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/digest/5/review/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/#digest-item-5",
+          "raw_body_path": "raw/http/010-s8-review-completion-5.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": [
+            5
+          ]
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.186444+00:00"
+    },
+    {
+      "event": "overall_review_action",
+      "expected": {
+        "expected_review_statuses": {
+          "1": "excluded",
+          "2": "approved",
+          "3": "approved",
+          "4": "approved",
+          "5": "approved"
+        },
+        "remaining_items_auto_resolved": false,
+        "review_timestamp_recorded": true,
+        "reviewer_identity_recorded": true,
+        "reviewer_note_recorded": true,
+        "saved_decision": "revision_requested",
+        "scripted_item_actions_complete": true
+      },
+      "frozen_input": {
+        "decision": "request_revision",
+        "participant_meaning_preserved": false,
+        "protocol_boundaries_respected": false,
+        "researcher_note": "All scripted Include and Exclude actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner."
+      },
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "decision": "request_revision",
+            "researcher_note": "All scripted Include and Exclude actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner."
+          },
+          "method": "POST",
+          "path": "/outputs/EVB-S8-R01-A77CE6FA/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/outputs/EVB-S8-R01-A77CE6FA/",
+          "raw_body_path": "raw/http/011-s8-overall-review.html",
+          "status_code": 302
+        }
+      },
+      "observed": {
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [],
+          "review_event_ids": []
+        },
+        "review_decision_after": {
+          "decision": "revision_requested",
+          "id": 1,
+          "limitations_and_missing_information_visible": true,
+          "participant_controls_respected": true,
+          "participant_meaning_preserved": false,
+          "protocol_boundaries_respected": false,
+          "reviewed_at": "2026-08-10T05:37:24.205720+00:00",
+          "reviewer_name_snapshot": "Evaluation Reviewer",
+          "reviewer_note": "All scripted Include and Exclude actions are complete; independent human meaning-preservation and protocol-boundary judgements remain outside the runner.",
+          "source_links_checked": true
+        },
+        "review_decision_before": {
+          "decision": "pending",
+          "id": 1,
+          "limitations_and_missing_information_visible": true,
+          "participant_controls_respected": true,
+          "participant_meaning_preserved": false,
+          "protocol_boundaries_respected": false,
+          "reviewed_at": null,
+          "reviewer_name_snapshot": "",
+          "reviewer_note": "",
+          "source_links_checked": true
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "revision_requested",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "revision_requested",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "needs_review",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.214622+00:00"
+    },
+    {
+      "event": "evidence_record_render",
+      "http": {
+        "request": {
+          "client_role": "researcher",
+          "data": {
+            "session": "EVB-S8-R01-A77CE6FA"
+          },
+          "method": "GET",
+          "path": "/output-quality/export/"
+        },
+        "response": {
+          "content_bytes": 56573,
+          "content_sha256": "77c6376cb6c89556c9f9cb84e9a4c6dcba012cb7064c500f55ecf1076855a90f",
+          "content_type": "text/html",
+          "location": null,
+          "raw_body_path": "raw/http/012-evidence_record_render.html",
+          "status_code": 200
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:24.234618+00:00"
+    }
+  ],
+  "metric_rules_sha256": "fa65a4b0261ebcf714e9374eee814f19892608bff1bd7275a92e4029d56542b4",
+  "notes": [
+    "Execution completion is not a scenario PASS.",
+    "The separate validator has not been run.",
+    "Prompt-only output is persisted without oracle-based correction.",
+    "This run uses a frozen fixture mock and is not formal evidence."
+  ],
+  "protocol_database_id": 1,
+  "protocol_snapshot": {
+    "configuration": {
+      "estimated_duration": "10–15 minutes",
+      "ethics_rules": [
+        "Ask one question at a time.",
+        "Use short, neutral follow-up questions.",
+        "Do not lead the participant toward positive views of PurrStone.",
+        "Do not provide medical advice, diagnosis, or therapy-like interpretation.",
+        "If the participant feels uncomfortable, offer to skip, pause, or stop.",
+        "Generate summaries only from what the participant actually said."
+      ],
+      "interview_mode": "AI-led semi-structured interview",
+      "output_description": "Typed transcript + reviewed extracts by protocol topic",
+      "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+      "sections": [
+        {
+          "assessment_guidance": "Treat acknowledgement as a workflow transition, not research evidence.",
+          "code": "opening",
+          "follow_up_focus": "",
+          "index": 0,
+          "interaction_boundary": "Do not collect research content until the participant acknowledges the design-research boundary and controls.",
+          "label": "Opening",
+          "primary_question": "Before we begin, this interview is about sensory overload.\n\nIn this project, sensory overload means a moment when a place or situation feels overwhelming because there is too much noise, light, movement, crowding, smell, touch, or other sensory input. For example, this might happen in a supermarket, on public transport, or in a busy public space.\n\nI will ask you about one specific moment like this: what happened, what made it overwhelming, how you reacted, and what support might have helped. Later, I will also ask for your reaction to a sensory-support concept called PurrStone.\n\nThis is a design research interview, not medical advice. You can skip any question or stop at any time. Is it okay to continue?",
+          "purpose": "Establish interview purpose, consent reminder, and research boundary.",
+          "required_information": [
+            "consent",
+            "design research boundary",
+            "participant control"
+          ]
+        },
+        {
+          "assessment_guidance": "Mark Protocol coverage as covered only when the response includes a concrete setting, what occurred, and an experienced effect or reason it felt overwhelming.",
+          "code": "experience",
+          "follow_up_focus": "the setting, what happened, or why the situation felt overwhelming",
+          "index": 1,
+          "interaction_boundary": "Ask about one lived experience only; do not request diagnosis or medical explanation.",
+          "label": "Experience",
+          "primary_question": "Can you describe a recent or memorable situation where you felt sensory overload or overwhelmed?",
+          "purpose": "Ask about one recent sensory overload or overwhelm situation.",
+          "required_information": [
+            "where it happened",
+            "what happened",
+            "why it felt overwhelming"
+          ]
+        },
+        {
+          "assessment_guidance": "Mark Protocol coverage as covered only when the response includes at least one trigger and at least one bodily, emotional, cognitive, or behavioural sign.",
+          "code": "triggers_signs",
+          "follow_up_focus": "a missing trigger or a bodily, emotional, cognitive, or behavioural sign",
+          "index": 2,
+          "interaction_boundary": "Do not ask the participant to explain symptoms medically or infer a diagnosis.",
+          "label": "Triggers & signs",
+          "primary_question": "What were the strongest triggers or early signs you noticed, such as sound, light, crowding, movement, body signs, or emotions?",
+          "purpose": "Identify triggers, body signs, and emotional signs.",
+          "required_information": [
+            "sensory triggers",
+            "contextual triggers",
+            "body signs",
+            "emotional signs"
+          ]
+        },
+        {
+          "assessment_guidance": "Assess what the participant did and what support helped, failed, or was missing; partial coverage is acceptable when only one side is present.",
+          "code": "coping_support",
+          "follow_up_focus": "what the participant did to cope or what support would have helped",
+          "index": 3,
+          "interaction_boundary": "Keep the question descriptive; do not offer treatment, therapy, or wellbeing advice.",
+          "label": "Coping & support",
+          "primary_question": "What did you do to cope in that moment, and what kind of support would have helped?",
+          "purpose": "Explore current coping actions, support needs, and unmet needs.",
+          "required_information": [
+            "coping actions",
+            "what helped",
+            "what did not help",
+            "support needs"
+          ]
+        },
+        {
+          "assessment_guidance": "Assess the participant's reaction and reasons without requiring a positive view or coverage of every feature.",
+          "code": "support_concept_reaction",
+          "follow_up_focus": "one useful, concerning, or conditional aspect of the PurrStone concept and why",
+          "index": 4,
+          "interaction_boundary": "Do not lead the participant toward liking PurrStone or claim that it will help.",
+          "label": "Support concept reaction",
+          "primary_question": "PurrStone is a small handheld support object using squeeze interaction, haptic breathing guidance, and optional scent. What is your first reaction to that idea?",
+          "purpose": "Explore reaction to the PurrStone support concept.",
+          "required_information": [
+            "reaction to squeeze",
+            "reaction to haptics",
+            "reaction to scent",
+            "perceived usefulness",
+            "concerns"
+          ]
+        },
+        {
+          "assessment_guidance": "Assess a public or shared context plus at least one condition, concern, or reason affecting acceptability.",
+          "code": "public_use_acceptability",
+          "follow_up_focus": "what would make public or shared use acceptable or unacceptable",
+          "index": 5,
+          "interaction_boundary": "Ask neutrally about acceptability; do not encourage use or minimise embarrassment and shared-space concerns.",
+          "label": "Public-use acceptability",
+          "primary_question": "Would you feel comfortable using something like PurrStone in public or shared settings, such as commuting, studying, or working? Why or why not?",
+          "purpose": "Explore whether the participant would feel comfortable using PurrStone in public or shared settings.",
+          "required_information": [
+            "public comfort",
+            "embarrassment",
+            "discreetness",
+            "scent concern",
+            "shared-space concern"
+          ]
+        },
+        {
+          "assessment_guidance": "This is a fixed researcher handoff, not participant evidence.",
+          "code": "faithful_summary",
+          "follow_up_focus": "",
+          "index": 6,
+          "interaction_boundary": "Do not introduce claims beyond the saved transcript.",
+          "label": "Faithful summary",
+          "primary_question": "Thank you. I will now summarise what you shared for researcher review.",
+          "purpose": "Generate a transcript-grounded draft summary for researcher review.",
+          "required_information": [
+            "transcript-grounded summary",
+            "missing information flags",
+            "researcher review handoff"
+          ]
+        }
+      ],
+      "stakeholder_group": "Sensory-sensitive participants",
+      "title": "Sensory Overload Interview"
+    },
+    "identity": {
+      "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+      "locked_at": "2026-08-10T05:37:11.781798+00:00",
+      "parent_version": null,
+      "status": "locked",
+      "version": 1
+    },
+    "runtime": {
+      "final_section_is_non_research_handoff": true,
+      "max_probes_per_section": 1,
+      "recorded_actions": [
+        "ask_follow_up",
+        "move_next",
+        "flag_missing_and_move_next",
+        "skip",
+        "stop",
+        "boundary_response",
+        "complete"
+      ]
+    },
+    "schema_version": 1
+  },
+  "protocol_snapshot_sha256": "231cf8d1b815b748645d116d34173241462b1b0fef786fbd6aefda77d7207b1a",
+  "raw_model_calls": [
+    {
+      "call_id": "baseline-call-001",
+      "call_index": 1,
+      "completed_at": "2026-08-10T05:37:23.880193+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-001-parsed.json",
+      "parsed_output_sha256": "38721aeb1ccf6c654d371404a129cb15fc7c0a70058ae4dfe1a24ed65e371801",
+      "raw_request_path": "raw/model_calls/baseline-call-001-request.json",
+      "raw_request_sha256": "fd1f9b9ee30f5e2291baf1f51b22906cae59dc2b9af4746c8a3c9e7c0b9c6589",
+      "raw_response_path": "raw/model_calls/baseline-call-001-response.json",
+      "raw_response_sha256": "f8a2565e1302d81c8bb08d672a2992b2ef095ee97a2128ef6f6fdf31508fd9d3",
+      "started_at": "2026-08-10T05:37:23.878385+00:00",
+      "status": "completed",
+      "step_id": "S8-O01",
+      "transport": "frozen_fixture_mock"
+    },
+    {
+      "call_id": "baseline-call-002",
+      "call_index": 2,
+      "completed_at": "2026-08-10T05:37:23.893207+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-002-parsed.json",
+      "parsed_output_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+      "raw_request_path": "raw/model_calls/baseline-call-002-request.json",
+      "raw_request_sha256": "9d46c77be5badc5df3399c817d75f7adb4abb762856d7a3f593521674dde2574",
+      "raw_response_path": "raw/model_calls/baseline-call-002-response.json",
+      "raw_response_sha256": "c96f9acdadde7c79cc37b5b0b9a1e16241d62619016c648d359239ba913e34e1",
+      "started_at": "2026-08-10T05:37:23.890901+00:00",
+      "status": "completed",
+      "step_id": "S8-T01",
+      "transport": "frozen_fixture_mock"
+    },
+    {
+      "call_id": "baseline-call-003",
+      "call_index": 3,
+      "completed_at": "2026-08-10T05:37:23.907273+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-003-parsed.json",
+      "parsed_output_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+      "raw_request_path": "raw/model_calls/baseline-call-003-request.json",
+      "raw_request_sha256": "96d60f378340fcebe5821f9b2babbb4b62cf98b5e700a27ad0c0ad617162f0e8",
+      "raw_response_path": "raw/model_calls/baseline-call-003-response.json",
+      "raw_response_sha256": "631c0bc33e3e00601749990cdef7b1b9582b4a739c74c6e1a7bff44a4e52eae3",
+      "started_at": "2026-08-10T05:37:23.904399+00:00",
+      "status": "completed",
+      "step_id": "S8-T02",
+      "transport": "frozen_fixture_mock"
+    },
+    {
+      "call_id": "baseline-call-004",
+      "call_index": 4,
+      "completed_at": "2026-08-10T05:37:23.921454+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-004-parsed.json",
+      "parsed_output_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+      "raw_request_path": "raw/model_calls/baseline-call-004-request.json",
+      "raw_request_sha256": "4098919f63e9ceb3a9484b368cbd560b762c1d8664f7cc167806fdb9a5d5b11f",
+      "raw_response_path": "raw/model_calls/baseline-call-004-response.json",
+      "raw_response_sha256": "dc8b679a7725fc040daf8a192d3da7aa7752acda9a464423119e908c4a37b002",
+      "started_at": "2026-08-10T05:37:23.918714+00:00",
+      "status": "completed",
+      "step_id": "S8-T03",
+      "transport": "frozen_fixture_mock"
+    },
+    {
+      "call_id": "baseline-call-005",
+      "call_index": 5,
+      "completed_at": "2026-08-10T05:37:23.937143+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-005-parsed.json",
+      "parsed_output_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+      "raw_request_path": "raw/model_calls/baseline-call-005-request.json",
+      "raw_request_sha256": "8aee45aaa57357493221189432ecf81525bff3813de9f6417ed06bf45dd08a0f",
+      "raw_response_path": "raw/model_calls/baseline-call-005-response.json",
+      "raw_response_sha256": "6a42d5ef051740e086a54a4aca5c84bba05787fef0725ef028d35219946b5d19",
+      "started_at": "2026-08-10T05:37:23.933797+00:00",
+      "status": "completed",
+      "step_id": "S8-T04",
+      "transport": "frozen_fixture_mock"
+    },
+    {
+      "call_id": "baseline-call-006",
+      "call_index": 6,
+      "completed_at": "2026-08-10T05:37:23.954581+00:00",
+      "error": null,
+      "kind": "prompt_only_turn",
+      "parsed_output_path": "parsed/model_calls/baseline-call-006-parsed.json",
+      "parsed_output_sha256": "15611f7c9f2a4ee01e5f42b74c8941189b76fcfa138673a50327398c8fa7ab5e",
+      "raw_request_path": "raw/model_calls/baseline-call-006-request.json",
+      "raw_request_sha256": "ef1fd08024a14451eef5907b4270641c9000db219a004c5e6fd84d8d7862ee2c",
+      "raw_response_path": "raw/model_calls/baseline-call-006-response.json",
+      "raw_response_sha256": "33b8b1c9117ba3bb1f96e6df29dfdfb5468ae1e2d71f5d9cccb0424dea39b6ce",
+      "started_at": "2026-08-10T05:37:23.950823+00:00",
+      "status": "completed",
+      "step_id": "S8-T05",
+      "transport": "frozen_fixture_mock"
+    }
+  ],
+  "repetition": 1,
+  "review_completion_policy_sha256": "74b32fd74d45033331d32f3aae605e68066f1b86ef98e44d3c2c48f6ef064c72",
+  "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+  "run_status": "completed",
+  "run_type": "dry_run",
+  "runtime_identity": {
+    "adapter_module": "evaluation.baseline_adapter",
+    "django": "5.2.14",
+    "mock_transport": true,
+    "model": "gpt-4.1-mini",
+    "model_parameters_by_call_type": {
+      "graph_approved_follow_up_wording": "not_applicable",
+      "prompt_only_turn": {
+        "max_output_tokens": 500,
+        "store": false,
+        "temperature": 0
+      }
+    },
+    "model_transport": "frozen_fixture_mock",
+    "openai_api_key_configured": false,
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "runner_module": "evaluation.baseline_runner"
+  },
+  "scenario_id": "S8",
+  "scenario_instance_sha256": "9227898c3632fa44f665efdb446dd9baf35b8013f3ae3c8a79874e91374820e0",
+  "scenario_sha256": "5df43fb632051c6921e98bc5c79feca759a79315abccf79e0472a8715063b2b6",
+  "scenario_steps": [
+    {
+      "expected": {
+        "consent_confirmed": true,
+        "consent_confirmed_at_recorded": true,
+        "consent_snapshot_recorded": true,
+        "consent_snapshot_sha256_valid": true,
+        "research_content_before_consent": false
+      },
+      "frozen_input": {},
+      "http": {
+        "request": {
+          "client_role": "participant",
+          "data": {
+            "consent_confirmed": "yes"
+          },
+          "method": "POST",
+          "path": "/interview/2277da23-bec8-4001-8b3e-18a382f3b5dd/consent/"
+        },
+        "response": {
+          "content_bytes": 0,
+          "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "content_type": "text/html; charset=utf-8",
+          "location": "/interview/2277da23-bec8-4001-8b3e-18a382f3b5dd/session/",
+          "raw_body_path": "raw/http/003-s8-c01.html",
+          "status_code": 302
+        }
+      },
+      "kind": "consent",
+      "observed": {
+        "agent_decisions": [],
+        "created_records": {
+          "agent_decision_ids": [],
+          "digest_item_ids": [],
+          "message_ids": [
+            1
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 0,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": false,
+          "consent_confirmed_at": null,
+          "consent_notice_version": "",
+          "consent_snapshot": {},
+          "consent_snapshot_is_valid": false,
+          "consent_snapshot_sha256": "",
+          "current_section_index": 0,
+          "id": 2,
+          "output_quality_status": "not_started",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "not_reviewed",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": null,
+          "status": "ready",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.872888+00:00",
+      "step_id": "S8-C01"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-001",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-001-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-001-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-001-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": false,
+        "eligible_for_ai": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "not_assessed"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "Yes, it is okay to continue.",
+        "section_code": "opening",
+        "section_index": 0
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "not_assessed",
+            "covered_information": [],
+            "created_at": "2026-08-10T05:37:23.882165+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 1,
+            "message_id": 2,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Opening",
+            "section_code": "opening",
+            "section_index": 0,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 2
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            1
+          ],
+          "digest_item_ids": [],
+          "message_ids": [
+            2,
+            3
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 1,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 0,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.885414+00:00",
+      "step_id": "S8-O01"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-002",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-002-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-002-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-002-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "covered"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "On a crowded train, the carriage stopped between stations while alarms sounded. The noise and crowding made me feel trapped and overwhelmed.",
+        "section_code": "experience",
+        "section_index": 1
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "covered",
+            "covered_information": [
+              "mocked infrastructure coverage"
+            ],
+            "created_at": "2026-08-10T05:37:23.894989+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 2,
+            "message_id": 4,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Experience",
+            "section_code": "experience",
+            "section_index": 1,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 4
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            2
+          ],
+          "digest_item_ids": [],
+          "message_ids": [
+            4,
+            5
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 2,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 1,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.898138+00:00",
+      "step_id": "S8-T01"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-003",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-003-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-003-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-003-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "covered"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "The sharp braking noise, flashing carriage lights, and crowding were the strongest triggers. My shoulders tightened, my heart raced, and I felt panicked.",
+        "section_code": "triggers_signs",
+        "section_index": 2
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "covered",
+            "covered_information": [
+              "mocked infrastructure coverage"
+            ],
+            "created_at": "2026-08-10T05:37:23.909333+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 3,
+            "message_id": 6,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Triggers & signs",
+            "section_code": "triggers_signs",
+            "section_index": 2,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 6
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            3
+          ],
+          "digest_item_ids": [],
+          "message_ids": [
+            6,
+            7
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 3,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 2,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.912339+00:00",
+      "step_id": "S8-T02"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-004",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-004-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-004-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-004-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "covered"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "I covered my ears, focused on slow breathing, and left at the next stop. A quieter carriage or a warning before the alarm would have helped. The repeated announcements did not help because they added more noise.",
+        "section_code": "coping_support",
+        "section_index": 3
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "covered",
+            "covered_information": [
+              "mocked infrastructure coverage"
+            ],
+            "created_at": "2026-08-10T05:37:23.923415+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 4,
+            "message_id": 8,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Coping & support",
+            "section_code": "coping_support",
+            "section_index": 3,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 8
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            4
+          ],
+          "digest_item_ids": [],
+          "message_ids": [
+            8,
+            9
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 4,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 3,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.926620+00:00",
+      "step_id": "S8-T03"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-005",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-005-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-005-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-005-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "covered"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "The squeeze interaction seems useful because it would give my hands a focus, and gentle haptics might help me pace my breathing. I would avoid scent because it can be another trigger, and I would want every feature to be optional.",
+        "section_code": "support_concept_reaction",
+        "section_index": 4
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "covered",
+            "covered_information": [
+              "mocked infrastructure coverage"
+            ],
+            "created_at": "2026-08-10T05:37:23.939639+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 5,
+            "message_id": 10,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Support concept reaction",
+            "section_code": "support_concept_reaction",
+            "section_index": 4,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 10
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            5
+          ],
+          "digest_item_ids": [],
+          "message_ids": [
+            10,
+            11
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 5,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 4,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.943052+00:00",
+      "step_id": "S8-T04"
+    },
+    {
+      "adapter": {
+        "call_id": "baseline-call-006",
+        "call_status": "completed",
+        "execution_channel": "prompt_only_adapter",
+        "output_schema_sha256": "5963a923a291e72bce48858e7c39e92f1360b0e75ffd924d764b1f0f1de367d0",
+        "parsed_output_path": "parsed/model_calls/baseline-call-006-parsed.json",
+        "prompt_sha256": "3b4f19124936f42ca6bb778f5d249713da8ef041868e78e4c4e0d3fa388332c7",
+        "raw_request_path": "raw/model_calls/baseline-call-006-request.json",
+        "raw_response_path": "raw/model_calls/baseline-call-006-response.json"
+      },
+      "expected": {
+        "eligible_for_ac": true,
+        "expected_action": "move_next",
+        "expected_coverage_assessment_any_of": [
+          "covered"
+        ],
+        "expected_missing_information": [],
+        "expected_participant_control": "none",
+        "probe_count_before": 0
+      },
+      "frozen_input": {
+        "participant_text": "I might use it while commuting if it looked discreet and made no sound. I would be embarrassed by obvious lights, and scent would be a concern for people nearby in a shared space.",
+        "section_code": "public_use_acceptability",
+        "section_index": 5
+      },
+      "kind": "participant_turn",
+      "observed": {
+        "agent_decisions": [
+          {
+            "action": "move_next",
+            "coverage_assessment": "covered",
+            "covered_information": [
+              "mocked infrastructure coverage"
+            ],
+            "created_at": "2026-08-10T05:37:23.957073+00:00",
+            "decision_reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "id": 6,
+            "message_id": 12,
+            "missing_information": [],
+            "participant_control": "none",
+            "probe_count_before": 0,
+            "reason": "Frozen fixture response for non-formal infrastructure testing.",
+            "run_id": "baseline-s8-r01-20260810T053723837025Z-a77ce6fa",
+            "section": "Public-use acceptability",
+            "section_code": "public_use_acceptability",
+            "section_index": 5,
+            "selected_action": "move_next",
+            "session_id": 2,
+            "source_message_id": 12
+          }
+        ],
+        "created_records": {
+          "agent_decision_ids": [
+            6
+          ],
+          "digest_item_ids": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "message_ids": [
+            12,
+            13
+          ],
+          "review_event_ids": []
+        },
+        "session_after": {
+          "completed_at": "2026-08-10T05:37:23.957206+00:00",
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 6,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "completed",
+          "summary_generated": true,
+          "transcript_saved": true
+        },
+        "session_before": {
+          "completed_at": null,
+          "consent_confirmed": true,
+          "consent_confirmed_at": "2026-08-10T05:37:23.869223+00:00",
+          "consent_notice_version": "purrstone-ai-transparency-v1",
+          "consent_snapshot": {
+            "acknowledgement": "I understand the purpose, AI-supported process, limits, participant controls, and researcher-review boundary described above, and I want to continue.",
+            "ai_role": {
+              "checks": "The system makes a provisional check of whether your responses explicitly cover information that the researcher defined for each Protocol topic.",
+              "does_not_check": "It does not assess whether your account is true, interpret its psychological meaning, determine clinical significance, or judge its research value.",
+              "follow_up": "It may generate and ask up to one follow-up question for each interview topic.",
+              "heading": "How the AI-supported interview works",
+              "researcher_review": "Any material included in the final Evidence Record must be reviewed and approved by a researcher.",
+              "workflow_effect": "The provisional coverage check may determine whether the interview moves to the next topic or asks that one follow-up."
+            },
+            "notice_version": "purrstone-ai-transparency-v1",
+            "participant_rights": [
+              "You can skip any question.",
+              "You can stop the interview at any time.",
+              "Please do not share sensitive personal information that you are not comfortable having saved in the typed transcript.",
+              "Your typed responses will be saved for researcher review."
+            ],
+            "protocol": {
+              "estimated_duration": "10–15 minutes",
+              "family_id": "40bfd935-42fd-451b-8860-9ce980f663b6",
+              "interview_mode": "AI-led semi-structured interview",
+              "output_description": "Typed transcript + reviewed extracts by protocol topic",
+              "purpose": "Explore experiences of sensory overload, everyday overwhelm, coping behaviours, support needs, reactions to the PurrStone concept, and public-use acceptability.",
+              "research_topics": [
+                "Experience",
+                "Triggers & signs",
+                "Coping & support",
+                "Support concept reaction",
+                "Public-use acceptability"
+              ],
+              "stakeholder_group": "Sensory-sensitive participants",
+              "title": "Sensory Overload Interview",
+              "version": 1
+            },
+            "schema_version": "1.0",
+            "study_boundary": "This interview is for design research only. It does not provide medical advice, diagnosis, treatment recommendations, or a research conclusion."
+          },
+          "consent_snapshot_is_valid": true,
+          "consent_snapshot_sha256": "afd8184b5a3df9434bcabf78c7c26e314f82841183a44f5b18dfe1de79109eaa",
+          "current_section_index": 5,
+          "id": 2,
+          "output_quality_status": "waiting",
+          "participant_id": "EB-S8-R01-A77CE",
+          "protocol_id": 1,
+          "protocol_status": "locked",
+          "review_status": "needs_review",
+          "session_code": "EVB-S8-R01-A77CE6FA",
+          "started_at": "2026-08-10T05:37:23.869223+00:00",
+          "status": "in_progress",
+          "summary_generated": false,
+          "transcript_saved": false
+        }
+      },
+      "recorded_at": "2026-08-10T05:37:23.976780+00:00",
+      "step_id": "S8-T05"
+    }
+  ],
+  "schema_version": "1.0",
+  "started_at": "2026-08-10T05:37:23.837693+00:00",
+  "validation_status": "not_run"
+}

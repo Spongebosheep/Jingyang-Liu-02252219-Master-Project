@@ -1,0 +1,12 @@
+Final read-only verification commands recorded in the retained logs
+
+sha256sum -c SOURCE_MANIFEST.sha256
+python -m evaluation.validate_specs
+python manage.py check
+python manage.py makemigrations --check --dry-run
+python manage.py migrate --noinput
+python manage.py test
+
+Recorded result: source-manifest checks passed; specification validation PASS; Django system check reported no issues; no migration changes were detected; migrations applied or were already current; 197 tests passed.
+
+The Formal 32 was not rerun during this offline verification. Its immutable run records and validator results are preserved in the sealed technical package.

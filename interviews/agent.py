@@ -1,4 +1,5 @@
 from django.utils import timezone
+from .digest import ensure_digest_items
 from .models import InterviewSession, Message, Stakeholder
 from .langgraph_agent import (
     handle_participant_reply_with_graph,
@@ -71,6 +72,7 @@ def complete_interview(session):
     session.output_quality_status = InterviewSession.OutputQualityStatus.WAITING
     session.completed_at = timezone.now()
     session.save()
+    ensure_digest_items(session)
 
     session.stakeholder.status = Stakeholder.Status.COMPLETED
     session.stakeholder.save()

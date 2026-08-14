@@ -1,0 +1,93 @@
+{% extends "interviews/base.html" %}
+
+{% block content %}
+<div class="page-header-row">
+    <div>
+        <h1 class="overview-title">Protocol library</h1>
+        <p class="overview-kicker">
+            Create a new interview protocol or open an existing version. A version is locked once it is used by an interview session.
+        </p>
+    </div>
+
+    <a class="button" href="{% url 'protocol_create' %}">+ New protocol</a>
+</div>
+
+<div class="card grouping-card">
+    <div class="info-icon">
+        <svg viewBox="0 0 24 24">
+            <path d="M7 3h7l5 5v13H7z"></path>
+            <path d="M14 3v5h5"></path>
+            <path d="M9.5 13h7"></path>
+            <path d="M9.5 17h5"></path>
+        </svg>
+    </div>
+    <div>
+        <h2>Evaluation boundary</h2>
+        <p class="muted">
+            The seeded Sensory Overload Interview is the only protocol evaluated in this project.
+            New protocols demonstrate that the workflow is configurable; their research quality still requires separate design and validation.
+        </p>
+    </div>
+</div>
+
+<div class="metric-grid-3">
+    <div class="metric-card metric-card-horizontal">
+        <div>
+            <div class="metric-label">Protocol families</div>
+            <div class="metric">{{ family_count }}</div>
+        </div>
+    </div>
+    <div class="metric-card metric-card-horizontal">
+        <div>
+            <div class="metric-label">Saved versions</div>
+            <div class="metric">{{ version_count }}</div>
+        </div>
+    </div>
+    <div class="metric-card metric-card-horizontal">
+        <div>
+            <div class="metric-label">Version rule</div>
+            <div class="metric" style="font-size: 20px;">Used versions stay locked</div>
+        </div>
+    </div>
+</div>
+
+<div class="protocol-library-grid">
+    {% for family in protocol_families %}
+        <section class="card protocol-library-card">
+            <div class="protocol-library-heading">
+                <div>
+                    <div class="metric-label">Protocol family</div>
+                    <h2>{{ family.latest.title }}</h2>
+                    <p class="muted">{{ family.latest.stakeholder_group }}</p>
+                </div>
+                <span class="status {% if family.latest.is_locked %}status-muted{% else %}status-blue{% endif %}">
+                    Latest: v{{ family.latest.version }} · {% if family.latest.is_locked %}Locked{% else %}Draft{% endif %}
+                </span>
+            </div>
+
+            <p>{{ family.latest.purpose }}</p>
+
+            <div class="protocol-library-stats">
+                <span>{{ family.version_count }} version{{ family.version_count|pluralize }}</span>
+                <span>{{ family.session_count }} session{{ family.session_count|pluralize }}</span>
+                <span>{{ family.stakeholder_count }} assigned stakeholder{{ family.stakeholder_count|pluralize }}</span>
+            </div>
+
+            <div class="protocol-version-links">
+                <span class="metric-label">Open version</span>
+                {% for version in family.versions %}
+                    <a class="button-secondary" href="{% url 'protocol_detail' version.slug %}">
+                        v{{ version.version }} · {% if version.is_locked %}Locked{% else %}Draft{% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    {% empty %}
+        <section class="card">
+            <h2>No protocols yet</h2>
+            <p class="muted">Create a protocol to define an interview flow.</p>
+            <a class="button" href="{% url 'protocol_create' %}">Create first protocol</a>
+        </section>
+    {% endfor %}
+</div>
+{% endblock %}

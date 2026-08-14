@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "4.0",
+  "created_on": "2026-08-06",
+  "supersedes": "freeze_manifest.v3.json",
+  "revision_reason": "Pre-formal-run baseline implementation freeze: add the versioned prompt-only control policy and strict output schema required by the previously frozen baseline contract. Scenarios, oracle, metric definitions and baseline fairness rules are unchanged. No formal run or live OpenAI call had started.",
+  "product_baseline": {
+    "authoritative_phase4_commit": "da71a3f464402091dae412b8be4f54b8d97b7e57",
+    "verified_combined_archive_sha256": "6196a48b5641f78cc710559fe40f57f17cafd5412b2b0fab854f600ab78c4a4d",
+    "local_baseline_commit": "ed109c1",
+    "controlled_file_count": 63
+  },
+  "formal_runs_started": false,
+  "live_openai_gate": {
+    "status": "PENDING",
+    "required_fields": {
+      "status": "PASS",
+      "live_assessment": true,
+      "live_follow_up_wording": true
+    },
+    "mock_or_fallback_is_acceptable": false
+  },
+  "run_plan": {
+    "minimum_individual_sessions": 16,
+    "minimum_matched_pairs": 8,
+    "recommended_individual_sessions": 32,
+    "recommended_matched_pairs": 16,
+    "recommended_repetitions_per_condition": {
+      "S1": 3,
+      "S2": 3,
+      "S3": 3,
+      "S4": 1,
+      "S5": 1,
+      "S6": 3,
+      "S7": 1,
+      "S8": 1
+    }
+  },
+  "frozen_files": {
+    "baseline_contract.v1.json": "a08becfccfa1ee90ad4eb0a645a1e1f99c6db0725699617fe41eeae77fbd64a6",
+    "metrics.v2.json": "9c37bb10d9ae6dcf56f25717b682a33c4cfab1b7780a1fc611ab18070808b782",
+    "scenarios.v3.json": "09be36384bfcb7e369b0dea43d165e24c4923c9fbfea3b00ff3d71a7907f86d6",
+    "prompt_only_output_schema.v1.json": "f5a3552a8da48b8520649e406b2392fc42d66ecdd3e7b4815852e15234d7c130",
+    "../prompts/prompt_only_baseline.v1.txt": "cb917c128eda34e8723f0f9a2030fbe9a661a724e457a08e76e9865b0227aa76"
+  }
+}

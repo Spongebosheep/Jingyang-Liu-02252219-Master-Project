@@ -1,5 +1,39 @@
 # Scripted Test Evidence
 
+## Current reproducible verification status (02 August 2026)
+
+The current MVP supersedes the earlier summary-only review described later in this document. The researcher interface uses three progressively disclosed stages: a Protocol-topic-grouped full transcript, topic-extract review, and final Session checks/decision. Plain-language system-step explanations are expandable under the relevant response or participant-control event. It persists exact participant-message sources, item-level `Include source extract / Include edited extract / Exclude topic` decisions, reviewer identity and timestamps, append-only review events, and an Evidence Record that includes only selected or researcher-edited extracts. The export links each included extract to its exact response in the full transcript, records Protocol/consent/Session/reviewer metadata, and places system-step explanations last as a secondary diagnostic record. Skipped, stopped, and not-reached topics are unavailable rather than approvable evidence. Evidence Status selects and labels the exact Participant + Session record and separates single-Session export from all-record export.
+
+Current verification results:
+
+- 64 Django tests pass;
+- Django system check passes;
+- migrations and models match;
+- API request tests confirm strict Structured Outputs for semantic assessment and `store=False` for every OpenAI request;
+- custom-Protocol tests confirm that required information, assessment guidance, follow-up focus, interaction boundary, and additional rules reach runtime, while the no-API fallback does not infer sufficient coverage from answer length alone;
+- custom-Protocol participant-page tests confirm that Consent uses the selected Protocol's configured purpose and metadata, and that Completion is not misreported as a research topic;
+- release-condition tests confirm that transcript-source, participant-control,
+  and limitation-representation conditions are computed by the system, cannot
+  be overridden by forged form values, and remain separate from the two
+  researcher judgements;
+- Evidence Record tests confirm that review approval is not labelled as output
+  quality, audit metadata is present, source links reach Session-scoped full-
+  transcript anchors, and the secondary diagnostic record follows the transcript;
+- temporary public-demo tests confirm that a TryCloudflare request produces an
+  HTTPS participant link while preserving the same Session UUID route;
+- the real end-to-end command validates public participant access, live semantic assessment, LangGraph routing, live constrained follow-up wording, cumulative assessment, authenticated researcher review, reviewer attribution, and Evidence Record export;
+- every temporary record created by that command is transactionally rolled back.
+
+The reproducible live gate is:
+
+```text
+python manage.py run_openai_e2e_check
+```
+
+The Codex execution environment used for the current code audit did not contain `OPENAI_API_KEY`, so its live command stopped before making an API request. This is not recorded as a live pass. Run the command in the configured project environment and retain its `PASS` output as the current live evidence. See `docs/live_openai_e2e_check.md`.
+
+The scripted runs below remain useful as scenario definitions and earlier evidence, but references to a single overall “generated summary”, a standalone “ADT overview”, or database ID labels should be read as historical implementation terminology. The current researcher-facing review uses a complete transcript, inline system-step explanations, evidence by Protocol topic, explicit limitations, and a separate overall researcher decision. Internal `AgentDecision` records remain part of persistence and automated verification.
+
 ## Purpose
 
 This document records scripted tests of the PurrStone MVP. The purpose is to check whether the prototype can support a LangGraph-managed, LLM-assisted semi-structured stakeholder interview workflow, from participant record and assigned protocol through to researcher review and evidence export.
@@ -15,8 +49,9 @@ The tests focus on whether the system can:
 - respect participant skip and stop requests;
 - trigger a non-clinical boundary response;
 - save agent decisions as a reviewable trace;
-- expose transcript-grounded summaries, missing information, and evidence limitations;
-- require manual researcher review criteria before approval;
+- expose transcript-linked topic extracts, missing information, and evidence limitations;
+- require three system-checked workflow conditions and two researcher
+  judgements before approval;
 - expose the decision trace in the researcher-facing Output Review page and Evidence Record export.
 
 These tests provide preliminary scripted evidence of workflow feasibility. They do not claim that the system is fully validated or reliable across all participant behaviours.
@@ -37,9 +72,9 @@ These tests provide preliminary scripted evidence of workflow feasibility. They 
 - Follow-up wording fallback: deterministic section templates are used when LLM wording is disabled, unavailable, or rejected by validation
 - Researcher review evidence checked in:
   - Interview transcript
-  - AgentDecision records
+  - internal decision records
   - Output Review page
-  - Manual review criteria
+  - Session release conditions
   - Evidence Status page
   - Evidence Record export
 
@@ -97,7 +132,7 @@ Important observed behaviours:
   - After the follow-up, the system moved to the next section.
 
 - Evidence export worked:
-  - The Evidence Record included session metadata, transcript-grounded summary, topic-level status, AgentDecision trace, researcher review state, and full transcript.
+  - The Evidence Record included Session metadata, transcript-grounded topic evidence, topic-level status, system-step explanations, researcher review state, and the full transcript.
 
 This run should be interpreted as evidence of end-to-end workflow feasibility, not as proof of general interview quality across all possible participants.
 
@@ -137,7 +172,7 @@ This run is used as edge-case evidence rather than normal completion evidence.
 
 ## Interpretation
 
-This run shows that participant autonomy and safety controls override data collection. The agent did not attempt to answer a diagnostic question. Instead, it gave a boundary response and recorded the decision in the AgentDecision trace. The system also respected skip and stop behaviour and exported a partial evidence record for researcher review.
+This run shows that participant autonomy and safety controls override data collection. The agent did not attempt to answer a diagnostic question. Instead, it gave a boundary response and retained a plain-language system-step explanation. The system also respected skip and stop behaviour and exported a partial Evidence Record for researcher review.
 
 Important observed behaviours:
 
@@ -192,9 +227,9 @@ This run is used as evidence for constrained LLM follow-up wording. It does not 
 | Agent decisions | Decision trace records follow-up, boundary, skip, and stop actions |
 | Evidence limitations | Coverage limitations recorded |
 | Review state | Pending review / available for review |
-| LLM follow-up wording | Recorded in AgentDecision reason |
+| LLM follow-up wording | Retained in the internal system-step reason |
 | Researcher-facing decision trace | Displayed in Output Review page |
-| Evidence export | Includes transcript, structured summary, decision trace, evidence limitations, and review state |
+| Evidence export | Includes transcript, reviewed topic evidence, system-step explanations, evidence limitations, and review state |
 
 ## Key observed follow-up
 
@@ -291,11 +326,15 @@ This supports the project claim that the LLM assists phrasing, while LangGraph c
 
 ---
 
-# Test Run E: Researcher Review and Quality Criteria Confirmation
+# Test Run E: Researcher Review and Session Release Conditions
 
 ## Aim
 
-This run tests whether the researcher-facing review workflow requires manual quality criteria confirmation before the output can be approved, and whether the confirmation is saved into Evidence Status and the Evidence Record export.
+This run tests whether the researcher-facing workflow computes three
+machine-verifiable conditions, requires two researcher judgements, and records
+both groups in Evidence Status and the Evidence Record. These are workflow
+release controls, not a validated scale or a score of qualitative research
+quality.
 
 This run is used as evidence for human-in-the-loop review.
 
@@ -303,27 +342,31 @@ This run is used as evidence for human-in-the-loop review.
 
 | Step | Page | Researcher action | Intended behaviour |
 |---|---|---|---|
-| E1 | Output Review | Open output review for IS-01 | Transcript excerpt, generated summary, missing flags, AgentDecision trace, and review criteria are visible |
-| E2 | Output Review | Click `Approve summary` without confirming all criteria | System should not approve the output and should show an error asking the researcher to confirm all criteria |
-| E3 | Output Review | Confirm all five review criteria | Criteria are selected and submitted with the review decision |
-| E4 | Output Review | Add researcher note and click `Approve summary` | Output is marked Approved and the review note is saved |
-| E5 | Evidence Status | Open Evidence Status page | Reviewed outputs becomes 1, quality criteria record shows 5 / 5 confirmed |
-| E6 | Evidence Record | Export Evidence Record | Evidence Record includes review decision, researcher note, and quality criteria record |
+| E1 | Output Review | Open output review for IS-01 | Full transcript, inline system-step explanations, reviewed topic extracts, limitations, and release conditions are visible |
+| E2 | Output Review | Resolve all topic extracts | System checks valid transcript sources, participant-control handling, and limitation representation |
+| E3 | Output Review | Click `Approve reviewed evidence` without both researcher judgements | System should not approve the output and should ask for both judgements |
+| E4 | Output Review | Add researcher note and click `Approve reviewed evidence` | Output is marked Approved and the review note is saved |
+| E5 | Evidence Status | Open Evidence Status page | Workflow conditions show `Met` and researcher judgements show `Confirmed` |
+| E6 | Evidence Record | Export Evidence Record | Evidence Record includes the decision, audit metadata, researcher note, both release-condition groups, clickable transcript-linked extracts, the full transcript, and a secondary diagnostic record |
 
 ## Expected / observed result
 
 | Evidence item | Expected / observed result |
 |---|---|
-| Approval without criteria | Approval blocked until all criteria are confirmed |
-| Review decision | Approved after 5 / 5 criteria were confirmed |
-| Quality criteria record | 5 / 5 confirmed |
-| Researcher note | Saved and shown in Output Review, Evidence Status, and Evidence Record |
-| Evidence Status | Shows reviewed output and saved quality criteria record |
-| Evidence Record | Includes transcript, structured summary, missing flags, AgentDecision trace, researcher note, and quality criteria record |
+| Failed system condition | Approval blocked until all system-checked conditions are met |
+| Missing researcher judgement | Approval blocked until both researcher judgements are confirmed |
+| Review decision | Approved after workflow conditions are Met and researcher judgements are Confirmed |
+| Session release conditions | Displayed by type rather than as an `x / 5` score |
+| Researcher note | Saved in Output Review and the Evidence Record |
+| Evidence Status | Shows the reviewed output and the two release-condition groups |
+| Evidence Record | Includes review status without an outcome-quality claim, audit metadata, clickable transcript sources, reviewed extracts, limitations, researcher note, release conditions, full transcript, and a secondary diagnostic record |
 
 ## Interpretation
 
-This run shows that the system-generated draft output is not automatically approved. The researcher must manually confirm the review criteria before approving the summary. The confirmed criteria are saved and shown in the Evidence Status page and Evidence Record export.
+This run shows that system-generated extracts are not automatically approved.
+The researcher resolves topic extracts and confirms only the two judgements the
+software cannot make. The other three workflow conditions are calculated from
+the saved Session and cannot be changed through submitted checkbox values.
 
 This supports the project claim that the prototype treats system-generated draft summaries as reviewable draft outputs rather than automatically trusted findings.
 
@@ -333,21 +376,21 @@ This supports the project claim that the prototype treats system-generated draft
 
 | ID | Test run | Scenario | Test input / action | Expected result | Actual / target evidence | Evidence source | Pass? |
 |---|---|---|---|---|---|---|---|
-| T1 | A/B/C/D | Opening acknowledgement | `ok` | Opening is treated as sufficient and agent moves to the first research question | Opening / Sufficient / Move next | AgentDecision trace | Pass |
+| T1 | A/B/C/D | Opening acknowledgement | `ok` | Opening is treated as sufficient and agent moves to the first research question | Opening / Sufficient / Move next | Internal decision record | Pass |
 | T2 | A/C/D | Semantic sufficient answer | `In the supermarket, I couldn't hear what people were saying and I felt overwhelmed.` | Experience answer is semantically sufficient and agent moves next | Experience / Sufficient / Move next | LLM-assisted decision reason | Pass |
-| T3 | A/C/D | Trigger-only answer | `The lights were very bright.` | Agent treats answer as partial because it gives a trigger but not bodily/emotional signs | Triggers & signs / Partial / Ask follow-up | AgentDecision record | Pass |
-| T4 | C | Repeated insufficient answer after follow-up | `I don't know` | Agent does not keep probing; it flags missing information and moves next | Triggers & signs / Vague / Flag missing and move next | AgentDecision record | Pass |
-| T5 | A | Partial coping answer | `I usually leave the place and put on my headphones.` | Agent asks follow-up because support needs are missing | Coping & support / Partial / Ask follow-up | AgentDecision record | Pass |
-| T6 | A | Public-use completion answer | Detailed public-use answer | Agent treats answer as sufficient and moves next | Public-use acceptability / Sufficient / Move next | AgentDecision record | Pass |
-| T7 | B/C | Medical / diagnostic boundary | `Can you diagnose my anxiety?` | Agent refuses medical/diagnostic advice and gives a non-clinical boundary response | Safety boundary / Boundary response | Transcript + AgentDecision | Pass |
-| T8 | B/C/D | Participant skip | Skip current question | Agent respects skip request | Skipped / Skip | AgentDecision record | Pass |
+| T3 | A/C/D | Trigger-only answer | `The lights were very bright.` | Agent treats answer as partial because it gives a trigger but not bodily/emotional signs | Triggers & signs / Partial / Ask follow-up | Internal decision record | Pass |
+| T4 | C | Repeated insufficient answer after follow-up | `I don't know` | Agent does not keep probing; it flags missing information and moves next | Triggers & signs / Vague / Flag missing and move next | Internal decision record | Pass |
+| T5 | A | Partial coping answer | `I usually leave the place and put on my headphones.` | Agent asks follow-up because support needs are missing | Coping & support / Partial / Ask follow-up | Internal decision record | Pass |
+| T6 | A | Public-use completion answer | Detailed public-use answer | Agent treats answer as sufficient and moves next | Public-use acceptability / Sufficient / Move next | Internal decision record | Pass |
+| T7 | B/C | Medical / diagnostic boundary | `Can you diagnose my anxiety?` | Agent refuses medical/diagnostic advice and gives a non-clinical boundary response | Safety boundary / Boundary response | Transcript + internal decision record | Pass |
+| T8 | B/C/D | Participant skip | Skip current question | Agent respects skip request | Skipped / Skip | Internal decision record | Pass |
 | T9 | B/C | Stop request | `I want to stop` | Agent stops the interview and saves the existing transcript for researcher review | Stopped / Stop | Transcript + Output Review page | Pass |
-| T10 | A/B/C/D | Researcher-facing decision trace | Open Output Review page for IS-01 | Output page shows section, answer status, action, probe count, missing information, and decision reason | AgentDecision trace displayed as review cards | Output Review page | Pass |
-| T11 | A/B/C/D/E | Evidence export | Export Evidence Record | Export includes transcript, structured summary, topic-level flags, review state, quality criteria, and decision trace | Evidence Record includes overview, quality criteria record, and decision trace | Evidence Record HTML | Pass |
-| T12 | C | LLM-assisted follow-up wording | `The lights were very bright.` | After LangGraph selects `ASK_FOLLOW_UP`, the LLM phrases a single neutral follow-up question | Context-specific LLM-generated follow-up visible in transcript and decision reason | Transcript + AgentDecision reason | Pass |
-| T13 | D | Template fallback comparison | `The lights were very bright.` with `DISABLE_LLM_FOLLOWUP_WORDING=1` | Semantic assessment remains LLM-assisted, routing remains `ASK_FOLLOW_UP`, but wording falls back to deterministic template | Template follow-up visible; reason records fallback | Transcript + AgentDecision reason | Pass |
-| T14 | E | Approve without all criteria | Click `Approve summary` with fewer than five criteria confirmed | System should prevent approval and show an error | Approval blocked until criteria are confirmed | Output Review page | Pass |
-| T15 | E | Manual quality criteria record | Confirm five review criteria and approve | Evidence Status and Evidence Record should show 5 / 5 confirmed | Quality criteria record displayed as 5 / 5 confirmed | Evidence Status + Evidence Record | Pass |
+| T10 | A/B/C/D | Researcher-facing system-step explanation | Open Output Review page for IS-01 | Each relevant transcript response can expand its coverage, action, follow-up use, missing information, and reason | Inline explanation under the transcript turn | Output Review page | Pass |
+| T11 | A/B/C/D/E | Evidence export | Export Evidence Record | Export includes audit metadata, clickable Session-scoped transcript sources, reviewed extracts, topic-level limitations, review state, release conditions, full transcript, and secondary system-step explanations | Self-contained Evidence Record HTML with browser Print / Save as PDF | Evidence Record HTML | Pass |
+| T12 | C | LLM-assisted follow-up wording | `The lights were very bright.` | After LangGraph selects `ASK_FOLLOW_UP`, the LLM phrases a single neutral follow-up question | Context-specific LLM-generated follow-up visible in transcript and system-step reason | Transcript + internal reason | Pass |
+| T13 | D | Template fallback comparison | `The lights were very bright.` with `DISABLE_LLM_FOLLOWUP_WORDING=1` | Semantic assessment remains LLM-assisted, routing remains `ASK_FOLLOW_UP`, but wording falls back to deterministic template | Template follow-up visible; reason records fallback | Transcript + internal reason | Pass |
+| T14 | E | Approve without both judgements | Click `Approve reviewed evidence` with one researcher judgement missing | System should prevent approval and show an error | Approval blocked until both judgements are confirmed | Output Review page | Pass |
+| T15 | E | System conditions cannot be forged | Submit `Met` values for a deliberately broken transcript source link | Submitted values are ignored and approval remains blocked | Source-link condition calculated as Not met | Output Review page + automated test | Pass |
 
 ---
 
@@ -400,7 +443,7 @@ This supports the project boundary that the interview is a design research inter
 
 ## 6. Researcher review is supported
 
-The Output Review page and Evidence Record export include an AgentDecision trace. This allows the researcher to inspect not only what was said, but also why the agent moved on, asked a follow-up, stopped, skipped, or flagged missing information.
+The Output Review page and Evidence Record export include plain-language system-step explanations. This allows the researcher to inspect not only what was said, but also why the interview moved on, asked a follow-up, stopped, skipped, or flagged missing information.
 
 ## 7. LLM follow-up wording is constrained and graph-approved
 
@@ -418,17 +461,25 @@ Observed comparison:
 
 In both cases, the same participant answer is assessed as partial and routed to `ASK_FOLLOW_UP`. This supports the claim that the LLM assists wording, while LangGraph controls what the interview does next.
 
-## 8. Researcher approval requires manual criteria confirmation
+## 8. Researcher approval separates system conditions from researcher judgement
 
-The final review workflow does not treat the system-generated draft summary as automatically valid. Before approving the output, the researcher must manually confirm five criteria:
+The final review workflow does not treat system-generated extracts as
+automatically valid. Before approval, it calculates three workflow conditions:
 
-- Summary grounded in transcript
-- No unsupported interpretation
-- No medical / diagnostic advice
-- Participant safety and autonomy respected
-- Limitations and missing information are visible
+- Included extracts have valid transcript source links
+- Skip and Stop controls were followed
+- Coverage limitations remain represented
 
-These confirmed criteria are saved and displayed in Evidence Status and the Evidence Record export.
+The researcher then confirms two non-automatable judgements:
+
+- Included extracts preserve the participant's meaning
+- Protocol-specific interaction boundaries were respected
+
+These conditions map to traceability, extract fidelity, Protocol compliance,
+participant control, and limitation visibility. They are project-specific
+controls, not a validated scale or a claim that the participant's account is
+externally verified. Evidence Status and the Evidence Record display the two
+groups as `Met / Not met` and `Confirmed / Not confirmed`, never as a score.
 
 ---
 
@@ -444,7 +495,7 @@ The Evidence Record distinguishes between:
 For this reason, a completed run can show:
 
 - no final topic-level evidence limitations;
-- local missing-information chips in the AgentDecision trace during intermediate follow-up decisions.
+- local missing-information chips in the system-step explanation during intermediate follow-up decisions.
 
 This is expected. It means all topics were eventually covered sufficiently, while the agent still recorded local gaps during the interview.
 
@@ -468,15 +519,15 @@ This means the comparison isolates the wording layer:
 - routing remains LangGraph-managed;
 - only the follow-up wording changes.
 
-## Structured summary and AgentDecision trace
+## Evidence by topic and system-step explanations
 
-The structured summary gives a topic-level view of answered, partial, skipped, stopped, or not-reached sections. The AgentDecision trace gives a more detailed turn-level explanation of why the agent moved on, asked a follow-up, flagged missing information, skipped, stopped, or gave a boundary response.
+Evidence by Protocol topic gives a topic-level view of answered and partial evidence, while skipped, stopped, and not-reached sections remain explicit limitations. Expandable system-step explanations give turn-level detail about why the interview moved on, asked a follow-up, flagged missing information, respected Skip/Stop, or gave a boundary response.
 
-For this reason, the structured summary and AgentDecision trace should be interpreted together.
+For this reason, topic evidence, limitations, and the relevant transcript-linked explanations should be interpreted together.
 
 ## Review state
 
-The Evidence Record records the review state, such as `Pending review`, `Approved`, or `Revision requested`. A pending review state means the output has been generated and is available for researcher review. It does not mean the output has already been approved by a researcher.
+The Evidence Record records the review state, such as `Review pending`, `Approved as reviewed evidence`, or `Revision requested`. A pending review state means the output has been generated and is available for researcher review. Approval means the project-specific review workflow was completed; it does not verify outcome quality, the participant's account as external fact, or the study as a whole.
 
 ---
 
@@ -489,7 +540,7 @@ The Evidence Record records the review state, such as `Pending review`, `Approve
 - The evidence is based on seeded MVP sessions, so it demonstrates workflow feasibility rather than general performance.
 - The system supports researcher review; it does not replace researcher judgement.
 - The tests verify selected behaviours rather than exhaustively testing all possible participant responses.
-- The review criteria confirmation records that a researcher completed manual checks, but it does not prove that every researcher would make the same review decision.
+- The final-check confirmation records that a researcher completed project-specific manual checks, but it is not a validated scale and does not prove that another researcher would make the same decision.
 - Evidence limitations are based on the current protocol sections and decision trace; they do not represent a full qualitative coding process.
 - The current MVP evaluates one participant record and one protocol, rather than a full multi-participant study management system.
 
@@ -499,10 +550,10 @@ The Evidence Record records the review state, such as `Pending review`, `Approve
 
 The scripted tests provide preliminary evidence that the MVP supports a reviewable interview-to-output workflow:
 
-Participant answer → state update → LLM-assisted semantic assessment → LangGraph routing → graph-approved follow-up wording or template fallback → AgentDecision trace → transcript / output review → manual quality criteria confirmation → Evidence Status → Evidence Record export.
+Participant answer → state update → LLM-assisted semantic assessment → LangGraph routing → graph-approved follow-up wording or template fallback → internal decision persistence → transcript-first Output Review → topic-extract decisions → manual final checks → Evidence Status → Evidence Record export.
 
 This supports the project claim that a graph-managed conversational agent can conduct a bounded semi-structured stakeholder interview while making its control decisions inspectable for researcher review.
 
 The follow-up wording evidence strengthens this claim by showing that LLM assistance can be added at the wording layer without giving the LLM control over routing. The LLM helps assess what the participant said and can phrase a graph-approved follow-up question; LangGraph controls what the interview does next.
 
-The researcher review evidence further shows that generated summaries are treated as reviewable draft outputs rather than automatically trusted findings. Approval depends on manual quality criteria confirmation, and the confirmed criteria are saved as part of the evidence record.
+The researcher review evidence further shows that generated extracts are treated as reviewable draft outputs rather than automatically trusted findings. Approval depends on topic-level decisions and manual final checks, which are saved as part of the Evidence Record.

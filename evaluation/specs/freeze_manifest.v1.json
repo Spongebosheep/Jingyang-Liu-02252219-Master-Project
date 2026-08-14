@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "created_on": "2026-08-06",
+  "product_baseline": {
+    "authoritative_phase4_commit": "da71a3f464402091dae412b8be4f54b8d97b7e57",
+    "verified_combined_archive_sha256": "6196a48b5641f78cc710559fe40f57f17cafd5412b2b0fab854f600ab78c4a4d",
+    "local_baseline_commit": "ed109c1",
+    "controlled_file_count": 63
+  },
+  "formal_runs_started": false,
+  "live_openai_gate": {
+    "status": "PENDING",
+    "required_fields": {
+      "status": "PASS",
+      "live_assessment": true,
+      "live_follow_up_wording": true
+    },
+    "mock_or_fallback_is_acceptable": false
+  },
+  "run_plan": {
+    "minimum_individual_sessions": 16,
+    "minimum_matched_pairs": 8,
+    "recommended_individual_sessions": 32,
+    "recommended_matched_pairs": 16,
+    "recommended_repetitions_per_condition": {
+      "S1": 3,
+      "S2": 3,
+      "S3": 3,
+      "S4": 1,
+      "S5": 1,
+      "S6": 3,
+      "S7": 1,
+      "S8": 1
+    }
+  },
+  "frozen_files": {
+    "baseline_contract.v1.json": "a08becfccfa1ee90ad4eb0a645a1e1f99c6db0725699617fe41eeae77fbd64a6",
+    "metrics.v1.json": "ca6c91ecec469e338a7cf3017ca917bdf0b4e8f4f565b9baf4e28e81ee715cbc",
+    "scenarios.v1.json": "316f4a67dfb75714048460da0335be28c359f9fd0064787ce5fcd8c693cc1b78"
+  }
+}
